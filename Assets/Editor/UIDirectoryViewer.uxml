@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="UIDirectoryViewer.uss" />
+    <ui:VisualElement name="Window" style="width: 100%; height: 100%; background-color: rgb(26, 26, 26); position: relative; flex-direction: column;">
+        <ui:VisualElement name="TopMenu" style="height: 32px; width: 100%;" />
+        <ui:ScrollView mode="VerticalAndHorizontal" name="FileGroup" show-vertical-scroller="true" show-horizontal-scroller="true" style="width: 100%; height: 100%; flex-direction: row; flex-wrap: wrap; overflow: visible;" />
+    </ui:VisualElement>
+</ui:UXML>

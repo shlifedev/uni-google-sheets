@@ -1,0 +1,40 @@
+#File > #Icon {
+    width: 64px;
+    height: 64px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    color: rgb(0, 0, 0);
+}
+ 
+#File {
+    width: 128px;
+    height: 128px;
+    background-color: rgb(159, 159, 159);
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    color: rgb(9, 9, 9);
+}
+
+ 
+
+#File > #FileName {
+    position: absolute;
+    top: 108px;
+    left: 2px;
+    width: 121px;
+    height: 17px;
+    -unity-text-align: upper-center;
+    font-size: 12px;
+}
