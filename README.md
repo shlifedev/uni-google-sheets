@@ -24,7 +24,7 @@ GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매�
 - 구글 시트를 읽고 씁니다.
 - 리플렉션을 적극 활용하여 프로그래머가 매우 쉽게 타입을 추가할 수 있습니다.
 
- 벡터3 타입 추가 예제  
+ Vector3 타입 추가 예제  
  일반적으로 테이블에서 관리하기 힘든 타입이지만 매우 쉽게 추가할 수 있습니다.
  ```csharp
     [Type(typeof(Vector3), new string[] { "Vector3", "vector3"})]
