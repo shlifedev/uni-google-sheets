@@ -1,4 +1,5 @@
-﻿using Hamster.ZG.Http;
+﻿using Hamster.ZG;
+using Hamster.ZG.Http;
 using Hamster.ZG.Http.Protocol;
 using Newtonsoft.Json;
 using System;
@@ -13,7 +14,7 @@ using UnityEngine;
 public abstract class ZGWebReqeust
 {
     public abstract void GetFolderFiles(string folderID, System.Action<GetFolderInfo> callback);
-    public abstract void GetTableData(string sheetID, System.Action<GetTableResult> callback);
+    public abstract void GetTableData(string sheetID, System.Action<GetTableResult, string> callback);
 
 
   //  public abstract void WriteValue(string sheetID, string key, string value);
@@ -31,8 +32,11 @@ public class UnityEditorWebRequest : ZGWebReqeust
     [MenuItem("Test/Gogo")]
     public static void EditorWebRequest()
     { 
-        Instance.GetFolderFiles("1kvfx7v8K1fMWtpFGkmRr_DrAyjVfInRo", x=> { 
-         
+        ZeroGoogleSheet.Init(new GSParser());
+        Instance.GetFolderFiles("1kvfx7v8K1fMWtpFGkmRr_DrAyjVfInRo", x=> {
+            Instance.GetTableData(x.fileID[0], (v,b)=> { 
+                 ZeroGoogleSheet.DataReader.ParseSheet(b,true,true, new UnityFileWriter());
+            });
         });
     } 
 
@@ -44,9 +48,12 @@ public class UnityEditorWebRequest : ZGWebReqeust
         });
     }
 
-    public override void GetTableData(string sheetID, Action<GetTableResult> callback)
+    public override void GetTableData(string sheetID, Action<GetTableResult, string> callback)
     {
-        throw new NotImplementedException();
+        Instance.Get($"{baseURL}?instruction=getTable&sheetID={sheetID}", (x) => { 
+            var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetTableResult>(x);
+            callback?.Invoke(value, x);
+        });
     }
 
     private void Get(string url, Action<string> callback)
