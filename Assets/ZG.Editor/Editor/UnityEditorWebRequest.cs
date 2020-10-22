@@ -13,6 +13,10 @@ using UnityEngine;
 public abstract class ZGWebReqeust
 {
     public abstract void GetFolderFiles(string folderID, System.Action<GetFolderInfo> callback);
+    public abstract void GetTableData(string sheetID, System.Action<GetTableResult> callback);
+
+
+  //  public abstract void WriteValue(string sheetID, string key, string value);
 }
 public class UnityEditorWebRequest : ZGWebReqeust
 {
@@ -39,7 +43,12 @@ public class UnityEditorWebRequest : ZGWebReqeust
             callback?.Invoke(value);
         });
     }
-    
+
+    public override void GetTableData(string sheetID, Action<GetTableResult> callback)
+    {
+        throw new NotImplementedException();
+    }
+
     private void Get(string url, Action<string> callback)
     {
         EditorUtility.DisplayProgressBar("Request From Google Script..", "Please Wait a Second..", 1);
