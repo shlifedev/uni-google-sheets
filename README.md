@@ -1,6 +1,12 @@
+
+아직 개발중이며 작성중인 문서입니다.
+
 # UnityGoogleSheet
  
-GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매니저
+GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매니저.
+
+누구나 무료로 사용할 수 있습니다.
+
 
 ## 기능
 - 모든 C#의 기본 타입을 지원 합니다.
