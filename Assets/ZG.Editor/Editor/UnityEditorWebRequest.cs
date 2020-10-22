@@ -44,6 +44,7 @@ public class UnityEditorWebRequest : ZGWebReqeust
     { 
         Instance.Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", (x) => {
             var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetFolderInfo>(x);
+            Debug.Log(x);
             callback?.Invoke(value);
         });
     }

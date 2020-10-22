@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System.Collections.Generic;
 using System.Linq;
+using Hamster.ZG.Http.Protocol;
+using static UIFile;
 
 public class UIFile
 {
@@ -84,12 +86,12 @@ public class UIFile
 
                 if (file.type == FileType.Folder)
                 {
-                    UIDirectoryViewer.CurrentViewfile = file;
+                    UIDirectoryViewer.CurrentViewFile = file;
                 }
                 if (file.type == FileType.ParentFolder)
                 {
                     //페런드폴더 객체의 부모(폴더)의 객체=> 진짜객체
-                    UIDirectoryViewer.CurrentViewfile = file.parentFolder.parentFolder;
+                    UIDirectoryViewer.CurrentViewFile = file.parentFolder.parentFolder;
                 }
                 return;
             }
@@ -135,7 +137,7 @@ public class UIDirectoryViewer : EditorWindow
     static UIDirectoryViewer wnd = null;
     static UnityEngine.UIElements.ScrollView scrollView;
 
-    public static UIFile CurrentViewfile 
+    public static UIFile CurrentViewFile 
     {
         get => currentViewfile; 
         set
@@ -149,7 +151,7 @@ public class UIDirectoryViewer : EditorWindow
     public static void ShowExample()
     { 
         /* Load UI Directory View */
-        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIDirectoryViewer.uxml");
+        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIDirectoryViewer.uxml");
         wnd = GetWindow<UIDirectoryViewer>();
         wnd.titleContent = new GUIContent("UIDirectoryViewer");
         wnd.rootVisualElement.Add(uiAsset.CloneTree()); 
@@ -159,8 +161,9 @@ public class UIDirectoryViewer : EditorWindow
         scrollView.contentContainer.style.flexWrap = new StyleEnum<Wrap>() { value = Wrap.Wrap};
         scrollView.contentContainer.style.flexShrink = new StyleFloat(1);
         scrollView.contentContainer.style.overflow = new StyleEnum<Overflow>(Overflow.Visible); 
-        AddTestUIFile(); 
+        LoadGoogleFolder();
     }
+
 
     /// <summary>
     /// 현재 보고있는 폴더의 파일들 표시
@@ -168,15 +171,43 @@ public class UIDirectoryViewer : EditorWindow
     private static void UpdateCurrentViewFiles()
     {
         
-        if(CurrentViewfile != null)
+        if(CurrentViewFile != null)
         {
  
             scrollView.Clear();
-            foreach(var file in CurrentViewfile.childFiles)
+            foreach(var file in CurrentViewFile.childFiles)
             {
                 scrollView.Add(file.uiElement);
             }
         }
+    }
+
+    private static void LoadGoogleFolder()
+    {
+        UnityEditorWebRequest.Instance.GetFolderFiles("1EoXKE6nzb9nqAsYCSO3R5YqYxA2pd_TK", x => {
+            CreateFileList(x);      
+        });
+    }
+
+    private static void CreateFileList(GetFolderInfo folder)
+    {
+        UIFile file = UIFile.CreateFolderInstance("root", null, null);
+        for (int i = 0; i < folder.fileID.Count; i++) {
+
+            Debug.Log(folder.fileName);
+            if (folder.fileType[i] == (int)FileType.Excel)
+            {
+                file.AddChild(UIFile.CreateExcelInstance(folder.fileName[i], folder.url[i], folder.fileID[i]));
+            }
+            if (folder.fileType[i] == (int)FileType.Folder)
+            {
+                file.AddChild(UIFile.CreateFolderInstance(folder.fileName[i], folder.url[i], folder.fileID[i]));
+            }
+        }
+
+
+
+        CurrentViewFile = file;
     }
 
     #region test
@@ -200,13 +231,13 @@ public class UIDirectoryViewer : EditorWindow
         test2.AddChild(UIFile.CreateExcelInstance("Localization_ko_kr",null,null));
         test2.AddChild(UIFile.CreateExcelInstance("Localization_en_us",null,null)); 
 
-        CurrentViewfile = file; 
+        CurrentViewFile = file; 
     }
     #endregion
     #region visual_element_creator
     public static VisualElement CreateDirectoryElement(string directoryName)
     { 
-        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIFile.uxml");
+        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIFile.uxml");
         var fileElement = uiAsset.CloneTree().Query().Name("File").First() as VisualElement;
         var label = fileElement.Query().Name("FileName").First() as Label;
             label.text = directoryName; 
@@ -220,7 +251,7 @@ public class UIDirectoryViewer : EditorWindow
     }
     public static VisualElement CreateExcelElement(string fileName)
     {
-        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIFile.uxml");
+        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIFile.uxml");
         var fileElement = uiAsset.CloneTree().Query().Name("File").First() as VisualElement;
         var label = fileElement.Query().Name("FileName").First() as Label;
             label.text = fileName;

@@ -9,6 +9,11 @@ namespace Hamster.ZG.Http.Protocol
     public class GetFolderInfo : Result
     {
         public List<string> fileID;
-        public List<string> fileName; 
+        public List<string> fileName;
+
+        public List<int> fileType;
+        public List<string> url;
+
+
     }
 }
