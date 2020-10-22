@@ -44,7 +44,7 @@ public class UnityEditorWebRequest : ZGWebReqeust
     { 
         Instance.Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", (x) => {
             var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetFolderInfo>(x);
-            Debug.Log(x);
+ 
             callback?.Invoke(value);
         });
     }
@@ -59,7 +59,7 @@ public class UnityEditorWebRequest : ZGWebReqeust
 
     private void Get(string url, Action<string> callback)
     {
-        Debug.Log(url);
+ 
         EditorUtility.DisplayProgressBar("Request From Google Script..", "Please Wait a Second..", 1);
         WebRequest request = WebRequest.Create(url);
         request.Timeout = 3000;

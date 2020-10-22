@@ -221,7 +221,7 @@ public class UIDirectoryViewer : EditorWindow
         
         for (int i = 0; i < folder.fileID.Count; i++) {
 
-            Debug.Log(folder.fileName);
+ 
             if (folder.fileType[i] == (int)FileType.Excel)
             {
                 file.AddChild(UIFile.CreateExcelInstance(folder.fileName[i], folder.url[i], folder.fileID[i]));
