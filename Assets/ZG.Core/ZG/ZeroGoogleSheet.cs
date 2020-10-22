@@ -8,10 +8,9 @@ namespace Hamster.ZG
     { 
         static IParser dataReader; 
         public static IParser DataReader { get => dataReader; } 
-        public static void Init(IWebRequester requester, IParser reader)
+        public static void Init(IParser reader)
         { 
-            TypeMap.Init(); 
-            Request.Init(requester);
+            TypeMap.Init();  
             dataReader = reader;
         }
          

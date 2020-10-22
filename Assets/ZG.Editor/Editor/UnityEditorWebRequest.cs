@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Hamster.ZG.Http;
+using Hamster.ZG.Http.Protocol;
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,18 +9,38 @@ using System.Net;
 using UnityEditor;
 using UnityEngine;
 
-public static class UnityEditorWebRequest 
+
+public abstract class ZGWebReqeust
 {
+    public abstract void GetFolderFiles(string folderID, System.Action<GetFolderInfo> callback);
+}
+public class UnityEditorWebRequest : ZGWebReqeust
+{
+    public static UnityEditorWebRequest Instance = new UnityEditorWebRequest();
+    public string baseURL
+    {
+        get
+        {
+            return "https://script.google.com/macros/s/AKfycbyOBVdYiUz6W1WJCHhV5SS4r0Bq3NIyCKW8ugVunsBD-4Bbn30U/exec";
+        }
+    }
     [MenuItem("Test/Gogo")]
     public static void EditorWebRequest()
-    {
-        Get("https://script.google.com/macros/s/AKfycbyOBVdYiUz6W1WJCHhV5SS4r0Bq3NIyCKW8ugVunsBD-4Bbn30U/exec?instruction=getFolderInfo&folderID=1kvfx7v8K1fMWtpFGkmRr_DrAyjVfInRo", (x)=> { });
+    { 
+        Instance.GetFolderFiles("1kvfx7v8K1fMWtpFGkmRr_DrAyjVfInRo", x=> { 
+         
+        });
+    } 
 
+    public override void GetFolderFiles(string folderID, System.Action<GetFolderInfo> callback)
+    { 
+        Instance.Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", (x) => {
+            var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetFolderInfo>(x);
+            callback?.Invoke(value);
+        });
     }
-
-
     
-    static void Get(string url, Action<string> callback)
+    private void Get(string url, Action<string> callback)
     {
         EditorUtility.DisplayProgressBar("Request From Google Script..", "Please Wait a Second..", 1);
         WebRequest request = WebRequest.Create(url); 
@@ -41,5 +64,5 @@ public static class UnityEditorWebRequest
         }
         response.Close(); 
         EditorUtility.ClearProgressBar(); 
-    }
+    } 
 }
