@@ -59,13 +59,16 @@ public class UnityEditorWebRequest : ZGWebReqeust
 
     private void Get(string url, Action<string> callback)
     {
+        Debug.Log(url);
         EditorUtility.DisplayProgressBar("Request From Google Script..", "Please Wait a Second..", 1);
-        WebRequest request = WebRequest.Create(url); 
+        WebRequest request = WebRequest.Create(url);
+        request.Timeout = 3000;
         request.Credentials = CredentialCache.DefaultCredentials; 
         WebResponse response = request.GetResponse(); 
         var statusCode = ((HttpWebResponse)response).StatusCode;
         string responseFromServer = "";
 
+      
         if (statusCode == HttpStatusCode.OK)
         {
             using (Stream dataStream = response.GetResponseStream())

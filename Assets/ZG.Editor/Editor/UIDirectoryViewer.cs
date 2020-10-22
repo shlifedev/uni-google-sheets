@@ -17,7 +17,7 @@ public class UIFile
     /// <summary>
     /// 파일 타입이 폴더이면 존재하거나 없음.
     /// </summary>
-    public UIFile parentFolder; 
+    public string parentFolderID;
     public List<UIFile> childFiles = new List<UIFile>();
      
     public string id;
@@ -36,7 +36,7 @@ public class UIFile
 
     static System.DateTime latestClickTime = System.DateTime.MinValue; 
 
-    public static UIFile CreateFolderInstance(string fileName, string url, string id)
+    public static UIFile CreateFolderInstance(string fileName, string url, string id, string parentFolder = null)
     {
         UIFile file = new UIFile();
         file.fileName = fileName;
@@ -44,6 +44,7 @@ public class UIFile
         file.uiElement = UIDirectoryViewer.CreateDirectoryElement(fileName);
         file.id = id;
         file.url = url;
+        file.parentFolderID = parentFolder;
         AddClickEvent(file);
         return file;
     }
@@ -85,13 +86,20 @@ public class UIFile
                 latestClickTime = System.DateTime.MinValue;
 
                 if (file.type == FileType.Folder)
-                {
-                    UIDirectoryViewer.CurrentViewFile = file;
+                { 
+                    UIDirectoryViewer.LoadFolder(file.id);   
                 }
                 if (file.type == FileType.ParentFolder)
                 {
-                    //페런드폴더 객체의 부모(폴더)의 객체=> 진짜객체
-                    UIDirectoryViewer.CurrentViewFile = file.parentFolder.parentFolder;
+                    if(file.parentFolderID == UIDirectoryViewer.RootFolderID)
+                    {
+                        UIDirectoryViewer.LoadRootFolder();
+                    }
+                    else
+                    {
+                        UIDirectoryViewer.LoadFolder(file.parentFolderID);
+                    }
+                 
                 }
                 return;
             }
@@ -114,10 +122,11 @@ public class UIFile
     public void AddChild(UIFile file)
     {
         this.childFiles.Add(file);
-        file.parentFolder = this; 
+        file.parentFolderID = this.id;
          
         if (file.type == FileType.Folder) 
             file.AddChild(CreateParentFolderInstance()); 
+
         childFiles = childFiles.OrderBy(x => x.type).ToList();
     }
 
@@ -132,7 +141,7 @@ public class UIDirectoryViewer : EditorWindow
     /// 현재 보고있는 파일
     /// </summary>
     static UIFile currentViewfile = null; 
-
+    public static string RootFolderID = "1EoXKE6nzb9nqAsYCSO3R5YqYxA2pd_TK";
 
     static UIDirectoryViewer wnd = null;
     static UnityEngine.UIElements.ScrollView scrollView;
@@ -161,7 +170,7 @@ public class UIDirectoryViewer : EditorWindow
         scrollView.contentContainer.style.flexWrap = new StyleEnum<Wrap>() { value = Wrap.Wrap};
         scrollView.contentContainer.style.flexShrink = new StyleFloat(1);
         scrollView.contentContainer.style.overflow = new StyleEnum<Overflow>(Overflow.Visible); 
-        LoadGoogleFolder();
+        LoadRootFolder();
     }
 
 
@@ -182,16 +191,34 @@ public class UIDirectoryViewer : EditorWindow
         }
     }
 
-    private static void LoadGoogleFolder()
+    public static void LoadRootFolder()
     {
-        UnityEditorWebRequest.Instance.GetFolderFiles("1EoXKE6nzb9nqAsYCSO3R5YqYxA2pd_TK", x => {
-            CreateFileList(x);      
+
+        UnityEditorWebRequest.Instance.GetFolderFiles(RootFolderID, x => {
+            CreateFileList(x, true);
+        });
+    }
+    public static void LoadFolder(string folderId)
+    {
+
+        UnityEditorWebRequest.Instance.GetFolderFiles(folderId, x => {
+            CreateFileList(x, false);
         });
     }
 
-    private static void CreateFileList(GetFolderInfo folder)
+    private static void CreateFileList(GetFolderInfo folder, bool root)
     {
-        UIFile file = UIFile.CreateFolderInstance("root", null, null);
+        UIFile file = null;
+        if (root)
+        {
+            file = UIFile.CreateFolderInstance("root", null, RootFolderID, null);
+        }
+        else
+        {
+            file = UIFile.CreateFolderInstance("root", null, RootFolderID, null);
+        }
+
+        
         for (int i = 0; i < folder.fileID.Count; i++) {
 
             Debug.Log(folder.fileName);
@@ -201,12 +228,14 @@ public class UIDirectoryViewer : EditorWindow
             }
             if (folder.fileType[i] == (int)FileType.Folder)
             {
-                file.AddChild(UIFile.CreateFolderInstance(folder.fileName[i], folder.url[i], folder.fileID[i]));
-            }
+                file.AddChild(UIFile.CreateFolderInstance(folder.fileName[i], folder.url[i], folder.fileID[i], file.id)); 
+            } 
+          
         }
-
-
-
+        if (root == false)
+        {
+            file.AddChild(UIFile.CreateParentFolderInstance());
+        }
         CurrentViewFile = file;
     }
 
