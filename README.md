@@ -26,6 +26,7 @@ GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매�
 
  Vector3 타입 추가 예제  
  일반적으로 테이블에서 관리하기 힘든 타입이지만 매우 쉽게 추가할 수 있습니다.
+ Read함수를 직접 구현하면됩니다. (아래 튜플구현 참조)
  ```csharp
     [Type(typeof(Vector3), new string[] { "Vector3", "vector3"})]
     public struct Vector3Type : IType
@@ -37,7 +38,7 @@ GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매�
         }
     }
  ```
- 튜플 타입 추가 예제  
+ 튜플 타입 추가 및 구현 예제  
  일반적으로 테이블에서 관리하기 힘든 타입이지만 매우 쉽게 추가할 수 있습니다.
  ```csharp
     [Type(typeof((int, int)), new string[] { "(int,int)", "(Int32,Int32)" })]
