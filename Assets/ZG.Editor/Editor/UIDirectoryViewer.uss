@@ -37,4 +37,5 @@
     height: 17px;
     -unity-text-align: upper-center;
     font-size: 12px;
+	color: rgb(255,255,255);
 }

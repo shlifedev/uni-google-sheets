@@ -25,8 +25,7 @@ public class UnityFileWriter : IFIleWriter
     }
 
     /// <summary>
-    /// if you download persistentDataPath your table data(.json),
-    /// then, next time only load from persistentDataPath. (no use Resources folder.)
+    /// write json resources folder.
     /// </summary>
     /// <param name="writePath"></param>
     /// <param name="content"></param>
