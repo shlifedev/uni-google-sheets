@@ -28,61 +28,96 @@ public class UnityEditorWebRequest : ZGWebReqeust
         {
             return "https://script.google.com/macros/s/AKfycbyOBVdYiUz6W1WJCHhV5SS4r0Bq3NIyCKW8ugVunsBD-4Bbn30U/exec";
         }
-    }
-    [MenuItem("Test/Gogo")]
-    public static void EditorWebRequest()
-    { 
-        ZeroGoogleSheet.Init(new GSParser());
-        Instance.GetFolderFiles("1kvfx7v8K1fMWtpFGkmRr_DrAyjVfInRo", x=> {
-            Instance.GetTableData(x.fileID[0], (v,b)=> { 
-                 ZeroGoogleSheet.DataReader.ParseSheet(b,true,true, new UnityFileWriter());
-            });
-        });
     } 
-
     public override void GetFolderFiles(string folderID, System.Action<GetFolderInfo> callback)
     { 
         Instance.Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", (x) => {
-            var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetFolderInfo>(x);
- 
-            callback?.Invoke(value);
+            if(x == null)
+            {
+                Debug.LogError("cannot receive data");
+                callback?.Invoke(null);
+            }
+            else
+            {
+                try
+                {
+                    var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetFolderInfo>(x); 
+                    callback?.Invoke(value);
+                }
+                catch
+                {
+                    callback?.Invoke(null);
+
+                }
+            } 
         });
     }
 
     public override void GetTableData(string sheetID, Action<GetTableResult, string> callback)
     {
-        Instance.Get($"{baseURL}?instruction=getTable&sheetID={sheetID}", (x) => { 
-            var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetTableResult>(x);
-            callback?.Invoke(value, x);
+        Instance.Get($"{baseURL}?instruction=getTable&sheetID={sheetID}", (x) => {
+            if (x == null)
+            {
+                Debug.LogError("cannot receive data");
+                callback?.Invoke(null, null);
+            }
+            else
+            {
+                try
+                {
+                    var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetTableResult>(x);
+                    callback?.Invoke(value,x);
+                }
+                catch
+                {
+                    callback?.Invoke(null,x); 
+                }
+            }
         });
     }
 
     private void Get(string url, Action<string> callback)
     {
- 
-        EditorUtility.DisplayProgressBar("Request From Google Script..", "Please Wait a Second..", 1);
-        WebRequest request = WebRequest.Create(url);
-        request.Timeout = 3000;
-        request.Credentials = CredentialCache.DefaultCredentials; 
-        WebResponse response = request.GetResponse(); 
-        var statusCode = ((HttpWebResponse)response).StatusCode;
-        string responseFromServer = "";
 
-      
-        if (statusCode == HttpStatusCode.OK)
+        try
         {
-            using (Stream dataStream = response.GetResponseStream())
+            EditorUtility.DisplayProgressBar("Request From Google Script..", "Please Wait a Second..", 1);
+            WebRequest request = WebRequest.Create(url);
+            request.Timeout = 7500;
+            request.Credentials = CredentialCache.DefaultCredentials;
+            WebResponse response = request.GetResponse();
+            var statusCode = ((HttpWebResponse)response).StatusCode;
+            string responseFromServer = "";
+
+            if (statusCode == HttpStatusCode.RequestTimeout)
             {
-                StreamReader reader = new StreamReader(dataStream);
-                responseFromServer = reader.ReadToEnd();
-                callback?.Invoke(responseFromServer);
+                EditorUtility.DisplayDialog("Timeout", "ZegoGoogleSheet Initialize Failed! Try Check Setting Window.", "ok");
+                callback?.Invoke(null);
+            }
+            if (statusCode == HttpStatusCode.OK)
+            {
+                using (Stream dataStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(dataStream);
+                    responseFromServer = reader.ReadToEnd();
+                    callback?.Invoke(responseFromServer);
+                }
+            }
+            else
+            {
+                callback?.Invoke(null);
+            }
+            response.Close();
+            EditorUtility.ClearProgressBar();
+        }
+        catch(Exception e)
+        {
+            if(e is WebException)
+            {
+                var we = e as WebException;
+                Debug.Log(we.Status);
+                callback?.Invoke(null);
             }
         }
-        else
-        {
-            callback?.Invoke(null);
-        }
-        response.Close(); 
-        EditorUtility.ClearProgressBar(); 
-    } 
+    }
 }

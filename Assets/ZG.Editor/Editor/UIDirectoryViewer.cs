@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Hamster.ZG.Http.Protocol;
 using static UIFile;
+using Hamster.ZG;
 
 public class UIFile
 {
@@ -142,7 +143,7 @@ public class UIDirectoryViewer : EditorWindow
         }
     }
 
-    static UIDirectoryViewer wnd = null;
+    public static UIDirectoryViewer Instance = null;
     static UnityEngine.UIElements.ScrollView scrollView;
 
     public static UIFile CurrentViewFile 
@@ -154,22 +155,21 @@ public class UIDirectoryViewer : EditorWindow
             UpdateCurrentViewFiles();
         }
     }
-
-
-    
+     
     [MenuItem("Window/UIElements/UIDirectoryViewer")]
     public static void CreateInstance()
     {
-
-        if (wnd == null)
+         
+        if (Instance == null)
         {
+            ZeroGoogleSheet.Init(new GSParser());
             /* Load UI Directory View */
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIDirectoryViewer.uxml");
-            wnd = GetWindow<UIDirectoryViewer>();
-            wnd.titleContent = new GUIContent("UIDirectoryViewer");
-            wnd.rootVisualElement.Add(uiAsset.CloneTree());
+            Instance = GetWindow<UIDirectoryViewer>(); 
+            Instance.titleContent = new GUIContent("UIDirectoryViewer");
+            Instance.rootVisualElement.Add(uiAsset.CloneTree());
 
-            scrollView = wnd.rootVisualElement.Query("FileGroup").First() as ScrollView;
+            scrollView = Instance.rootVisualElement.Query("FileGroup").First() as ScrollView;
             /* Scroll View To Grid View Script Custom */
             scrollView.contentContainer.style.flexDirection = new StyleEnum<FlexDirection>() { value = FlexDirection.Row };
             scrollView.contentContainer.style.flexWrap = new StyleEnum<Wrap>() { value = Wrap.Wrap };
@@ -177,8 +177,16 @@ public class UIDirectoryViewer : EditorWindow
             scrollView.contentContainer.style.overflow = new StyleEnum<Overflow>(Overflow.Visible);
             LoadRootFolder();
         }
+        else
+        {
+            Instance.Show();
+        }
     }
-
+     [UnityEditor.Callbacks.DidReloadScripts]
+    private static void OnScriptsReloaded()
+    {
+        GetWindow<UIDirectoryViewer>().Close();  
+    }
 
     public void OnEnable()
     {
