@@ -132,16 +132,15 @@ public class UIFile
 
 }
 public class UIDirectoryViewer : EditorWindow
-{
-
-
-
-
-    /// <summary>
-    /// 현재 보고있는 파일
-    /// </summary>
+{ 
     static UIFile currentViewfile = null; 
-    public static string RootFolderID = "1EoXKE6nzb9nqAsYCSO3R5YqYxA2pd_TK";
+    public static string RootFolderID
+    {
+        get
+        {
+            return "1EoXKE6nzb9nqAsYCSO3R5YqYxA2pd_TK";
+        }
+    }
 
     static UIDirectoryViewer wnd = null;
     static UnityEngine.UIElements.ScrollView scrollView;
@@ -156,23 +155,38 @@ public class UIDirectoryViewer : EditorWindow
         }
     }
 
+
+    
     [MenuItem("Window/UIElements/UIDirectoryViewer")]
-    public static void ShowExample()
-    { 
-        /* Load UI Directory View */
-        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIDirectoryViewer.uxml");
-        wnd = GetWindow<UIDirectoryViewer>();
-        wnd.titleContent = new GUIContent("UIDirectoryViewer");
-        wnd.rootVisualElement.Add(uiAsset.CloneTree()); 
-        scrollView = wnd.rootVisualElement.Query("FileGroup").First() as ScrollView; 
-        /* Scroll View To Grid View Script Custom */
-        scrollView.contentContainer.style.flexDirection = new StyleEnum<FlexDirection>() { value = FlexDirection.Row };
-        scrollView.contentContainer.style.flexWrap = new StyleEnum<Wrap>() { value = Wrap.Wrap};
-        scrollView.contentContainer.style.flexShrink = new StyleFloat(1);
-        scrollView.contentContainer.style.overflow = new StyleEnum<Overflow>(Overflow.Visible); 
-        LoadRootFolder();
+    public static void CreateInstance()
+    {
+
+        if (wnd == null)
+        {
+            /* Load UI Directory View */
+            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIDirectoryViewer.uxml");
+            wnd = GetWindow<UIDirectoryViewer>();
+            wnd.titleContent = new GUIContent("UIDirectoryViewer");
+            wnd.rootVisualElement.Add(uiAsset.CloneTree());
+
+            scrollView = wnd.rootVisualElement.Query("FileGroup").First() as ScrollView;
+            /* Scroll View To Grid View Script Custom */
+            scrollView.contentContainer.style.flexDirection = new StyleEnum<FlexDirection>() { value = FlexDirection.Row };
+            scrollView.contentContainer.style.flexWrap = new StyleEnum<Wrap>() { value = Wrap.Wrap };
+            scrollView.contentContainer.style.flexShrink = new StyleFloat(1);
+            scrollView.contentContainer.style.overflow = new StyleEnum<Overflow>(Overflow.Visible);
+            LoadRootFolder();
+        }
     }
 
+
+    public void OnEnable()
+    {
+        //if(wnd == null)
+        //{
+        //    CreateInstance();
+        //}
+    }
 
     /// <summary>
     /// 현재 보고있는 폴더의 파일들 표시

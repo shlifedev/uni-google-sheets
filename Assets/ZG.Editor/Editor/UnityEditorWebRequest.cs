@@ -24,7 +24,7 @@ public class UnityEditorWebRequest : ZGWebReqeust
     public static UnityEditorWebRequest Instance = new UnityEditorWebRequest();
     public string baseURL
     {
-        get
+        get 
         {
             return "https://script.google.com/macros/s/AKfycbyOBVdYiUz6W1WJCHhV5SS4r0Bq3NIyCKW8ugVunsBD-4Bbn30U/exec";
         }
