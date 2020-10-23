@@ -9,15 +9,16 @@
 - [ ] 가이드 문서 제공
 - [ ] 에디터 GUI
 - [ ] 문서정리
-- [ ] 에셋스토어 등록
-
+- [ ] 에셋스토어 등록 
 # UnityGoogleSheet
  
-GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매니저.
+GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매니저.  
 
-누구나 무료로 사용할 수 있습니다.
-
-
+## 사용 이점
+ - 무료로 사용할 수 있습니다.
+ - 폴더를 분리하여 게임 벨런스 및 게임 패치를 매우 쉽게 관리할 수 있습니다.
+ - 데이터타입이나 형식에 제약받지 않고 사용할 수 있습니다.
+ 
 ## 기능
 - 구글 드라이브와 실시간 통신
  ![N](https://github.com/shlifedev/UnityGoogleSheet/blob/main/app.gif?raw=true)
