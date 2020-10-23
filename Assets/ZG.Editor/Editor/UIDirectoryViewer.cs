@@ -182,20 +182,11 @@ public class UIDirectoryViewer : EditorWindow
 
 
             //Generate Event Add
-            var generate = Instance.rootVisualElement.Q("Generate") as Label;
-            generate.RegisterCallback<ClickEvent>(x => {
-                foreach(var file in CurrentViewFile.childFiles)
-                {
-                    if(file.type == FileType.Excel)
-                    {
-                        UnityEditorWebRequest.Instance.GetTableData(file.id, (x1, x2) => {
-                            ZeroGoogleSheet.DataReader.ParseSheet(x2, true, true, new UnityFileWriter());
-                        }); 
-                    }
-                } 
-            });
 
-
+            AddGenerateBtnEvent();
+            AddGithubBtnEvent();
+            AddLoginEvent();
+            AddSettingBtnEvent();
             LoadRootFolder();
         }
         else
@@ -203,7 +194,44 @@ public class UIDirectoryViewer : EditorWindow
             Instance.Show();
         }
     }
-     [UnityEditor.Callbacks.DidReloadScripts]
+
+    static void AddLoginEvent()
+    {
+        var login = Instance.rootVisualElement.Q("Login") as Label;
+        login.RegisterCallback<ClickEvent>(x => {
+             
+        });
+    }
+    static void AddGithubBtnEvent()
+    {
+        var github = Instance.rootVisualElement.Q("Github") as Label;
+        github.RegisterCallback<ClickEvent>(x => {
+           Application.OpenURL("https://github.com/shlifedev/UnityGoogleSheet");
+        });
+    }
+    static void AddSettingBtnEvent()
+    {
+        var setting = Instance.rootVisualElement.Q("Setting") as Label;
+        setting.RegisterCallback<ClickEvent>(x => {
+           
+        });
+    }
+    static void AddGenerateBtnEvent()
+    {
+        var generate = Instance.rootVisualElement.Q("Generate") as Label;
+        generate.RegisterCallback<ClickEvent>(x => {
+            foreach (var file in CurrentViewFile.childFiles)
+            {
+                if (file.type == FileType.Excel)
+                {
+                    UnityEditorWebRequest.Instance.GetTableData(file.id, (x1, x2) => {
+                        ZeroGoogleSheet.DataReader.ParseSheet(x2, true, true, new UnityFileWriter());
+                    });
+                }
+            }
+        });
+    }
+    [UnityEditor.Callbacks.DidReloadScripts]
     private static void OnScriptsReloaded()
     {
         GetWindow<UIDirectoryViewer>().Close();  

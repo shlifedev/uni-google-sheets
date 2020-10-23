@@ -99,12 +99,15 @@ public class UnityEditorWebRequest : ZGWebReqeust
                 using (Stream dataStream = response.GetResponseStream())
                 {
                     StreamReader reader = new StreamReader(dataStream);
-                    responseFromServer = reader.ReadToEnd();
+                    responseFromServer = reader.ReadToEnd(); 
+                    Help.BrowseURL(response.ResponseUri.ToString());
                     callback?.Invoke(responseFromServer);
                 }
             }
             else
             {
+                Debug.Log(statusCode);
+          
                 callback?.Invoke(null);
             }
             response.Close();
