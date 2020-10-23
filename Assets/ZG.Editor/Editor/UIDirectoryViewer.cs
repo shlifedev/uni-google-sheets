@@ -90,7 +90,7 @@ public class UIFile
                 { 
                     UIDirectoryViewer.LoadFolder(file.id);   
                 }
-                if (file.type == FileType.ParentFolder)
+                else if (file.type == FileType.ParentFolder)
                 {
                     if(file.parentFolderID == UIDirectoryViewer.RootFolderID)
                     {
@@ -101,6 +101,10 @@ public class UIFile
                         UIDirectoryViewer.LoadFolder(file.parentFolderID);
                     }
                  
+                }
+                else if (file.type == FileType.Excel)
+                {
+                    Application.OpenURL(file.url);
                 }
                 return;
             }
@@ -175,6 +179,23 @@ public class UIDirectoryViewer : EditorWindow
             scrollView.contentContainer.style.flexWrap = new StyleEnum<Wrap>() { value = Wrap.Wrap };
             scrollView.contentContainer.style.flexShrink = new StyleFloat(1);
             scrollView.contentContainer.style.overflow = new StyleEnum<Overflow>(Overflow.Visible);
+
+
+            //Generate Event Add
+            var generate = Instance.rootVisualElement.Q("Generate") as Label;
+            generate.RegisterCallback<ClickEvent>(x => {
+                foreach(var file in CurrentViewFile.childFiles)
+                {
+                    if(file.type == FileType.Excel)
+                    {
+                        UnityEditorWebRequest.Instance.GetTableData(file.id, (x1, x2) => {
+                            ZeroGoogleSheet.DataReader.ParseSheet(x2, true, true, new UnityFileWriter());
+                        }); 
+                    }
+                } 
+            });
+
+
             LoadRootFolder();
         }
         else
