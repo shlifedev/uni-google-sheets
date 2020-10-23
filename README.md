@@ -19,6 +19,8 @@ GoogleScript + GoogleSprheadSheet 를 활용한 뛰어난 게임 테이블 매�
 
 
 ## 기능
+- 구글 드라이브와 실시간 통신
+ ![N](https://github.com/shlifedev/UnityGoogleSheet/blob/main/app.gif?raw=true)
 - 모든 C#의 기본 타입을 지원 합니다.
 - 코드 제네레이터를 지원합니다.
 - 구글 시트를 읽고 씁니다.
