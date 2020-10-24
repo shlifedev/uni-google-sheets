@@ -41,8 +41,8 @@
 .TopBtn2 {
     width: 25%;
     height: 100%;
-    color: rgba(255, 255, 255, 255);
-    background-color: rgba(19, 34, 75, 255);
+    color: rgb(255, 255, 255);
+    background-color: rgb(19, 34, 75);
     -unity-text-align: middle-center;
     font-size: 11px;
 }

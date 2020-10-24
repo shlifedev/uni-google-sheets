@@ -160,7 +160,7 @@ public class UIDirectoryViewer : EditorWindow
         }
     }
      
-    [MenuItem("Window/UIElements/UIDirectoryViewer")]
+    [MenuItem("HamsterLib/ZGS/Manager")]
     public static void CreateInstance()
     {
          
@@ -190,7 +190,7 @@ public class UIDirectoryViewer : EditorWindow
 
             AddGenerateBtnEvent();
             AddGithubBtnEvent();
-            AddLoginEvent();
+            AddOpenEvent();
             AddSettingBtnEvent();
             LoadRootFolder();
         }
@@ -200,11 +200,15 @@ public class UIDirectoryViewer : EditorWindow
         }
     }
 
-    static void AddLoginEvent()
+    static void AddOpenEvent()
     {
-        var login = Instance.rootVisualElement.Q("Login") as Label;
-        login.RegisterCallback<ClickEvent>(x => {
-             
+        var open = Instance.rootVisualElement.Q("OpenFolder") as Label;
+        open.RegisterCallback<ClickEvent>(x => {
+            if(CurrentViewFile != null)
+            {
+                Application.OpenURL(CurrentViewFile.url);
+            }
+            
         });
     }
     static void AddGithubBtnEvent()
@@ -218,7 +222,7 @@ public class UIDirectoryViewer : EditorWindow
     {
         var setting = Instance.rootVisualElement.Q("Setting") as Label;
         setting.RegisterCallback<ClickEvent>(x => {
-           
+           UISetting.CreateInstance();
         });
     }
     static void AddGenerateBtnEvent()
@@ -271,27 +275,28 @@ public class UIDirectoryViewer : EditorWindow
     {
 
         UnityEditorWebRequest.Instance.GetFolderFiles(RootFolderID, x => {
-            CreateFileList(x, true);
+            CreateFileList(x, true, RootFolderID);
         });
     }
     public static void LoadFolder(string folderId)
     {
 
         UnityEditorWebRequest.Instance.GetFolderFiles(folderId, x => {
-            CreateFileList(x, false);
+            CreateFileList(x, false, folderId);
         });
     }
 
-    private static void CreateFileList(GetFolderInfo folder, bool root)
+    private static void CreateFileList(GetFolderInfo folder, bool root, string folderID = null)
     {
+         
         UIFile file = null;
         if (root)
         {
-            file = UIFile.CreateFolderInstance("root", null, RootFolderID, null);
+            file = UIFile.CreateFolderInstance("root", $"https://drive.google.com/drive/folders/{folderID}", RootFolderID, null);
         }
         else
         {
-            file = UIFile.CreateFolderInstance("root", null, RootFolderID, null);
+            file = UIFile.CreateFolderInstance("root", $"https://drive.google.com/drive/folders/{folderID}", RootFolderID, null);
         }
 
         

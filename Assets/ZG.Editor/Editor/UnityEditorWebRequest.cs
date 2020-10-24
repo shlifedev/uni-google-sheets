@@ -101,8 +101,7 @@ public class UnityEditorWebRequest : ZGWebReqeust
                 {
                     StreamReader reader = new StreamReader(dataStream);
                     responseFromServer = reader.ReadToEnd();  
-                    callback?.Invoke(responseFromServer);
-                    Debug.Log("OK");
+                    callback?.Invoke(responseFromServer); 
                 }
             }
             else

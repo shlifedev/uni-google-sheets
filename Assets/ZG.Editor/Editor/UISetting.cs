@@ -34,7 +34,7 @@ public class UISetting : EditorWindow
      
 
     static UISetting Instance;
-    [MenuItem("Window/UIElements/UISetting")]
+    [MenuItem("HamsterLib/ZGS/Setting")]
     public static void CreateInstance()
     { 
         if (Instance == null)
