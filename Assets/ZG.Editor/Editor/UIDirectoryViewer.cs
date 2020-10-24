@@ -143,7 +143,7 @@ public class UIDirectoryViewer : EditorWindow
     {
         get
         {
-            return "1EoXKE6nzb9nqAsYCSO3R5YqYxA2pd_TK";
+            return ZGSetting.GoogleFolderID;
         }
     }
 
@@ -166,6 +166,11 @@ public class UIDirectoryViewer : EditorWindow
          
         if (Instance == null)
         {
+            if(string.IsNullOrEmpty(ZGSetting.GoogleFolderID) || string.IsNullOrEmpty(ZGSetting.ScriptURL))
+            {
+                EditorUtility.DisplayDialog("Require Setting!", "Cannot Open ZGS Menu. Please Setting Complete!", "OK");
+                return;
+            }
             ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
             /* Load UI Directory View */
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIDirectoryViewer.uxml");

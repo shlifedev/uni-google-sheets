@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:TextField picking-mode="Ignore" label="Script URL" value="filler text" />
-    <ui:TextField picking-mode="Ignore" label="GoogleFolder ID" value="filler text" />
-    <ui:Button text="Save" />
+    <ui:TextField picking-mode="Ignore" label="Script URL" value="filler text" name="SCRIPT_URL" />
+    <ui:TextField picking-mode="Ignore" label="GoogleFolder ID" value="filler text" name="GFID" />
+    <ui:Button text="Save" name="Save" />
 </ui:UXML>

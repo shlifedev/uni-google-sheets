@@ -7,11 +7,10 @@ public class GameTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameTable.Item.Weapons.Load();
-
-        foreach(var v in GameTable.Item.Weapons.WeaponsList)
+        GameTable.Item.Armor.Load();
+        foreach (var v in GameTable.Item.Armor.ArmorList)
         {
-            Debug.Log(v.index);
+            Debug.Log(v.index +" , " + v.uiDesc);
         }
     }
 

@@ -26,15 +26,16 @@ public class UnityEditorWebRequest : ZGWebReqeust
     {
         get 
         {
-            return "https://script.google.com/macros/s/AKfycbyOBVdYiUz6W1WJCHhV5SS4r0Bq3NIyCKW8ugVunsBD-4Bbn30U/exec";
+            return ZGSetting.ScriptURL;
         }
     } 
     public override void GetFolderFiles(string folderID, System.Action<GetFolderInfo> callback)
-    { 
+    {  
         Instance.Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", (x) => {
             if(x == null)
             {
-                Debug.LogError("cannot receive data");
+                Debug.LogError("Cannot Receive Data From URL : " + baseURL);
+                Debug.LogError("Cannot Receive Data From Folder ID : " + folderID);
                 callback?.Invoke(null);
             }
             else
@@ -101,12 +102,12 @@ public class UnityEditorWebRequest : ZGWebReqeust
                     StreamReader reader = new StreamReader(dataStream);
                     responseFromServer = reader.ReadToEnd();  
                     callback?.Invoke(responseFromServer);
+                    Debug.Log("OK");
                 }
             }
             else
             {
-                Debug.Log(statusCode);
-          
+                Debug.Log(statusCode); 
                 callback?.Invoke(null);
             }
             response.Close();
@@ -118,6 +119,18 @@ public class UnityEditorWebRequest : ZGWebReqeust
             {
                 var we = e as WebException;
                 Debug.Log(we.Status);
+                callback?.Invoke(null);
+            }
+            else if(e is System.Net.Http.HttpRequestException)
+            {
+                Debug.LogError(e.Message);
+                EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
+                callback?.Invoke(null);
+            }
+            else
+            {
+                Debug.LogError(e.Message);
+                EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                 callback?.Invoke(null);
             }
         }
