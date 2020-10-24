@@ -1,16 +1,21 @@
 ﻿using Hamster.ZG.Http;
+using Hamster.ZG.IO;
 using Hamster.ZG.Type;
 using System; 
 using System.Diagnostics;
 namespace Hamster.ZG
 {
     public static class ZeroGoogleSheet
-    { 
-        static IParser dataReader; 
-        public static IParser DataReader { get => dataReader; } 
-        public static void Init(IParser reader)
+    {
+        static IParser dataParser;
+        static IFileReader dataReader;
+        public static IParser DataParser { get => dataParser; } 
+        public static IFileReader DataReader { get => dataReader;}
+
+        public static void Init(IParser parser, IFileReader reader)
         { 
             TypeMap.Init();  
+            dataParser = parser;
             dataReader = reader;
         }
          

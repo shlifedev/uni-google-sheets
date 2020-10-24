@@ -31,8 +31,7 @@ public class UnityFileWriter : IFIleWriter
     /// <param name="content"></param>
     public void WriteData(string writePath, string content)
     {
-#if UNITY_EDITOR
-        Debug.Log("UnityFile Writer :: Editor Mode(Debug)");
+#if UNITY_EDITOR 
         if (Application.isEditor){ 
             var dataPath = EditorPrefs.GetString("UNITY_FILE_WRITER_DATA_PATH", null);
 

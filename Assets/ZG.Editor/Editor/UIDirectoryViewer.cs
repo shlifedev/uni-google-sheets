@@ -166,7 +166,7 @@ public class UIDirectoryViewer : EditorWindow
          
         if (Instance == null)
         {
-            ZeroGoogleSheet.Init(new GSParser());
+            ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
             /* Load UI Directory View */
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIDirectoryViewer.uxml");
             Instance = GetWindow<UIDirectoryViewer>(); 
@@ -225,7 +225,7 @@ public class UIDirectoryViewer : EditorWindow
                 if (file.type == FileType.Excel)
                 {
                     UnityEditorWebRequest.Instance.GetTableData(file.id, (x1, x2) => {
-                        ZeroGoogleSheet.DataReader.ParseSheet(x2, true, true, new UnityFileWriter());
+                        ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
                     });
                 }
             }

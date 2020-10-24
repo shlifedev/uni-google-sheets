@@ -4,24 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnityFileReader : IFileReader
-{ 
+{
     public string ReadData(string fileName)
     {
-#if UNITY_EDITOR
-        Debug.Log("UnityFile Reader :: Editor Mode(Debug)");
-        if (Application.isEditor){
-        Debug.Log(fileName);
-        var textasset = Resources.Load<TextAsset>("ZGS.Data/"+fileName);
-        if (textasset != null)
+#if UNITY_EDITOR 
+        if (Application.isEditor)
         {
-            Debug.Log(textasset.text);
-            return textasset.text;
-        }
-        else
-        {
-            Debug.Log("cannot found textasset");
-            return null;
-        } 
+            Debug.Log(fileName);
+            var textasset = Resources.Load<TextAsset>("ZGS.Data/"+fileName);
+            if (textasset != null)
+            {
+                return textasset.text;
+            }
+            else
+            {
+                Debug.Log("cannot found textasset");
+                return null;
+            }
         }
 #elif !UNITY_EDITOR
         Debug.Log("UnityFile Reader :: Engine Mode(Runtime)");
