@@ -3,7 +3,7 @@ using Hamster.ZG;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using System.Linq;
 public static class ZGSetting
 {
     public static string GoogleFolderID
@@ -39,9 +39,12 @@ public class UISetting : EditorWindow
     { 
         if (Instance == null)
         {
+            var assets = AssetDatabase.FindAssets("ZG.UISetting"); 
+            var uxml = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
+             
             ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
             /* Load UI Directory View */
-            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UISetting.uxml");
+            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml) ;
             Instance = GetWindow<UISetting>();
             Instance.titleContent = new GUIContent("UISetting");
             Instance.rootVisualElement.Add(uiAsset.CloneTree());

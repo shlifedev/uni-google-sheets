@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="UIDirectoryViewer.uss" />
+    <Style src="ZG.UIDirectoryViewer.uss" />
     <ui:VisualElement name="Window" style="width: 100%; height: 100%; background-color: rgb(26, 26, 26); position: relative; flex-direction: column; flex-wrap: nowrap;">
         <ui:VisualElement name="TopMenu" style="height: 32px; width: 100%; flex-direction: row; flex-wrap: nowrap;">
             <ui:Label text="OpenFolder" name="OpenFolder" class="TopBtn2" />

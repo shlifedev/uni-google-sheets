@@ -171,9 +171,14 @@ public class UIDirectoryViewer : EditorWindow
                 EditorUtility.DisplayDialog("Require Setting!", "Cannot Open ZGS Menu. Please Setting Complete!", "OK");
                 return;
             }
+
+            var assets = AssetDatabase.FindAssets("ZG.UIDirectoryViewer");
+            var uxml = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
+
+
             ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
             /* Load UI Directory View */
-            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIDirectoryViewer.uxml");
+            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml);
             Instance = GetWindow<UIDirectoryViewer>(); 
             Instance.titleContent = new GUIContent("UIDirectoryViewer");
             Instance.rootVisualElement.Add(uiAsset.CloneTree());
@@ -345,9 +350,15 @@ public class UIDirectoryViewer : EditorWindow
     }
     #endregion
     #region visual_element_creator
+
+     
     public static VisualElement CreateDirectoryElement(string directoryName)
-    { 
-        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIFile.uxml");
+    {
+        var assets = AssetDatabase.FindAssets("ZG.UIFile");
+        var uxml = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
+
+
+        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml);
         var fileElement = uiAsset.CloneTree().Query().Name("File").First() as VisualElement;
         var label = fileElement.Query().Name("FileName").First() as Label;
             label.text = directoryName; 
@@ -361,7 +372,11 @@ public class UIDirectoryViewer : EditorWindow
     }
     public static VisualElement CreateExcelElement(string fileName)
     {
-        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/ZG.Editor/Editor/UIFile.uxml");
+        var assets = AssetDatabase.FindAssets("ZG.UIFile");
+        var uxml = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
+
+
+        VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml);
         var fileElement = uiAsset.CloneTree().Query().Name("File").First() as VisualElement;
         var label = fileElement.Query().Name("FileName").First() as Label;
             label.text = fileName;
