@@ -66,4 +66,13 @@ public class UISetting : EditorWindow
             Instance.Show();
         }
     }
+
+   
+    public void OnGUI()
+    {
+        if(Instance == null)
+        {
+            CreateInstance();
+        }
+    }
 }

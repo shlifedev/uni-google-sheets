@@ -162,8 +162,7 @@ public class UIDirectoryViewer : EditorWindow
      
     [MenuItem("HamsterLib/ZGS/Manager")]
     public static void CreateInstance()
-    {
-         
+    { 
         if (Instance == null)
         {
             if(string.IsNullOrEmpty(ZGSetting.GoogleFolderID) || string.IsNullOrEmpty(ZGSetting.ScriptURL))
@@ -245,19 +244,7 @@ public class UIDirectoryViewer : EditorWindow
             }
         });
     }
-    [UnityEditor.Callbacks.DidReloadScripts]
-    private static void OnScriptsReloaded()
-    {
-        GetWindow<UIDirectoryViewer>().Close();  
-    }
-
-    public void OnEnable()
-    {
-        //if(wnd == null)
-        //{
-        //    CreateInstance();
-        //}
-    }
+ 
 
     /// <summary>
     /// 현재 보고있는 폴더의 파일들 표시
@@ -275,7 +262,20 @@ public class UIDirectoryViewer : EditorWindow
             }
         }
     }
-
+    public void OnGUI()
+    {
+        if (Application.isPlaying == false)
+        {
+            if (Instance == null)
+            {
+                CreateInstance();
+            }
+        }
+        else
+        {
+            GUILayout.Label("Currently PlayMode Not Support..");
+        }
+    }
     public static void LoadRootFolder()
     {
 
