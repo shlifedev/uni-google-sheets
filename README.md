@@ -1,4 +1,4 @@
-
+https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W
 아직 개발중이며 작성중인 문서입니다.
 - [x] 코어 로직
 - [x] 구글 스크립트 통신
