@@ -1,14 +1,15 @@
  
  
- # UnityZeroGoogleSheet
+ # Unity ZeroGoogleSheet
  Free, And You can manage your game data very easily, flexible, fast!
  
  
  # Features
  - Support All C# Type & Your Custom Class&Struct Type.
  - Support Code Generator
- - Very friendly interface
- - 
+ - Very Friendly User-Interface
+ - Sync GoogleDrive GUI
+ ![N](https://github.com/shlifedev/UnityGoogleSheet/blob/main/app.gif?raw=true)
  # How to Setup
  Script URL : https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit
 
