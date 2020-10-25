@@ -104,17 +104,19 @@ namespace @namespace
             string writeFunction =$@"
         public static void Write({@class} data)
         {{ 
-            //FieldInfo[] fields = typeof({@class}).GetFields(BindingFlags.Public | BindingFlags.Instance);
-            //var datas = new string[fields.Length];
-            //for (int i = 0; i < fields.Length; i++)
-            //{{
-            //    var type = fields[i].FieldType;
-            //    var writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
-            //    datas[i] = writeRule; 
-            //}} 
-            //if(Application.isPlaying) 
-            //    Request.Init(ZeroGoogleSheetUnity.Engine.UnityEngineWebRequester.Instance); 
-            //Request.Execute(new QueryAppendRow(spreadSheetID, sheetID, datas));
+            TypeMap.Init();
+            FieldInfo[] fields = typeof({@class}).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            var datas = new string[fields.Length];
+            for (int i = 0; i < fields.Length; i++)
+            {{
+                var type = fields[i].FieldType;
+                var writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
+                datas[i] = writeRule; 
+            }}  
+           
+#if UNITY_EDITOR
+            UnityEditorWebRequest.Instance.WriteData(spreadSheetID, sheetID, datas[0], datas);
+#endif
         }} 
         ";  
             

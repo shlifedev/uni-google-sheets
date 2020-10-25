@@ -4,31 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
-public static class ZGSetting
-{
-    public static string GoogleFolderID
-    {
-        get
-        {
-            return EditorPrefs.GetString("GoogleFolderID", null); 
-        }
-        set
-        {
-            EditorPrefs.SetString("GoogleFolderID", value);
-        }
-    }
-    public static string ScriptURL
-    {
-        get
-        {
-            return EditorPrefs.GetString("ScriptURL", null);
-        }
-        set
-        {
-            EditorPrefs.SetString("ScriptURL", value);
-        }
-    }
-}
+ 
 public class UISetting : EditorWindow
 {
      
@@ -36,7 +12,7 @@ public class UISetting : EditorWindow
     static UISetting Instance;
     [MenuItem("HamsterLib/ZGS/Setting")]
     public static void CreateInstance()
-    { 
+    {  
         if (Instance == null)
         {
             var assets = AssetDatabase.FindAssets("ZG.UISetting"); 

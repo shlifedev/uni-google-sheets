@@ -26,18 +26,15 @@ namespace CubeBalance
  
 
         public static void Write(Data data)
-        { 
-            //FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
-            //var datas = new string[fields.Length];
-            //for (int i = 0; i < fields.Length; i++)
-            //{
-            //    var type = fields[i].FieldType;
-            //    var writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
-            //    datas[i] = writeRule; 
-            //} 
-            //if(Application.isPlaying) 
-            //    Request.Init(ZeroGoogleSheetUnity.Engine.UnityEngineWebRequester.Instance); 
-            //Request.Execute(new QueryAppendRow(spreadSheetID, sheetID, datas));
+        {
+            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            var datas = new string[fields.Length];
+            for (int i = 0; i < fields.Length; i++)
+            {
+                var type = fields[i].FieldType;
+                var writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
+                datas[i] = writeRule;
+            } 
         } 
         
 
