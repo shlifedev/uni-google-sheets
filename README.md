@@ -3,7 +3,13 @@
  # Unity ZeroGoogleSheet
  Free, And You can manage your game data very easily, flexible, fast!
  
+ ## Download
+  https://github.com/shlifedev/UnityGoogleSheet/releases
  
+ ## Require
+  - Unity 2019.1 ++ (Require UIElement Support)
+  - Newtonsoft.Json
+  
  # Features
  - Support All C# Type & Your Custom Class&Struct Type.
  - Support Code Generator
@@ -46,3 +52,7 @@
     }
  ```
  
+ 
+## Future Plans
+ - UIElement to IMGUI
+ - Asset Store
