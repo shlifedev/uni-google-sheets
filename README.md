@@ -15,6 +15,8 @@
  - Support Code Generator
  - Very Friendly User-Interface
  - Sync GoogleDrive GUI
+ - Read From GoogleSheet & Write To GoogleSheet
+ 
  ![N](https://github.com/shlifedev/UnityGoogleSheet/blob/main/app.gif?raw=true)
  # How to Setup
  Tutorial Video : https://www.youtube.com/watch?v=WUyZypX3NHw&feature=youtu.be  
