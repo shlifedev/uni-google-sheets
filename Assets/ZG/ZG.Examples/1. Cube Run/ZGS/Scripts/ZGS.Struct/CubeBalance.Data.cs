@@ -10,26 +10,24 @@ using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
 
-namespace PlayerData
+namespace CubeBalance
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class Data2 : ITable
+    public class Data : ITable
     {
-        public static string spreadSheetID = "1AKycOds6CnPYV1qIQz3S6Hk86DvJgtTLxnYISaLW2sY"; // it is file id
-        public static string sheetID = "1359270438"; // it is sheet id
-        public static Dictionary<string, Data2> Data2Map = new Dictionary<string, Data2>(); 
-        public static List<Data2> Data2List = new List<Data2>();  
+        public static string spreadSheetID = "1pleYglcJael5KiBXRNN-JKMFZRUSjK9_eJEVuVUCk7A"; // it is file id
+        public static string sheetID = "0"; // it is sheet id
+        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
+        public static List<Data> DataList = new List<Data>();  
         public static UnityFileReader reader = new UnityFileReader();
 
-		public String index;
+		public Int32 index;
 		public Single speed;
-		public Int32 damage;
-		public Vector3 position;
  
 
-        public static void Write(Data2 data)
+        public static void Write(Data data)
         { 
-            //FieldInfo[] fields = typeof(Data2).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            //FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             //var datas = new string[fields.Length];
             //for (int i = 0; i < fields.Length; i++)
             //{
@@ -46,21 +44,21 @@ namespace PlayerData
         public static void Load()
         {
             /* Clear When Try Load */
-            Data2Map?.Clear();
-            Data2List?.Clear(); 
+            DataMap?.Clear();
+            DataList?.Clear(); 
             //Type Map Init
             TypeMap.Init();
             //Reflection Field Datas.
-            FieldInfo[] fields = typeof(PlayerData.Data2).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(CubeBalance.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
             //Load GameData.
-            string text = reader.ReadData("PlayerData");
+            string text = reader.ReadData("CubeBalance");
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(text);
                 var table= result.tableResult; 
-                var sheet = table["Data2"];
+                var sheet = table["Data"];
                     foreach (var pNameAndTypeName in sheet.Keys)
                     {
                         var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -75,7 +73,7 @@ namespace PlayerData
                     int rows = typeValuesCList[0].Count;
                     for (int i = 0; i < rows; i++)
                     {
-                        PlayerData.Data2 instance = new PlayerData.Data2();
+                        CubeBalance.Data instance = new CubeBalance.Data();
                         for (int j = 0; j < typeInfos.Count; j++)
                         {
                             var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -83,8 +81,8 @@ namespace PlayerData
                             fields[j].SetValue(instance, readedValue);
                         }
                         //Add Data to Container
-                        Data2List.Add(instance);
-                        Data2Map.Add(instance.index, instance);
+                        DataList.Add(instance);
+                        DataMap.Add(instance.index, instance);
                     } 
                 }
             }
