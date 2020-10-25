@@ -3,7 +3,9 @@
  # Unity ZeroGoogleSheet
  Free, And You can manage your game data very easily, flexible, fast!
  
- 
+ ## Download
+  https://github.com/shlifedev/UnityGoogleSheet/releases
+  
  # Features
  - Support All C# Type & Your Custom Class&Struct Type.
  - Support Code Generator
