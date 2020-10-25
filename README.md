@@ -5,6 +5,10 @@
  
  ## Download
   https://github.com/shlifedev/UnityGoogleSheet/releases
+ 
+ ## Require
+  - Unity 2019.1 ++ (Require UIElement Support)
+  - Newtonsoft.Json
   
  # Features
  - Support All C# Type & Your Custom Class&Struct Type.
