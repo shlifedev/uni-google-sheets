@@ -5,11 +5,11 @@ using UnityEditor.UIElements;
 using System.Collections.Generic;
 using System.Linq;
 using Hamster.ZG.Http.Protocol;
-using static UIFile;
+using static FileData;
 using Hamster.ZG;
 using Newtonsoft.Json;
 
-public class UIFile
+public class FileData
 {
     public enum FileType
     {
@@ -20,7 +20,7 @@ public class UIFile
     /// 파일 타입이 폴더이면 존재하거나 없음.
     /// </summary>
     public string parentFolderID;
-    public List<UIFile> childFiles = new List<UIFile>();
+    public List<FileData> childFiles = new List<FileData>();
      
     public string id;
 
@@ -38,11 +38,11 @@ public class UIFile
 
     static System.DateTime latestClickTime = System.DateTime.MinValue; 
 
-    public static UIFile CreateFolderInstance(string fileName, string url, string id, string parentFolder = null)
+    public static FileData CreateFolderInstance(string fileName, string url, string id, string parentFolder = null)
     {
-        UIFile file = new UIFile();
+        FileData file = new FileData();
         file.fileName = fileName;
-        file.type = UIFile.FileType.Folder;
+        file.type = FileData.FileType.Folder;
         file.uiElement = UIDirectoryViewer.CreateDirectoryElement(fileName);
         file.id = id;
         file.url = url;
@@ -50,22 +50,22 @@ public class UIFile
         AddClickEvent(file);
         return file;
     }
-    public static UIFile CreateExcelInstance(string fileName, string url, string id)
+    public static FileData CreateExcelInstance(string fileName, string url, string id)
     {
-        UIFile file = new UIFile();
+        FileData file = new FileData();
         file.fileName = fileName;
-        file.type = UIFile.FileType.Excel;
+        file.type = FileData.FileType.Excel;
         file.uiElement = UIDirectoryViewer.CreateExcelElement(fileName);
         file.id = id;
         file.url = url;
         AddClickEvent(file);
         return file;
     }
-    public static UIFile CreateParentFolderInstance(string parentID)
+    public static FileData CreateParentFolderInstance(string parentID)
     {
-        UIFile file = new UIFile();
+        FileData file = new FileData();
         file.fileName = "..";
-        file.type = UIFile.FileType.ParentFolder;
+        file.type = FileData.FileType.ParentFolder;
         file.uiElement = UIDirectoryViewer.CreateDirectoryElement("..");
         file.id = parentID;
         file.url = null;
@@ -76,7 +76,7 @@ public class UIFile
 
 
 
-    static void OnClickEvent(ClickEvent _event, UIFile file)
+    static void OnClickEvent(ClickEvent _event, FileData file)
     {
 
        
@@ -120,14 +120,14 @@ public class UIFile
     /// 클릭 이벤트 추가
     /// </summary>
     /// <param name="file"></param>
-    private static void AddClickEvent(UIFile file)
+    private static void AddClickEvent(FileData file)
     {
         file.uiElement.RegisterCallback<UnityEngine.UIElements.ClickEvent>(x => { 
             OnClickEvent(x, file);
         });
     }
      
-    public void AddChild(UIFile file)
+    public void AddChild(FileData file)
     {
         this.childFiles.Add(file);
         file.parentFolderID = this.id;
@@ -139,7 +139,7 @@ public class UIFile
 }
 public class UIDirectoryViewer : EditorWindow
 { 
-    static UIFile currentViewfile = null; 
+    static FileData currentViewfile = null; 
     public static string RootFolderID
     {
         get
@@ -151,7 +151,7 @@ public class UIDirectoryViewer : EditorWindow
     public static UIDirectoryViewer Instance = null;
     static UnityEngine.UIElements.ScrollView scrollView;
 
-    public static UIFile CurrentViewFile 
+    public static FileData CurrentViewFile 
     {
         get => currentViewfile; 
         set
@@ -317,15 +317,15 @@ public class UIDirectoryViewer : EditorWindow
     private static void CreateFileList(GetFolderInfo folder, bool root, string folderID = null)
     {
          
-        UIFile file = null;
+        FileData file = null;
         if (root)
         {
-            file = UIFile.CreateFolderInstance("root", $"https://drive.google.com/drive/folders/{folderID}", RootFolderID, null);
+            file = FileData.CreateFolderInstance("root", $"https://drive.google.com/drive/folders/{folderID}", RootFolderID, null);
         }
         else
         {
             var str = CurrentViewFile.id;  
-            file = UIFile.CreateFolderInstance(folderID, $"https://drive.google.com/drive/folders/{folderID}", folderID, str);
+            file = FileData.CreateFolderInstance(folderID, $"https://drive.google.com/drive/folders/{folderID}", folderID, str);
         }
 
         
@@ -334,17 +334,17 @@ public class UIDirectoryViewer : EditorWindow
  
             if (folder.fileType[i] == (int)FileType.Excel)
             {
-                file.AddChild(UIFile.CreateExcelInstance(folder.fileName[i], folder.url[i], folder.fileID[i]));
+                file.AddChild(FileData.CreateExcelInstance(folder.fileName[i], folder.url[i], folder.fileID[i]));
             }
             if (folder.fileType[i] == (int)FileType.Folder)
             {
-                file.AddChild(UIFile.CreateFolderInstance(folder.fileName[i], folder.url[i], folder.fileID[i], file.id)); 
+                file.AddChild(FileData.CreateFolderInstance(folder.fileName[i], folder.url[i], folder.fileID[i], file.id)); 
             } 
           
         }
         if (root == false)
         { 
-            file.AddChild(UIFile.CreateParentFolderInstance(CurrentViewFile.id));
+            file.AddChild(FileData.CreateParentFolderInstance(CurrentViewFile.id));
         } 
         CurrentViewFile = file; 
     }
@@ -352,23 +352,23 @@ public class UIDirectoryViewer : EditorWindow
     #region test
     private static void AddTestUIFile()
     {
-        UIFile file = UIFile.CreateFolderInstance("root", null, null);
-        file.AddChild(UIFile.CreateExcelInstance("Unit", null, null)); 
-        file.AddChild(UIFile.CreateExcelInstance("Quest", null, null));
-        file.AddChild(UIFile.CreateExcelInstance("Items", null, null));
+        FileData file = FileData.CreateFolderInstance("root", null, null);
+        file.AddChild(FileData.CreateExcelInstance("Unit", null, null)); 
+        file.AddChild(FileData.CreateExcelInstance("Quest", null, null));
+        file.AddChild(FileData.CreateExcelInstance("Items", null, null));
 
-        var test1 = UIFile.CreateFolderInstance("GachaDatas", null, null);
+        var test1 = FileData.CreateFolderInstance("GachaDatas", null, null);
         file.AddChild(test1);
 
-        var test2 = UIFile.CreateFolderInstance("Localization", null, null);
+        var test2 = FileData.CreateFolderInstance("Localization", null, null);
         file.AddChild(test2);
 
-        test1.AddChild(UIFile.CreateExcelInstance("WeaponGacha", null, null));
-        test1.AddChild(UIFile.CreateExcelInstance("ArmorGacha", null, null));
+        test1.AddChild(FileData.CreateExcelInstance("WeaponGacha", null, null));
+        test1.AddChild(FileData.CreateExcelInstance("ArmorGacha", null, null));
 
 
-        test2.AddChild(UIFile.CreateExcelInstance("Localization_ko_kr",null,null));
-        test2.AddChild(UIFile.CreateExcelInstance("Localization_en_us",null,null)); 
+        test2.AddChild(FileData.CreateExcelInstance("Localization_ko_kr",null,null));
+        test2.AddChild(FileData.CreateExcelInstance("Localization_en_us",null,null)); 
 
         CurrentViewFile = file; 
     }
