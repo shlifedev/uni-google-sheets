@@ -349,30 +349,7 @@ public class UIDirectoryViewer : EditorWindow
         CurrentViewFile = file; 
     }
 
-    #region test
-    private static void AddTestUIFile()
-    {
-        FileData file = FileData.CreateFolderInstance("root", null, null);
-        file.AddChild(FileData.CreateExcelInstance("Unit", null, null)); 
-        file.AddChild(FileData.CreateExcelInstance("Quest", null, null));
-        file.AddChild(FileData.CreateExcelInstance("Items", null, null));
-
-        var test1 = FileData.CreateFolderInstance("GachaDatas", null, null);
-        file.AddChild(test1);
-
-        var test2 = FileData.CreateFolderInstance("Localization", null, null);
-        file.AddChild(test2);
-
-        test1.AddChild(FileData.CreateExcelInstance("WeaponGacha", null, null));
-        test1.AddChild(FileData.CreateExcelInstance("ArmorGacha", null, null));
-
-
-        test2.AddChild(FileData.CreateExcelInstance("Localization_ko_kr",null,null));
-        test2.AddChild(FileData.CreateExcelInstance("Localization_en_us",null,null)); 
-
-        CurrentViewFile = file; 
-    }
-    #endregion
+  
     #region visual_element_creator
 
      
