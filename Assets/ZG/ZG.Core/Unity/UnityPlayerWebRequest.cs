@@ -10,6 +10,22 @@ namespace Hamster.ZG
 {
     public class UnityPlayerWebRequest : MonoBehaviour, IZGRequester
     {
+        public static UnityPlayerWebRequest Instance
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    var data = new GameObject().AddComponent<UnityPlayerWebRequest>();
+                    instance =data; 
+                    data.gameObject.name = "UnityPlayerWebRequest";
+                }
+                return instance;
+            }
+        }
+        private static UnityPlayerWebRequest instance;
+
+       
         public string baseURL
         {
             get
@@ -17,6 +33,16 @@ namespace Hamster.ZG
                 return ZGSetting.ScriptURL;
             }
         }
+
+        void Awake()
+        {
+            //singleton
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
 
         public void POST_CreateDefaultTable(string folderID, string fileName, Action<string> callback)
         {
