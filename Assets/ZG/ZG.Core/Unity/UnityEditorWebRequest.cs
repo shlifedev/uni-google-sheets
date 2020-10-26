@@ -19,6 +19,7 @@ public abstract class ZGWebReqeust
     public abstract void GetFolderFiles(string folderID, System.Action<Hamster.ZG.Http.Protocol.GetFolderInfo> callback);
     public abstract void GetTableData(string sheetID, System.Action<Hamster.ZG.Http.Protocol.GetTableResult, string> callback);
     public abstract void WriteData(string spreadSheetID, string sheetID, string key, string[] value);
+    public abstract void CreateDefaultTable(string folderID, string fileName, Action<string> callback);
 
     //  public abstract void WriteValue(string sheetID, string key, string value);
 }
@@ -80,7 +81,7 @@ public class UnityEditorWebRequest : ZGWebReqeust
             }
         });
     }
-     
+
     public class WriteDataSender
     {
         public string instruction = "writeData";
@@ -97,6 +98,19 @@ public class UnityEditorWebRequest : ZGWebReqeust
             this.value = value;
         }
     }
+
+    public class CreateDefaultTableSender
+    {
+        public string instruction = "createDefaultTable";
+        public string folderID;
+        public string fileName;
+
+        public CreateDefaultTableSender(string folderID, string fileName)
+        {
+            this.folderID = folderID;
+            this.fileName = fileName;
+        }
+    }
     public override void WriteData(string spreadSheetID, string sheetID, string key, string[] value)
     {
         var data = new WriteDataSender(spreadSheetID, sheetID, key, value);
@@ -107,7 +121,16 @@ public class UnityEditorWebRequest : ZGWebReqeust
             Debug.Log(x);
         });
     }
+    public override void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
+    {
+        var data = new CreateDefaultTableSender(folderID, fileName);
+        var json = JsonConvert.SerializeObject(data);
 
+        Instance.Post(json, (x) =>
+        {
+            callback?.Invoke(x);
+        });
+    }
     private void Get(string url, Action<string> callback)
     {
 
@@ -233,6 +256,8 @@ public class UnityEditorWebRequest : ZGWebReqeust
             }
         }
     }
+
+ 
 }
 
 #endif

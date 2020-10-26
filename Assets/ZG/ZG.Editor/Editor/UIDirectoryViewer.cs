@@ -7,6 +7,7 @@ using System.Linq;
 using Hamster.ZG.Http.Protocol;
 using static UIFile;
 using Hamster.ZG;
+using Newtonsoft.Json;
 
 public class UIFile
 {
@@ -196,14 +197,31 @@ public class UIDirectoryViewer : EditorWindow
             AddGithubBtnEvent();
             AddOpenEvent();
             AddSettingBtnEvent();
+            AddCreateDefaultTableEvent();
             LoadRootFolder();
         }
         else
         {
             Instance.Show();
         }
-    }
+    } 
+    static void AddCreateDefaultTableEvent()
+    {
 
+        var btn = Instance.rootVisualElement.Q("createDefaultTableBtn") as Button;
+
+        var createDefaultTableNameField = Instance.rootVisualElement.Q("createDefaultTableNameField") as TextField;
+        btn.RegisterCallback<ClickEvent>(x => {
+            UnityEditorWebRequest.Instance.CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json => { 
+                var result = JsonConvert.DeserializeObject<CreateDefaultTableResult>(json);
+                if(result != null)
+                {
+                    CurrentViewFile.AddChild(CreateExcelInstance(result.fileName, result.url, result.fileID));
+                    UpdateCurrentViewFiles();
+                }
+            }); 
+        });
+    }
     static void AddOpenEvent()
     {
         var open = Instance.rootVisualElement.Q("OpenFolder") as Label;
@@ -301,7 +319,7 @@ public class UIDirectoryViewer : EditorWindow
         }
         else
         {
-            file = UIFile.CreateFolderInstance("root", $"https://drive.google.com/drive/folders/{folderID}", RootFolderID, null);
+            file = UIFile.CreateFolderInstance("root", $"https://drive.google.com/drive/folders/{folderID}", folderID, null);
         }
 
         
