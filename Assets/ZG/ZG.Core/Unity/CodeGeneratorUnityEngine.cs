@@ -115,7 +115,14 @@ namespace @namespace
             }}  
            
 #if UNITY_EDITOR
+if(Application.IsPlaying == false)
+{{
             UnityEditorWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+}}
+else
+{{
+            UnityPlayerWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+}}
 #endif
         }} 
         ";  
