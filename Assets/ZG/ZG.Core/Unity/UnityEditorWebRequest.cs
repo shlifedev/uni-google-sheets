@@ -15,19 +15,49 @@ using UnityEditor;
 using UnityEngine;
 namespace Hamster.ZG
 {
-    public abstract class ZGWebReqeust
+    public interface IZGRequester
     {
-        public abstract void GetFolderFiles(string folderID, System.Action<Hamster.ZG.Http.Protocol.GetFolderInfo> callback);
-        public abstract void GetTableData(string sheetID, System.Action<Hamster.ZG.Http.Protocol.GetTableResult, string> callback);
-        public abstract void WriteData(string spreadSheetID, string sheetID, string key, string[] value);
-        public abstract void CreateDefaultTable(string folderID, string fileName, Action<string> callback);
+        void GET_ReqFolderFiles(string folderID, System.Action<Hamster.ZG.Http.Protocol.GetFolderInfo> callback);
+        void GET_TableData(string sheetID, System.Action<Hamster.ZG.Http.Protocol.GetTableResult, string> callback);
+        void POST_WriteData(string spreadSheetID, string sheetID, string key, string[] value);
+        void POST_CreateDefaultTable(string folderID, string fileName, Action<string> callback);
 
         //  public abstract void WriteValue(string sheetID, string key, string value);
     }
 }
 namespace Hamster.ZG
 {
-    public class UnityEditorWebRequest : ZGWebReqeust
+    public class WriteDataSender
+    {
+        public string instruction = "writeData";
+        public string spreadSheetID;
+        public string sheetID;
+        public string key;
+        public string[] value;
+
+        public WriteDataSender(string spreadSheetID, string sheetID, string key, string[] value)
+        {
+            this.spreadSheetID = spreadSheetID;
+            this.sheetID = sheetID;
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    public class CreateDefaultTableSender
+    {
+        public string instruction = "createDefaultTable";
+        public string folderID;
+        public string fileName;
+
+        public CreateDefaultTableSender(string folderID, string fileName)
+        {
+            this.folderID = folderID;
+            this.fileName = fileName;
+        }
+    }
+
+    public class UnityEditorWebRequest : IZGRequester
     {
         public static UnityEditorWebRequest Instance = new UnityEditorWebRequest();
         public string baseURL
@@ -37,7 +67,7 @@ namespace Hamster.ZG
                 return ZGSetting.ScriptURL;
             }
         }
-        public override void GetFolderFiles(string folderID, System.Action<GetFolderInfo> callback)
+        public void GET_ReqFolderFiles(string folderID, System.Action<GetFolderInfo> callback)
         {
             Instance.Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", (x) =>
             {
@@ -63,7 +93,7 @@ namespace Hamster.ZG
             });
         }
 
-        public override void GetTableData(string sheetID, Action<GetTableResult, string> callback)
+        public void GET_TableData(string sheetID, Action<GetTableResult, string> callback)
         {
             Instance.Get($"{baseURL}?instruction=getTable&sheetID={sheetID}", (x) =>
             {
@@ -87,36 +117,10 @@ namespace Hamster.ZG
             });
         }
 
-        public class WriteDataSender
-        {
-            public string instruction = "writeData";
-            public string spreadSheetID;
-            public string sheetID;
-            public string key;
-            public string[] value;
+   
 
-            public WriteDataSender(string spreadSheetID, string sheetID, string key, string[] value)
-            {
-                this.spreadSheetID = spreadSheetID;
-                this.sheetID = sheetID;
-                this.key = key;
-                this.value = value;
-            }
-        }
-
-        public class CreateDefaultTableSender
-        {
-            public string instruction = "createDefaultTable";
-            public string folderID;
-            public string fileName;
-
-            public CreateDefaultTableSender(string folderID, string fileName)
-            {
-                this.folderID = folderID;
-                this.fileName = fileName;
-            }
-        }
-        public override void WriteData(string spreadSheetID, string sheetID, string key, string[] value)
+      
+        public void POST_WriteData(string spreadSheetID, string sheetID, string key, string[] value)
         {
             var data = new WriteDataSender(spreadSheetID, sheetID, key, value);
             var json = JsonConvert.SerializeObject(data);
@@ -126,7 +130,7 @@ namespace Hamster.ZG
                 Debug.Log(x);
             });
         }
-        public override void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
+        public void POST_CreateDefaultTable(string folderID, string fileName, Action<string> callback)
         {
             var data = new CreateDefaultTableSender(folderID, fileName);
             var json = JsonConvert.SerializeObject(data);

@@ -212,7 +212,7 @@ public class UIDirectoryViewer : EditorWindow
 
         var createDefaultTableNameField = Instance.rootVisualElement.Q("createDefaultTableNameField") as TextField;
         btn.RegisterCallback<ClickEvent>(x => {
-            UnityEditorWebRequest.Instance.CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json => { 
+            UnityEditorWebRequest.Instance.POST_CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json => { 
                 if(json == "failed")
                 {
                     EditorUtility.DisplayDialog("Failed Create Default Table!", "Table Create Failed.", "OK");
@@ -260,7 +260,7 @@ public class UIDirectoryViewer : EditorWindow
             {
                 if (file.type == FileType.Excel)
                 {
-                    UnityEditorWebRequest.Instance.GetTableData(file.id, (x1, x2) => {
+                    UnityEditorWebRequest.Instance.GET_TableData(file.id, (x1, x2) => {
                         ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
                     });
                 }
@@ -302,14 +302,14 @@ public class UIDirectoryViewer : EditorWindow
     public static void LoadRootFolder()
     {
 
-        UnityEditorWebRequest.Instance.GetFolderFiles(RootFolderID, x => {
+        UnityEditorWebRequest.Instance.GET_ReqFolderFiles(RootFolderID, x => {
             CreateFileList(x, true, RootFolderID);
         });
     }
     public static void LoadFolder(string folderId)
     {
 
-        UnityEditorWebRequest.Instance.GetFolderFiles(folderId, x => {
+        UnityEditorWebRequest.Instance.GET_ReqFolderFiles(folderId, x => {
             CreateFileList(x, false, folderId);
         });
     }
