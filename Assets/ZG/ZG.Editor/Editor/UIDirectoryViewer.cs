@@ -213,6 +213,11 @@ public class UIDirectoryViewer : EditorWindow
         var createDefaultTableNameField = Instance.rootVisualElement.Q("createDefaultTableNameField") as TextField;
         btn.RegisterCallback<ClickEvent>(x => {
             UnityEditorWebRequest.Instance.CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json => { 
+                if(json == "failed")
+                {
+                    EditorUtility.DisplayDialog("Failed Create Default Table!", "Table Create Failed.", "OK");
+                    return;
+                }
                 var result = JsonConvert.DeserializeObject<CreateDefaultTableResult>(json);
                 if(result != null)
                 {

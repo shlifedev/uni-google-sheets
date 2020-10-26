@@ -2,26 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class UnityFileReader : IFileReader
+namespace Hamster.ZG
 {
-    public string ReadData(string fileName)
+    public class UnityFileReader : IFileReader
     {
-#if UNITY_EDITOR 
-        if (Application.isEditor)
+        public string ReadData(string fileName)
         {
-            Debug.Log(fileName);
-            var textasset = Resources.Load<TextAsset>("ZGS.Data/"+fileName);
-            if (textasset != null)
+#if UNITY_EDITOR
+            if (Application.isEditor)
             {
-                return textasset.text;
+                Debug.Log(fileName);
+                var textasset = Resources.Load<TextAsset>("ZGS.Data/"+fileName);
+                if (textasset != null)
+                {
+                    return textasset.text;
+                }
+                else
+                {
+                    Debug.Log("cannot found textasset");
+                    return null;
+                }
             }
-            else
-            {
-                Debug.Log("cannot found textasset");
-                return null;
-            }
-        }
 #elif !UNITY_EDITOR
         Debug.Log("UnityFile Reader :: Engine Mode(Runtime)");
         if (!Application.isEditor)
@@ -51,6 +52,7 @@ public class UnityFileReader : IFileReader
         return null;
 #endif
 
-        return null;
+            return null;
+        }
     }
 }

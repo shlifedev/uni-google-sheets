@@ -1,4 +1,7 @@
-﻿public interface ITable
+﻿namespace Hamster.ZG
+{
+public interface ITable
 {
 
+}
 }

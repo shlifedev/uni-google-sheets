@@ -214,7 +214,7 @@ namespace @namespace
             string _className = sheetInfo.sheetName;
 
             WriteLoadFunction();
-            WriteAssembly(new string[] { "Hamster.ZG.Http","System", "System.Collections.Generic", "System.IO", "Hamster.ZG.Http.Protocol", "Hamster.ZG.Type", "System.Reflection", "UnityEngine" });
+            WriteAssembly(new string[] { "Hamster.ZG", "Hamster.ZG.Http","System", "System.Collections.Generic", "System.IO", "Hamster.ZG.Http.Protocol", "Hamster.ZG.Type", "System.Reflection", "UnityEngine" });
             WriteNamespace(_namespace);
             WriteClassReplace(_className);
             WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetID);

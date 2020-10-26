@@ -9,6 +9,7 @@ using Hamster.ZG.Http.Protocol;
 using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
+using Hamster.ZG;
 
 namespace CubeBalance
 {
