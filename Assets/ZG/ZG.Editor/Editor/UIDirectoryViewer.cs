@@ -338,8 +338,7 @@ public class UIDirectoryViewer : EditorWindow
           
         }
         if (root == false)
-        {
-            Debug.Log("add parent : " + CurrentViewFile.id); 
+        { 
             file.AddChild(UIFile.CreateParentFolderInstance(CurrentViewFile.id));
         } 
         CurrentViewFile = file; 
