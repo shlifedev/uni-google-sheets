@@ -115,7 +115,7 @@ namespace @namespace
             }}  
            
 #if UNITY_EDITOR
-            UnityEditorWebRequest.Instance.WriteData(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
 #endif
         }} 
         ";  
