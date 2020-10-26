@@ -61,14 +61,15 @@ public class UIFile
         AddClickEvent(file);
         return file;
     }
-    public static UIFile CreateParentFolderInstance()
+    public static UIFile CreateParentFolderInstance(string parentID)
     {
         UIFile file = new UIFile();
         file.fileName = "..";
         file.type = UIFile.FileType.ParentFolder;
         file.uiElement = UIDirectoryViewer.CreateDirectoryElement("..");
-        file.id = null;
+        file.id = parentID;
         file.url = null;
+        file.parentFolderID = parentID;
         AddClickEvent(file);
         return file;
     }
@@ -95,11 +96,12 @@ public class UIFile
                 {
                     if(file.parentFolderID == UIDirectoryViewer.RootFolderID)
                     {
+                        Debug.Log("loading root" );
                         UIDirectoryViewer.LoadRootFolder();
                     }
                     else
-                    {
-                        UIDirectoryViewer.LoadFolder(file.parentFolderID);
+                    { 
+                        UIDirectoryViewer.LoadFolder(file.id);
                     }
                  
                 }
@@ -129,9 +131,7 @@ public class UIFile
     {
         this.childFiles.Add(file);
         file.parentFolderID = this.id;
-         
-        if (file.type == FileType.Folder) 
-            file.AddChild(CreateParentFolderInstance()); 
+          
 
         childFiles = childFiles.OrderBy(x => x.type).ToList();
     }
@@ -319,7 +319,8 @@ public class UIDirectoryViewer : EditorWindow
         }
         else
         {
-            file = UIFile.CreateFolderInstance("root", $"https://drive.google.com/drive/folders/{folderID}", folderID, null);
+            var str = CurrentViewFile.id;  
+            file = UIFile.CreateFolderInstance(folderID, $"https://drive.google.com/drive/folders/{folderID}", folderID, str);
         }
 
         
@@ -338,9 +339,10 @@ public class UIDirectoryViewer : EditorWindow
         }
         if (root == false)
         {
-            file.AddChild(UIFile.CreateParentFolderInstance());
-        }
-        CurrentViewFile = file;
+            Debug.Log("add parent : " + CurrentViewFile.id); 
+            file.AddChild(UIFile.CreateParentFolderInstance(CurrentViewFile.id));
+        } 
+        CurrentViewFile = file; 
     }
 
     #region test
