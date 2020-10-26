@@ -115,7 +115,7 @@ namespace @namespace
             }}  
            
 #if UNITY_EDITOR
-if(Application.IsPlaying == false)
+if(Application.isPlaying == false)
 {{
             UnityEditorWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
 }}
