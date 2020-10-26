@@ -212,19 +212,41 @@ public class UIDirectoryViewer : EditorWindow
 
         var createDefaultTableNameField = Instance.rootVisualElement.Q("createDefaultTableNameField") as TextField;
         btn.RegisterCallback<ClickEvent>(x => {
-            UnityEditorWebRequest.Instance.POST_CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json => { 
-                if(json == "failed")
+
+            if (Application.isPlaying == false)
+            {
+                UnityEditorWebRequest.Instance.POST_CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json =>
                 {
-                    EditorUtility.DisplayDialog("Failed Create Default Table!", "Table Create Failed.", "OK");
-                    return;
-                }
-                var result = JsonConvert.DeserializeObject<CreateDefaultTableResult>(json);
-                if(result != null)
+                    if (json == "failed")
+                    {
+                        EditorUtility.DisplayDialog("Failed Create Default Table!", "Table Create Failed.", "OK");
+                        return;
+                    }
+                    var result = JsonConvert.DeserializeObject<CreateDefaultTableResult>(json);
+                    if (result != null)
+                    {
+                        CurrentViewFile.AddChild(CreateExcelInstance(result.fileName, result.url, result.fileID));
+                        UpdateCurrentViewFiles();
+                    }
+                });
+            }
+            else
+            {
+                UnityPlayerWebRequest.Instance.POST_CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json =>
                 {
-                    CurrentViewFile.AddChild(CreateExcelInstance(result.fileName, result.url, result.fileID));
-                    UpdateCurrentViewFiles();
-                }
-            }); 
+                    if (json == "failed")
+                    {
+                        EditorUtility.DisplayDialog("Failed Create Default Table!", "Table Create Failed.", "OK");
+                        return;
+                    }
+                    var result = JsonConvert.DeserializeObject<CreateDefaultTableResult>(json);
+                    if (result != null)
+                    {
+                        CurrentViewFile.AddChild(CreateExcelInstance(result.fileName, result.url, result.fileID));
+                        UpdateCurrentViewFiles();
+                    }
+                });
+            }
         });
     }
     static void AddOpenEvent()
@@ -260,9 +282,20 @@ public class UIDirectoryViewer : EditorWindow
             {
                 if (file.type == FileType.Excel)
                 {
-                    UnityEditorWebRequest.Instance.GET_TableData(file.id, (x1, x2) => {
-                        ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
-                    });
+                    if (Application.isPlaying == false)
+                    {
+                        UnityEditorWebRequest.Instance.GET_TableData(file.id, (x1, x2) =>
+                        {
+                            ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
+                        });
+                    }
+                    else
+                    {
+                        UnityPlayerWebRequest.Instance.GET_TableData(file.id, (x1, x2) =>
+                        {
+                            ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
+                        });
+                    }
                 }
             }
         });
@@ -287,6 +320,11 @@ public class UIDirectoryViewer : EditorWindow
     }
     public void OnGUI()
     {
+        if (Instance == null)
+        {
+            CreateInstance();
+        }
+        return;
         if (Application.isPlaying == false)
         {
             if (Instance == null)
@@ -301,17 +339,37 @@ public class UIDirectoryViewer : EditorWindow
     }
     public static void LoadRootFolder()
     {
-
-        UnityEditorWebRequest.Instance.GET_ReqFolderFiles(RootFolderID, x => {
-            CreateFileList(x, true, RootFolderID);
-        });
+        if (Application.isPlaying == false)
+        {
+            UnityEditorWebRequest.Instance.GET_ReqFolderFiles(RootFolderID, x =>
+            {
+                CreateFileList(x, true, RootFolderID);
+            });
+        }
+        else
+        {
+            UnityPlayerWebRequest.Instance.GET_ReqFolderFiles(RootFolderID, x =>
+            {
+                CreateFileList(x, true, RootFolderID);
+            });
+        }
     }
     public static void LoadFolder(string folderId)
     {
-
-        UnityEditorWebRequest.Instance.GET_ReqFolderFiles(folderId, x => {
-            CreateFileList(x, false, folderId);
-        });
+        if (Application.isPlaying == false)
+        {
+            UnityEditorWebRequest.Instance.GET_ReqFolderFiles(folderId, x =>
+            {
+                CreateFileList(x, false, folderId);
+            });
+        }
+        else
+        {
+            UnityPlayerWebRequest.Instance.GET_ReqFolderFiles(folderId, x =>
+            {
+                CreateFileList(x, false, folderId);
+            });
+        }
     }
 
     private static void CreateFileList(GetFolderInfo folder, bool root, string folderID = null)
