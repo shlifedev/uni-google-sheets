@@ -73,8 +73,8 @@ namespace Example
         public static UnityFileReader reader = new UnityFileReader();
 
         //Datas
-      		public Int32 UnitIndex;
-	      	public String Data;
+      	public Int32 UnitIndex;
+	public String Data;
 
         public static void Write(Data data)
         { 
