@@ -1,4 +1,5 @@
 ﻿
+using System.Configuration;
 using UnityEngine;
 namespace Hamster.ZG
 {
@@ -8,35 +9,27 @@ namespace Hamster.ZG
         public static string GoogleFolderID
         {
             get
-            {
-#if UNITY_EDITOR
-                return UnityEditor.EditorPrefs.GetString("GoogleFolderID", null);
-#endif
-                return PlayerPrefs.GetString("GoogleFolderID", null);
+            { 
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                return setting.GoogleFolderID; 
             }
             set
             {
-#if UNITY_EDITOR
-                UnityEditor.EditorPrefs.SetString("GoogleFolderID", value);
-#endif
-                PlayerPrefs.SetString("GoogleFolderID", value);
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                setting.GoogleFolderID = value;
             }
         }
         public static string ScriptURL
         {
             get
             {
-#if UNITY_EDITOR
-                return UnityEditor.EditorPrefs.GetString("ScriptURL", null);
-#endif
-                return PlayerPrefs.GetString("ScriptURL", null);
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                return setting.ScriptURL;
             }
             set
             {
-#if UNITY_EDITOR
-                UnityEditor.EditorPrefs.SetString("ScriptURL", value);
-#endif
-                PlayerPrefs.SetString("ScriptURL", value);
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                setting.ScriptURL = value;
             }
         }
     }
