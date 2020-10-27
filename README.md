@@ -53,7 +53,18 @@
         }
     }
  ```
+
+# How to Write Data To GoogleSheet
+ Use Write Method In Your Generated Script 
  
+```cs
+   Example.DataClass.Write(new Example.DataClass(){
+          exampleIndex = 1001,
+          strData = "data",
+          intData = 100
+   });
+   
+```
  
 ## Future Plans
  - UIElement to IMGUI
