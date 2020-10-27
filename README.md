@@ -57,11 +57,41 @@
 # How to Write Data To GoogleSheet
  Use Write Method In Your Generated Script 
  
+ 
+Example Generate Script..
 ```cs
-   Example.DataClass.Write(new Example.DataClass(){
-          exampleIndex = 1001,
-          strData = "data",
-          intData = 100
+namespace Example
+{
+    [Hamster.ZG.Attribute.TableStruct]
+    public class Data : ITable
+    { 
+        static bool isLoaded = false;
+        public static string spreadSheetID = "1oPGjxVw6cKptBeDFn9xBrhkjqoInxaSr_Y7FUyZG3bQ"; // it is file id
+        public static string sheetID = "0"; // it is sheet id
+        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
+        public static List<Data> DataList = new List<Data>();  
+        public static UnityFileReader reader = new UnityFileReader();
+
+        //Datas
+      		public Int32 UnitIndex;
+	      	public String Data;
+
+        public static void Write(Data data)
+        { 
+            ...
+        }  
+        public static void Load(bool forceReload = false)
+        {
+             ...
+        } 
+    }
+}
+        
+```
+```cs
+   Example.Data.Write(new Example.Data(){
+          UnitIndex = 1001,
+          Data = "data
    });
    
 ```
