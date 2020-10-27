@@ -10,12 +10,12 @@ namespace Hamster.ZG
         {
             get
             { 
-                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
                 return setting.GoogleFolderID; 
             }
             set
             {
-                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
                 setting.GoogleFolderID = value;
             }
         }
@@ -23,12 +23,12 @@ namespace Hamster.ZG
         {
             get
             {
-                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
                 return setting.ScriptURL;
             }
             set
             {
-                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
                 setting.ScriptURL = value;
             }
         }

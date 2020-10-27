@@ -6,9 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="ZGSettingObject", menuName ="HamsterLib/ZG/SettingObject", order = 0)]
 public class ZGSettingObject : ScriptableObject
 {
-    
-    public string GoogleFolderID;
     public string ScriptURL;
+
+    public string GoogleFolderID;
+
+    
   
     
     [HideInInspector]
