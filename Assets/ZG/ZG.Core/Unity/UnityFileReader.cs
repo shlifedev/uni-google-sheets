@@ -1,6 +1,7 @@
 ﻿using Hamster.ZG.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 namespace Hamster.ZG
 {
@@ -9,50 +10,59 @@ namespace Hamster.ZG
         public string ReadData(string fileName)
         {
 #if UNITY_EDITOR
-            if (Application.isEditor)
+            if (Application.isPlaying == false)
             {
-                Debug.Log(fileName);
-                var textasset = Resources.Load<TextAsset>("ZGS.Data/"+fileName);
-                if (textasset != null)
-                {
-                    return textasset.text;
-                }
-                else
-                {
-                    Debug.Log("cannot found textasset");
-                    return null;
-                }
-            }
-#elif !UNITY_EDITOR
-        Debug.Log("UnityFile Reader :: Engine Mode(Runtime)");
-        if (!Application.isEditor)
-        {
-            if (System.IO.File.Exists(fileName))
-            {
-                var assetFromDownloadData = System.IO.File.ReadAllText(fileName+".json");
-                if (!string.IsNullOrEmpty(assetFromDownloadData))
-                {
-                    Debug.Log("load from persistent");
-                    return assetFromDownloadData;
-                }
+                return EditorAssetLoad(fileName);
             }
             else
             {
-                var asset = Resources.Load<TextAsset>("file:///"+Application.persistentDataPath +"/"+ fileName);
-                if (asset != null)
-                {
-                    Debug.Log("load from Resources");
-                    return asset.text;
-                }
+                return RuntimeAssetLoad(fileName);
             }
-            return null;
- 
+#elif !UNITY_EDITOR
+                return RuntimeAssetLoad(fileName);
+#endif 
         }
 
-        return null;
-#endif
+        public string EditorAssetLoad(string fileName)
+        { 
+            var textasset = Resources.Load<TextAsset>("ZGS.Data/"+fileName);
+            if (textasset != null)
+            {
+                return textasset.text;
+            }
+            else
+            { 
+                return null;
+            }
+        }
+        public string RuntimeAssetLoad(string fileName)
+        {
+            ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+            var savePath = Path.Combine(Application.persistentDataPath,setting.RuntimeDataPath);
+            var fileSavePath = Path.Combine(savePath, fileName); 
+            if (!System.IO.Directory.Exists(savePath))
+            {
+                System.IO.Directory.CreateDirectory(savePath);
+            }
+            if (System.IO.File.Exists(fileSavePath +".json"))
+            {
+                var savedAsset = System.IO.File.ReadAllText(fileSavePath+".json");
+                Debug.Log("load from "+ savedAsset);
+                return savedAsset;
+            }
+            else
+            {
+                var textasset = Resources.Load<TextAsset>("ZGS.Data/"+fileName);
+                if(textasset == null) 
+                    return null;
 
-            return null;
+                return textasset.text;
+            } 
         }
     }
+
+   
 }
+
+
+ 
