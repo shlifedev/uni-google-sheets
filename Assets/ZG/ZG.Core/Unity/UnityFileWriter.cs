@@ -11,15 +11,11 @@ namespace Hamster.ZG
 
         public void WriteCS(string writePath, string content)
         {
-
+            ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
 #if UNITY_EDITOR
-            var csPath = EditorPrefs.GetString("UNITY_FILE_WRITER_CS_PATH", null);
-            if (string.IsNullOrEmpty(csPath))
-            {
-                System.IO.Directory.CreateDirectory("Assets/ZGS/Scripts/ZGS.Struct");
-                System.IO.File.WriteAllText("Assets/ZGS/Scripts/ZGS.Struct/" + writePath + ".cs", content);
-                AssetDatabase.Refresh();
-            }
+            System.IO.Directory.CreateDirectory(setting.CSPath);
+            System.IO.File.WriteAllText(setting.CSPath + "/" + writePath + ".cs", content);
+            AssetDatabase.Refresh();
 #else
         Debug.Log("C# code auto-generate editor only support!");
 #endif
@@ -32,29 +28,21 @@ namespace Hamster.ZG
         /// <param name="content"></param>
         public void WriteData(string writePath, string content)
         {
+            UnityEditorWriteData(writePath, content);
+        }
+
+        public void UnityEditorWriteData(string writePath, string content)
+        {
+            ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
 #if UNITY_EDITOR
-            if (Application.isEditor)
-            {
-                var dataPath = EditorPrefs.GetString("UNITY_FILE_WRITER_DATA_PATH", null);
-
-                if (string.IsNullOrEmpty(dataPath))
-                {
-                    System.IO.Directory.CreateDirectory("Assets/ZGS/Resources/ZGS.Data");
-                    System.IO.File.WriteAllText("Assets/ZGS/Resources/ZGS.Data/" + writePath + ".json", content);
-                    AssetDatabase.Refresh();
-                }
-            }
-        }
-#elif !UNITY_EDITOR
-
-        Debug.Log("UnityFile Writer :: Engine Mode(Runtime)");
-        if (!Application.isEditor){
-            string filePath = "file:///"+Application.persistentDataPath +$"/{writePath}.json";
-            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(filePath));
-            System.IO.File.WriteAllText(filePath, content);
-        }
- 
-    }
+            System.IO.Directory.CreateDirectory(setting.DataPath);
+            System.IO.File.WriteAllText(setting.DataPath + "/" + writePath + ".json", content);
+            AssetDatabase.Refresh();
+#else
+            System.IO.Directory.CreateDirectory(setting.RuntimeDataPath);
+            System.IO.File.WriteAllText(setting.RuntimeDataPath + "/" + writePath + ".json", content);
+            AssetDatabase.Refresh();
 #endif
+        }
     }
 }
