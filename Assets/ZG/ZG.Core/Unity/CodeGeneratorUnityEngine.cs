@@ -20,7 +20,8 @@ namespace @namespace
 {
     [Hamster.ZG.Attribute.TableStruct]
     public class @class : ITable
-    {
+    { 
+        static bool isLoaded = false;
         public static string spreadSheetID = ""@spreadSheetID""; // it is file id
         public static string sheetID = ""@sheetID""; // it is sheet id
         public static Dictionary<@keyType, @class> @classMap = new Dictionary<@keyType, @class>(); 
@@ -164,8 +165,13 @@ else
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-        public static void Load()
+        public static void Load(bool forceReload = false)
         {{
+            if(isLoaded && forceReload == false)
+            {{
+                 Debug.Log(""@class is already loaded! if you want reload then, forceReload parameter set true"");
+                 return;
+            }}
             /* Clear When Try Load */
             @classMap?.Clear();
             @classList?.Clear(); 
@@ -209,6 +215,7 @@ else
                     }} 
                 }}
             }}
+            isLoaded = true;
         }}
 ");
             generateForm = generateForm.Replace("@loadFunction", builder.ToString());
