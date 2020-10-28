@@ -23,7 +23,7 @@
  Script URL : https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit
 
  # CustomType Add Example
- You can implemented new type using the Type attribute. And implement the Read function.
+ You can implemented new type using the Type attribute. Just implement the Read&Write Function.
   
  
   ```csharp
