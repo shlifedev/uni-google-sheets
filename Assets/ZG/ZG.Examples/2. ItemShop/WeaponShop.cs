@@ -11,7 +11,7 @@ public class WeaponShop : MonoBehaviour
     void Awake()
     {
         Example2.Item.Weapons.Load(); 
-        var sortData = Example2.Item.Weapons.WeaponsList.OrderBy(x=>x.Type);
+        var sortData = Example2.Item.Weapons.WeaponsList.OrderBy(x=>x.Price);
         foreach (var data in sortData)
         {
             var productObj = Instantiate(productPrefab);
