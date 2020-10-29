@@ -2,14 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WeaponShopProudctModel : MonoBehaviour
+public class WeaponShopProudctModel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 {
     public Example2.Item.Weapons data;
     public Image proudctImage;
     public Text  proudctName;
     public Text  priceBtnText;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (WeaponShop.instance.descriptionUI.gameObject.activeInHierarchy == false)
+        {
+            WeaponShop.instance.descriptionUI.ShowUI(data); 
+        } 
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        WeaponShop.instance.descriptionUI.HideUI();
+    }
 
     public void SetData(Example2.Item.Weapons data)
     {
