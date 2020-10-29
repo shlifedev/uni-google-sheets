@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WeaponShop : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class WeaponShop : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Example2.Item.Weapons.Load();
-        foreach (var data in Example2.Item.Weapons.WeaponsList)
+        Example2.Item.Weapons.Load(); 
+        var sortData = Example2.Item.Weapons.WeaponsList.OrderBy(x=>x.Type);
+        foreach (var data in sortData)
         {
             var productObj = Instantiate(productPrefab);
             productObj.transform.SetParent(contentTransform, false);
