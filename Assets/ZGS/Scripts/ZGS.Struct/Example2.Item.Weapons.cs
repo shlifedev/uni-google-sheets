@@ -11,7 +11,7 @@ using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
 
-namespace Item
+namespace Example2.Item
 {
     [Hamster.ZG.Attribute.TableStruct]
     public class Weapons : ITable
@@ -31,6 +31,7 @@ namespace Item
 		public Int32 DEX;
 		public Int32 INT;
 		public Int32 LUK;
+		public String IconName;
  
 
         public static void Write(Weapons data)
@@ -71,11 +72,11 @@ else
             //Type Map Init
             TypeMap.Init();
             //Reflection Field Datas.
-            FieldInfo[] fields = typeof(Item.Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Example2.Item.Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
             //Load GameData.
-            string text = reader.ReadData("Item");
+            string text = reader.ReadData("Example2.Item");
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(text);
@@ -95,7 +96,7 @@ else
                     int rows = typeValuesCList[0].Count;
                     for (int i = 0; i < rows; i++)
                     {
-                        Item.Weapons instance = new Item.Weapons();
+                        Example2.Item.Weapons instance = new Example2.Item.Weapons();
                         for (int j = 0; j < typeInfos.Count; j++)
                         {
                             var typeInfo = TypeMap.StrMap[typeInfos[j].type];
