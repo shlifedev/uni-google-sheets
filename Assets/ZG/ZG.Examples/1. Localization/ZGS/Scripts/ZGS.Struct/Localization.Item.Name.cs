@@ -1,6 +1,7 @@
 
 /*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorUnityEngine.cs'  */
+using Hamster.ZG;
 using Hamster.ZG.Http;
 using System;
 using System.Collections.Generic;
@@ -9,54 +10,72 @@ using Hamster.ZG.Http.Protocol;
 using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
-using Hamster.ZG;
 
-namespace CubeBalance
+namespace Localization.Item
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class Data : ITable
-    {
-        public static string spreadSheetID = "1pleYglcJael5KiBXRNN-JKMFZRUSjK9_eJEVuVUCk7A"; // it is file id
+    public class Name : ITable
+    { 
+        static bool isLoaded = false;
+        public static string spreadSheetID = "18CCNohygzagd79mnYBKr0lQDnNiAomhscdnaocUj9Xo"; // it is file id
         public static string sheetID = "0"; // it is sheet id
-        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
-        public static List<Data> DataList = new List<Data>();  
+        public static Dictionary<string, Name> NameMap = new Dictionary<string, Name>(); 
+        public static List<Name> NameList = new List<Name>();  
         public static UnityFileReader reader = new UnityFileReader();
 
-		public Int32 index;
-		public Single speed;
+		public String localeID;
+		public String EN;
+		public String KR;
  
 
-        public static void Write(Data data)
-        {
-            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+        public static void Write(Name data)
+        { 
+            TypeMap.Init();
+            FieldInfo[] fields = typeof(Name).GetFields(BindingFlags.Public | BindingFlags.Instance);
             var datas = new string[fields.Length];
             for (int i = 0; i < fields.Length; i++)
             {
                 var type = fields[i].FieldType;
                 var writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
-                datas[i] = writeRule;
-            } 
+                datas[i] = writeRule; 
+            }  
+           
+#if UNITY_EDITOR
+if(Application.isPlaying == false)
+{
+            UnityEditorWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+}
+else
+{
+            UnityPlayerWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+}
+#endif
         } 
         
 
-        public static void Load()
+        public static void Load(bool forceReload = false)
         {
+            if(isLoaded && forceReload == false)
+            {
+                 Debug.Log("Name is already loaded! if you want reload then, forceReload parameter set true");
+                 return;
+            }
             /* Clear When Try Load */
-            DataMap?.Clear();
-            DataList?.Clear(); 
+            NameMap?.Clear();
+            NameList?.Clear(); 
             //Type Map Init
             TypeMap.Init();
             //Reflection Field Datas.
-            FieldInfo[] fields = typeof(CubeBalance.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Localization.Item.Name).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
             //Load GameData.
-            string text = reader.ReadData("CubeBalance");
+            string text = reader.ReadData("Localization.Item");
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(text);
                 var table= result.tableResult; 
-                var sheet = table["Data"];
+                var sheet = table["Name"];
                     foreach (var pNameAndTypeName in sheet.Keys)
                     {
                         var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -71,7 +90,7 @@ namespace CubeBalance
                     int rows = typeValuesCList[0].Count;
                     for (int i = 0; i < rows; i++)
                     {
-                        CubeBalance.Data instance = new CubeBalance.Data();
+                        Localization.Item.Name instance = new Localization.Item.Name();
                         for (int j = 0; j < typeInfos.Count; j++)
                         {
                             var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -79,11 +98,12 @@ namespace CubeBalance
                             fields[j].SetValue(instance, readedValue);
                         }
                         //Add Data to Container
-                        DataList.Add(instance);
-                        DataMap.Add(instance.index, instance);
+                        NameList.Add(instance);
+                        NameMap.Add(instance.localeID, instance);
                     } 
                 }
             }
+            isLoaded = true;
         }
  
     }

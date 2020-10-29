@@ -1,4 +1,0 @@
-You Must be Require https://github.com/shlifedev/UnityGoogleSheet Follow Setting Guide..
-
-
-The link to the spread sheet used in this example is : https://docs.google.com/spreadsheets/d/1pleYglcJael5KiBXRNN-JKMFZRUSjK9_eJEVuVUCk7A/edit#gid=0
