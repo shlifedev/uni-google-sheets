@@ -25,15 +25,20 @@ public class UISetting : EditorWindow
             Instance.titleContent = new GUIContent("UISetting");
             Instance.rootVisualElement.Add(uiAsset.CloneTree());
             Instance.maxSize = new Vector2(500, 150); 
-            var tf_url = Instance.rootVisualElement.Q("SCRIPT_URL") as TextField;
-            var tf_gfid = Instance.rootVisualElement.Q("GFID") as TextField;
 
-            tf_url.value = ZGSetting.ScriptURL;
-            tf_gfid.value = ZGSetting.GoogleFolderID;
+            var textFieldScriptURL = Instance.rootVisualElement.Q("SCRIPT_URL") as TextField;
+            var textFieldGoogleFolderID = Instance.rootVisualElement.Q("GFID") as TextField;
+            var toggleSavePath = Instance.rootVisualElement.Q("SavePathSyncToggle") as Toggle;
+
+            textFieldScriptURL.value = ZGSetting.ScriptURL;
+            textFieldGoogleFolderID.value = ZGSetting.GoogleFolderID;
+            toggleSavePath.value = ZGSetting.SavePathSyncToggle;
+
 
             Instance.rootVisualElement.Q("Save").RegisterCallback<ClickEvent>(x => {
-                ZGSetting.ScriptURL = tf_url.value;
-                ZGSetting.GoogleFolderID = tf_gfid.value;
+                ZGSetting.ScriptURL = textFieldScriptURL.value;
+                ZGSetting.GoogleFolderID = textFieldGoogleFolderID.value;
+                ZGSetting.SavePathSyncToggle = toggleSavePath.value;
             });
 
         }

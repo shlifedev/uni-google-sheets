@@ -10,9 +10,10 @@ public class ZGSettingObject : ScriptableObject
 
     public string GoogleFolderID;
 
-    
-  
-    
+    public bool SavePathSyncToggle;
+
+
+
     [HideInInspector]
     public string CSPath = "Assets/ZGS/Scripts/ZGS.Struct";
     [HideInInspector]

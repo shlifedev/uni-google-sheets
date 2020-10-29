@@ -190,7 +190,7 @@ namespace Hamster.ZG
                     callback?.Invoke(null);
                 }
                 else
-                {
+                { 
                     Debug.LogError(e.Message);
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);

@@ -1,5 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:TextField picking-mode="Ignore" label="Script URL" value="filler text" name="SCRIPT_URL" />
-    <ui:TextField picking-mode="Ignore" label="GoogleFolder ID" value="filler text" name="GFID" />
-    <ui:Button text="Save" name="Save" />
+    <ui:Foldout text="Default Setting" value="true" name="Settings">
+        <ui:TextField picking-mode="Ignore" label="GoogleFolder ID" value="filler text" name="GFID" />
+        <ui:TextField picking-mode="Ignore" label="Script URL" value="filler text" name="SCRIPT_URL" />
+        <ui:Toggle label="Data save path same as google drive path(EditorOnly)" name="SavePathSyncToggle" style="font-size: 10px; color: rgb(255, 255, 255); display: none;" />
+        <ui:Button text="Save" name="Save" />
+    </ui:Foldout>
 </ui:UXML>

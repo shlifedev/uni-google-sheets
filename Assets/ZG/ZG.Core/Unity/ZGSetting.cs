@@ -23,13 +23,26 @@ namespace Hamster.ZG
         {
             get
             {
-                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
                 return setting.ScriptURL;
             }
             set
             {
-                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
                 setting.ScriptURL = value;
+            }
+        }
+        public static bool SavePathSyncToggle
+        {
+            get
+            {
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                return setting.SavePathSyncToggle;
+            }
+            set
+            {
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                setting.SavePathSyncToggle = value;
             }
         }
     }

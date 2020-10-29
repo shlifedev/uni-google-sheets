@@ -8,6 +8,8 @@ using Hamster.ZG.Http.Protocol;
 using static FileData;
 using Hamster.ZG;
 using Newtonsoft.Json;
+using System.IO;
+using System.Text.RegularExpressions;
 
 public class FileData
 {
@@ -21,7 +23,7 @@ public class FileData
     /// </summary>
     public string parentFolderID;
     public List<FileData> childFiles = new List<FileData>();
-     
+
     public string id;
 
     public VisualElement uiElement;
@@ -36,7 +38,7 @@ public class FileData
 
 
 
-    static System.DateTime latestClickTime = System.DateTime.MinValue; 
+    static System.DateTime latestClickTime = System.DateTime.MinValue;
 
     public static FileData CreateFolderInstance(string fileName, string url, string id, string parentFolder = null)
     {
@@ -79,7 +81,7 @@ public class FileData
     static void OnClickEvent(ClickEvent _event, FileData file)
     {
 
-       
+
         if (latestClickTime != System.DateTime.Now && System.DateTime.MinValue != latestClickTime)
         {
             var timeDist = (System.DateTime.Now - latestClickTime).Milliseconds;
@@ -89,21 +91,25 @@ public class FileData
                 latestClickTime = System.DateTime.MinValue;
 
                 if (file.type == FileType.Folder)
-                { 
-                    UIDirectoryViewer.LoadFolder(file.id);   
+                {
+                    UIDirectoryViewer.Instance.CurrentAssetPath = Path.Combine(UIDirectoryViewer.Instance.CurrentAssetPath, file.fileName);
+                    UIDirectoryViewer.LoadFolder(file.id);
                 }
                 else if (file.type == FileType.ParentFolder)
                 {
-                    if(file.parentFolderID == UIDirectoryViewer.RootFolderID)
-                    {
-                        Debug.Log("loading root" );
-                        UIDirectoryViewer.LoadRootFolder();
-                    }
-                    else
-                    { 
-                        UIDirectoryViewer.LoadFolder(file.id);
-                    }
-                 
+
+                    DirectoryInfo di = new DirectoryInfo(UIDirectoryViewer.Instance.CurrentAssetPath);
+                    var parent = di.Parent;
+                    var appPath = Application.dataPath.Replace("\\","/");
+                    appPath = appPath.Remove(appPath.Length - 6, 6);
+
+                    var prevPath =  di.Parent.FullName.Replace("\\","/");
+                    prevPath = prevPath.Replace(appPath, null);
+
+
+                    UIDirectoryViewer.Instance.CurrentAssetPath = prevPath;
+                    UIDirectoryViewer.LoadFolder(file.id);
+
                 }
                 else if (file.type == FileType.Excel)
                 {
@@ -114,7 +120,7 @@ public class FileData
         }
 
         /* 일반 클릭 판정 */
-        latestClickTime = System.DateTime.Now; 
+        latestClickTime = System.DateTime.Now;
     }
     /// <summary>
     /// 클릭 이벤트 추가
@@ -122,24 +128,25 @@ public class FileData
     /// <param name="file"></param>
     private static void AddClickEvent(FileData file)
     {
-        file.uiElement.RegisterCallback<UnityEngine.UIElements.ClickEvent>(x => { 
+        file.uiElement.RegisterCallback<UnityEngine.UIElements.ClickEvent>(x =>
+        {
             OnClickEvent(x, file);
         });
     }
-     
+
     public void AddChild(FileData file)
     {
         this.childFiles.Add(file);
         file.parentFolderID = this.id;
-          
+
 
         childFiles = childFiles.OrderBy(x => x.type).ToList();
     }
 
 }
 public class UIDirectoryViewer : EditorWindow
-{ 
-    static FileData currentViewfile = null; 
+{
+    static FileData currentViewfile = null;
     public static string RootFolderID
     {
         get
@@ -151,22 +158,24 @@ public class UIDirectoryViewer : EditorWindow
     public static UIDirectoryViewer Instance = null;
     static UnityEngine.UIElements.ScrollView scrollView;
 
-    public static FileData CurrentViewFile 
+    public static FileData CurrentViewFile
     {
-        get => currentViewfile; 
+        get => currentViewfile;
         set
         {
             currentViewfile = value;
             UpdateCurrentViewFiles();
         }
     }
-     
+
+    public string CurrentAssetPath { get => this.masterPath; set => this.masterPath = value; }
+
     [MenuItem("HamsterLib/ZGS/Manager")]
     public static void CreateInstance()
-    { 
+    {
         if (Instance == null)
         {
-            if(string.IsNullOrEmpty(ZGSetting.GoogleFolderID) || string.IsNullOrEmpty(ZGSetting.ScriptURL))
+            if (string.IsNullOrEmpty(ZGSetting.GoogleFolderID) || string.IsNullOrEmpty(ZGSetting.ScriptURL))
             {
                 EditorUtility.DisplayDialog("Require Setting!", "Cannot Open ZGS Menu. Please Setting Complete!", "OK");
                 return;
@@ -179,7 +188,7 @@ public class UIDirectoryViewer : EditorWindow
             ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
             /* Load UI Directory View */
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml);
-            Instance = GetWindow<UIDirectoryViewer>(); 
+            Instance = GetWindow<UIDirectoryViewer>();
             Instance.titleContent = new GUIContent("UIDirectoryViewer");
             Instance.rootVisualElement.Add(uiAsset.CloneTree());
 
@@ -204,14 +213,17 @@ public class UIDirectoryViewer : EditorWindow
         {
             Instance.Show();
         }
-    } 
+    }
+
+
     static void AddCreateDefaultTableEvent()
     {
 
         var btn = Instance.rootVisualElement.Q("createDefaultTableBtn") as Button;
 
         var createDefaultTableNameField = Instance.rootVisualElement.Q("createDefaultTableNameField") as TextField;
-        btn.RegisterCallback<ClickEvent>(x => {
+        btn.RegisterCallback<ClickEvent>(x =>
+        {
 
             if (Application.isPlaying == false)
             {
@@ -252,32 +264,36 @@ public class UIDirectoryViewer : EditorWindow
     static void AddOpenEvent()
     {
         var open = Instance.rootVisualElement.Q("OpenFolder") as Label;
-        open.RegisterCallback<ClickEvent>(x => {
-            if(CurrentViewFile != null)
+        open.RegisterCallback<ClickEvent>(x =>
+        {
+            if (CurrentViewFile != null)
             {
                 Application.OpenURL(CurrentViewFile.url);
             }
-            
+
         });
     }
     static void AddGithubBtnEvent()
     {
         var github = Instance.rootVisualElement.Q("Github") as Label;
-        github.RegisterCallback<ClickEvent>(x => {
-           Application.OpenURL("https://github.com/shlifedev/UnityGoogleSheet");
+        github.RegisterCallback<ClickEvent>(x =>
+        {
+            Application.OpenURL("https://github.com/shlifedev/UnityGoogleSheet");
         });
     }
     static void AddSettingBtnEvent()
     {
         var setting = Instance.rootVisualElement.Q("Setting") as Label;
-        setting.RegisterCallback<ClickEvent>(x => {
-           UISetting.CreateInstance();
+        setting.RegisterCallback<ClickEvent>(x =>
+        {
+            UISetting.CreateInstance();
         });
     }
     static void AddGenerateBtnEvent()
     {
         var generate = Instance.rootVisualElement.Q("Generate") as Label;
-        generate.RegisterCallback<ClickEvent>(x => {
+        generate.RegisterCallback<ClickEvent>(x =>
+        {
             foreach (var file in CurrentViewFile.childFiles)
             {
                 if (file.type == FileType.Excel)
@@ -300,28 +316,32 @@ public class UIDirectoryViewer : EditorWindow
             }
         });
     }
- 
+
 
     /// <summary>
     /// 현재 보고있는 폴더의 파일들 표시
     /// </summary>
     private static void UpdateCurrentViewFiles()
     {
-        
-        if(CurrentViewFile != null)
+
+        if (CurrentViewFile != null)
         {
- 
+
             scrollView.Clear();
-            foreach(var file in CurrentViewFile.childFiles)
+            foreach (var file in CurrentViewFile.childFiles)
             {
                 scrollView.Add(file.uiElement);
             }
         }
     }
+
+    private string masterPath = "Assets/";
     public void OnGUI()
     {
+ 
         if (Instance == null)
         {
+
             CreateInstance();
         }
         return;
@@ -374,7 +394,7 @@ public class UIDirectoryViewer : EditorWindow
 
     private static void CreateFileList(GetFolderInfo folder, bool root, string folderID = null)
     {
-         
+
         FileData file = null;
         if (root)
         {
@@ -382,35 +402,36 @@ public class UIDirectoryViewer : EditorWindow
         }
         else
         {
-            var str = CurrentViewFile.id;  
+            var str = CurrentViewFile.id;
             file = FileData.CreateFolderInstance(folderID, $"https://drive.google.com/drive/folders/{folderID}", folderID, str);
         }
 
-        
-        for (int i = 0; i < folder.fileID.Count; i++) {
 
- 
+        for (int i = 0; i < folder.fileID.Count; i++)
+        {
+
+
             if (folder.fileType[i] == (int)FileType.Excel)
             {
                 file.AddChild(FileData.CreateExcelInstance(folder.fileName[i], folder.url[i], folder.fileID[i]));
             }
             if (folder.fileType[i] == (int)FileType.Folder)
             {
-                file.AddChild(FileData.CreateFolderInstance(folder.fileName[i], folder.url[i], folder.fileID[i], file.id)); 
-            } 
-          
+                file.AddChild(FileData.CreateFolderInstance(folder.fileName[i], folder.url[i], folder.fileID[i], file.id));
+            }
+
         }
-        if (root == false)
-        { 
+        if (folderID != RootFolderID)
+        {
             file.AddChild(FileData.CreateParentFolderInstance(CurrentViewFile.id));
-        } 
-        CurrentViewFile = file; 
+        }
+        CurrentViewFile = file;
     }
 
-  
+
     #region visual_element_creator
 
-     
+
     public static VisualElement CreateDirectoryElement(string directoryName)
     {
         var assets = AssetDatabase.FindAssets("ZG.UIFile");
@@ -420,13 +441,13 @@ public class UIDirectoryViewer : EditorWindow
         VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml);
         var fileElement = uiAsset.CloneTree().Query().Name("File").First() as VisualElement;
         var label = fileElement.Query().Name("FileName").First() as Label;
-            label.text = directoryName; 
+        label.text = directoryName;
 
-        var iconElement = fileElement.Query().Name("Icon").First() as VisualElement; 
+        var iconElement = fileElement.Query().Name("Icon").First() as VisualElement;
         var iconResource = Resources.Load<Texture2D>("FolderIcon");
-         
-        iconElement.style.backgroundImage = iconResource; 
-        iconElement.style.backgroundColor = new StyleColor(new Color(0, 0, 0, 0));  
+
+        iconElement.style.backgroundImage = iconResource;
+        iconElement.style.backgroundColor = new StyleColor(new Color(0, 0, 0, 0));
         return fileElement;
     }
     public static VisualElement CreateExcelElement(string fileName)
@@ -438,13 +459,13 @@ public class UIDirectoryViewer : EditorWindow
         VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml);
         var fileElement = uiAsset.CloneTree().Query().Name("File").First() as VisualElement;
         var label = fileElement.Query().Name("FileName").First() as Label;
-            label.text = fileName;
+        label.text = fileName;
 
         var iconElement = fileElement.Query().Name("Icon").First() as VisualElement;
 
         var iconResource = Resources.Load("ExcelIcon") as Texture2D;
         iconElement.style.backgroundImage = new StyleBackground(iconResource);
-        iconElement.style.backgroundColor = new StyleColor(new Color(0,0,0,0));
+        iconElement.style.backgroundColor = new StyleColor(new Color(0, 0, 0, 0));
         return fileElement;
     }
     #endregion
