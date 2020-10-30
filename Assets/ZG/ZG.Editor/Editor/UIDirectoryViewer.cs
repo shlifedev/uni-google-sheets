@@ -237,8 +237,13 @@ public class UIDirectoryViewer : EditorWindow
                     var result = JsonConvert.DeserializeObject<CreateDefaultTableResult>(json);
                     if (result != null)
                     {
+                        Debug.Log("Created!");
                         CurrentViewFile.AddChild(CreateExcelInstance(result.fileName, result.url, result.fileID));
                         UpdateCurrentViewFiles();
+                    }
+                    else
+                    {
+                        Debug.Log(json);
                     }
                 });
             }

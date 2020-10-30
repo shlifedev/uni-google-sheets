@@ -164,6 +164,7 @@ namespace Hamster.ZG
                     {
                         StreamReader reader = new StreamReader(dataStream);
                         responseFromServer = reader.ReadToEnd();
+                        Debug.Log(responseFromServer);
                         callback?.Invoke(responseFromServer);
                     }
                 }
