@@ -1,14 +1,17 @@
  
  
- # UnityGoogleSheet
- You can manage your game data very easily, flexible, fast!  
- It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store!
+ # UnityGoogleSheet 
+You can manage your game data very easily, flexible, fast!  
+ It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store! [here]()
  
+ ## ScreenShot
+![](https://i.imgur.com/ZBtiwmD.png)
+
  ## Download
   https://github.com/shlifedev/UnityGoogleSheet/releases
  
  ## Require
-  - Unity 2019.1 ++ (Require UIElement Support)
+  - Unity 2020 (Require Latest UIElement) (I Will Support Unity 2017)
   - Newtonsoft.Json
   
  # Features
@@ -17,12 +20,15 @@
  - Very Friendly User-Interface
  - Sync GoogleDrive GUI
  - Read From GoogleSheet & Write To GoogleSheet
- 
- ![N](https://github.com/shlifedev/UnityGoogleSheet/blob/main/app.gif?raw=true)
+  
  # How to Setup
- Tutorial Video : https://www.youtube.com/watch?v=WUyZypX3NHw&feature=youtu.be  
- Script URL : https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit
+ Setup Document : [How-to-setup](http://cheeseallergyhamster.gitbook.io/)
+ Setup Tutorial Video : [Video](https://www.youtube.com/watch?v=WUyZypX3NHw&feature=youtu.be)  
+ Script URL : [Script URL Here](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit)  
 
+ Included Example! : [Example Here](https://github.com/shlifedev/UnityGoogleSheet/tree/main/Assets/ZG/ZG.Examples)  
+ Example Sheet Datas : [Example Sheet Here](https://drive.google.com/drive/folders/189ozeSkUZpseEBWCOvGlN4FKefwz25Q6?usp=sharing)  
+ 
  # CustomType Add Example
  You can implemented new type using the Type attribute. Just implement the Read&Write Function.
   
