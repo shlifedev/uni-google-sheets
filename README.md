@@ -1,14 +1,15 @@
  
  
  # UnityGoogleSheet
- You can manage your game data very easily, flexible, fast!  
- It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store!
+![](https://i.imgur.com/ZBtiwmD.png)
+You can manage your game data very easily, flexible, fast!  
+ It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store! ![here]()
  
  ## Download
   https://github.com/shlifedev/UnityGoogleSheet/releases
  
  ## Require
-  - Unity 2019.1 ++ (Require UIElement Support)
+  - Unity 2019.1 ++ (Require UIElement)
   - Newtonsoft.Json
   
  # Features
@@ -17,8 +18,7 @@
  - Very Friendly User-Interface
  - Sync GoogleDrive GUI
  - Read From GoogleSheet & Write To GoogleSheet
- 
- ![N](https://github.com/shlifedev/UnityGoogleSheet/blob/main/app.gif?raw=true)
+  
  # How to Setup
  Tutorial Video : https://www.youtube.com/watch?v=WUyZypX3NHw&feature=youtu.be  
  Script URL : https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit
