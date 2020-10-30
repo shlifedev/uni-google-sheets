@@ -1,8 +1,9 @@
  
  
  # UnityGoogleSheet
- You can manage your game data very easily, flexible, fast! 
+ You can manage your game data very easily, flexible, fast!  
  It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store!
+ 
  ## Download
   https://github.com/shlifedev/UnityGoogleSheet/releases
  
