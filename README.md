@@ -11,7 +11,7 @@ You can manage your game data very easily, flexible, fast!
   https://github.com/shlifedev/UnityGoogleSheet/releases
  
  ## Require
-  - Unity 2019.1 ++ (Require UIElement)
+  - Unity 2020 (Require Latest UIElement) (I Will Support Unity 2017)
   - Newtonsoft.Json
   
  # Features
