@@ -2,7 +2,7 @@
  
  # UnityGoogleSheet 
 You can manage your game data very easily, flexible, fast!  
- It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store! ![here]()
+ It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store! [here]()
  
  ## ScreenShot
 ![](https://i.imgur.com/ZBtiwmD.png)
