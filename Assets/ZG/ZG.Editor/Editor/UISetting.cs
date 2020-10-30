@@ -36,9 +36,14 @@ public class UISetting : EditorWindow
 
 
             Instance.rootVisualElement.Q("Save").RegisterCallback<ClickEvent>(x => {
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
                 ZGSetting.ScriptURL = textFieldScriptURL.value;
                 ZGSetting.GoogleFolderID = textFieldGoogleFolderID.value;
                 ZGSetting.SavePathSyncToggle = toggleSavePath.value;
+                
+                EditorUtility.SetDirty(setting);
+                AssetDatabase.SaveAssets();
+
             });
 
         }
