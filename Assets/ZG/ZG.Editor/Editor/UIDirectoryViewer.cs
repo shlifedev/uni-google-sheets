@@ -78,7 +78,7 @@ public class FileData
 
 
 
-    static void OnClickEvent(ClickEvent _event, FileData file)
+    static void OnClickEvent(MouseDownEvent _event, FileData file)
     {
 
 
@@ -128,7 +128,7 @@ public class FileData
     /// <param name="file"></param>
     private static void AddClickEvent(FileData file)
     {
-        file.uiElement.RegisterCallback<UnityEngine.UIElements.ClickEvent>(x =>
+        file.uiElement.RegisterCallback<UnityEngine.UIElements.MouseDownEvent>(x =>
         {
             OnClickEvent(x, file);
         });
@@ -222,7 +222,7 @@ public class UIDirectoryViewer : EditorWindow
         var btn = Instance.rootVisualElement.Q("createDefaultTableBtn") as Button;
 
         var createDefaultTableNameField = Instance.rootVisualElement.Q("createDefaultTableNameField") as TextField;
-        btn.RegisterCallback<ClickEvent>(x =>
+        btn.RegisterCallback<MouseDownEvent>(x =>
         {
 
             if (Application.isPlaying == false)
@@ -264,7 +264,7 @@ public class UIDirectoryViewer : EditorWindow
     static void AddOpenEvent()
     {
         var open = Instance.rootVisualElement.Q("OpenFolder") as Label;
-        open.RegisterCallback<ClickEvent>(x =>
+        open.RegisterCallback<MouseDownEvent>(x =>
         {
             if (CurrentViewFile != null)
             {
@@ -276,7 +276,7 @@ public class UIDirectoryViewer : EditorWindow
     static void AddGithubBtnEvent()
     {
         var github = Instance.rootVisualElement.Q("Github") as Label;
-        github.RegisterCallback<ClickEvent>(x =>
+        github.RegisterCallback<MouseDownEvent>(x =>
         {
             Application.OpenURL("https://github.com/shlifedev/UnityGoogleSheet");
         });
@@ -284,7 +284,7 @@ public class UIDirectoryViewer : EditorWindow
     static void AddSettingBtnEvent()
     {
         var setting = Instance.rootVisualElement.Q("Setting") as Label;
-        setting.RegisterCallback<ClickEvent>(x =>
+        setting.RegisterCallback<MouseDownEvent>(x =>
         {
             UISetting.CreateInstance();
         });
@@ -292,7 +292,7 @@ public class UIDirectoryViewer : EditorWindow
     static void AddGenerateBtnEvent()
     {
         var generate = Instance.rootVisualElement.Q("Generate") as Label;
-        generate.RegisterCallback<ClickEvent>(x =>
+        generate.RegisterCallback<MouseDownEvent>(x =>
         {
             foreach (var file in CurrentViewFile.childFiles)
             {
