@@ -11,7 +11,7 @@ it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a dev
  
 
 ## Require
-  - Unity 2020 (Require Latest UIElement) (I Will Support Unity 2017)
+  - Unity 2019.3++, Unity 2020 ++ (Require Latest UIElement) (I Will Support Unity 2017)
 
  
  
