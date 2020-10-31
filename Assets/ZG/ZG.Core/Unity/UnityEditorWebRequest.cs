@@ -29,6 +29,7 @@ namespace Hamster.ZG
 {
     public class WriteDataSender
     {
+        public string password;
         public string instruction = "writeData";
         public string spreadSheetID;
         public string sheetID;
@@ -37,6 +38,7 @@ namespace Hamster.ZG
 
         public WriteDataSender(string spreadSheetID, string sheetID, string key, string[] value)
         {
+            password = password = ZGSetting.ScriptPassword;
             this.spreadSheetID = spreadSheetID;
             this.sheetID = sheetID;
             this.key = key;
@@ -46,12 +48,14 @@ namespace Hamster.ZG
 
     public class CreateDefaultTableSender
     {
+        public string password;
         public string instruction = "createDefaultTable";
         public string folderID;
         public string fileName;
 
         public CreateDefaultTableSender(string folderID, string fileName)
         {
+            password = ZGSetting.ScriptPassword;
             this.folderID = folderID;
             this.fileName = fileName;
         }
@@ -69,7 +73,7 @@ namespace Hamster.ZG
         }
         public void GET_ReqFolderFiles(string folderID, System.Action<GetFolderInfo> callback)
         {
-            Instance.Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", (x) =>
+            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", (x) =>
             {
                 if (x == null)
                 {
@@ -95,7 +99,7 @@ namespace Hamster.ZG
 
         public void GET_TableData(string sheetID, Action<GetTableResult, string> callback)
         {
-            Instance.Get($"{baseURL}?instruction=getTable&sheetID={sheetID}", (x) =>
+            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", (x) =>
             {
                 if (x == null)
                 {

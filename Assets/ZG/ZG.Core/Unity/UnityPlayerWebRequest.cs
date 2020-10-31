@@ -69,7 +69,7 @@ namespace Hamster.ZG
 
         public void GET_ReqFolderFiles(string folderID, Action<GetFolderInfo> callback)
         {
-            StartCoroutine(Get($"{baseURL}?instruction=getFolderInfo&folderID={folderID}", x=> {
+            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", x=> {
                 if (x == null)
                 {
                     Debug.LogError("Cannot Receive Data From URL : " + baseURL);
@@ -95,7 +95,7 @@ namespace Hamster.ZG
 
         public void GET_TableData(string sheetID, Action<GetTableResult, string> callback)
         {
-            StartCoroutine(Get($"{baseURL}?instruction=getTable&sheetID={sheetID}", (x) =>
+            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", (x) =>
             {
                 if (x == null)
                 {

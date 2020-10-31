@@ -24,20 +24,28 @@ public class UISetting : EditorWindow
             Instance = GetWindow<UISetting>();
             Instance.titleContent = new GUIContent("UISetting");
             Instance.rootVisualElement.Add(uiAsset.CloneTree());
-            Instance.maxSize = new Vector2(500, 150); 
+            Instance.maxSize = new Vector2(500, 150);
 
+
+   
             var textFieldScriptURL = Instance.rootVisualElement.Q("SCRIPT_URL") as TextField;
-            var textFieldGoogleFolderID = Instance.rootVisualElement.Q("GFID") as TextField;
+            var textFieldScriptPASSWORD = Instance.rootVisualElement.Q("SCRIPT_PASSWORD") as TextField; 
+            var textFieldGoogleFolderID = Instance.rootVisualElement.Q("GFID") as TextField;  
             var toggleSavePath = Instance.rootVisualElement.Q("SavePathSyncToggle") as Toggle;
 
+
+            //Init Value
             textFieldScriptURL.value = ZGSetting.ScriptURL;
             textFieldGoogleFolderID.value = ZGSetting.GoogleFolderID;
+            textFieldScriptPASSWORD.value = ZGSetting.ScriptPassword;
             toggleSavePath.value = ZGSetting.SavePathSyncToggle;
 
 
             Instance.rootVisualElement.Q("Save").RegisterCallback<ClickEvent>(x => {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
                 ZGSetting.ScriptURL = textFieldScriptURL.value;
+                ZGSetting.ScriptPassword = textFieldScriptPASSWORD.value;
+
                 ZGSetting.GoogleFolderID = textFieldGoogleFolderID.value;
                 ZGSetting.SavePathSyncToggle = toggleSavePath.value;
                 

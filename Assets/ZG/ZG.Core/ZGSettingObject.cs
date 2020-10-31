@@ -7,6 +7,7 @@ using UnityEngine;
 public class ZGSettingObject : ScriptableObject
 {
     public string ScriptURL;
+    public string ScriptPassword = "default";
 
     public string GoogleFolderID;
 

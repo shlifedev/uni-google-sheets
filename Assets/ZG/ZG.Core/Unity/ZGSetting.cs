@@ -6,6 +6,7 @@ namespace Hamster.ZG
     public static class ZGSetting
     {
 
+        
         public static string GoogleFolderID
         {
             get
@@ -32,6 +33,23 @@ namespace Hamster.ZG
                 setting.ScriptURL = value;
             }
         }
+
+        public static string ScriptPassword
+        {
+            get
+            {
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                return setting.ScriptPassword;
+            }
+            set
+            {
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                setting.ScriptPassword = value;
+            }
+        }
+
+
+
         public static bool SavePathSyncToggle
         {
             get
