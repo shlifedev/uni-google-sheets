@@ -178,6 +178,11 @@ public class UIDirectoryViewer : EditorWindow
             if (string.IsNullOrEmpty(ZGSetting.GoogleFolderID) || string.IsNullOrEmpty(ZGSetting.ScriptURL))
             {
                 EditorUtility.DisplayDialog("Require Setting!", "Cannot Open ZGS Menu. Please Setting Complete!", "OK");
+                
+                //for recursive calling
+                var trashWindow = UIDirectoryViewer.GetWindow<UIDirectoryViewer>();
+                trashWindow.Close();
+
                 return;
             }
 
