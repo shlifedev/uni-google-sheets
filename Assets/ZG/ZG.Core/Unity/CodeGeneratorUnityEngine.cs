@@ -203,7 +203,7 @@ else
                 @classList?.Clear(); 
             }}
             List<@class> callbackParamList = new List<@class>();
-            Dictionary<@keyType,@class> callbackParamMap = new Dictionary<string, @class>();
+            Dictionary<@keyType,@class> callbackParamMap = new Dictionary<@keyType, @class>();
             webInstance.GET_TableData(spreadSheetID, (data, json) => {{
             FieldInfo[] fields = typeof(@namespace.@class).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
