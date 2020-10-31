@@ -11,7 +11,7 @@ it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a dev
  
 
 ## Require
-  - Unity 2020 (Require Latest UIElement) (I Will Support Unity 2017)
+  - Unity 2019.3++, Unity 2020 ++ (Require Latest UIElement) (I Will Support Unity 2017)
 
  
  
@@ -25,3 +25,11 @@ it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a dev
  # How to Setup
  Setup Document : [How-to-setup](http://cheeseallergyhamster.gitbook.io/) 
   
+
+ # TODO LIST
+- [ ] support unity 2017, 2018, 2019.1, 2019.2
+- [x] support unity 2019.3
+- [x] support runtime wrtie
+- [ ] support read data from googlesheet
+- [ ] support generate data from googlesheet
+- [ ] complete gitbook document
