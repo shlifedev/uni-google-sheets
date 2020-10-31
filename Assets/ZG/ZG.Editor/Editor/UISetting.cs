@@ -17,13 +17,18 @@ public class UISetting : EditorWindow
         {
             var assets = AssetDatabase.FindAssets("ZG.UISetting"); 
             var uxml = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
-             
+ 
             ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
             /* Load UI Directory View */
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml) ;
             Instance = GetWindow<UISetting>();
             Instance.titleContent = new GUIContent("UISetting");
-            Instance.rootVisualElement.Add(uiAsset.CloneTree());
+            var ud = uiAsset.CloneTree();
+#if UNITY_2019
+            var uss = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
+            ud.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(uss));
+#endif
+            Instance.rootVisualElement.Add(ud);
             Instance.maxSize = new Vector2(500, 150);
 
 

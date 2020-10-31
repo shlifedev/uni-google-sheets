@@ -183,14 +183,19 @@ public class UIDirectoryViewer : EditorWindow
 
             var assets = AssetDatabase.FindAssets("ZG.UIDirectoryViewer");
             var uxml = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
-
+ 
 
             ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
             /* Load UI Directory View */
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml);
             Instance = GetWindow<UIDirectoryViewer>();
             Instance.titleContent = new GUIContent("UIDirectoryViewer");
-            Instance.rootVisualElement.Add(uiAsset.CloneTree());
+            var ud = uiAsset.CloneTree();
+#if UNITY_2019
+            var uss = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
+            ud.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(uss));
+#endif
+            Instance.rootVisualElement.Add(ud);
 
             scrollView = Instance.rootVisualElement.Query("FileGroup").First() as ScrollView;
             /* Scroll View To Grid View Script Custom */
@@ -434,7 +439,7 @@ public class UIDirectoryViewer : EditorWindow
     }
 
 
-    #region visual_element_creator
+#region visual_element_creator
 
 
     public static VisualElement CreateDirectoryElement(string directoryName)
@@ -473,5 +478,5 @@ public class UIDirectoryViewer : EditorWindow
         iconElement.style.backgroundColor = new StyleColor(new Color(0, 0, 0, 0));
         return fileElement;
     }
-    #endregion
+#endregion
 }
