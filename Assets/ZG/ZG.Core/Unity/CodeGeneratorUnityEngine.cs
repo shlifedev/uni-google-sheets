@@ -194,6 +194,9 @@ else
                 webInstance = UnityPlayerWebRequest.Instance;
             }}
 #endif
+#if !UNITY_EDITOR
+                 webInstance = UnityPlayerWebRequest.Instance;
+#endif
             if(updateCurrentData)
             {{
                 @classMap?.Clear();

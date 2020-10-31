@@ -60,7 +60,7 @@ else
 #endif
         } 
          
-
+         
 
         public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded)
         {
@@ -68,14 +68,17 @@ else
 #if UNITY_EDITOR
             if (Application.isPlaying == false)
             {
-                webInstance = UnityEditorWebRequest.Instance;
+                webInstance = UnityEditorWebRequest.Instance as IZGRequester;
             }
             else
             {
-                webInstance = UnityPlayerWebRequest.Instance;
+                webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
             }
 #endif
- 
+
+#if !UNITY_EDITOR
+            webInstance = UnityPlayerWebRequest.Instance;
+#endif
             List<Data> callbackParamList = new List<Data>();
             Dictionary<string,Data> callbackParamMap = new Dictionary<string, Data>();
             webInstance.GET_TableData(spreadSheetID, (data, json) => {
