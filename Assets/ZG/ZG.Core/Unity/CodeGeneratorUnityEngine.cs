@@ -21,15 +21,28 @@ namespace @namespace
     [Hamster.ZG.Attribute.TableStruct]
     public class @class : ITable
     { 
+
+        public delegate void OnLoadedFromGoogleSheets(List<@class> loadedList, Dictionary<@keyType, @class> loadedDictionary);
+
         static bool isLoaded = false;
         public static string spreadSheetID = ""@spreadSheetID""; // it is file id
         public static string sheetID = ""@sheetID""; // it is sheet id
+        public static UnityFileReader reader = new UnityFileReader();
         public static Dictionary<@keyType, @class> @classMap = new Dictionary<@keyType, @class>(); 
         public static List<@class> @classList = new List<@class>();  
-        public static UnityFileReader reader = new UnityFileReader();
-@types 
-@writeFunction
+
+@types  
+
+#region fuctions
+
+@writeFunction 
+
+@loadFromGoogleFunction
+
 @loadFunction 
+
+#endregion
+
     }
 }
         ";
@@ -126,8 +139,8 @@ else
 }}
 #endif
         }} 
-        ";  
-            
+        ";
+
             generateForm = generateForm.Replace("@writeFunction", writeFunction);
         }
         private void WriteNamespace(string @namespace)
@@ -161,6 +174,73 @@ else
             }
         }
 
+
+        private void WriteLoadFromGoogleFunction()
+        {
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append($@"
+        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded)
+        {{
+            IZGRequester webInstance = null;
+#if UNITY_EDITOR
+            if (Application.isPlaying == false)
+            {{
+                webInstance = UnityEditorWebRequest.Instance;
+            }}
+            else
+            {{
+                webInstance = UnityPlayerWebRequest.Instance;
+            }}
+#endif
+ 
+            List<@class> callbackParamList = new List<@class>();
+            Dictionary<@keyType,@class> callbackParamMap = new Dictionary<string, @class>();
+            webInstance.GET_TableData(spreadSheetID, (data, json) => {{
+            FieldInfo[] fields = typeof(@namespace.@class).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
+            List<List<string>> typeValuesCList = new List<List<string>>(); 
+              if (json != null)
+                        {{
+                            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(json);
+                            var table= result.tableResult; 
+                            var sheet = table[""@class""];
+                                foreach (var pNameAndTypeName in sheet.Keys)
+                                {{
+                                    var split = pNameAndTypeName.Replace("" "", null).Split(':');
+                                    var propertyName = split[0];
+                                    var type = split[1];
+                                    typeInfos.Add((pNameAndTypeName, propertyName, type));
+                                    var typeValues = sheet[pNameAndTypeName];
+                                    typeValuesCList.Add(typeValues);
+                                }} 
+                            if (typeValuesCList.Count != 0)
+                            {{
+                                int rows = typeValuesCList[0].Count;
+                                for (int i = 0; i < rows; i++)
+                                {{
+                                    @namespace.@class instance = new @namespace.@class();
+                                    for (int j = 0; j < typeInfos.Count; j++)
+                                    {{
+                                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                                        var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
+                                        fields[j].SetValue(instance, readedValue);
+                                    }}
+                                    //Add Data to Container
+                                    callbackParamList.Add(instance);
+                                    callbackParamMap .Add(instance.{sheetInfo.sheetVariableNames[0]}, instance);
+                                }} 
+                            }}
+                        }}
+
+                      onLoaded?.Invoke(callbackParamList, callbackParamMap);
+            }});
+        }}
+
+            ");
+
+            generateForm = generateForm.Replace("@loadFromGoogleFunction", builder.ToString());
+        }
         private void WriteLoadFunction()
         {
             StringBuilder builder = new StringBuilder();
@@ -228,7 +308,9 @@ else
             string _className = sheetInfo.sheetName;
 
             WriteLoadFunction();
-            WriteAssembly(new string[] { "Hamster.ZG", "Hamster.ZG.Http","System", "System.Collections.Generic", "System.IO", "Hamster.ZG.Http.Protocol", "Hamster.ZG.Type", "System.Reflection", "UnityEngine" });
+            WriteLoadFromGoogleFunction();
+
+            WriteAssembly(new string[] { "Hamster.ZG", "Hamster.ZG.Http", "System", "System.Collections.Generic", "System.IO", "Hamster.ZG.Http.Protocol", "Hamster.ZG.Type", "System.Reflection", "UnityEngine" });
             WriteNamespace(_namespace);
             WriteClassReplace(_className);
             WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetID);
