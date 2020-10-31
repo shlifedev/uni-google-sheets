@@ -42,11 +42,12 @@ namespace Hamster.ZG
             System.IO.Directory.CreateDirectory(setting.DataPath);
             System.IO.File.WriteAllText(setting.DataPath + "/" + writePath + ".json", content);
             AssetDatabase.Refresh();
-#else
-            System.IO.Directory.CreateDirectory(setting.RuntimeDataPath);
-            System.IO.File.WriteAllText(setting.RuntimeDataPath + "/" + writePath + ".json", content);
-            AssetDatabase.Refresh();
-#endif
+#endif 
+            //#else
+            //            System.IO.Directory.CreateDirectory(setting.RuntimeDataPath);
+            //            System.IO.File.WriteAllText(setting.RuntimeDataPath + "/" + writePath + ".json", content);
+            //            AssetDatabase.Refresh();
+            //#endif
         }
     }
 }
