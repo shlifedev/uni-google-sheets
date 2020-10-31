@@ -1,0 +1,281 @@
+
+// shlifedev@gmail.com
+
+var exports = exports || {};
+var module = module || { exports: exports };
+//import "google-apps-script" 
+
+class GetTableResult {
+  constructor(tableResult, spreadSheetName, spreadSheetID, sheetIDList) {
+    this.tableResult = tableResult;
+    this.spreadSheetName = spreadSheetName;
+    this.spreadSheetID = spreadSheetID;
+    this.sheetIDList = sheetIDList;
+  }
+}  
+
+ 
+///Auth
+function isPassValid(password)
+{
+  var appPass = PropertiesService.getScriptProperties().getProperty("password");
+  if (password != null && password == appPass)
+      return true;
+  
+  return false;
+} 
+
+///Create Default Table
+function createDefaultTable(folderID, fileName)
+{  
+    if(fileName == null) 
+      fileName = "DefaultTable";
+    var sheet = SpreadsheetApp.create(fileName);
+    var sheetFileId = sheet.getId();
+    var targetFolder = DriveApp.getFolderById(folderID);
+    var file = DriveApp.getFileById(sheetFileId);
+   
+    var folderFiles = targetFolder.getFiles();
+  
+    while (folderFiles.hasNext())
+    {
+        var folderFile = folderFiles.next();
+        if(folderFile.getName() == fileName)
+        {
+           Logger.log("failed!");
+           return "failed";
+        }
+    }  
+  
+    file.setName(fileName);
+    file.moveTo(targetFolder);
+    sheet.getSheets()[0].appendRow(["index : int", "intValue : int", "strValue : string"]);
+    var a1c1 = sheet.getSheets()[0].getRange("A1:C1");
+    a1c1.setBackground("black");
+    a1c1.setFontColor("white"); 
+    
+   
+    sheet.getSheets()[0].appendRow(["description", "desc", "desc"])
+    var a2c2 = sheet.getSheets()[0].getRange("A2:C2");
+    a2c2.setBackground("gray");
+    a2c2.setFontColor("white");  
+  
+    sheet.setName(fileName);
+    sheet.getSheets()[0].appendRow(["0", "100", "String"]) 
+    sheet.getSheets()[0].appendRow(["1", "50", "String2"]) 
+    sheet.getSheets()[0].appendRow(["2", "200", "Hello"]) 
+    sheet.getSheets()[0].appendRow(["3", "150", "World"]) 
+    
+    
+    var range = sheet.getSheets()[0].getRange("A1:Z1000");
+    range.setHorizontalAlignment("center");
+   
+    sheet.getSheets()[0].setName("Data");
+    var data = {};
+    
+     
+    data.fileID = file.getId();
+    data.fileName = file.getName();
+    data.fileType = 2;  
+    data.url = file.getUrl();
+    return JSON.stringify(data);
+}
+ 
+
+function writeData(fileID, sheetID, key, value)
+{
+  var spreadSheet = SpreadsheetApp.openById(fileID); 
+  var sheetIDList = [];
+  var sheets = spreadSheet.getSheets();
+  Logger.log("start" + spreadSheet.getName());
+  for (var i = 0; i < sheets.length; i++)
+  { 
+     Logger.log(sheets[i].getSheetId());
+      if(sheets[i].getSheetId() == sheetID)
+      {
+            var sheet = sheets[i];
+            var columCount = sheet.getLastColumn();
+            var maxRow = sheet.getLastRow();
+            var range = sheet.getRange(1, 1, maxRow, columCount).getValues(); 
+        
+            // Get Key Field [0,0]
+            var keyField = range[0][0]; 
+        
+            // Get Current Key
+            var currentKey = keyField.split(":")[0];
+                currentKey = currentKey.replace(" ", ""); 
+        
+            Logger.log(maxRow);
+            for (var row = 2; row < maxRow; row++) { 
+                     if(range[row][0] == key)
+                     { 
+                         for(var x = 0; x < value.length; x++)
+                         {   
+                              Logger.log((row+1) +"," + (x+1) +" set to " + value[x]);
+                              sheet.getRange(row+1, x+1).setValue(value[x]); 
+                         } 
+                         return "update" + fileID +"," +sheetID+"," + key +"," + value;
+                     } 
+            }
+           sheet.appendRow(value);
+           return "create   " + fileID +"," +sheetID+"," + key +"," + value;
+      }
+  }
+   return "error";
+   
+}
+ 
+function sheetToJson(fileID) {
+    var spreadSheet = SpreadsheetApp.openById(fileID); 
+    var sheetIDList = [];
+    var spreadSheetID = fileID;
+    var sheets = spreadSheet.getSheets();
+    var jsonObject = {};
+    for (var i = 0; i < sheets.length; i++) {
+        var sheet = sheets[i];
+        var sheetName = sheet.getName();
+        var sheetID = sheet.getSheetId();
+        sheetIDList.push(sheetID); 
+        if (sheetName.startsWith('@', 0) == true)
+            continue;
+        else {
+            var columCount = sheet.getLastColumn();
+            var maxRow = sheet.getLastRow();
+            var range = sheet.getRange(1, 1, maxRow, columCount).getValues();
+            jsonObject[sheetName] = {}; 
+            for (var row = 0; row < maxRow; row++) {
+                for (var col = 0; col < columCount; col++) {
+                    if (row == 0)
+                        jsonObject[sheetName][range[0][col]] = [];
+                    else if (row == 1)
+                        continue;
+                    else
+                        jsonObject[sheetName][range[0][col]].push(range[row][col]);
+                }
+            }
+        }
+    }
+   
+    var getTableResult = new GetTableResult(jsonObject, spreadSheet.getName()); 
+    getTableResult.instruction = "getTable";
+    getTableResult.spreadSheetID = spreadSheetID;
+    getTableResult.sheetIDList = sheetIDList;
+    return JSON.stringify(getTableResult);
+}
+ 
+ 
+  
+function getFolderInfo(folderID)
+{ 
+    result= {}; 
+    result.fileID = [];
+    result.fileName = [];  
+    result.instruction = "getFolderInfo";
+    result.fileType = [];
+    result.url = []; 
+    var rootFolder = DriveApp.getFolderById(folderID)
+    var folderFiles = rootFolder.getFiles();
+    var folderDirectories = rootFolder.getFolders();
+  
+    while (folderFiles.hasNext())
+    {
+       var file = folderFiles.next(); 
+       var mimeType = file.getMimeType()  
+       if(mimeType == "application/vnd.google-apps.spreadsheet")
+       {  
+          var fID = file.getId();
+          result.fileID.push(fID);
+          result.fileName.push(file.getName());
+          result.fileType.push(2); 
+          result.url.push(file.getUrl());
+       }
+       if(mimeType == "application/vnd.google-apps.folder")
+       {
+          var fID = file.getId();
+          result.fileID.push(fID);
+          result.fileName.push(file.getName());
+          result.fileType.push(0);
+          result.url.push(file.getUrl());
+       }
+    }  
+   
+    while (folderDirectories.hasNext())
+    {
+       var file = folderDirectories.next(); 
+       var fID = file.getId();
+     
+     
+       result.fileID.push(fID);
+       result.fileName.push(file.getName());
+       result.fileType.push(0);
+       result.url.push(file.getUrl());
+       
+    }  
+   
+   return JSON.stringify(result);
+}
+
+function test2()
+{
+   Logger.log("run")
+   createDefaultTable("14Va-xWRk1ex_4CLArghUw-4sReclqQg9", "testfile"); 
+}
+function test()
+{   
+  
+    writeData("1VzPWXu_YRTieqK24doq5CEcB5X7MaEJ2poh7gzEqgm8", "0", "MiniCube2", ["MiniCube2","1000"]); 
+}
+      
+function doProcessing(e, type) {
+  
+    if(type == "GET")
+    {
+      if(e.parameter.password != null && isPassValid(e.parameter.password))
+      { 
+               switch (e.parameter.instruction)
+               {
+                case "getTable": // get sheet datas
+                 return sheetToJson(e.parameter.sheetID);
+                case "getFolderInfo":
+                 return getFolderInfo(e.parameter.folderID, null);  
+               } 
+      }
+      else
+      {
+         return "AuthFail"; 
+      }
+    }
+
+
+    if(type == "POST")
+    {
+        var data = JSON.parse(e.postData.contents); 
+        if(data.password != null && isPassValid(data.password))
+        {
+         switch (data.instruction)
+         {
+           case "writeData": // get sheet datas
+             return writeData(data.spreadSheetID,data.sheetID,data.key,data.value);  
+           case "createDefaultTable": // get sheet datas
+             return createDefaultTable(data.folderID, data.fileName);  
+        } 
+      return "POST not work\n"+ JSON.stringify(e);
+      }
+      else
+      {
+         return "AuthFail"; 
+      }
+    }
+    return e.parameter.instruction;
+} 
+ 
+
+
+function doGet(e) { 
+    return ContentService.createTextOutput(doProcessing(e, "GET"));
+} 
+
+function doPost(e)
+{ 
+  return ContentService.createTextOutput(doProcessing(e, "POST"));
+}
