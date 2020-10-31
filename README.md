@@ -23,11 +23,7 @@ You can manage your game data very easily, flexible, fast!
   
  # How to Setup
  Setup Document : [How-to-setup](http://cheeseallergyhamster.gitbook.io/) 
- Script URL : [Script URL Here](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit)  
-
- Included Example! : [Example Here](https://github.com/shlifedev/UnityGoogleSheet/tree/main/Assets/ZG/ZG.Examples)  
- Example Sheet Datas : [Example Sheet Here](https://drive.google.com/drive/folders/189ozeSkUZpseEBWCOvGlN4FKefwz25Q6?usp=sharing)  
- 
+  
  # CustomType Add Example
  You can implemented new type using the Type attribute. Just implement the Read&Write Function.
   
