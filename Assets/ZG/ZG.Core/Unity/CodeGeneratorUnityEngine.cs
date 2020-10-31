@@ -174,13 +174,14 @@ else
             }
         }
 
+ 
 
         private void WriteLoadFromGoogleFunction()
         {
 
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded)
+        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
         {{
             IZGRequester webInstance = null;
 #if UNITY_EDITOR
@@ -193,7 +194,11 @@ else
                 webInstance = UnityPlayerWebRequest.Instance;
             }}
 #endif
- 
+            if(updateCurrentData)
+            {{
+                @classMap?.Clear();
+                @classList?.Clear(); 
+            }}
             List<@class> callbackParamList = new List<@class>();
             Dictionary<@keyType,@class> callbackParamMap = new Dictionary<string, @class>();
             webInstance.GET_TableData(spreadSheetID, (data, json) => {{
@@ -229,6 +234,11 @@ else
                                     //Add Data to Container
                                     callbackParamList.Add(instance);
                                     callbackParamMap .Add(instance.{sheetInfo.sheetVariableNames[0]}, instance);
+                                    if(updateCurrentData)
+                                    {{
+                                       @classList.Add(instance);
+                                       @classMap.Add(instance.{sheetInfo.sheetVariableNames[0]}, instance);
+                                    }}
                                 }} 
                             }}
                         }}
