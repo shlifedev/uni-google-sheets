@@ -1,8 +1,8 @@
  
  
  # UnityGoogleSheet 
-You can manage your game data with google sheet! it's very easily, flexible, fast
- It's Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store! [here]()  
+You can manage your game data with google sheet!   
+it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store! [here]()  
 **Setup Guide Here** : [SetupGuide Gitbook](http://cheeseallergyhamster.gitbook.io/) 
 
 ## ScreenShot
