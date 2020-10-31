@@ -187,15 +187,15 @@ else
 #if UNITY_EDITOR
             if (Application.isPlaying == false)
             {{
-                webInstance = UnityEditorWebRequest.Instance;
+                webInstance = UnityEditorWebRequest.Instance as IZGRequester;
             }}
             else
             {{
-                webInstance = UnityPlayerWebRequest.Instance;
+                webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
             }}
 #endif
 #if !UNITY_EDITOR
-                 webInstance = UnityPlayerWebRequest.Instance;
+                 webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
 #endif
             if(updateCurrentData)
             {{
