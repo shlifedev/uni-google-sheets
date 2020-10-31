@@ -255,18 +255,21 @@ namespace Hamster.ZG
                     var we = e as WebException;
                     Debug.Log(we.Status);
                     callback?.Invoke(null);
+                    EditorUtility.ClearProgressBar();
                 }
                 else if (e is System.Net.Http.HttpRequestException)
                 {
                     Debug.LogError(e.Message);
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);
+                    EditorUtility.ClearProgressBar();
                 }
                 else
                 {
                     Debug.LogError(e.Message);
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);
+                    EditorUtility.ClearProgressBar();
                 }
             }
         }

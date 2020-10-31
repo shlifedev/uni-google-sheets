@@ -191,10 +191,10 @@ public class UIDirectoryViewer : EditorWindow
             Instance = GetWindow<UIDirectoryViewer>();
             Instance.titleContent = new GUIContent("UIDirectoryViewer");
             var ud = uiAsset.CloneTree();
-#if UNITY_2019
-            var uss = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
+ 
+            var uss = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uss")));
             ud.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(uss));
-#endif
+ 
             Instance.rootVisualElement.Add(ud);
 
             scrollView = Instance.rootVisualElement.Query("FileGroup").First() as ScrollView;
@@ -227,7 +227,7 @@ public class UIDirectoryViewer : EditorWindow
         var btn = Instance.rootVisualElement.Q("createDefaultTableBtn") as Button;
 
         var createDefaultTableNameField = Instance.rootVisualElement.Q("createDefaultTableNameField") as TextField;
-        btn.RegisterCallback<MouseDownEvent>(x =>
+        btn.clicked += ()=>
         {
 
             if (Application.isPlaying == false)
@@ -269,7 +269,7 @@ public class UIDirectoryViewer : EditorWindow
                     }
                 });
             }
-        });
+        };
     }
     static void AddOpenEvent()
     {

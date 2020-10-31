@@ -23,11 +23,7 @@ public class UISetting : EditorWindow
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxml) ;
             Instance = GetWindow<UISetting>();
             Instance.titleContent = new GUIContent("UISetting");
-            var ud = uiAsset.CloneTree();
-#if UNITY_2019
-            var uss = AssetDatabase.GUIDToAssetPath(assets.ToList().Find(x=>AssetDatabase.GUIDToAssetPath(x).Contains(".uxml")));
-            ud.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>(uss));
-#endif
+            var ud = uiAsset.CloneTree();  
             Instance.rootVisualElement.Add(ud);
             Instance.maxSize = new Vector2(500, 150);
 
@@ -45,19 +41,19 @@ public class UISetting : EditorWindow
             textFieldScriptPASSWORD.value = ZGSetting.ScriptPassword;
             toggleSavePath.value = ZGSetting.SavePathSyncToggle;
 
-
-            Instance.rootVisualElement.Q("Save").RegisterCallback<ClickEvent>(x => {
+            var btn = Instance.rootVisualElement.Q("Save") as Button;
+            btn.clicked += () => {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
                 ZGSetting.ScriptURL = textFieldScriptURL.value;
                 ZGSetting.ScriptPassword = textFieldScriptPASSWORD.value;
 
                 ZGSetting.GoogleFolderID = textFieldGoogleFolderID.value;
                 ZGSetting.SavePathSyncToggle = toggleSavePath.value;
-                
+
                 EditorUtility.SetDirty(setting);
                 AssetDatabase.SaveAssets();
-
-            });
+            };
+         
 
         }
         else
