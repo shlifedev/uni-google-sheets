@@ -32,4 +32,5 @@ it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a dev
 - [x] support runtime wrtie
 - [x] support read data from googlesheet
 - [ ] support generate data from googlesheet
-- [ ] complete gitbook document
+- [ ] complete gitbook document - en
+- [x] complete gitbook document - kr
