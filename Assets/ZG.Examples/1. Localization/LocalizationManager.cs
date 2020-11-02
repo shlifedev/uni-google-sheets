@@ -36,26 +36,18 @@ public class LocalizationManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Same LoadMethod 2
+    /// </summary>
     public void LoadMethod1()
     {
-        Debug.Log("Load Method 1 (Reflection)");
-
-        var subClasses = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(ITable));
-        foreach (var _class in subClasses)
-        {
-            //if namespace == localization
-            if (_class.Namespace.Contains("Localization"))
-            {
-                //get Localization.Item.Class.Load() function by reflection!
-                var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
-
-                // call Localization.Item.Class.Load();
-                loadFunction.Invoke(null, new System.Object[] { false });
-            }
-        }
+        Debug.Log("Load Method 1 (Reflection)"); 
+        UnityGoogleSheet.LoadByNamespaceContains("Localization"); 
     }
 
-
+    /// <summary>
+    /// Manually Called. Same LoadMethod 1
+    /// </summary>
     public void LoadMethod2()
     {
         Debug.Log("Load Method 2 (Manually)"); 

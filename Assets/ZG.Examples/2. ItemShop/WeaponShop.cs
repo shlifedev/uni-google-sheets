@@ -12,8 +12,11 @@ public class WeaponShop : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        instance = this;
-        Example2.Item.Weapons.Load(); 
+        instance = this; 
+        // Same Example2.Item.Weapons.Load(); 
+        UnityGoogleSheet.LoadData<Example2.Item.Weapons>();
+
+        // SOrt
         var sortData = Example2.Item.Weapons.WeaponsList.OrderBy(x=>x.Price);
         foreach (var data in sortData)
         {

@@ -103,7 +103,7 @@ public class UnityGoogleSheet
     /// <summary>
     /// Load All Your Generated Table.
     /// </summary>
-    public static void LoaeByNamespaceContains(string @namespace)
+    public static void LoadByNamespaceContains(string @namespace)
     {
         Initalize();
         var subClasses = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(ITable));
