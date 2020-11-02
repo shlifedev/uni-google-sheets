@@ -68,7 +68,15 @@ public class UnityGoogleSheet
 #endif
         }
     }
- 
+
+    /// <summary>
+    /// Load All Your Generated Table.
+    /// </summary>
+    public static void LoadFromGoogle<T>() where T : ITable
+    {
+        throw new System.Exception("No Implements in UnityGoogleSheet class! Use Instead of GenerateData.LoadFromGoogle(...) method!");
+    }
+
 
     /// <summary>
     /// Load All Your Generated Table.
