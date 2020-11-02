@@ -11,11 +11,7 @@ namespace Hamster.ZG
 
         public void WriteCS(string writePath, string content)
         {
-            ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
- 
-
-
-
+            ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
 #if UNITY_EDITOR
             System.IO.Directory.CreateDirectory(setting.CSPath); 
             System.IO.File.WriteAllText(setting.CSPath + "/" + writePath + ".cs", content);
