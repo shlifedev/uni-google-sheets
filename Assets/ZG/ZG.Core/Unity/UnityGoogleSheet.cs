@@ -69,23 +69,53 @@ public class UnityGoogleSheet
 #endif
         }
     }
+    /// <summary>
+    /// Load All Your Generated Table.
+    /// </summary>
+    public static void LoadData<T>() where T : ITable
+    {
+        Initalize();
+        var _class = typeof(T); 
+            //Get Load Method
+            var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+            //Call Load Method
+            if (loadFunction != null)
+                loadFunction.Invoke(null, new System.Object[] { false }); 
+    }
 
     /// <summary>
-    /// Load Your Generated Table.
+    /// Load All Your Generated Table.
     /// </summary>
     public static void LoadAllData()
     {
         Initalize();
         var subClasses = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(ITable));
         foreach (var _class in subClasses)
-        { 
+        {
             //Get Load Method
-            var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static); 
+            var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
             //Call Load Method
-            if (loadFunction != null) 
-                loadFunction.Invoke(null, new System.Object[] { false }); 
+            if (loadFunction != null)
+                loadFunction.Invoke(null, new System.Object[] { false });
         }
     }
 
-    
+    /// <summary>
+    /// Load All Your Generated Table.
+    /// </summary>
+    public static void LoaeByNamespaceContains(string @namespace)
+    {
+        Initalize();
+        var subClasses = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(ITable));
+        foreach (var _class in subClasses)
+        {
+            if (_class.Namespace.Contains(@namespace))
+            {
+                var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+                loadFunction.Invoke(null, new System.Object[] { false });
+            }
+        }
+    }
+
+
 }
