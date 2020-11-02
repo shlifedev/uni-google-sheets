@@ -16,18 +16,25 @@ namespace Example3.CustomType
     [Hamster.ZG.Attribute.TableStruct]
     public class Data : ITable
     { 
+
+        public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
+
         static bool isLoaded = false;
         public static string spreadSheetID = "1PUospYVYWzMfUXV2IGCov6RhFtsphkCg1EVZut37ZnY"; // it is file id
         public static string sheetID = "0"; // it is sheet id
+        public static UnityFileReader reader = new UnityFileReader();
         public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
         public static List<Data> DataList = new List<Data>();  
-        public static UnityFileReader reader = new UnityFileReader();
+
 
 		public Int32 index;
 		public MyCustomStruct data;
 		public MyCustomStruct data2;
 		public Vector3 data3;
- 
+  
+
+#region fuctions
+
 
         public static void Write(Data data)
         { 
@@ -52,7 +59,80 @@ else
 }
 #endif
         } 
-        
+         
+
+
+        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
+        {
+            IZGRequester webInstance = null;
+#if UNITY_EDITOR
+            if (Application.isPlaying == false)
+            {
+                webInstance = UnityEditorWebRequest.Instance as IZGRequester;
+            }
+            else
+            {
+                webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
+            }
+#endif
+#if !UNITY_EDITOR
+                 webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
+#endif
+            if(updateCurrentData)
+            {
+                DataMap?.Clear();
+                DataList?.Clear(); 
+            }
+            List<Data> callbackParamList = new List<Data>();
+            Dictionary<int,Data> callbackParamMap = new Dictionary<int, Data>();
+            webInstance.GET_TableData(spreadSheetID, (data, json) => {
+            FieldInfo[] fields = typeof(Example3.CustomType.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
+            List<List<string>> typeValuesCList = new List<List<string>>(); 
+              if (json != null)
+                        {
+                            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(json);
+                            var table= result.tableResult; 
+                            var sheet = table["Data"];
+                                foreach (var pNameAndTypeName in sheet.Keys)
+                                {
+                                    var split = pNameAndTypeName.Replace(" ", null).Split(':');
+                                    var propertyName = split[0];
+                                    var type = split[1];
+                                    typeInfos.Add((pNameAndTypeName, propertyName, type));
+                                    var typeValues = sheet[pNameAndTypeName];
+                                    typeValuesCList.Add(typeValues);
+                                } 
+                            if (typeValuesCList.Count != 0)
+                            {
+                                int rows = typeValuesCList[0].Count;
+                                for (int i = 0; i < rows; i++)
+                                {
+                                    Example3.CustomType.Data instance = new Example3.CustomType.Data();
+                                    for (int j = 0; j < typeInfos.Count; j++)
+                                    {
+                                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                                        var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
+                                        fields[j].SetValue(instance, readedValue);
+                                    }
+                                    //Add Data to Container
+                                    callbackParamList.Add(instance);
+                                    callbackParamMap .Add(instance.index, instance);
+                                    if(updateCurrentData)
+                                    {
+                                       DataList.Add(instance);
+                                       DataMap.Add(instance.index, instance);
+                                    }
+                                } 
+                            }
+                        }
+
+                      onLoaded?.Invoke(callbackParamList, callbackParamMap);
+            });
+        }
+
+            
+
 
         public static void Load(bool forceReload = false)
         {
@@ -107,6 +187,9 @@ else
             isLoaded = true;
         }
  
+
+#endregion
+
     }
 }
         

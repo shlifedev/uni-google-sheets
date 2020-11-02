@@ -16,8 +16,7 @@ public class UnityGoogleSheet
     public static void Initalize()
     {
         if (Init == false)
-            ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader());
-
+            ZeroGoogleSheet.Init(new UnityGSParser(), new UnityFileReader()); 
         Init = true;
     }
      
@@ -26,7 +25,7 @@ public class UnityGoogleSheet
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="value"></param>
-    public static void WriteToGoogleSheet<T>(T value) where T : ITable
+    public static void Write<T>(T value) where T : ITable
     {
         Initalize();
         var _class = typeof(T); 
@@ -69,18 +68,20 @@ public class UnityGoogleSheet
 #endif
         }
     }
+ 
+
     /// <summary>
     /// Load All Your Generated Table.
     /// </summary>
-    public static void LoadData<T>() where T : ITable
+    public static void Load<T>() where T : ITable
     {
         Initalize();
-        var _class = typeof(T); 
-            //Get Load Method
-            var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
-            //Call Load Method
-            if (loadFunction != null)
-                loadFunction.Invoke(null, new System.Object[] { false }); 
+        var _class = typeof(T);
+        //Get Load Method
+        var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+        //Call Load Method
+        if (loadFunction != null)
+            loadFunction.Invoke(null, new System.Object[] { false });
     }
 
     /// <summary>

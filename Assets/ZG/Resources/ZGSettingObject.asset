@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScriptURL: https://script.google.com/macros/s/AKfycbyOBVdYiUz6W1WJCHhV5SS4r0Bq3NIyCKW8ugVunsBD-4Bbn30U/exec
   ScriptPassword: dpqlcb123
-  GoogleFolderID: 1cpXkEkEslwWg6n1PhetKS5TpfqxDnyRk
+  GoogleFolderID: 189ozeSkUZpseEBWCOvGlN4FKefwz25Q6
   SavePathSyncToggle: 0
   CSPath: Assets/ZGS/Scripts/ZGS.Struct
   DataPath: Assets/ZGS/Resources/ZGS.Data

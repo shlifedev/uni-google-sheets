@@ -16,17 +16,24 @@ namespace Localization.Item
     [Hamster.ZG.Attribute.TableStruct]
     public class Name : ITable
     { 
+
+        public delegate void OnLoadedFromGoogleSheets(List<Name> loadedList, Dictionary<string, Name> loadedDictionary);
+
         static bool isLoaded = false;
         public static string spreadSheetID = "18CCNohygzagd79mnYBKr0lQDnNiAomhscdnaocUj9Xo"; // it is file id
         public static string sheetID = "0"; // it is sheet id
+        public static UnityFileReader reader = new UnityFileReader();
         public static Dictionary<string, Name> NameMap = new Dictionary<string, Name>(); 
         public static List<Name> NameList = new List<Name>();  
-        public static UnityFileReader reader = new UnityFileReader();
+
 
 		public String localeID;
 		public String EN;
 		public String KR;
- 
+  
+
+#region fuctions
+
 
         public static void Write(Name data)
         { 
@@ -51,7 +58,80 @@ else
 }
 #endif
         } 
-        
+         
+
+
+        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
+        {
+            IZGRequester webInstance = null;
+#if UNITY_EDITOR
+            if (Application.isPlaying == false)
+            {
+                webInstance = UnityEditorWebRequest.Instance as IZGRequester;
+            }
+            else
+            {
+                webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
+            }
+#endif
+#if !UNITY_EDITOR
+                 webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
+#endif
+            if(updateCurrentData)
+            {
+                NameMap?.Clear();
+                NameList?.Clear(); 
+            }
+            List<Name> callbackParamList = new List<Name>();
+            Dictionary<string,Name> callbackParamMap = new Dictionary<string, Name>();
+            webInstance.GET_TableData(spreadSheetID, (data, json) => {
+            FieldInfo[] fields = typeof(Localization.Item.Name).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
+            List<List<string>> typeValuesCList = new List<List<string>>(); 
+              if (json != null)
+                        {
+                            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(json);
+                            var table= result.tableResult; 
+                            var sheet = table["Name"];
+                                foreach (var pNameAndTypeName in sheet.Keys)
+                                {
+                                    var split = pNameAndTypeName.Replace(" ", null).Split(':');
+                                    var propertyName = split[0];
+                                    var type = split[1];
+                                    typeInfos.Add((pNameAndTypeName, propertyName, type));
+                                    var typeValues = sheet[pNameAndTypeName];
+                                    typeValuesCList.Add(typeValues);
+                                } 
+                            if (typeValuesCList.Count != 0)
+                            {
+                                int rows = typeValuesCList[0].Count;
+                                for (int i = 0; i < rows; i++)
+                                {
+                                    Localization.Item.Name instance = new Localization.Item.Name();
+                                    for (int j = 0; j < typeInfos.Count; j++)
+                                    {
+                                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                                        var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
+                                        fields[j].SetValue(instance, readedValue);
+                                    }
+                                    //Add Data to Container
+                                    callbackParamList.Add(instance);
+                                    callbackParamMap .Add(instance.localeID, instance);
+                                    if(updateCurrentData)
+                                    {
+                                       NameList.Add(instance);
+                                       NameMap.Add(instance.localeID, instance);
+                                    }
+                                } 
+                            }
+                        }
+
+                      onLoaded?.Invoke(callbackParamList, callbackParamMap);
+            });
+        }
+
+            
+
 
         public static void Load(bool forceReload = false)
         {
@@ -106,6 +186,9 @@ else
             isLoaded = true;
         }
  
+
+#endregion
+
     }
 }
         
