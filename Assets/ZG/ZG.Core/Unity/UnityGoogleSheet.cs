@@ -44,31 +44,36 @@ public class UnityGoogleSheet
         Initalize();
         var targetTable = typeof(T);
         var field = targetTable.GetField("spreadSheetID", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
-        var fieldValue = (string)field.GetValue(null);
+        var sSheetID = (string)field.GetValue(null);
 
         if (field != null)
         {
-#if UNITY_EDITOR
-            if (Application.isPlaying)
-            {
-                UnityPlayerWebRequest.Instance.GET_TableData(fieldValue, (x, json) => {
-                    ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter());
-                });
-            }
-            else
-            {
-                UnityEditorWebRequest.Instance.GET_TableData(fieldValue, (x,json)=> {
-                    ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter()); 
-                });
-            }
-#else
-                UnityPlayerWebRequest.Instance.GET_TableData(fieldValue, (x, json) => {
-                    ZeroGoogleSheet.DataParser.ParseSheet(json, false, jsonGenerate, new UnityFileWriter());
-                }); 
-#endif
+            Generate(sSheetID, csharpGenerate, jsonGenerate);
         }
     }
 
+    public static void Generate(string spreadSheetId, bool csharpGenerate, bool jsonGenerate)
+    {
+
+#if UNITY_EDITOR
+        if (Application.isPlaying)
+        {
+            UnityPlayerWebRequest.Instance.GET_TableData(spreadSheetId, (x, json) => {
+                ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter());
+            });
+        }
+        else
+        {
+            UnityEditorWebRequest.Instance.GET_TableData(spreadSheetId, (x, json) => {
+                ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter());
+            });
+        }
+#else
+                UnityPlayerWebRequest.Instance.GET_TableData(spreadSheetId, (x, json) => {
+                    ZeroGoogleSheet.DataParser.ParseSheet(json, false, jsonGenerate, new UnityFileWriter());
+                }); 
+#endif
+    }
     /// <summary>
     /// Load All Your Generated Table.
     /// </summary>
@@ -85,6 +90,7 @@ public class UnityGoogleSheet
     {
         Initalize();
         var _class = typeof(T);
+         
         //Get Load Method
         var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
         //Call Load Method
