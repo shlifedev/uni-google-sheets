@@ -8,13 +8,13 @@ namespace Hamster.ZG.Type
     {
         public static bool init = false;
         static Dictionary<System.Type, IType> map = new Dictionary<System.Type, IType>();
-        static Dictionary<string, System.Type> strTypeMap = new Dictionary<string, System.Type>(); 
+        static Dictionary<string, System.Type> strTypeMap = new Dictionary<string, System.Type>();
         public static Dictionary<System.Type, IType> Map
         {
             get => map;
         }
         public static Dictionary<string, System.Type> StrMap
-        { 
+        {
             get => strTypeMap;
         }
         public static void Init()
@@ -34,10 +34,14 @@ namespace Hamster.ZG.Type
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("[TypeMap] Added " + att.type.ToString() + "  " + instance.ToString());
 #endif
-                        Map.Add(att.type, (IType)instance);
+                        if (!Map.ContainsKey(att.type))
+                        {
+                            Map.Add(att.type, (IType)instance);
+                        }
                         foreach (var sepractor in att.sepractors)
                         {
-                            StrMap.Add(sepractor, att.type);
+                            if (StrMap.ContainsKey(sepractor) == false)
+                                StrMap.Add(sepractor, att.type);
 #if !UNITY_EDITOR
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine(" ㄴ[TypeMap] Added Sepractors " + sepractor);
@@ -56,6 +60,6 @@ namespace Hamster.ZG.Type
                 Console.ForegroundColor = ConsoleColor.White;
                 init = true;
             }
-        } 
+        }
     }
 }
