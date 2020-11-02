@@ -31,6 +31,6 @@ it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a dev
 - [x] support unity 2019.3, 2020
 - [x] support runtime wrtie
 - [x] support read data from googlesheet
-- [ ] support generate data from googlesheet
+- [x] support generate data from googlesheet
 - [ ] complete gitbook document - en
 - [x] complete gitbook document - kr
