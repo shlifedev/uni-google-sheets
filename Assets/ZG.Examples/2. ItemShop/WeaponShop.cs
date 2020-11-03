@@ -15,7 +15,7 @@ public class WeaponShop : MonoBehaviour
         instance = this; 
         // Same Example2.Item.Weapons.Load(); 
         UnityGoogleSheet.Load<Example2.Item.Weapons>();
-
+         
         // SOrt
         var sortData = Example2.Item.Weapons.WeaponsList.OrderBy(x=>x.Price);
         foreach (var data in sortData)
