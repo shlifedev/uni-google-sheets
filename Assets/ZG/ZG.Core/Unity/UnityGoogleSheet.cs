@@ -58,13 +58,13 @@ public class UnityGoogleSheet
 #if UNITY_EDITOR
         if (Application.isPlaying)
         {
-            UnityPlayerWebRequest.Instance.GET_TableData(spreadSheetId, (x, json) => {
+            UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, (x, json) => {
                 ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter());
             });
         }
         else
         {
-            UnityEditorWebRequest.Instance.GET_TableData(spreadSheetId, (x, json) => {
+            UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, (x, json) => {
                 ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter());
             });
         }

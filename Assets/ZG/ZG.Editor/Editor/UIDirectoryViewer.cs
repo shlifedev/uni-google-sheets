@@ -237,7 +237,7 @@ public class UIDirectoryViewer : EditorWindow
 
             if (Application.isPlaying == false)
             {
-                UnityEditorWebRequest.Instance.POST_CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json =>
+                UnityEditorWebRequest.Instance.CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json =>
                 {
                     if (json == "failed")
                     {
@@ -259,7 +259,7 @@ public class UIDirectoryViewer : EditorWindow
             }
             else
             {
-                UnityPlayerWebRequest.Instance.POST_CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json =>
+                UnityPlayerWebRequest.Instance.CreateDefaultTable(CurrentViewFile.id, createDefaultTableNameField.value, json =>
                 {
                     if (json == "failed")
                     {
@@ -315,14 +315,14 @@ public class UIDirectoryViewer : EditorWindow
                 {
                     if (Application.isPlaying == false)
                     {
-                        UnityEditorWebRequest.Instance.GET_TableData(file.id, (x1, x2) =>
+                        UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
                         {
                             ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
                         });
                     }
                     else
                     {
-                        UnityPlayerWebRequest.Instance.GET_TableData(file.id, (x1, x2) =>
+                        UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
                         {
                             ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
                         });
@@ -376,14 +376,14 @@ public class UIDirectoryViewer : EditorWindow
     {
         if (Application.isPlaying == false)
         {
-            UnityEditorWebRequest.Instance.GET_ReqFolderFiles(RootFolderID, x =>
+            UnityEditorWebRequest.Instance.SearchGoogleDriveDirectory(RootFolderID, x =>
             {
                 CreateFileList(x, true, RootFolderID);
             });
         }
         else
         {
-            UnityPlayerWebRequest.Instance.GET_ReqFolderFiles(RootFolderID, x =>
+            UnityPlayerWebRequest.Instance.SearchGoogleDriveDirectory(RootFolderID, x =>
             {
                 CreateFileList(x, true, RootFolderID);
             });
@@ -393,14 +393,14 @@ public class UIDirectoryViewer : EditorWindow
     {
         if (Application.isPlaying == false)
         {
-            UnityEditorWebRequest.Instance.GET_ReqFolderFiles(folderId, x =>
+            UnityEditorWebRequest.Instance.SearchGoogleDriveDirectory(folderId, x =>
             {
                 CreateFileList(x, false, folderId);
             });
         }
         else
         {
-            UnityPlayerWebRequest.Instance.GET_ReqFolderFiles(folderId, x =>
+            UnityPlayerWebRequest.Instance.SearchGoogleDriveDirectory(folderId, x =>
             {
                 CreateFileList(x, false, folderId);
             });

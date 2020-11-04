@@ -76,9 +76,8 @@ namespace Hamster.ZG
                 Destroy(this.gameObject);
             }
         }
-
-
-        public void POST_CreateDefaultTable(string folderID, string fileName, Action<string> callback)
+         
+        public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
         {
             var data = new CreateDefaultTableSender(folderID, fileName);
             var json = JsonConvert.SerializeObject(data);
@@ -89,7 +88,7 @@ namespace Hamster.ZG
             }));
         } 
 
-        public void POST_WriteData(string spreadSheetID, string sheetID, string key, string[] value)
+        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value)
         {
             var data = new WriteDataSender(spreadSheetID, sheetID, key, value);
             var json = JsonConvert.SerializeObject(data);
@@ -100,13 +99,11 @@ namespace Hamster.ZG
             }));
         }
 
-        public void GET_ReqFolderFiles(string folderID, Action<GetFolderInfo> callback)
+        public void SearchGoogleDriveDirectory(string folderID, Action<GetFolderInfo> callback)
         {
             StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", x=> {
                 if (x == null)
-                {
-                    Debug.LogError("Cannot Receive Data From URL : " + baseURL);
-                    Debug.LogError("Cannot Receive Data From Folder ID : " + folderID);
+                { 
                     callback?.Invoke(null);
                 }
                 else
@@ -126,13 +123,12 @@ namespace Hamster.ZG
 
         }
 
-        public void GET_TableData(string sheetID, Action<GetTableResult, string> callback)
+        public void ReadGoogleSpreadSheet(string sheetID, Action<GetTableResult, string> callback)
         {
             StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", (x) =>
             {
                 if (x == null)
-                {
-                    Debug.LogError("cannot receive data");
+                { 
                     callback?.Invoke(null, null);
                 }
                 else

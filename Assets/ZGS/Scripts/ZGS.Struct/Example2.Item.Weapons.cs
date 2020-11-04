@@ -57,11 +57,11 @@ namespace Example2.Item
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {
-            UnityEditorWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
 }
 else
 {
-            UnityPlayerWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
 }
 #endif
         } 
@@ -74,11 +74,11 @@ else
 #if UNITY_EDITOR
             if (Application.isPlaying == false)
             {
-                webInstance = UnityEditorWebRequest.Instance as IZGRequester;
+                webInstance = UnityEditorWebRequest.Instance;
             }
             else
             {
-                webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
+                webInstance = UnityPlayerWebRequest.Instance;
             }
 #endif
 #if !UNITY_EDITOR
@@ -90,8 +90,9 @@ else
                 WeaponsList?.Clear(); 
             }
             List<Weapons> callbackParamList = new List<Weapons>();
-            Dictionary<int,Weapons> callbackParamMap = new Dictionary<int, Weapons>();
-            webInstance.GET_TableData(spreadSheetID, (data, json) => {
+            Dictionary<int,Weapons> callbackParamMap = new Dictionary<int, Weapons>(); 
+            webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
+            webInstance.ReadGoogleSpreadSheet(spreadSheetID, (data, json) => {
             FieldInfo[] fields = typeof(Example2.Item.Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 

@@ -50,11 +50,11 @@ namespace Localization.Item
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {
-            UnityEditorWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
 }
 else
 {
-            UnityPlayerWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
 }
 #endif
         } 
@@ -84,7 +84,7 @@ else
             }
             List<Description> callbackParamList = new List<Description>();
             Dictionary<string,Description> callbackParamMap = new Dictionary<string, Description>();
-            webInstance.GET_TableData(spreadSheetID, (data, json) => {
+            webInstance.ReadGoogleSpreadSheet(spreadSheetID, (data, json) => {
             FieldInfo[] fields = typeof(Localization.Item.Description).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
