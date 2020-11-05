@@ -54,8 +54,8 @@ namespace Hamster.ZG
             Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", (x) =>
             {
                 if (x == null)
-                { 
-                    callback?.Invoke(null, null);
+                {
+                    Debug.LogError("Cannot Read Google Sheet! Please Check Your Setting. (HamsterLib->ZGS->Setting)");
                 }
                 else
                 {
