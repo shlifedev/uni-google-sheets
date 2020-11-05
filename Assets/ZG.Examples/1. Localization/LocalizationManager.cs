@@ -41,6 +41,7 @@ public class LocalizationManager : MonoBehaviour
     /// </summary>
     public void LoadMethod1()
     {
+         
         Debug.Log("Load Method 1 (Reflection)"); 
         UnityGoogleSheet.LoadByNamespaceContains("Localization"); 
     }

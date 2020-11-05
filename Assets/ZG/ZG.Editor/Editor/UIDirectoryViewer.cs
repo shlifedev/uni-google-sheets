@@ -307,27 +307,36 @@ public class UIDirectoryViewer : EditorWindow
     static void AddGenerateBtnEvent()
     {
         var generate = Instance.rootVisualElement.Q("Generate") as Label;
+         
         generate.RegisterCallback<MouseDownEvent>(x =>
         {
-            foreach (var file in CurrentViewFile.childFiles)
+            if (Application.isPlaying == false)
             {
-                if (file.type == FileType.Excel)
+                foreach (var file in CurrentViewFile.childFiles)
                 {
-                    if (Application.isPlaying == false)
+                    if (file.type == FileType.Excel)
                     {
-                        UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
+                        if (Application.isPlaying == false)
                         {
-                            ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
-                        });
-                    }
-                    else
-                    {
-                        UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
+                            UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
+                            {
+                                ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
+                            });
+                        }
+                        else //Currently Not Support With PlayMode
                         {
-                            ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
-                        });
+                            UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
+                            {
+                                ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
+                            });
+                        }
                     }
                 }
+            }
+            else
+            {
+                UnityEditor.EditorUtility.DisplayDialog("UGS Dialog", "Generate Not Support With PlayMode. \n\nBut If you want update Game data at runtime, run Data.LoadFromGoogleSheet(..) method!", "OK");
+                Debug.Log("Generate Not Support With PlayMode, We will update it");
             }
         });
     }

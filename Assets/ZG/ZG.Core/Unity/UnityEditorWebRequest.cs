@@ -26,6 +26,17 @@ namespace Hamster.ZG
                 return ZGSetting.ScriptURL;
             }
         }
+
+        public void CopyExamples(string folderID, Action<string> callback)
+        {
+            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
+            {
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<UnityPlayerWebRequest.CopyExampleResult>(x);
+                Debug.Log(result.result);
+                callback?.Invoke(result.createdFolderId);
+            });
+        }
+
         public void SearchGoogleDriveDirectory(string folderID, System.Action<GetFolderInfo> callback)
         {
             Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", (x) =>
@@ -224,7 +235,7 @@ namespace Hamster.ZG
             }
         }
 
-
+ 
     }
 }
 #endif

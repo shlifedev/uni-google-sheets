@@ -20,7 +20,7 @@ namespace Example2.Item
         public delegate void OnLoadedFromGoogleSheets(List<Weapons> loadedList, Dictionary<int, Weapons> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1RdqFYcNUxDe3dBGWS2DyCXjWJedYJ5_z9SxjH_d_0HI"; // it is file id
+        static string spreadSheetID = "1hW-eVqo9MO9v1zLo5xE6j9n_j7eUfJl9n6WAkPQN9QA"; // it is file id
         static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 

@@ -132,6 +132,25 @@ namespace Hamster.ZG
             }));
         }
 
+
+        public class GoogleScriptResult
+        {
+            public string result; 
+        }
+        public class CopyExampleResult : GoogleScriptResult
+        {
+            public string createdFolderId;
+        }
+        public void CopyExamples(string folderID, Action<string> callback)
+        { 
+            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
+            {
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x);
+                Debug.Log(result.result);
+                callback?.Invoke(result.createdFolderId);
+            }));
+        }
+
         public void SearchGoogleDriveDirectory(string folderID, Action<GetFolderInfo> callback)
         {
             if (reqProcessing)
@@ -200,6 +219,7 @@ namespace Hamster.ZG
         {
             using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
             {
+                webRequest.timeout = 60;
                 // Request and wait for the desired page.
                 yield return webRequest.SendWebRequest(); 
                 if(webRequest.error == null)
@@ -222,6 +242,7 @@ namespace Hamster.ZG
             request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
+            request.timeout = 60;
             yield return request.SendWebRequest(); 
             if (request.error == null)
             {
