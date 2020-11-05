@@ -185,6 +185,7 @@ else
         private void WriteLoadFromGoogleFunction()
         {
 
+            TypeMap.Init();
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
         public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)

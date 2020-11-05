@@ -21,8 +21,10 @@ public class ItemEditor : MonoBehaviour
 
     public void Awake()
     {
-        Example4.Item.Data.Load();
-        CreateEditor();
+        Example4.Item.Data.LoadFromGoogle((list,map)=> {
+            Debug.Log("Loaded Item Count : " + list.Count); 
+            CreateEditor();
+        }, true);  
     }
     public void CreateEditor()
     {
@@ -38,6 +40,7 @@ public class ItemEditor : MonoBehaviour
             editable.transform.SetParent(contentTransform, false);
             var editableItem = editable.GetComponent<EditableItemModel>();
             editableItem.editTargetData = data;
+            editableItem.itemName.text = data.localeID;
         }
     }
     public void SelecItem(EditableItemModel mdl)
@@ -67,6 +70,11 @@ public class ItemEditor : MonoBehaviour
             LUK = int.Parse(this.LUK.text),
             IconName = this.IconName.text,
             Price = int.Parse(this.Price.text)
+        }, ()=> {
+            Example4.Item.Data.LoadFromGoogle((list, map) => {
+                Debug.Log("Loaded Item Count : " + list.Count);
+                CreateEditor();
+            }, true); 
         }); 
     }
 }

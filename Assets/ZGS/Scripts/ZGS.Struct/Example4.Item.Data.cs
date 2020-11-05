@@ -75,6 +75,7 @@ else
 
         public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
         {
+            TypeMap.Init();
             IZGRequester webInstance = null;
 #if UNITY_EDITOR
             if (Application.isPlaying == false)
