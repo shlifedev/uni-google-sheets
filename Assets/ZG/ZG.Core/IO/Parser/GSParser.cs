@@ -1,4 +1,4 @@
-﻿using Hamster.ZG.Http.Protocol;
+﻿ 
 using Hamster.ZG.IO;
 using Hamster.ZG.IO.Generator;
 using System;

@@ -2,11 +2,10 @@
 /*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorUnityEngine.cs'  */
 using Hamster.ZG;
-using Hamster.ZG.Http;
+
 using System;
 using System.Collections.Generic;
-using System.IO;
-using Hamster.ZG.Http.Protocol;
+using System.IO; 
 using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;

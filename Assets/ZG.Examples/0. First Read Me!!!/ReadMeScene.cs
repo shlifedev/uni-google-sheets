@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Example0_FirstReadMe : MonoBehaviour
+public class ReadMeScene : MonoBehaviour
 {
     public GameObject wait;
     public GameObject step3_hide_btn;
+    public GameObject step3_succesfulltText;
+
+    public GameObject clickMe;
+    
     public void OnClickCopy()
     {
         wait.SetActive(true);
@@ -14,10 +18,8 @@ public class Example0_FirstReadMe : MonoBehaviour
             Application.OpenURL($"https://drive.google.com/drive/u/0/folders/{x}");
             Hamster.ZG.ZGSetting.GoogleFolderID = x;
             step3_hide_btn?.SetActive(true);
-#if UNITY_EDITOR
-
-            UnityEditor.EditorUtility.DisplayDialog("UnityGoogleSheet", $"Your UnityGoogleSheet Setting ['GoogleFolderId'] Autumatic Update For Example!\n\n Updated Sheet Id : {x}", "OK");
-#endif
+            step3_succesfulltText.SetActive(true);
+            clickMe.SetActive(false);
         });
     }
 }

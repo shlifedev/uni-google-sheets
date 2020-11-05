@@ -1,18 +1,17 @@
 ﻿
 using System;
 using System.Collections;
-using System.Text;
-using Hamster.ZG.Http.Protocol;
+using System.Collections.Generic;
+using System.Text; 
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Hamster.ZG
 {
-    public class ReceivedData
-    {
-        public string result;
-    }
+ 
+
+ 
     public class WriteDataSender
     {
         public string password;
@@ -31,7 +30,7 @@ namespace Hamster.ZG
             this.value = value;
         }
     }
-
+ 
     public class CreateDefaultTableSender
     {
         public string password;
@@ -121,7 +120,7 @@ namespace Hamster.ZG
                 try
                 {
                     var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReceivedData>(x);
-                    if (result.result == "update" || result.result == "create")
+                    if (result.result == ReceivedResult.Success)
                     {
                         Debug.Log(x);
                         onWrited?.Invoke();
@@ -139,16 +138,8 @@ namespace Hamster.ZG
                 }
             }));
         }
-
-
-        public class GoogleScriptResult
-        {
-            public string result; 
-        }
-        public class CopyExampleResult : GoogleScriptResult
-        {
-            public string createdFolderId;
-        }
+         
+ 
         public void CopyExamples(string folderID, Action<string> callback)
         { 
             StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
@@ -179,7 +170,7 @@ namespace Hamster.ZG
                 {
                     try
                     {
-                        var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetFolderInfo>(x);
+                        var value = JsonConvert.DeserializeObject<GetFolderInfo>(x);
                         callback?.Invoke(value);
                     }
                     catch
@@ -213,7 +204,7 @@ namespace Hamster.ZG
                 {
                     try
                     {
-                        var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetTableResult>(x);
+                        var value = JsonConvert.DeserializeObject<GetTableResult>(x);
                         callback?.Invoke(value, x);
                     }
                     catch

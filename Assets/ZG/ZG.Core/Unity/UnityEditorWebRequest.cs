@@ -1,9 +1,7 @@
 ﻿
  
 #if UNITY_EDITOR
-using Hamster.ZG;
-using Hamster.ZG.Http;
-using Hamster.ZG.Http.Protocol;
+using Hamster.ZG; 
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -31,7 +29,7 @@ namespace Hamster.ZG
         {
             Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
             {
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<UnityPlayerWebRequest.CopyExampleResult>(x);
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x);
                 Debug.Log(result.result);
                 callback?.Invoke(result.createdFolderId);
             });
@@ -49,7 +47,7 @@ namespace Hamster.ZG
                 {
                     try
                     {
-                        var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetFolderInfo>(x);
+                        var value = JsonConvert.DeserializeObject<GetFolderInfo>(x);
                         callback?.Invoke(value);
                     }
                     catch
@@ -72,7 +70,7 @@ namespace Hamster.ZG
                 {
                     try
                     {
-                        var value = JsonConvert.DeserializeObject<Hamster.ZG.Http.Protocol.GetTableResult>(x);
+                        var value = JsonConvert.DeserializeObject<GetTableResult>(x);
                         callback?.Invoke(value, x);
                     }
                     catch

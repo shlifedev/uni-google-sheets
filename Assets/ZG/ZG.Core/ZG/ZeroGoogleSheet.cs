@@ -1,4 +1,4 @@
-﻿using Hamster.ZG.Http;
+﻿ 
 using Hamster.ZG.IO;
 using Hamster.ZG.Type;
 using System; 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Example0NextBtn : MonoBehaviour
+public class ActiveChanger : MonoBehaviour
 {
     public GameObject disableObject;
     public GameObject nextEnableObject;
