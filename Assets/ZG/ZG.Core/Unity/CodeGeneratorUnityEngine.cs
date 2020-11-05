@@ -185,11 +185,12 @@ else
         private void WriteLoadFromGoogleFunction()
         {
 
-            TypeMap.Init();
+      
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
         public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
-        {{
+        {{      
+            TypeMap.Init();
             IZGRequester webInstance = null;
 #if UNITY_EDITOR
             if (Application.isPlaying == false)
