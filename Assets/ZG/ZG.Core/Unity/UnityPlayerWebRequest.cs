@@ -44,6 +44,7 @@ namespace Hamster.ZG
     }
     public class UnityPlayerWebRequest : MonoBehaviour, IZGRequester
     {
+        public bool reqProcessing = false;
         public static UnityPlayerWebRequest Instance
         {
             get
@@ -79,6 +80,15 @@ namespace Hamster.ZG
          
         public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
         {
+            if (reqProcessing)
+            {
+                Debug.Log("already requested! wait response!");
+                return;
+            }
+            else
+            {
+                reqProcessing = true;
+            }
             var data = new CreateDefaultTableSender(folderID, fileName);
             var json = JsonConvert.SerializeObject(data);
 
@@ -90,6 +100,15 @@ namespace Hamster.ZG
 
         public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value)
         {
+            if (reqProcessing)
+            {
+                Debug.Log("already requested! wait response!");
+                return;
+            }
+            else
+            {
+                reqProcessing = true;
+            }
             var data = new WriteDataSender(spreadSheetID, sheetID, key, value);
             var json = JsonConvert.SerializeObject(data);
 
@@ -101,6 +120,15 @@ namespace Hamster.ZG
 
         public void SearchGoogleDriveDirectory(string folderID, Action<GetFolderInfo> callback)
         {
+            if (reqProcessing)
+            {
+                Debug.Log("already requested! wait response!");
+                return;
+            } 
+            else
+            {
+                reqProcessing = true;
+            }
             StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", x=> {
                 if (x == null)
                 { 
@@ -125,6 +153,15 @@ namespace Hamster.ZG
 
         public void ReadGoogleSpreadSheet(string sheetID, Action<GetTableResult, string> callback)
         {
+            if (reqProcessing)
+            {
+                Debug.Log("already requested! wait response!");
+                return;
+            }
+            else
+            {
+                reqProcessing = true;
+            }
             StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", (x) =>
             {
                 if (x == null)
@@ -154,10 +191,12 @@ namespace Hamster.ZG
                 if(webRequest.error == null)
                 {
                     callback?.Invoke(webRequest.downloadHandler.text);
+                    reqProcessing = false;
                 }
                 else
                 {
                     Debug.LogError(webRequest.error);
+                    reqProcessing = false;
                 }
             }
         }
@@ -172,10 +211,12 @@ namespace Hamster.ZG
             if (request.error == null)
             {
                 callback?.Invoke(request.downloadHandler.text);
+                reqProcessing = false;
             }
             else
             {
                 Debug.LogError(request.error);
+                reqProcessing = false;
             }
         }
     }
