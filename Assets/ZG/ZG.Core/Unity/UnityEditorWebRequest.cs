@@ -41,7 +41,7 @@ namespace Hamster.ZG
             {
                 if (x == null)
                 { 
-                    Debug.LogError("Cannot Receive GoogleDrive Directory Data! Please Check Your Setting. (HamsterLib->ZGS->Setting)"); 
+                    Debug.LogError("Cannot Receive GoogleDrive Directory Data! Please Check Your Setting. (HamsterLib->ZGS->Setting)" + x); 
                 }
                 else
                 {
