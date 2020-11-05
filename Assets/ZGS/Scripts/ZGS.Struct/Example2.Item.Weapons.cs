@@ -2,10 +2,9 @@
 /*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorUnityEngine.cs'  */
 using Hamster.ZG;
-
 using System;
 using System.Collections.Generic;
-using System.IO; 
+using System.IO;
 using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
@@ -19,7 +18,7 @@ namespace Example2.Item
         public delegate void OnLoadedFromGoogleSheets(List<Weapons> loadedList, Dictionary<int, Weapons> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1e7AGMkOHVqcT7s5lcageFK6MJ0zThnupO05LDyeYIc4"; // it is file id
+        static string spreadSheetID = "1RdqFYcNUxDe3dBGWS2DyCXjWJedYJ5_z9SxjH_d_0HI"; // it is file id
         static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 

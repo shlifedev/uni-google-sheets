@@ -16,7 +16,17 @@ namespace Hamster.ZG
 
     public class UnityEditorWebRequest : IZGRequester
     {
-        public static UnityEditorWebRequest Instance = new UnityEditorWebRequest();
+        public static UnityEditorWebRequest Instance
+        { 
+            get
+            {
+                if(instance == null)
+                    instance = new UnityEditorWebRequest();
+
+                return instance;
+            }
+        }
+        private static UnityEditorWebRequest instance;
         public string baseURL
         {
             get
@@ -64,7 +74,7 @@ namespace Hamster.ZG
             {
                 if (x == null)
                 {
-                    Debug.LogError("Cannot Read Google Sheet! Please Check Your Setting. (HamsterLib->ZGS->Setting)");
+                    Debug.LogError($"Cannot Read Google Sheet! Please Check Your Setting. (HamsterLib->ZGS->Setting)\n\nzgs root : {ZGSetting.GoogleFolderID}\ntarget id :{sheetID}");
                 }
                 else
                 {
@@ -154,8 +164,8 @@ namespace Hamster.ZG
                     callback?.Invoke(null);
                 }
                 else
-                { 
-                    Debug.LogError(e.Message);
+                {
+                    Debug.LogError(e.Message + "\n---\n---\n" + e.StackTrace); 
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);
                 }
