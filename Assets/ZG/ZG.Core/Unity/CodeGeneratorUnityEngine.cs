@@ -25,20 +25,26 @@ namespace @namespace
         public delegate void OnLoadedFromGoogleSheets(List<@class> loadedList, Dictionary<@keyType, @class> loadedDictionary);
 
         static bool isLoaded = false;
-        public static string spreadSheetID = ""@spreadSheetID""; // it is file id
-        public static string sheetID = ""@sheetID""; // it is sheet id
-        public static UnityFileReader reader = new UnityFileReader();
-        public static Dictionary<@keyType, @class> @classMap = new Dictionary<@keyType, @class>(); 
-        public static List<@class> @classList = new List<@class>();  
+        static string spreadSheetID = ""@spreadSheetID""; // it is file id
+        static string sheetID = ""@sheetID""; // it is sheet id
+        static UnityFileReader reader = new UnityFileReader();
 
+/* Your Loaded Data Storage. */
+        public static Dictionary<@keyType, @class> @classMap = new Dictionary<@keyType, @class>(); 
+        public static List<@class> @classList = new List<@class>();   
+
+/* Fields. */
 @types  
 
 #region fuctions
 
+/*Write To GoogleSheet!*/
 @writeFunction 
 
+/*Load Data From Google Sheet! Working fine with runtime&editor*/
 @loadFromGoogleFunction
 
+/*Load From Cached Json. Require Generate Data.*/
 @loadFunction 
 
 #endregion
@@ -131,11 +137,11 @@ namespace @namespace
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {{
-            UnityEditorWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
 }}
 else
 {{
-            UnityPlayerWebRequest.Instance.POST_WriteData(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
 }}
 #endif
         }} 
@@ -204,7 +210,7 @@ else
             }}
             List<@class> callbackParamList = new List<@class>();
             Dictionary<@keyType,@class> callbackParamMap = new Dictionary<@keyType, @class>();
-            webInstance.GET_TableData(spreadSheetID, (data, json) => {{
+            webInstance.ReadGoogleSpreadSheet(spreadSheetID, (data, json) => {{
             FieldInfo[] fields = typeof(@namespace.@class).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 

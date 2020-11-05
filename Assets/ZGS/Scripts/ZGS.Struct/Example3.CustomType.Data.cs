@@ -20,12 +20,15 @@ namespace Example3.CustomType
         public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
 
         static bool isLoaded = false;
-        public static string spreadSheetID = "1PUospYVYWzMfUXV2IGCov6RhFtsphkCg1EVZut37ZnY"; // it is file id
-        public static string sheetID = "0"; // it is sheet id
-        public static UnityFileReader reader = new UnityFileReader();
-        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
-        public static List<Data> DataList = new List<Data>();  
+        static string spreadSheetID = "1PUospYVYWzMfUXV2IGCov6RhFtsphkCg1EVZut37ZnY"; // it is file id
+        static string sheetID = "0"; // it is sheet id
+        static UnityFileReader reader = new UnityFileReader();
 
+/* Your Loaded Data Storage. */
+        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
+        public static List<Data> DataList = new List<Data>();   
+
+/* Fields. */
 
 		public Int32 index;
 		public MyCustomStruct data;
@@ -35,6 +38,7 @@ namespace Example3.CustomType
 
 #region fuctions
 
+/*Write To GoogleSheet!*/
 
         public static void Write(Data data)
         { 
@@ -61,6 +65,7 @@ else
         } 
          
 
+/*Load Data From Google Sheet! Working fine with runtime&editor*/
 
         public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
         {
@@ -133,6 +138,7 @@ else
 
             
 
+/*Load From Cached Json. Require Generate Data.*/
 
         public static void Load(bool forceReload = false)
         {

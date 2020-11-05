@@ -20,12 +20,15 @@ namespace Localization.Item
         public delegate void OnLoadedFromGoogleSheets(List<Description> loadedList, Dictionary<string, Description> loadedDictionary);
 
         static bool isLoaded = false;
-        public static string spreadSheetID = "18CCNohygzagd79mnYBKr0lQDnNiAomhscdnaocUj9Xo"; // it is file id
-        public static string sheetID = "876985649"; // it is sheet id
-        public static UnityFileReader reader = new UnityFileReader();
-        public static Dictionary<string, Description> DescriptionMap = new Dictionary<string, Description>(); 
-        public static List<Description> DescriptionList = new List<Description>();  
+        static string spreadSheetID = "18CCNohygzagd79mnYBKr0lQDnNiAomhscdnaocUj9Xo"; // it is file id
+        static string sheetID = "876985649"; // it is sheet id
+        static UnityFileReader reader = new UnityFileReader();
 
+/* Your Loaded Data Storage. */
+        public static Dictionary<string, Description> DescriptionMap = new Dictionary<string, Description>(); 
+        public static List<Description> DescriptionList = new List<Description>();   
+
+/* Fields. */
 
 		public String localeID;
 		public String EN;
@@ -34,6 +37,7 @@ namespace Localization.Item
 
 #region fuctions
 
+/*Write To GoogleSheet!*/
 
         public static void Write(Description data)
         { 
@@ -60,6 +64,7 @@ else
         } 
          
 
+/*Load Data From Google Sheet! Working fine with runtime&editor*/
 
         public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
         {
@@ -132,6 +137,7 @@ else
 
             
 
+/*Load From Cached Json. Require Generate Data.*/
 
         public static void Load(bool forceReload = false)
         {
