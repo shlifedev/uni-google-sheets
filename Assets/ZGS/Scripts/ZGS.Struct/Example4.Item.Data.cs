@@ -74,7 +74,7 @@ else
 /*Load Data From Google Sheet! Working fine with runtime&editor*/
 
         public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
-        {
+        {      
             TypeMap.Init();
             IZGRequester webInstance = null;
 #if UNITY_EDITOR

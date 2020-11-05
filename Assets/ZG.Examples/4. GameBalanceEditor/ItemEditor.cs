@@ -96,7 +96,9 @@ public class ItemEditor : MonoBehaviour
             LUK = int.Parse(this.LUK.text),
             IconName = this.IconName.text,
             Price = int.Parse(this.Price.text)
-        }, ()=> {
+        }
+        
+        , ()=> {
             Example4.Item.Data.LoadFromGoogle((list, map) => {
                 waitObj.gameObject.SetActive(false);
                 Debug.Log("Update Google Sheet!");

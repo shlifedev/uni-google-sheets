@@ -118,8 +118,7 @@ namespace Hamster.ZG
                     using (Stream dataStream = response.GetResponseStream())
                     {
                         StreamReader reader = new StreamReader(dataStream);
-                        responseFromServer = reader.ReadToEnd();
-                        Debug.Log(responseFromServer);
+                        responseFromServer = reader.ReadToEnd(); 
                         callback?.Invoke(responseFromServer);
                     }
                 }
