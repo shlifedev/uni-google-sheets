@@ -32,7 +32,7 @@ namespace Hamster.ZG
             {
                 if (x == null)
                 { 
-                    callback?.Invoke(null);
+                    Debug.LogError("Cannot Receive GoogleDrive Directory Data! Please Check Your Setting. (HamsterLib->ZGS->Setting)"); 
                 }
                 else
                 {
