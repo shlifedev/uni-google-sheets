@@ -20,7 +20,7 @@ namespace Example1.Localization.Item
         public delegate void OnLoadedFromGoogleSheets(List<Name> loadedList, Dictionary<string, Name> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1UDEu4TWZTwKh3ZOaVDQHj0v5hmDJT-P8JkvP59iB8VY"; // it is file id
+        static string spreadSheetID = "1_4ZAVZxieF3WWWyMP1focWuxVlm7j8NL0uJ0wy8rewM"; // it is file id
         static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 
