@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ItemEditor : MonoBehaviour
 {
+    public GameObject waitObj;
     public GameObject prefab;
     public RectTransform contentTransform;
     public InputField itemIndex;
@@ -21,9 +22,11 @@ public class ItemEditor : MonoBehaviour
 
     public void Awake()
     {
+        waitObj.gameObject.SetActive(true);
         Example4.Item.Data.LoadFromGoogle((list,map)=> {
-            Debug.Log("Loaded Item Count : " + list.Count); 
+            Debug.Log("Loaded From Google | Item Count: : " + list.Count); 
             CreateEditor();
+            waitObj.gameObject.SetActive(false);
         }, true);  
     }
     public void CreateEditor()
@@ -40,7 +43,29 @@ public class ItemEditor : MonoBehaviour
             editable.transform.SetParent(contentTransform, false);
             var editableItem = editable.GetComponent<EditableItemModel>();
             editableItem.editTargetData = data;
+
+
+            Color color = new Color(1,1,1,1);
+            switch (data.Grade)
+            {
+                case 0:
+                    break;
+                case 1:
+                    color = new Color(0.77f, 1, 0.72f);
+                    break;
+                case 2:
+                    color = new Color(0, 0.70f, 1);
+                    break;
+                case 3:
+                    color = new Color(1, 0, 0.75f);
+                    break;
+                case 4:
+                    color = new Color(1, 0.74f, 0);
+                    break;
+
+            } 
             editableItem.itemName.text = data.localeID;
+            editableItem.itemName.color = color;
         }
     }
     public void SelecItem(EditableItemModel mdl)
@@ -57,7 +82,8 @@ public class ItemEditor : MonoBehaviour
         Price.text     = mdl.editTargetData.Price.ToString();
     }
     public void UpdateGoogleSheet()
-    { 
+    {
+        waitObj.gameObject.SetActive(true);
         UnityGoogleSheet.Write<Example4.Item.Data>(new Example4.Item.Data()
         {
             itemIndex = int.Parse(this.itemIndex.text),
@@ -72,7 +98,8 @@ public class ItemEditor : MonoBehaviour
             Price = int.Parse(this.Price.text)
         }, ()=> {
             Example4.Item.Data.LoadFromGoogle((list, map) => {
-                Debug.Log("Loaded Item Count : " + list.Count);
+                waitObj.gameObject.SetActive(false);
+                Debug.Log("Update Google Sheet!");
                 CreateEditor();
             }, true); 
         }); 

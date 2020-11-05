@@ -204,13 +204,14 @@ namespace Hamster.ZG
                 yield return webRequest.SendWebRequest(); 
                 if(webRequest.error == null)
                 {
-                    callback?.Invoke(webRequest.downloadHandler.text);
                     reqProcessing = false;
+                    callback?.Invoke(webRequest.downloadHandler.text);
+               
                 }
                 else
                 {
-                    Debug.LogError(webRequest.error);
                     reqProcessing = false;
+                    Debug.LogError(webRequest.error); 
                 }
             }
         }
@@ -224,13 +225,14 @@ namespace Hamster.ZG
             yield return request.SendWebRequest(); 
             if (request.error == null)
             {
-                callback?.Invoke(request.downloadHandler.text);
                 reqProcessing = false;
+                callback?.Invoke(request.downloadHandler.text);
+        
             }
             else
             {
-                Debug.LogError(request.error);
                 reqProcessing = false;
+                Debug.LogError(request.error); 
             }
         }
     }
