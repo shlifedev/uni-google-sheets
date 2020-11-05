@@ -188,7 +188,7 @@ else
       
             StringBuilder builder = new StringBuilder();
             builder.Append($@"
-        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<@class>, Dictionary<@keyType, @class>> onLoaded, bool updateCurrentData = false)
         {{      
             TypeMap.Init();
             IZGRequester webInstance = null;

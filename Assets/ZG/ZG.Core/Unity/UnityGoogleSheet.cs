@@ -1,5 +1,7 @@
 ﻿
 using Hamster.ZG;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnityGoogleSheet
@@ -45,6 +47,7 @@ public class UnityGoogleSheet
     {
         Initalize();
         var targetTable = typeof(T);
+     
         var field = targetTable.GetField("spreadSheetID", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
         var sSheetID = (string)field.GetValue(null);
 
@@ -82,6 +85,19 @@ public class UnityGoogleSheet
     public static void LoadFromGoogle<T>() where T : ITable
     {
         throw new System.Exception("No Implements in UnityGoogleSheet class! Use Instead of GenerateData.LoadFromGoogle(...) method!");
+    }
+
+    public static void LoadFromGoogle<Key, Value>(System.Action<List<Value>, Dictionary<Key, Value>> callback, bool updateData = false)  
+    where Value : ITable
+    { 
+        Initalize();
+        var _class = typeof(Value); 
+        //Get Load Method
+        var loadFunction = _class.GetMethod("LoadFromGoogle", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+        //Call Load Method
+        if (loadFunction != null)
+            loadFunction.Invoke(null, new System.Object[] { callback, updateData }); 
+  
     }
 
 

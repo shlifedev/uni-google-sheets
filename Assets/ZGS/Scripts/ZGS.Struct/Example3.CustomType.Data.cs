@@ -20,7 +20,7 @@ namespace Example3.CustomType
         public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1hWBhY9bKLfuyEuz5_UkPTIh-jPrd7uSKFsCTiSifGhE"; // it is file id
+        static string spreadSheetID = "1O0_1rKwHmr8lOT-3V7JwlgaLTrDrKwciiKWRLVy8khI"; // it is file id
         static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 
@@ -67,7 +67,7 @@ else
 
 /*Load Data From Google Sheet! Working fine with runtime&editor*/
 
-        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<Data>, Dictionary<int, Data>> onLoaded, bool updateCurrentData = false)
         {      
             TypeMap.Init();
             IZGRequester webInstance = null;

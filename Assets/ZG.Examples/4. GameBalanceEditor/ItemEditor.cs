@@ -23,11 +23,18 @@ public class ItemEditor : MonoBehaviour
     public void Awake()
     {
         waitObj.gameObject.SetActive(true);
-        Example4.Item.Data.LoadFromGoogle((list,map)=> {
-            Debug.Log("Loaded From Google | Item Count: : " + list.Count); 
+
+        UnityGoogleSheet.LoadFromGoogle<int, Example4.Item.Data>((list,map)=> 
+        {
+            Debug.Log("Loaded From Google | Item Count: : " + list.Count);
             CreateEditor();
             waitObj.gameObject.SetActive(false);
-        }, true);  
+        }, true); 
+        //Example4.Item.Data.LoadFromGoogle((list,map)=> {
+        //    Debug.Log("Loaded From Google | Item Count: : " + list.Count); 
+        //    CreateEditor();
+        //    waitObj.gameObject.SetActive(false);
+        //}, true);  
     }
     public void CreateEditor()
     {
