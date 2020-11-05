@@ -29,7 +29,11 @@ public class ItemEditor : MonoBehaviour
             Debug.Log("Loaded From Google | Item Count: : " + list.Count);
             CreateEditor();
             waitObj.gameObject.SetActive(false);
+
+            SelecItem(FindObjectOfType<EditableItemModel>());
         }, true); 
+
+
         //Example4.Item.Data.LoadFromGoogle((list,map)=> {
         //    Debug.Log("Loaded From Google | Item Count: : " + list.Count); 
         //    CreateEditor();

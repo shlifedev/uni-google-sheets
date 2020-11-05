@@ -118,17 +118,25 @@ namespace Hamster.ZG
 
             StartCoroutine(Post(json, (x) =>
             {
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReceivedData>(x);
-                if(result.result == "update" || result.result== "create")
+                try
                 {
-                    Debug.Log(x);
+                    var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReceivedData>(x);
+                    if (result.result == "update" || result.result == "create")
+                    {
+                        Debug.Log(x);
+                        onWrited?.Invoke();
+                    }
+                    else
+                    {
+                        Debug.LogError(x);
+                        onWrited?.Invoke();
+                    }
+                }
+                catch
+                {
+                    Debug.LogError("Write Failgure! =>\n\n" +x);
                     onWrited?.Invoke();
                 }
-                else
-                {
-                    Debug.LogError(x);
-                    onWrited?.Invoke();
-                } 
             }));
         }
 
@@ -245,7 +253,7 @@ namespace Hamster.ZG
             request.timeout = 60;
             yield return request.SendWebRequest(); 
             if (request.error == null)
-            {
+            { 
                 reqProcessing = false;
                 callback?.Invoke(request.downloadHandler.text);
         
