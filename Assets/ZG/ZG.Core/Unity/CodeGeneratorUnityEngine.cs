@@ -122,7 +122,7 @@ namespace @namespace
         private void WriteWriteFunction(string @class)
         {
             string writeFunction =$@"
-        public static void Write({@class} data)
+        public static void Write({@class} data, System.Action onWriteCallback = null)
         {{ 
             TypeMap.Init();
             FieldInfo[] fields = typeof({@class}).GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -137,11 +137,11 @@ namespace @namespace
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {{
-            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }}
 else
 {{
-            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }}
 #endif
         }} 

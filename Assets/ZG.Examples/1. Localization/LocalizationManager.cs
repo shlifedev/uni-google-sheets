@@ -51,8 +51,8 @@ public class LocalizationManager : MonoBehaviour
     public void LoadMethod2()
     {
         Debug.Log("Load Method 2 (Manually)"); 
-        Localization.Item.Name.Load();
-        Localization.Item.Description.Load(); 
+        Example1.Localization.Item.Name.Load();
+        Example1.Localization.Item.Description.Load(); 
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class LocalizationManager : MonoBehaviour
     /// <returns></returns>
     public string GetItemDescription(string itemID)
     {
-        var localeMap = Localization.Item.Description.DescriptionMap;
+        var localeMap = Example1.Localization.Item.Description.DescriptionMap;
         if (currentLanguage == Language.EN)
             return localeMap[itemID].EN;
         else if (currentLanguage == Language.KR)
@@ -78,7 +78,7 @@ public class LocalizationManager : MonoBehaviour
     /// <returns></returns>
     public string GetItemName(string itemID)
     {
-        var localeMap = Localization.Item.Name.NameMap;
+        var localeMap = Example1.Localization.Item.Name.NameMap;
         if(currentLanguage == Language.EN)
             return localeMap[itemID].EN;
         else if (currentLanguage == Language.KR)

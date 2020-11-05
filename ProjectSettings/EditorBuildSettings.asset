@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/ZG.Examples/1. Localization/1.Example Localizaiton.unity
     guid: fd6ce9b4db939cc42b78373ecefde348
   - enabled: 1
-    path: Assets/ZG.Examples/2. ItemShop/2.Example ItemShop.unity
+    path: Assets/ZG.Examples/4. GameBalanceEditor/4.GameEditor.unity
     guid: 138cbdd1ba4596043adc3ecb8ef916a8
   - enabled: 1
     path: Assets/ZG.Examples/3. Custom Class/3. Custom Class&Type.unity

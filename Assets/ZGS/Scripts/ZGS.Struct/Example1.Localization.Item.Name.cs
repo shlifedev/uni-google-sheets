@@ -11,22 +11,22 @@ using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
 
-namespace Localization.Item
+namespace Example1.Localization.Item
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class Description : ITable
+    public class Name : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<Description> loadedList, Dictionary<string, Description> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<Name> loadedList, Dictionary<string, Name> loadedDictionary);
 
         static bool isLoaded = false;
         static string spreadSheetID = "18CCNohygzagd79mnYBKr0lQDnNiAomhscdnaocUj9Xo"; // it is file id
-        static string sheetID = "876985649"; // it is sheet id
+        static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 
 /* Your Loaded Data Storage. */
-        public static Dictionary<string, Description> DescriptionMap = new Dictionary<string, Description>(); 
-        public static List<Description> DescriptionList = new List<Description>();   
+        public static Dictionary<string, Name> NameMap = new Dictionary<string, Name>(); 
+        public static List<Name> NameList = new List<Name>();   
 
 /* Fields. */
 
@@ -39,10 +39,10 @@ namespace Localization.Item
 
 /*Write To GoogleSheet!*/
 
-        public static void Write(Description data)
+        public static void Write(Name data, System.Action onWriteCallback = null)
         { 
             TypeMap.Init();
-            FieldInfo[] fields = typeof(Description).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Name).GetFields(BindingFlags.Public | BindingFlags.Instance);
             var datas = new string[fields.Length];
             for (int i = 0; i < fields.Length; i++)
             {
@@ -54,11 +54,11 @@ namespace Localization.Item
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {
-            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 else
 {
-            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 #endif
         } 
@@ -84,20 +84,20 @@ else
 #endif
             if(updateCurrentData)
             {
-                DescriptionMap?.Clear();
-                DescriptionList?.Clear(); 
+                NameMap?.Clear();
+                NameList?.Clear(); 
             }
-            List<Description> callbackParamList = new List<Description>();
-            Dictionary<string,Description> callbackParamMap = new Dictionary<string, Description>();
+            List<Name> callbackParamList = new List<Name>();
+            Dictionary<string,Name> callbackParamMap = new Dictionary<string, Name>();
             webInstance.ReadGoogleSpreadSheet(spreadSheetID, (data, json) => {
-            FieldInfo[] fields = typeof(Localization.Item.Description).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Example1.Localization.Item.Name).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
               if (json != null)
                         {
                             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(json);
                             var table= result.tableResult; 
-                            var sheet = table["Description"];
+                            var sheet = table["Name"];
                                 foreach (var pNameAndTypeName in sheet.Keys)
                                 {
                                     var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -112,7 +112,7 @@ else
                                 int rows = typeValuesCList[0].Count;
                                 for (int i = 0; i < rows; i++)
                                 {
-                                    Localization.Item.Description instance = new Localization.Item.Description();
+                                    Example1.Localization.Item.Name instance = new Example1.Localization.Item.Name();
                                     for (int j = 0; j < typeInfos.Count; j++)
                                     {
                                         var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -124,8 +124,8 @@ else
                                     callbackParamMap .Add(instance.localeID, instance);
                                     if(updateCurrentData)
                                     {
-                                       DescriptionList.Add(instance);
-                                       DescriptionMap.Add(instance.localeID, instance);
+                                       NameList.Add(instance);
+                                       NameMap.Add(instance.localeID, instance);
                                     }
                                 } 
                             }
@@ -143,25 +143,25 @@ else
         {
             if(isLoaded && forceReload == false)
             {
-                 Debug.Log("Description is already loaded! if you want reload then, forceReload parameter set true");
+                 Debug.Log("Name is already loaded! if you want reload then, forceReload parameter set true");
                  return;
             }
             /* Clear When Try Load */
-            DescriptionMap?.Clear();
-            DescriptionList?.Clear(); 
+            NameMap?.Clear();
+            NameList?.Clear(); 
             //Type Map Init
             TypeMap.Init();
             //Reflection Field Datas.
-            FieldInfo[] fields = typeof(Localization.Item.Description).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Example1.Localization.Item.Name).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
             //Load GameData.
-            string text = reader.ReadData("Localization.Item");
+            string text = reader.ReadData("Example1.Localization.Item");
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(text);
                 var table= result.tableResult; 
-                var sheet = table["Description"];
+                var sheet = table["Name"];
                     foreach (var pNameAndTypeName in sheet.Keys)
                     {
                         var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -176,7 +176,7 @@ else
                     int rows = typeValuesCList[0].Count;
                     for (int i = 0; i < rows; i++)
                     {
-                        Localization.Item.Description instance = new Localization.Item.Description();
+                        Example1.Localization.Item.Name instance = new Example1.Localization.Item.Name();
                         for (int j = 0; j < typeInfos.Count; j++)
                         {
                             var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -184,8 +184,8 @@ else
                             fields[j].SetValue(instance, readedValue);
                         }
                         //Add Data to Container
-                        DescriptionList.Add(instance);
-                        DescriptionMap.Add(instance.localeID, instance);
+                        NameList.Add(instance);
+                        NameMap.Add(instance.localeID, instance);
                     } 
                 }
             }

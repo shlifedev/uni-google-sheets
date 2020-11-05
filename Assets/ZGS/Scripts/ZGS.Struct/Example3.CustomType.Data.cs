@@ -40,7 +40,7 @@ namespace Example3.CustomType
 
 /*Write To GoogleSheet!*/
 
-        public static void Write(Data data)
+        public static void Write(Data data, System.Action onWriteCallback = null)
         { 
             TypeMap.Init();
             FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -55,11 +55,11 @@ namespace Example3.CustomType
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {
-            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 else
 {
-            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 #endif
         } 

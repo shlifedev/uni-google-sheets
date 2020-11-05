@@ -25,13 +25,15 @@ public class UnityGoogleSheet
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="value"></param>
-    public static void Write<T>(T value) where T : ITable
+    public static void Write<T>(T value, System.Action writedCallback = null) where T : ITable
     {
         Initalize();
         var _class = typeof(T); 
         var writeFunction = _class.GetMethod("Write", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
-        if (writeFunction != null) 
-            writeFunction?.Invoke(null, new object[] { value }); 
+        if (writeFunction != null)
+        {
+            writeFunction?.Invoke(null, new object[] { value , writedCallback });
+        }
     }
     /// <summary>
     /// Generate Your Table Data 

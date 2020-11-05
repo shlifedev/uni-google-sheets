@@ -46,7 +46,7 @@ namespace Example2.Item
 
 /*Write To GoogleSheet!*/
 
-        public static void Write(Weapons data)
+        public static void Write(Weapons data, System.Action onWriteCallback = null)
         { 
             TypeMap.Init();
             FieldInfo[] fields = typeof(Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -61,11 +61,11 @@ namespace Example2.Item
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {
-            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 else
 {
-            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 #endif
         } 

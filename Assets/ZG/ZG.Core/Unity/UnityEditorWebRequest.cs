@@ -75,14 +75,14 @@ namespace Hamster.ZG
    
 
       
-        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value)
+        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action onWrited = null)
         {
             var data = new WriteDataSender(spreadSheetID, sheetID, key, value);
             var json = JsonConvert.SerializeObject(data);
 
             Instance.Post(json, (x) =>
-            {
-                Debug.Log(x);
+            { 
+                onWrited?.Invoke();
             });
         }
         public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)

@@ -9,6 +9,10 @@ using UnityEngine.Networking;
 
 namespace Hamster.ZG
 {
+    public class ReceivedData
+    {
+        public string result;
+    }
     public class WriteDataSender
     {
         public string password;
@@ -98,7 +102,7 @@ namespace Hamster.ZG
             }));
         } 
 
-        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value)
+        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action onWrited = null)
         {
             if (reqProcessing)
             {
@@ -114,7 +118,17 @@ namespace Hamster.ZG
 
             StartCoroutine(Post(json, (x) =>
             {
-                Debug.Log(x);
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReceivedData>(x);
+                if(result.result == "update" || result.result== "create")
+                {
+                    Debug.Log(x);
+                    onWrited?.Invoke();
+                }
+                else
+                {
+                    Debug.LogError(x);
+                    onWrited?.Invoke();
+                } 
             }));
         }
 

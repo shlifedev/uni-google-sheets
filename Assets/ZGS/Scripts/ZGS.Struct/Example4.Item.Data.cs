@@ -11,32 +11,42 @@ using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
 
-namespace DTG.Item
+namespace Example4.Item
 {
     [Hamster.ZG.Attribute.TableStruct]
     public class Data : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<string, Data> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
 
         static bool isLoaded = false;
-        public static string spreadSheetID = "1fnwzlBz4wegX7csx8QdtopRa5tzrRIMC9rvoS72EvHo"; // it is file id
-        public static string sheetID = "0"; // it is sheet id
-        public static UnityFileReader reader = new UnityFileReader();
-        public static Dictionary<string, Data> DataMap = new Dictionary<string, Data>(); 
-        public static List<Data> DataList = new List<Data>();  
+        static string spreadSheetID = "17bYjkLSXC6iS5u99qjmlk29wH_3bMUYZANDxr6mWb08"; // it is file id
+        static string sheetID = "0"; // it is sheet id
+        static UnityFileReader reader = new UnityFileReader();
 
+/* Your Loaded Data Storage. */
+        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
+        public static List<Data> DataList = new List<Data>();   
 
-		public String id;
-		public String ItemType;
-		public List<Int32> Job;
-		public Single Range;
+/* Fields. */
+
+		public Int32 itemIndex;
+		public String localeID;
+		public String Type;
+		public Int32 Grade;
+		public Int32 STR;
+		public Int32 DEX;
+		public Int32 INT;
+		public Int32 LUK;
+		public String IconName;
+		public Int32 Price;
   
 
 #region fuctions
 
+/*Write To GoogleSheet!*/
 
-        public static void Write(Data data)
+        public static void Write(Data data, System.Action onWriteCallback = null)
         { 
             TypeMap.Init();
             FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -51,18 +61,19 @@ namespace DTG.Item
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {
-            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 else
 {
-            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
 }
 #endif
         } 
          
-         
 
-        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded)
+/*Load Data From Google Sheet! Working fine with runtime&editor*/
+
+        public static void LoadFromGoogle(OnLoadedFromGoogleSheets onLoaded, bool updateCurrentData = false)
         {
             IZGRequester webInstance = null;
 #if UNITY_EDITOR
@@ -75,14 +86,18 @@ else
                 webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
             }
 #endif
-
 #if !UNITY_EDITOR
-            webInstance = UnityPlayerWebRequest.Instance;
+                 webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
 #endif
+            if(updateCurrentData)
+            {
+                DataMap?.Clear();
+                DataList?.Clear(); 
+            }
             List<Data> callbackParamList = new List<Data>();
-            Dictionary<string,Data> callbackParamMap = new Dictionary<string, Data>();
+            Dictionary<int,Data> callbackParamMap = new Dictionary<int, Data>();
             webInstance.ReadGoogleSpreadSheet(spreadSheetID, (data, json) => {
-            FieldInfo[] fields = typeof(DTG.Item.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Example4.Item.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
               if (json != null)
@@ -104,7 +119,7 @@ else
                                 int rows = typeValuesCList[0].Count;
                                 for (int i = 0; i < rows; i++)
                                 {
-                                    DTG.Item.Data instance = new DTG.Item.Data();
+                                    Example4.Item.Data instance = new Example4.Item.Data();
                                     for (int j = 0; j < typeInfos.Count; j++)
                                     {
                                         var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -113,7 +128,12 @@ else
                                     }
                                     //Add Data to Container
                                     callbackParamList.Add(instance);
-                                    callbackParamMap .Add(instance.id, instance);
+                                    callbackParamMap .Add(instance.itemIndex, instance);
+                                    if(updateCurrentData)
+                                    {
+                                       DataList.Add(instance);
+                                       DataMap.Add(instance.itemIndex, instance);
+                                    }
                                 } 
                             }
                         }
@@ -124,6 +144,7 @@ else
 
             
 
+/*Load From Cached Json. Require Generate Data.*/
 
         public static void Load(bool forceReload = false)
         {
@@ -138,11 +159,11 @@ else
             //Type Map Init
             TypeMap.Init();
             //Reflection Field Datas.
-            FieldInfo[] fields = typeof(DTG.Item.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Example4.Item.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
             //Load GameData.
-            string text = reader.ReadData("DTG.Item");
+            string text = reader.ReadData("Example4.Item");
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(text);
@@ -162,7 +183,7 @@ else
                     int rows = typeValuesCList[0].Count;
                     for (int i = 0; i < rows; i++)
                     {
-                        DTG.Item.Data instance = new DTG.Item.Data();
+                        Example4.Item.Data instance = new Example4.Item.Data();
                         for (int j = 0; j < typeInfos.Count; j++)
                         {
                             var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -171,7 +192,7 @@ else
                         }
                         //Add Data to Container
                         DataList.Add(instance);
-                        DataMap.Add(instance.id, instance);
+                        DataMap.Add(instance.itemIndex, instance);
                     } 
                 }
             }
