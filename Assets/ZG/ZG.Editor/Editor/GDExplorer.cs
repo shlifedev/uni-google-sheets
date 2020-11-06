@@ -8,7 +8,7 @@ using UnityEngine;
 public class UGSSetting : EditorWindow
 {
     static UGSSetting instance;
-    [MenuItem("Windows/HamsterLib/Development.../UGSSetting")]
+    [MenuItem("HamsterLib/UGS/Setting")]
     public static void CreateInstance()
     {
         // Get existing open window or if none, make a new one:
@@ -54,10 +54,11 @@ public class UGSSetting : EditorWindow
 
     }
 }
+ 
 public class GDExplorer : EditorWindow
 {
     static GDExplorer instance;
-    [MenuItem("Windows/HamsterLib/Development.../GDExplorer")]
+    [MenuItem("HamsterLib/UGS/Manager")]
     static void Init()
     {
         if (string.IsNullOrEmpty(ZGSetting.GoogleFolderID) || string.IsNullOrEmpty(ZGSetting.ScriptURL))
