@@ -42,10 +42,7 @@ public class UGSSetting : EditorWindow
     public string GoogleFolderId;
 
     public void OnEnable()
-    {
-        instance.maxSize = new Vector2(500, 250);
-        instance.minSize = new Vector2(500, 250);
-        
+    { 
         if (GoogleScriptURL == null)
         {
             GoogleScriptURL = ZGSetting.ScriptURL;
