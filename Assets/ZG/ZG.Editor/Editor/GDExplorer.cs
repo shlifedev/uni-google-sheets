@@ -9,10 +9,12 @@ public class UGSSetting : EditorWindow
 {
     static UGSSetting instance;
     [MenuItem("Windows/HamsterLib/Development.../UGSSetting")]
-    static void Init()
+    public static void CreateInstance()
     {
         // Get existing open window or if none, make a new one:
         instance = (UGSSetting)EditorWindow.GetWindow(typeof(UGSSetting));
+        instance.maxSize = new Vector2(500, 250);
+        instance.minSize = new Vector2(500, 250);
         instance.Show(); 
     }
     public string GoogleScriptURL;
@@ -58,6 +60,14 @@ public class GDExplorer : EditorWindow
     [MenuItem("Windows/HamsterLib/Development.../GDExplorer")]
     static void Init()
     {
+        if (string.IsNullOrEmpty(ZGSetting.GoogleFolderID) || string.IsNullOrEmpty(ZGSetting.ScriptURL))
+        {
+            EditorUtility.DisplayDialog("Require Setting!", "Cannot Open ZGS Menu. Please Setting Complete!", "OK"); 
+            //for recursive calling
+            var trashWindow = GDExplorer.GetWindow<GDExplorer>();
+            trashWindow.Close(); 
+            return;
+        }
         // Get existing open window or if none, make a new one:
         Instance = (GDExplorer)EditorWindow.GetWindow(typeof(GDExplorer));
         Instance.Show();
@@ -226,7 +236,7 @@ public class GDExplorer : EditorWindow
     }
     public static void Setting()
     {
-          UISetting.CreateInstance();
+          UGSSetting.CreateInstance();
     }
     public static void Document()
     {
@@ -384,6 +394,7 @@ Document();
     }
     public void OnGUI()
     {
+      
         if (loadedFileData.Count == 0)
         {
             CreateFileDatas(ZGSetting.GoogleFolderID);
