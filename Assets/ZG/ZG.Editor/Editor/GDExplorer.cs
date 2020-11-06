@@ -5,6 +5,26 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+
+
+public class CachedResource
+{
+    public static Dictionary<string, Texture2D> cached = new Dictionary<string, Texture2D>();
+    public static Texture2D LoadTextureFromResource(string path)
+    {
+       
+        if(cached.ContainsKey(path))
+        {
+            return cached[path];
+        }
+        else
+        {
+            var tex2D = Resources.Load<Texture2D>(path);
+            cached.Add(path, tex2D);
+            return tex2D;
+        }
+    }
+}
 public class UGSSetting : EditorWindow
 {
     static UGSSetting instance;
@@ -23,6 +43,9 @@ public class UGSSetting : EditorWindow
 
     public void OnEnable()
     {
+        instance.maxSize = new Vector2(500, 250);
+        instance.minSize = new Vector2(500, 250);
+        
         if (GoogleScriptURL == null)
         {
             GoogleScriptURL = ZGSetting.ScriptURL;
@@ -80,7 +103,7 @@ public class GDExplorer : EditorWindow
         {
             GUIStyle gs = new GUIStyle();
             gs.normal.textColor = new Color(1, 1, 1, 1);
-            gs.normal.background = Resources.Load("TopBg") as Texture2D;
+            gs.normal.background = CachedResource.LoadTextureFromResource("TopBg") as Texture2D;
             gs.alignment = TextAnchor.MiddleCenter;
             gs.fontSize = 12;
             gs.fixedHeight = 30;
@@ -95,7 +118,7 @@ public class GDExplorer : EditorWindow
         {
             GUIStyle gs = new GUIStyle();
             gs.normal.textColor = new Color(1, 1, 1, 1);
-            gs.normal.background = Resources.Load("ExcelIcon") as Texture2D;
+            gs.normal.background = CachedResource.LoadTextureFromResource("ExcelIcon");
             gs.alignment = TextAnchor.MiddleCenter; ;
             gs.margin = new RectOffset(0, 0, 0, 0);
             gs.padding = new RectOffset(0, 0, 0, 0);
@@ -108,7 +131,7 @@ public class GDExplorer : EditorWindow
         {
             GUIStyle gs = new GUIStyle();
             gs.normal.textColor = new Color(1, 1, 1, 1);
-            gs.normal.background = Resources.Load("FolderIcon") as Texture2D;
+            gs.normal.background = CachedResource.LoadTextureFromResource("FolderIcon") ;
             gs.alignment = TextAnchor.MiddleCenter; ;
             gs.margin = new RectOffset(0, 0, 0, 0);
             gs.padding = new RectOffset(0, 0, 0, 0);
@@ -120,7 +143,7 @@ public class GDExplorer : EditorWindow
         get
         {
             GUIStyle gs = new GUIStyle();
-            gs.normal.background = Resources.Load("Transparency") as Texture2D;
+            gs.normal.background = CachedResource.LoadTextureFromResource("Transparency") ;
             gs.margin = new RectOffset(0, 0, 0, 0);
             gs.padding = new RectOffset(0, 0, 0, 0);
             return gs;

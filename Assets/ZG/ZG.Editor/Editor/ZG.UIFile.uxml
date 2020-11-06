@@ -1,6 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="File" style="background-color: rgba(159, 159, 159, 0);">
-        <ui:VisualElement name="Icon" />
-        <ui:Label name="FileName" text="FileName" />
-    </ui:VisualElement>
-</ui:UXML>
