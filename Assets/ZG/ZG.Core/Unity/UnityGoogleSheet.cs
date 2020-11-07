@@ -74,7 +74,7 @@ public class UnityGoogleSheet
             });
         }
 #else
-                UnityPlayerWebRequest.Instance.GET_TableData(spreadSheetId, (x, json) => {
+                UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, (x, json) => {
                     ZeroGoogleSheet.DataParser.ParseSheet(json, false, jsonGenerate, new UnityFileWriter());
                 }); 
 #endif
