@@ -18,7 +18,7 @@ namespace Example4.Item
         public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "17bYjkLSXC6iS5u99qjmlk29wH_3bMUYZANDxr6mWb08"; // it is file id
+        static string spreadSheetID = "1x6DQ06PftVK4wXBtNBAjWPLjiSttMk2SnYrhCdAJLj4"; // it is file id
         static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 

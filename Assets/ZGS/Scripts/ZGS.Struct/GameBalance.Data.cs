@@ -4,52 +4,43 @@
 using Hamster.ZG;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
-namespace Example2.Item
+namespace GameBalance
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class Weapons : ITable
+    public class Data : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<Weapons> loadedList, Dictionary<int, Weapons> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1xbf-Ak7Z8wUMop3Lolo5unYfWjIknd9i8r2xfkK74yg"; // it is file id
+        static string spreadSheetID = "1oqnNou9sd7F_YgiyxRj--JffJfg2NOSpokkLgxdh1tY"; // it is file id
         static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 
 /* Your Loaded Data Storage. */
-        public static Dictionary<int, Weapons> WeaponsMap = new Dictionary<int, Weapons>(); 
-        public static List<Weapons> WeaponsList = new List<Weapons>();   
+        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
+        public static List<Data> DataList = new List<Data>();   
 
 /* Fields. */
 
-		public Int32 itemIndex;
-		public String localeID;
-		public String Type;
-		public Int32 Grade;
-		public Int32 STR;
-		public Int32 DEX;
-		public Int32 INT;
-		public Int32 LUK;
-		public String IconName;
-		public Int32 Price;
+		public Int32 index;
+		public Int32 intValue;
+		public String strValue;
   
 
 #region fuctions
 
 /*Write To GoogleSheet!*/
 
-        public static void Write(Weapons data, System.Action onWriteCallback = null)
+        public static void Write(Data data, System.Action onWriteCallback = null)
         { 
             TypeMap.Init();
-            FieldInfo[] fields = typeof(Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             var datas = new string[fields.Length];
             for (int i = 0; i < fields.Length; i++)
             {
@@ -73,7 +64,7 @@ else
 
 /*Load Data From Google Sheet! Working fine with runtime&editor*/
 
-        public static void LoadFromGoogle(System.Action<List<Weapons>, Dictionary<int, Weapons>> onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<Data>, Dictionary<int, Data>> onLoaded, bool updateCurrentData = false)
         {      
             TypeMap.Init();
             IZGRequester webInstance = null;
@@ -92,20 +83,20 @@ else
 #endif
             if(updateCurrentData)
             {
-                WeaponsMap?.Clear();
-                WeaponsList?.Clear(); 
+                DataMap?.Clear();
+                DataList?.Clear(); 
             }
-            List<Weapons> callbackParamList = new List<Weapons>();
-            Dictionary<int,Weapons> callbackParamMap = new Dictionary<int, Weapons>();
+            List<Data> callbackParamList = new List<Data>();
+            Dictionary<int,Data> callbackParamMap = new Dictionary<int, Data>();
             webInstance.ReadGoogleSpreadSheet(spreadSheetID, (data, json) => {
-            FieldInfo[] fields = typeof(Example2.Item.Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(GameBalance.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
               if (json != null)
                         {
                             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(json);
                             var table= result.tableResult; 
-                            var sheet = table["Weapons"];
+                            var sheet = table["Data"];
                                 foreach (var pNameAndTypeName in sheet.Keys)
                                 {
                                     var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -120,7 +111,7 @@ else
                                 int rows = typeValuesCList[0].Count;
                                 for (int i = 0; i < rows; i++)
                                 {
-                                    Example2.Item.Weapons instance = new Example2.Item.Weapons();
+                                    GameBalance.Data instance = new GameBalance.Data();
                                     for (int j = 0; j < typeInfos.Count; j++)
                                     {
                                         var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -129,11 +120,11 @@ else
                                     }
                                     //Add Data to Container
                                     callbackParamList.Add(instance);
-                                    callbackParamMap .Add(instance.itemIndex, instance);
+                                    callbackParamMap .Add(instance.index, instance);
                                     if(updateCurrentData)
                                     {
-                                       WeaponsList.Add(instance);
-                                       WeaponsMap.Add(instance.itemIndex, instance);
+                                       DataList.Add(instance);
+                                       DataMap.Add(instance.index, instance);
                                     }
                                 } 
                             }
@@ -149,29 +140,27 @@ else
 
         public static void Load(bool forceReload = false)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             if(isLoaded && forceReload == false)
             {
-                 Debug.Log("Weapons is already loaded! if you want reload then, forceReload parameter set true");
+                 Debug.Log("Data is already loaded! if you want reload then, forceReload parameter set true");
                  return;
             }
             /* Clear When Try Load */
-            WeaponsMap?.Clear();
-            WeaponsList?.Clear(); 
+            DataMap?.Clear();
+            DataList?.Clear(); 
             //Type Map Init
             TypeMap.Init();
             //Reflection Field Datas.
-            FieldInfo[] fields = typeof(Example2.Item.Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(GameBalance.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
             //Load GameData.
-            string text = reader.ReadData("Example2.Item");
+            string text = reader.ReadData("GameBalance");
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(text);
                 var table= result.tableResult; 
-                var sheet = table["Weapons"];
+                var sheet = table["Data"];
                     foreach (var pNameAndTypeName in sheet.Keys)
                     {
                         var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -186,7 +175,7 @@ else
                     int rows = typeValuesCList[0].Count;
                     for (int i = 0; i < rows; i++)
                     {
-                        Example2.Item.Weapons instance = new Example2.Item.Weapons();
+                        GameBalance.Data instance = new GameBalance.Data();
                         for (int j = 0; j < typeInfos.Count; j++)
                         {
                             var typeInfo = TypeMap.StrMap[typeInfos[j].type];
@@ -194,14 +183,11 @@ else
                             fields[j].SetValue(instance, readedValue);
                         }
                         //Add Data to Container
-                        WeaponsList.Add(instance);
-                        WeaponsMap.Add(instance.itemIndex, instance);
+                        DataList.Add(instance);
+                        DataMap.Add(instance.index, instance);
                     } 
                 }
             }
-
-            sw.Stop();
-            Debug.Log(sw.ElapsedMilliseconds);
             isLoaded = true;
         }
  

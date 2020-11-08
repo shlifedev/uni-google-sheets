@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\shlif\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\shlif\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_UnityGoogleSheet.-1116999212.00" t="ExcludeRecursive" />
+    <e p="C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="GameBalanceLoadTest.cs" t="Include" />
+        <e p="ZG" t="Include">
+          <e p="JsonDotNet" t="Include">
+            <e p="link.xml" t="Include" />
+          </e>
+          <e p="ZG.Core" t="Include">
+            <e p="Attribute" t="Include">
+              <e p="TableStructAttribute.cs" t="Include" />
+            </e>
+            <e p="Exception" t="Include">
+              <e p="RequireTypeAttributeException.cs" t="Include" />
+            </e>
+            <e p="Http" t="Include">
+              <e p="Protocol" t="Include">
+                <e p="ReceiveDatas.cs" t="Include" />
+              </e>
+            </e>
+            <e p="IO" t="Include">
+              <e p="FileReader" t="Include">
+                <e p="FileReader.cs" t="Include" />
+                <e p="IFileReader.cs" t="Include" />
+              </e>
+              <e p="FileWriter" t="Include">
+                <e p="FileWriter.cs" t="Include" />
+                <e p="IFIleWriter.cs" t="Include" />
+              </e>
+              <e p="Generator" t="Include">
+                <e p="CodeGenerator.cs" t="Include" />
+                <e p="DataGenerator.cs" t="Include" />
+                <e p="GenerateSetting.cs" t="Include" />
+                <e p="ICodeGenerator.cs" t="Include" />
+              </e>
+              <e p="Parser" t="Include">
+                <e p="ExcelReader.cs" t="Include" />
+                <e p="GSParser.cs" t="Include" />
+                <e p="IParser.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Reflection" t="Include">
+              <e p="Utility.cs" t="Include" />
+            </e>
+            <e p="Type" t="Include">
+              <e p="Attribute" t="Include">
+                <e p="TypeAttribute.cs" t="Include" />
+              </e>
+              <e p="Impl" t="Include">
+                <e p="ByteArrayType.cs" t="Include" />
+                <e p="ByteType.cs" t="Include" />
+                <e p="CharType.cs" t="Include" />
+                <e p="DecimalType.cs" t="Include" />
+                <e p="DoubleType.cs" t="Include" />
+                <e p="FloatType.cs" t="Include" />
+                <e p="IntListType.cs" t="Include" />
+                <e p="IntTupleX2.cs" t="Include" />
+                <e p="IntType.cs" t="Include" />
+                <e p="LongType.cs" t="Include" />
+                <e p="ShortType.cs" t="Include" />
+                <e p="StringListType.cs" t="Include" />
+                <e p="StringType.cs" t="Include" />
+                <e p="UIntType.cs" t="Include" />
+                <e p="ULongType.cs" t="Include" />
+                <e p="UShortType.cs" t="Include" />
+              </e>
+              <e p="ITable.cs" t="Include" />
+              <e p="IType.cs" t="Include" />
+              <e p="ReadUtil.cs" t="Include" />
+              <e p="TypeMap.cs" t="Include" />
+              <e p="WriteUtil.cs" t="Include" />
+            </e>
+            <e p="Unity" t="Include">
+              <e p="CodeGeneratorUnityEngine.cs" t="Include" />
+              <e p="IWebReqeuster.cs" t="Include" />
+              <e p="UnityEditorWebRequest.cs" t="Include" />
+              <e p="UnityFileReader.cs" t="Include" />
+              <e p="UnityFileWriter.cs" t="Include" />
+              <e p="UnityGoogleSheet.cs" t="Include" />
+              <e p="UnityGSParser.cs" t="Include" />
+              <e p="UnityPlayerWebRequest.cs" t="Include" />
+              <e p="ZGSetting.cs" t="Include" />
+            </e>
+            <e p="ZG" t="Include">
+              <e p="SheetInfo.cs" t="Include" />
+              <e p="ZeroGoogleSheet.cs" t="Include" />
+            </e>
+            <e p="ZGSettingObject.cs" t="Include" />
+          </e>
+          <e p="ZG.Editor" t="Include">
+            <e p="Editor" t="Include">
+              <e p="GDExplorer.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ZG.Examples" t="Include">
+          <e p="0. First Read Me!!!" t="Include">
+            <e p="ActiveChanger.cs" t="Include" />
+            <e p="ReadMeScene.cs" t="Include" />
+          </e>
+          <e p="1. Localization" t="Include">
+            <e p="ItemLocalization.cs" t="Include" />
+            <e p="LanguageChanger.cs" t="Include" />
+            <e p="LocalizationManager.cs" t="Include" />
+          </e>
+          <e p="2. ItemShop" t="Include">
+            <e p="ItemDescriptionUI.cs" t="Include" />
+            <e p="ReloadRuntime.cs" t="Include" />
+            <e p="WeaponShop.cs" t="Include" />
+            <e p="WeaponShopProudctModel.cs" t="Include" />
+          </e>
+          <e p="3. Custom Class" t="Include">
+            <e p="Example3Test.cs" t="Include" />
+            <e p="MyCustomStruct.cs" t="Include" />
+            <e p="MyCustomStructType.cs" t="Include" />
+            <e p="VectorType.cs" t="Include" />
+          </e>
+          <e p="4. GameBalanceEditor" t="Include">
+            <e p="EditableItemModel.cs" t="Include" />
+            <e p="ItemEditor.cs" t="Include" />
+          </e>
+          <e p="ExampleReadMe.txt" t="Include" />
+        </e>
+        <e p="ZGS" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="ZGS.Struct" t="Include">
+              <e p="Example1.Localization.Item.Description.cs" t="Include" />
+              <e p="Example1.Localization.Item.Name.cs" t="Include" />
+              <e p="Example2.Item.Weapons.cs" t="Include" />
+              <e p="Example3.CustomType.Data.cs" t="Include" />
+              <e p="Example4.Item.Data.cs" t="Include" />
+              <e p="GameBalance.Data.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="UnityGoogleSheet.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

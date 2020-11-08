@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -300,8 +301,8 @@ public class GDExplorer : EditorWindow
     {
         var rect = GUILayoutUtility.GetRect(Instance.position.width, Instance.position.height - 100);
         data = GUI.BeginScrollView(rect, data, new Rect(0, 0, 0, 1000), false, true);
-        int itemWIdth = 128;
-        int itemHeight = 128;
+        int itemWIdth = 160;
+        int itemHeight = 160;
         int currentItemXPos = 0;
         int currentItemYPos = (int)rect.y;
         for (int i = 0; i < loadedFileData.Count; i++)
@@ -332,7 +333,11 @@ public class GDExplorer : EditorWindow
             {
                 GUI.Box(new Rect(currentItemXPos + (itemWIdth / 4), currentItemYPos + (itemWIdth / 4), itemWIdth / 2, itemHeight / 2), "", GS_FolderIcon);
             }
-            GUI.Label(new Rect(currentItemXPos, (currentItemYPos + itemHeight / 3), itemWIdth, itemHeight), loadedFileData[i].fileName, GS_FileName);
+
+            var fileName = loadedFileData[i].fileName;
+            
+
+            GUI.Label(new Rect(currentItemXPos, (currentItemYPos + itemHeight / 3), itemWIdth, itemHeight), fileName, GS_FileName);
         }
         GUI.EndScrollView();
     }
