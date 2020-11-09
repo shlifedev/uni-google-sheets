@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/Assets/GameBalanceLoadTest.cs" />
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Editor/Editor/GDExplorer.cs" />
         <option value="$PROJECT_DIR$/Assets/ZGS/Scripts/ZGS.Struct/Example2.Item.Weapons.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/CodeGeneratorUnityEngine.cs" />
       </list>
     </option>
   </component>
@@ -59,6 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604746478972</updated>
       <workItem from="1604746482762" duration="3143000" />
+      <workItem from="1604950773457" duration="303000" />
     </task>
     <servers />
   </component>

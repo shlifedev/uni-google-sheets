@@ -19,7 +19,7 @@ namespace Hamster.ZG.IO
 namespace @namespace
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class @class : ITable
+    public partial class @class : ITable
     { 
 
         public delegate void OnLoadedFromGoogleSheets(List<@class> loadedList, Dictionary<@keyType, @class> loadedDictionary);
@@ -47,8 +47,18 @@ namespace @namespace
 /*Load From Cached Json. Require Generate Data.*/
 @loadFunction 
 
+
 #endregion
 
+#region OdinInsepctorExtentions
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.Button(""UploadToSheet"")]
+    public void Upload()
+    {
+        Write(this);
+    }
+#endif
+#endregion
     }
 }
         ";
@@ -70,9 +80,7 @@ namespace @namespace
                 }
                 generateForm = generateForm.Replace("@types", builder.ToString());
                 generateForm = generateForm.Replace("@keyType", types[0]);
-            }
-
-
+            } 
         }
 
         static string GetCSharpRepresentation(System.Type t, bool trimArgCount)
