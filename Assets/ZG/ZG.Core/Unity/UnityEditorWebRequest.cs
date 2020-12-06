@@ -1,5 +1,5 @@
 ﻿
- 
+#if UNITY_2017_1_OR_NEWER 
 #if UNITY_EDITOR
 using Hamster.ZG; 
 using Newtonsoft.Json;
@@ -246,4 +246,5 @@ namespace Hamster.ZG
  
     }
 }
+#endif
 #endif

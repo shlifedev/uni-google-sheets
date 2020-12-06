@@ -17,6 +17,14 @@
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Editor/Editor/GDExplorer.cs" />
         <option value="$PROJECT_DIR$/Assets/ZGS/Scripts/ZGS.Struct/Example2.Item.Weapons.cs" />
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/CodeGeneratorUnityEngine.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/IWebReqeuster.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityEditorWebRequest.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityFileReader.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityFileWriter.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityGoogleSheet.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityGSParser.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityPlayerWebRequest.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/ZGSetting.cs" />
       </list>
     </option>
   </component>
@@ -60,7 +68,8 @@
       <option name="presentableId" value="Default" />
       <updated>1604746478972</updated>
       <workItem from="1604746482762" duration="3143000" />
-      <workItem from="1604950773457" duration="303000" />
+      <workItem from="1604950773457" duration="1504000" />
+      <workItem from="1607179642502" duration="2733000" />
     </task>
     <servers />
   </component>

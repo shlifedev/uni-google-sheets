@@ -1,4 +1,4 @@
-﻿
+﻿#if UNITY_2017_1_OR_NEWER 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -257,3 +257,4 @@ namespace Hamster.ZG
         }
     }
 }
+#endif

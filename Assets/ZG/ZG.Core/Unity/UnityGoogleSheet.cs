@@ -1,4 +1,4 @@
-﻿
+﻿#if UNITY_2017_1_OR_NEWER 
 using Hamster.ZG;
 using System;
 using System.Collections.Generic;
@@ -152,3 +152,4 @@ public class UnityGoogleSheet
 
 
 }
+#endif

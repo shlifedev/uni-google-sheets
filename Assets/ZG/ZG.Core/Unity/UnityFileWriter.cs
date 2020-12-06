@@ -1,4 +1,5 @@
-﻿using Hamster.ZG.IO;
+﻿#if UNITY_2017_1_OR_NEWER 
+using Hamster.ZG.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -47,3 +48,4 @@ namespace Hamster.ZG
         }
     }
 }
+#endif

@@ -1,4 +1,4 @@
-﻿ 
+﻿#if UNITY_2017_1_OR_NEWER 
 using Hamster.ZG.IO;
 using Hamster.ZG.IO.Generator;
 using System;
@@ -72,3 +72,4 @@ namespace Hamster.ZG
 }
 
 
+#endif

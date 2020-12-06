@@ -1,4 +1,5 @@
-﻿using Hamster.ZG;
+﻿#if UNITY_EDITOR
+using Hamster.ZG;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -431,3 +432,4 @@ Document();
     }
 
 }
+#endif

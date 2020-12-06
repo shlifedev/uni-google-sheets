@@ -460,15 +460,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'If you want study examples
+  m_Text: 'First need <color=blue>Generate</color> Your <color=blue>Own Data</color>
+    From GoogleSheet!
 
 
-    First need <color=blue>Generate</color>
-    Your <color=blue>Own Data</color> From GoogleSheet!
-
-
-    Enter <b>PlayMode</b>,
-    And <b>Following Tutorial Step</b>!'
+    Enter <b>PlayMode</b>, And <b>Following Tutorial Step</b>!'
 --- !u!222 &150262582
 CanvasRenderer:
   m_ObjectHideFlags: 0

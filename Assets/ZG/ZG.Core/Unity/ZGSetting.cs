@@ -1,4 +1,4 @@
-﻿
+﻿#if UNITY_2017_1_OR_NEWER 
 using System.Configuration;
 using UnityEngine;
 namespace Hamster.ZG
@@ -65,3 +65,4 @@ namespace Hamster.ZG
         }
     }
 }
+#endif

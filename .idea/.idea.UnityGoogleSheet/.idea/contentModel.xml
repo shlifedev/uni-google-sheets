@@ -86,12 +86,12 @@
               <e p="UnityGSParser.cs" t="Include" />
               <e p="UnityPlayerWebRequest.cs" t="Include" />
               <e p="ZGSetting.cs" t="Include" />
+              <e p="ZGSettingObject.cs" t="Include" />
             </e>
             <e p="ZG" t="Include">
               <e p="SheetInfo.cs" t="Include" />
               <e p="ZeroGoogleSheet.cs" t="Include" />
             </e>
-            <e p="ZGSettingObject.cs" t="Include" />
           </e>
           <e p="ZG.Editor" t="Include">
             <e p="Editor" t="Include">

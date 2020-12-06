@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿
+#if UNITY_2017_1_OR_NEWER 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 [CreateAssetMenu(fileName ="ZGSettingObject", menuName ="HamsterLib/ZG/SettingObject", order = 0)]
 public class ZGSettingObject : ScriptableObject
@@ -23,3 +24,4 @@ public class ZGSettingObject : ScriptableObject
     public string RuntimeDataPath = "ZGS/ZGS.Data/";
  
 }
+#endif
