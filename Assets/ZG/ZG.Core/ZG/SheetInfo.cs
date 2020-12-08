@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-namespace Hamster.ZG
+﻿namespace Hamster.ZG
 {
     public class SheetInfo
     {

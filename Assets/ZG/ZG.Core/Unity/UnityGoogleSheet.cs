@@ -2,7 +2,9 @@
 using Hamster.ZG.IO.FileReader;
 using Hamster.ZG.IO.FileWriter;
 using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using JetBrains.Annotations;
+
 #if UNITY_2017_1_OR_NEWER
 using UnityEngine;
 #endif
@@ -43,26 +45,24 @@ public class UnityGoogleSheet
 
     /// <summary>
     /// Write Your Table Data To GoogleSheet
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="value"></param>
-    public static void Write<T>(T value, System.Action writedCallback = null) where T : ITable
+    /// </summary> 
+    public static void Write<T>(T value, Action writeCallback = null) where T : ITable
     {
 #if UNITY_2017_1_OR_NEWER
         Initalize();
 #endif
-        var _class = typeof(T); 
-        var writeFunction = _class.GetMethod("Write", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+        var @class = typeof(T); 
+        var writeFunction = @class.GetMethod("Write", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
         if (writeFunction != null)
         {
-            writeFunction?.Invoke(null, new object[] { value , writedCallback });
+            writeFunction?.Invoke(null, new object[] { value , writeCallback });
         }
 
     }
+
     /// <summary>
     /// Generate Your Table Data 
     /// </summary>
-    /// <param name="value"></param>
     /// <param name="csharpGenerate"> generate script, runtime not work this </param>
     /// <param name="jsonGenerate">generate json</param>
     public static void Generate<T>(bool csharpGenerate, bool jsonGenerate) where T : ITable
@@ -74,11 +74,7 @@ public class UnityGoogleSheet
      
         var field = targetTable.GetField("spreadSheetID", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
         var sSheetID = (string)field.GetValue(null);
-
-        if (field != null)
-        {
-            Generate(sSheetID, csharpGenerate, jsonGenerate);
-        }
+        Generate(sSheetID, csharpGenerate, jsonGenerate);
 
     }
 
@@ -135,18 +131,19 @@ public class UnityGoogleSheet
     /// </summary>
     public static void LoadFromGoogle<T>() where T : ITable
     {
-        throw new System.Exception("No Implements in UnityGoogleSheet class! Use Instead of GenerateData.LoadFromGoogle(...) method!");
+        throw new System.Exception($"No Implements in UnityGoogleSheet class! Use Instead of GenerateData.LoadFromGoogle(...) method!");
     }
 
-    public static void LoadFromGoogle<Key, Value>(System.Action<List<Value>, Dictionary<Key, Value>> callback, bool updateData = false)  
+    public static void LoadFromGoogle<Key, Value>([NotNull] System.Action<List<Value>, Dictionary<Key, Value>> callback, bool updateData = false)  
     where Value : ITable
     {
+        if (callback == null) throw new ArgumentNullException(nameof(callback));
 #if UNITY_2017_1_OR_NEWER
         Initalize();
 #endif
-        var _class = typeof(Value); 
+        var @class = typeof(Value); 
         //Get Load Method
-        var loadFunction = _class.GetMethod("LoadFromGoogle", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+        var loadFunction = @class.GetMethod("LoadFromGoogle", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
         //Call Load Method
         if (loadFunction != null)
             loadFunction.Invoke(null, new System.Object[] { callback, updateData }); 
@@ -162,13 +159,13 @@ public class UnityGoogleSheet
 #if UNITY_2017_1_OR_NEWER
         Initalize();
 #endif
-        var _class = typeof(T);
+        var @class = typeof(T);
          
         //Get Load Method
-        var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+        var loadFunction = @class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
         //Call Load Method
         if (loadFunction != null)
-            loadFunction.Invoke(null, new System.Object[] { false });
+            loadFunction.Invoke(null, new object[] { false });
     }
 
     /// <summary>
@@ -180,10 +177,10 @@ public class UnityGoogleSheet
         Initalize();
 #endif
         var subClasses = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(ITable));
-        foreach (var _class in subClasses)
+        foreach (var @class in subClasses)
         {
             //Get Load Method
-            var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+            var loadFunction = @class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
             //Call Load Method
             if (loadFunction != null)
                 loadFunction.Invoke(null, new System.Object[] { false });
@@ -199,12 +196,12 @@ public class UnityGoogleSheet
         Initalize();
 #endif
         var subClasses = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(ITable));
-        foreach (var _class in subClasses)
+        foreach (var @class in subClasses)
         {
-            if (_class.Namespace.Contains(@namespace))
+            if (@class.Namespace != null && @class.Namespace.Contains(@namespace))
             {
-                var loadFunction = _class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
-                loadFunction.Invoke(null, new System.Object[] { false });
+                var loadFunction = @class.GetMethod("Load", System.Reflection.BindingFlags.Public| System.Reflection.BindingFlags.Static);
+                loadFunction?.Invoke(null, new System.Object[] { false });
             }
         }
     }

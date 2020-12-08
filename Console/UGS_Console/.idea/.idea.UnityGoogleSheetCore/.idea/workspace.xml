@@ -37,10 +37,12 @@
         <option value="$PROJECT_DIR$/UGS_Console/UnityGoogleSheetCore.csproj" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/ZG/GoogleDriveWebRequester.cs" />
         <option value="$PROJECT_DIR$/UGS_ConsoleExample/Program.cs" />
-        <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/ZG/SheetInfo.cs" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/IO/Generator/CodeGenerator.cs" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Unity/IWebReqeuster.cs" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/UIntType.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/ZG/ZeroGoogleSheet.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/ZG/SheetInfo.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Unity/UnityGoogleSheet.cs" />
       </list>
     </option>
   </component>
