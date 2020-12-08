@@ -2,12 +2,12 @@
 {
     public class SheetInfo
     {
-        public string SpreadSheetID;
-        public string SheetID; 
-        public string SheetName;
-        public string SpreadSheetName; 
-        public string[] DataTypes;
-        public string[] DataFields; 
+        public string spreadSheetID;
+        public string sheetID;
+        public string sheetFileName;
+        public string sheetName;
+        public string[] sheetTypes;
+        public string[] sheetVariableNames;
         public int SheetTableType;
     }
 } 

@@ -26,6 +26,8 @@
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityPlayerWebRequest.cs" />
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/ZGSetting.cs" />
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Http/Protocol/ReceiveDatas.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/IO/Parser/GSParser.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/ZG/SheetInfo.cs" />
       </list>
     </option>
   </component>
