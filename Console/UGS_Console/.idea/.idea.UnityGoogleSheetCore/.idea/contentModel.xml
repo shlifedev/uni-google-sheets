@@ -94,6 +94,7 @@
           <e p="IntTupleX2.cs.meta" t="Include" />
           <e p="IntType.cs" t="Include" />
           <e p="IntType.cs.meta" t="Include" />
+          <e p="LongListType.cs" t="Include" />
           <e p="LongType.cs" t="Include" />
           <e p="LongType.cs.meta" t="Include" />
           <e p="ShortType.cs" t="Include" />

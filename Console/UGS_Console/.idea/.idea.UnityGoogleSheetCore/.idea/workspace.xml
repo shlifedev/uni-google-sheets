@@ -47,6 +47,7 @@
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/DoubleListType.cs" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/CharListType.cs" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/ByteArrayType.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/LongListType.cs" />
       </list>
     </option>
   </component>
