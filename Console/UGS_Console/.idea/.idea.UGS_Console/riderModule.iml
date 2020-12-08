@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RIDER_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/JsonDotNet" />
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/JsonDotNet.meta" />
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/Resources" />
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/Resources.meta" />
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/ZG.Core" />
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/ZG.Core.meta" />
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/ZG.Editor" />
-    <content url="file://$MODULE_DIR$/../../../../Assets/ZG/ZG.Editor.meta" />
     <content url="file://$MODULE_DIR$/../.." />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

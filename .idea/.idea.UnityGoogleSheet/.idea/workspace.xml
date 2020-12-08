@@ -37,6 +37,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -69,7 +70,7 @@
       <updated>1604746478972</updated>
       <workItem from="1604746482762" duration="3143000" />
       <workItem from="1604950773457" duration="1504000" />
-      <workItem from="1607179642502" duration="2733000" />
+      <workItem from="1607179642502" duration="5242000" />
     </task>
     <servers />
   </component>
@@ -82,9 +83,14 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604749322871">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1607257248918">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="461" y="164" key="SettingsEditor/0.-1080.1920.1040/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607257248918" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607249591041">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.-1080.1920.1040/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607249591041" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604749322871" />
   </component>
 </project>

@@ -8,6 +8,6 @@ namespace Hamster.ZG.IO
 {
     public interface IFileReader
     { 
-        string ReadData(string path);
+        string ReadData(string fileName);
     }
 }

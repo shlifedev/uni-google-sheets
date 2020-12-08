@@ -14,16 +14,17 @@ namespace Hamster.ZG
         public void ParseSheet(string sheetJsonData, bool generateCs, bool generateJson, IFIleWriter writer)
         {
             GetTableResult getTableResult = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(sheetJsonData);
+            if (generateJson)
+            {
+                var result = GenerateData(getTableResult);
+                writer?.WriteData(getTableResult.spreadSheetName, result);
+            }
+            int count = 0;
             foreach (var sheet in getTableResult.tableResult)
             {
                 string[] sheetInfoTypes = null;
                 string[] sheetInfoNames = null; 
-                ///generate json data
-                if (generateJson)
-                { 
-                    var result = GenerateData(getTableResult);
-                    writer?.WriteData(getTableResult.spreadSheetName+"."+ sheet.Key, result);
-                } 
+                ///generate json data 
                 if (generateCs)
                 {
                     sheetInfoTypes = new string[sheet.Value.Count()];
@@ -38,6 +39,8 @@ namespace Hamster.ZG
                         i++;
                     }
                     SheetInfo info = new SheetInfo();
+                    info.spreadSheetID = getTableResult.spreadSheetID;
+                    info.sheetID = getTableResult.sheetIDList[count];
                     info.sheetFileName = getTableResult.spreadSheetName;
                     info.sheetName = sheet.Key;
                     info.sheetTypes = sheetInfoTypes;
@@ -46,6 +49,7 @@ namespace Hamster.ZG
                     var result = GenerateCS(info);
                     writer?.WriteCS(info.sheetFileName + "." + info.sheetName, result);
                 }
+                count++;
             }
         }
         private string GenerateData(GetTableResult tableResult)
