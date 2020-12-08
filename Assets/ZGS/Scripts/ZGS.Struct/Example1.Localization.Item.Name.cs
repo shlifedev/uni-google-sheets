@@ -12,7 +12,7 @@ using UnityEngine;
 namespace Example1.Localization.Item
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class Name : ITable
+    public partial class Name : ITable
     { 
 
         public delegate void OnLoadedFromGoogleSheets(List<Name> loadedList, Dictionary<string, Name> loadedDictionary);
@@ -192,8 +192,18 @@ else
         }
  
 
+
 #endregion
 
+#region OdinInsepctorExtentions
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.Button("UploadToSheet")]
+    public void Upload()
+    {
+        Write(this);
+    }
+#endif
+#endregion
     }
 }
         
