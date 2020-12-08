@@ -1,0 +1,12 @@
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\UGS_ConsoleExample.exe.config
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\UGS_ConsoleExample.exe
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\UGS_ConsoleExample.pdb
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\UnityGoogleSheetCore.dll
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\Newtonsoft.Json.dll
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\UnityGoogleSheetCore.pdb
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\Newtonsoft.Json.xml
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.csprojAssemblyReference.cache
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.csproj.CoreCompileInputs.cache
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.csproj.CopyComplete
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.exe
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.pdb

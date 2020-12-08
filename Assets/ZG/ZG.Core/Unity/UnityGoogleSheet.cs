@@ -2,8 +2,7 @@
 using Hamster.ZG.IO.FileReader;
 using Hamster.ZG.IO.FileWriter;
 using System;
-using System.Collections.Generic;
-using UGS_Console;
+using System.Collections.Generic; 
 #if UNITY_2017_1_OR_NEWER
 using UnityEngine;
 #endif

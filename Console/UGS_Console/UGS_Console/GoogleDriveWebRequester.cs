@@ -6,27 +6,6 @@ using Hamster.ZG;
 using Hamster.ZG.IO.FileReader;
 using Hamster.ZG.IO.FileWriter;
 using Newtonsoft.Json;
-
-namespace UGS_Console
-{
-    internal class Program
-    {
-        public static void Main(string[] args)
-        {
-            UnityGoogleSheet.Initalize("https://script.google.com/macros/s/AKfycbyOBVdYiUz6W1WJCHhV5SS4r0Bq3NIyCKW8ugVunsBD-4Bbn30U/exec", "dpqlcb123");
-            UnityGoogleSheet.Generate("1usG2ox2jkDi3OtbCMNTIVCKsFTyZr5M0dKxW9tO2tWo", true, true);
-
-            UnityGoogleSheet.Load<Example1.Localization.Item.Name>();
-            foreach(var value in Example1.Localization.Item.Name.NameList)
-            {
-                Console.WriteLine(value.KR);
-            }
-        }
-    }
-     
-   
-}
-
 public class GoogleDriveWebRequester : IZGRequester
 {
     public static GoogleDriveWebRequester Instance
