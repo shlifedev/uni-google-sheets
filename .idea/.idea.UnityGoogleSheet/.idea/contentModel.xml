@@ -131,6 +131,7 @@
         <e p="ZGS" t="Include">
           <e p="Scripts" t="Include">
             <e p="ZGS.Struct" t="Include">
+              <e p="DefaultTable.Data.cs" t="Include" />
               <e p="Example1.Localization.Item.Description.cs" t="Include" />
               <e p="Example1.Localization.Item.Name.cs" t="Include" />
               <e p="Example2.Item.Weapons.cs" t="Include" />

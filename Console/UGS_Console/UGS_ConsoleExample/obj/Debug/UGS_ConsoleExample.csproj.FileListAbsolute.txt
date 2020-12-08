@@ -9,3 +9,5 @@ C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_
 C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.csproj.CopyComplete
 C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.exe
 C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\obj\Debug\UGS_ConsoleExample.pdb
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\UnityEngine.dll
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_ConsoleExample\bin\Debug\UnityEngine.xml

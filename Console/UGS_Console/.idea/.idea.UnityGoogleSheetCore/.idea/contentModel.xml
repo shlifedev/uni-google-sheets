@@ -77,12 +77,15 @@
           <e p="ByteArrayType.cs.meta" t="Include" />
           <e p="ByteType.cs" t="Include" />
           <e p="ByteType.cs.meta" t="Include" />
+          <e p="CharListType.cs" t="Include" />
           <e p="CharType.cs" t="Include" />
           <e p="CharType.cs.meta" t="Include" />
           <e p="DecimalType.cs" t="Include" />
           <e p="DecimalType.cs.meta" t="Include" />
+          <e p="DoubleListType.cs" t="Include" />
           <e p="DoubleType.cs" t="Include" />
           <e p="DoubleType.cs.meta" t="Include" />
+          <e p="FloatListType.cs" t="Include" />
           <e p="FloatType.cs" t="Include" />
           <e p="FloatType.cs.meta" t="Include" />
           <e p="IntListType.cs" t="Include" />
