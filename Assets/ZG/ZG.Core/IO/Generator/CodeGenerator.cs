@@ -10,8 +10,7 @@ namespace Hamster.ZG.IO
 
     public class CodeGenerator: ICodeGenerator
     {
-        private SheetInfo sheetInfo;
-        private string readBasePath = "";
+        private SheetInfo sheetInfo; 
         private string generateForm = @"
 /*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGenerator.cs'  */

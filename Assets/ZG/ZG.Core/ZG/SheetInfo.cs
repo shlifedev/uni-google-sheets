@@ -10,4 +10,4 @@ namespace Hamster.ZG
         public string[] sheetTypes;
         public string[] sheetVariableNames;
     }
-}
+} 
