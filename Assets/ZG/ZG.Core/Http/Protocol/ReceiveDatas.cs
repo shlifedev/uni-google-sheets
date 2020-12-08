@@ -39,8 +39,9 @@ public class GetTableResult : ReceivedData
     /// value (type/values)
     ///   - key : type string 
     ///   - value : data
-    /// </summary>
-    public Dictionary<string, Dictionary<string, List<string>>> tableResult;
+    /// </summary> 
+    public List<int> TableTypes;
+    public Dictionary<string, Dictionary<string, List<string>>> tableResult;  
     public List<string> sheetIDList;
     public string spreadSheetID;
     public string spreadSheetName;

@@ -25,6 +25,7 @@
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityGSParser.cs" />
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/UnityPlayerWebRequest.cs" />
         <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Unity/ZGSetting.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZG/ZG.Core/Http/Protocol/ReceiveDatas.cs" />
       </list>
     </option>
   </component>
@@ -87,10 +88,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.-1080.1920.1040/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607257248918" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607249591041">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607407760198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.-1080.1920.1040/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1607249591041" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604749322871" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607407760198" />
   </component>
 </project>
