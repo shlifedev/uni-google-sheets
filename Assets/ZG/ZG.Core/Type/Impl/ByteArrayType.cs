@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Hamster.ZG.Type
 {
@@ -16,7 +17,7 @@ namespace Hamster.ZG.Type
 
         public string Write(object value)
         {
-            throw new System.NotImplementedException();
+            return Encoding.Default.GetString(value as byte[] ?? Array.Empty<byte>()); 
         }
     }
 }

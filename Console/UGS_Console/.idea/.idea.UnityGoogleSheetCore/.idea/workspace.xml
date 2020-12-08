@@ -46,6 +46,7 @@
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/FloatListType.cs" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/DoubleListType.cs" />
         <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/CharListType.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/ZG/ZG.Core/Type/Impl/ByteArrayType.cs" />
       </list>
     </option>
   </component>
@@ -122,6 +123,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607414093344" />
+    <state x="552" y="252" key="Rider.ProjectTemplateDialog.Size" timestamp="1607415441439">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Rider.ProjectTemplateDialog.Size/0.0.1920.1040@0.0.1920.1040" timestamp="1607415441439" />
     <state x="606" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607400644994">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
