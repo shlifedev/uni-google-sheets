@@ -82,6 +82,27 @@ public class UnityGoogleSheet
 
     }
 
+#if!UNITY_2017_1_OR_NEWER && !UNITY_EDITOR
+    public static void GenerateSheetInFolder(string folderId, bool csharpGenerate, bool jsonGenerate)
+    {
+        GoogleDriveWebRequester.Instance.SearchGoogleDriveDirectory(folderId, x => {
+            int idx = 0;
+           
+            foreach(var v in x.fileType)
+            {
+                Console.WriteLine("Wait Generate for " + x.fileName[idx] +"...");
+                if (v == 2)
+                {
+                    var sheetId = x.fileID[idx];
+                    Generate(sheetId, csharpGenerate, jsonGenerate);
+                }
+                idx++;
+            }
+        });
+
+    }
+#endif
+    /// <su
     public static void Generate(string spreadSheetId, bool csharpGenerate, bool jsonGenerate)
     {
 

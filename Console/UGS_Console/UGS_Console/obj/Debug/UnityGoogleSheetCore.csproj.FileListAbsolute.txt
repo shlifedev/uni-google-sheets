@@ -6,3 +6,4 @@ C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_
 C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_Console\obj\Debug\UnityGoogleSheetCore.csproj.CopyComplete
 C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_Console\obj\Debug\UnityGoogleSheetCore.dll
 C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_Console\obj\Debug\UnityGoogleSheetCore.pdb
+C:\Users\shlif\OneDrive\Desktop\Github\UnityGoogleSheet\Console\UGS_Console\UGS_Console\obj\Debug\UnityGoogleSheetCore.csprojAssemblyReference.cache
