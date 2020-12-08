@@ -4,17 +4,15 @@
 using Hamster.ZG;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Example2.Item
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class Weapons : ITable
+    public partial class Weapons : ITable
     { 
 
         public delegate void OnLoadedFromGoogleSheets(List<Weapons> loadedList, Dictionary<int, Weapons> loadedDictionary);
@@ -149,8 +147,6 @@ else
 
         public static void Load(bool forceReload = false)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             if(isLoaded && forceReload == false)
             {
                  Debug.Log("Weapons is already loaded! if you want reload then, forceReload parameter set true");
@@ -199,15 +195,22 @@ else
                     } 
                 }
             }
-
-            sw.Stop();
-            Debug.Log(sw.ElapsedMilliseconds);
             isLoaded = true;
         }
  
 
+
 #endregion
 
+#region OdinInsepctorExtentions
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.Button("UploadToSheet")]
+    public void Upload()
+    {
+        Write(this);
+    }
+#endif
+#endregion
     }
 }
         

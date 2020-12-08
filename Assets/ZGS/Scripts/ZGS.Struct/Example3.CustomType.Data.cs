@@ -12,7 +12,7 @@ using UnityEngine;
 namespace Example3.CustomType
 {
     [Hamster.ZG.Attribute.TableStruct]
-    public class Data : ITable
+    public partial class Data : ITable
     { 
 
         public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
@@ -193,8 +193,18 @@ else
         }
  
 
+
 #endregion
 
+#region OdinInsepctorExtentions
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.Button("UploadToSheet")]
+    public void Upload()
+    {
+        Write(this);
+    }
+#endif
+#endregion
     }
 }
         

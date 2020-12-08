@@ -44,8 +44,7 @@ namespace Hamster.ZG
                     info.sheetFileName = getTableResult.spreadSheetName;
                     info.sheetName = sheet.Key;
                     info.sheetTypes = sheetInfoTypes;
-                    info.sheetVariableNames = sheetInfoNames;
-
+                    info.sheetVariableNames = sheetInfoNames; 
                     var result = GenerateCS(info);
                     writer?.WriteCS(info.sheetFileName + "." + info.sheetName, result);
                 }
