@@ -1,6 +1,6 @@
 ﻿namespace Hamster.ZG.Type
 {
-    [Type(type : typeof(uint), speractors : new string[] { "uint", "UInt"})]
+    [Type(type : typeof(uint), speractors : new[] { "uint", "UInt"})]
     public class UIntType : IType
     {
         public object DefaultValue => 0;
