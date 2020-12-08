@@ -23,7 +23,26 @@ public class GoogleDriveWebRequester : IZGRequester
     public string password = "";
     public void SearchGoogleDriveDirectory(string folderID, Action<GetFolderInfo> callback)
     {
+        Instance.Get($"{baseURL}?password={password}&instruction=getFolderInfo&folderID={folderID}", (x) =>
+        {
+            if (x == null)
+            {
+                Console.WriteLine("Cannot Receive GoogleDrive Directory Data!");
+            }
+            else
+            {
+                try
+                {
+                    var value = JsonConvert.DeserializeObject<GetFolderInfo>(x);
+                    callback?.Invoke(value);
+                }
+                catch
+                {
+                    callback?.Invoke(null);
 
+                }
+            }
+        });
     }
 
     public void ReadGoogleSpreadSheet(string sheetID, Action<GetTableResult, string> callback)
@@ -51,17 +70,33 @@ public class GoogleDriveWebRequester : IZGRequester
 
     public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, Action onWrited = null)
     {
+        var data = new WriteDataSender(password, spreadSheetID, sheetID, key, value);
+        var json = JsonConvert.SerializeObject(data);
 
+        Instance.Post(json, (x) =>
+        {
+            onWrited?.Invoke();
+        });
     }
 
     public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
     {
+        var data = new CreateDefaultTableSender(password, folderID, fileName);
+        var json = JsonConvert.SerializeObject(data);
 
+        Instance.Post(json, (x) =>
+        {
+            callback?.Invoke(x);
+        });
     }
 
     public void CopyExamples(string folderID, Action<string> callback)
     {
-
+        Instance.Get($"{baseURL}?password={password}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
+        {
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x); 
+            callback?.Invoke(result.createdFolderId);
+        });
     }
 
 

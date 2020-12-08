@@ -8,43 +8,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Hamster.ZG
-{
- 
-
- 
-    public class WriteDataSender
-    {
-        public string password;
-        public string instruction = "writeData";
-        public string spreadSheetID;
-        public string sheetID;
-        public string key;
-        public string[] value;
-
-        public WriteDataSender(string spreadSheetID, string sheetID, string key, string[] value)
-        {
-            password = password = ZGSetting.ScriptPassword;
-            this.spreadSheetID = spreadSheetID;
-            this.sheetID = sheetID;
-            this.key = key;
-            this.value = value;
-        }
-    }
- 
-    public class CreateDefaultTableSender
-    {
-        public string password;
-        public string instruction = "createDefaultTable";
-        public string folderID;
-        public string fileName;
-
-        public CreateDefaultTableSender(string folderID, string fileName)
-        {
-            password = ZGSetting.ScriptPassword;
-            this.folderID = folderID;
-            this.fileName = fileName;
-        }
-    }
+{ 
     public class UnityPlayerWebRequest : MonoBehaviour, IZGRequester
     {
         public bool reqProcessing = false;
