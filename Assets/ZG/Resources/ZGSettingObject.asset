@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65742e7a9b971e242888935dd58a15a7, type: 3}
   m_Name: ZGSettingObject
   m_EditorClassIdentifier: 
-  ScriptURL: https://script.google.com/macros/s/AKfycbx4n0tPVWR5s5bnBJUqs3Yg9gpcaO7pEPDqbQSQlw/exec
-  ScriptPassword: 123123
-  GoogleFolderID: 1iTVKvJsyWLg3nbb8gs29I5XKXRYxyl2q
+  ScriptURL: https://script.google.com/macros/s/AKfycbywf18xfvxSRXPsFuQA01g76nuZ8MdvCpGLU-XQO8f2KjW7AFTVEZZI-Q/exec
+  ScriptPassword: dpqlcb123
+  GoogleFolderID: 189ozeSkUZpseEBWCOvGlN4FKefwz25Q6
   SavePathSyncToggle: 0
   CSPath: Assets/ZGS/Scripts/ZGS.Struct
   DataPath: Assets/ZGS/Resources/ZGS.Data
