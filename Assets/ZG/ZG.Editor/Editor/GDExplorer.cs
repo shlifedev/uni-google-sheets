@@ -419,13 +419,18 @@ Document();
         }
         EditorGUILayout.EndHorizontal();
     }
-    public void OnGUI()
+
+    public void OnFocus()
     {
-      
         if (loadedFileData.Count == 0)
         {
             CreateFileDatas(ZGSetting.GoogleFolderID);
-        }
+        } 
+    }
+    public void OnGUI()
+    {
+      
+     
         OnTop();
         OnExplorer();
         OnBottom();
