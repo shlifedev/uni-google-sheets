@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Hamster.ZG.Type
-{ 
-    [Type(type : typeof(UnityEngine.Vector3), speractors : new string[] {"Vector3"})]
-    public class Vector3Type : IType
+{
+    [Type(type: typeof(UnityEngine.Quaternion), speractors: new string[] { "Quaternion", "quaternion" })]
+    public class QuaternionType : IType
     {
-        public object DefaultValue => 0;
+        public object DefaultValue => Quaternion.identity;
 
         /// <summary>
         /// value = google sheet data value. 
@@ -13,21 +13,20 @@ namespace Hamster.ZG.Type
         /// <param name="value"></param>
         /// <returns></returns>
         public object Read(string value)
-        {
-            Debug.Log("[Vector3] read from google : " + value);
+        { 
             string[] split = value.Split(',');
             float x = float.Parse(split[0]);
             float y = float.Parse(split[1]);
             float z = float.Parse(split[2]);
-             
-            return new UnityEngine.Vector3(x,y,z);
+            float w = float.Parse(split[3]);
+            return new UnityEngine.Quaternion(x, y,z,w);
         }
 
 
         public string Write(object value)
         {
-            Vector3 data = (Vector3)value;
-            return $"{data.x},{data.y},{data.z}";
+            Quaternion data = (Quaternion)value;
+            return $"{data.x},{data.y}.{data.z},{data.w}";
         }
     }
 }
