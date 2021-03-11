@@ -1,9 +1,11 @@
  
  
  # UnityGoogleSheet 
-You can manage your game data with google sheet!   
-it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a developer, buy it from the Asset Store! [here]()  
-**Setup Guide Here** : [SetupGuide Gitbook](http://cheeseallergyhamster.gitbook.io/) 
+
+UGS is GameData Management Tools!  
+It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor a developer, please buy me cheese! [here]()  
+
+**Setup Guide Here** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/) 
 
 ## ScreenShot
 ![](https://i.imgur.com/ZBtiwmD.png)
@@ -11,17 +13,16 @@ it's very easily, flexible, fast, Free! Optionally, If you want to sponsor a dev
  
 
 ## Require
-  - Unity 2019.3++, Unity 2020 ++ (Require Latest UIElement) (I Will Support Unity 2017)
+  - Unity 2018.3 ++
   - Newtonsoft.Json
 
  
  
  # Features
- - Support All C# Type & Your Custom Class&Struct Type.
+ - Support Runtime Google Sheet Data Load & Write / Local Data Load
  - Support Code Generator
- - Very Friendly User-Interface
- - Sync GoogleDrive GUI
- - Read From GoogleSheet & Write To GoogleSheet
+ - Google Drive Explorer GUI  
+ - 
   
  # How to Setup
  Setup Document : [How-to-setup](http://cheeseallergyhamster.gitbook.io/) 
