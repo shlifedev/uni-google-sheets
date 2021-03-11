@@ -19,12 +19,11 @@ It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor 
  
  
  # Features
- - Support Load GameData From GoogleSheet for DevMode(Real-time)
- - Support Write GameData To GoogleSheet for DevMode(Real-time)
- - Support Local Data Cache for Release
- - Support Code Generator 
- - Google Drive Explorer GUI  
- - 
+ - Support `Load GameData From GoogleSheet` for DevMode
+ - Support `Write GameData To GoogleSheet` for DevMode
+ - Support `Local Data Cache` for Release
+ - Support `Code Generator `
+ - `Google Drive Explorer` GUI   
   
  # How to Setup
  Setup Document : [How-to-setup](http://shlifedev.gitbook.io/) 
