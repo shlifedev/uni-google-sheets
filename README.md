@@ -25,7 +25,7 @@ It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor 
  - 
   
  # How to Setup
- Setup Document : [How-to-setup](http://cheeseallergyhamster.gitbook.io/) 
+ Setup Document : [How-to-setup](http://shlifedev.gitbook.io/) 
   
 
  # TODO LIST
