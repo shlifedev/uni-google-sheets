@@ -10,9 +10,7 @@ using UnityEngine;
 #endif
 public class UnityGoogleSheet
 {
-#if UNITY_EDITOR
-
-    [UnityEditor.MenuItem("W/S")]
+#if UNITY_EDITOR 
     public static void TestFunction()
     {
         UnityGoogleSheet.LoadAllData();
