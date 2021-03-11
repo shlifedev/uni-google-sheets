@@ -123,15 +123,14 @@ public class UnityGoogleSheet
             ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new FileWriter()); 
         });
 #endif
-    }
+    } 
     /// <summary>
-    /// Load All Your Generated Table.
+    /// Load Data From GoogleSheet  
     /// </summary>
-    public static void LoadFromGoogle<T>() where T : ITable
-    {
-        throw new System.Exception($"No Implements in UnityGoogleSheet class! Use Instead of GenerateData.LoadFromGoogle(...) method!");
-    }
-
+    /// <typeparam name="Key"></typeparam>
+    /// <typeparam name="Value"></typeparam>
+    /// <param name="callback"></param>
+    /// <param name="updateData"></param>
     public static void LoadFromGoogle<Key, Value>([NotNull] System.Action<List<Value>, Dictionary<Key, Value>> callback, bool updateData = false)  
     where Value : ITable
     {
