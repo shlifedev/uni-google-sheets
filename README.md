@@ -29,7 +29,7 @@ It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor 
   
 
  # TODO LIST
-- [ ] support unity 2017, 2018, 2019.1, 2019.2
+- [x] support unity 2018.3
 - [x] support unity 2019.3, 2020
 - [x] support runtime wrtie
 - [x] support read data from googlesheet
