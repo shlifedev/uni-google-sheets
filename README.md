@@ -7,6 +7,8 @@ It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor 
 
 **Setup Guide Here** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/) 
 
+**For Korean Guide Here** : [NaverCafe-Tutorial](https://cafe.naver.com/unityhub/117081)
+
 ## ScreenShot
 ![](https://i.imgur.com/ZBtiwmD.png)
   
