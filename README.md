@@ -19,8 +19,10 @@ It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor 
  
  
  # Features
- - Support Runtime Google Sheet Data Load & Write / Local Data Load
- - Support Code Generator
+ - Support Load GameData From GoogleSheet for DevMode(Real-time)
+ - Support Write GameData To GoogleSheet for DevMode(Real-time)
+ - Support Local Data Cache for Release
+ - Support Code Generator 
  - Google Drive Explorer GUI  
  - 
   
