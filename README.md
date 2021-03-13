@@ -6,8 +6,9 @@ UGS is GameData Management Tools!
 It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor a developer, please buy me cheese! [here]()  
 
 **Setup Guide Here** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/) 
+ 
+**For Korean Guide Here** : [Tistory](https://shlifedev.tistory.com/33)
 
-**For Korean Guide Here** : [NaverCafe-Tutorial](https://cafe.naver.com/unityhub/117081)
 
 ## ScreenShot
 ![](https://i.imgur.com/ZBtiwmD.png)
