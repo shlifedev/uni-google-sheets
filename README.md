@@ -14,12 +14,12 @@
 </p>
 
 Management your unity game-data with google sheet very easily!   
-If you want to sponsor a developer, please buy me cheese! [here](http://paypal.me/shlifedev)  
+If you want to sponsor a developer, please buy me cheese! [here](http://paypal.me/shlifedev)
 
 
-**Setup Guide Here[English]** : soon!
-**Setup Guide Here[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/) 
-**For Korean Guide Here** : [Tistory](https://shlifedev.tistory.com/33)
+**Setup Guide Here[English]** : soon!  
+**Setup Guide Here[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)   
+**For Korean Guide Here** : [Tistory](https://shlifedev.tistory.com/33)  
 
 
 ## ScreenShot
