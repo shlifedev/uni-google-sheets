@@ -8,7 +8,7 @@
              alt="POD">
     </a>
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
-        <img src="https://img.shields.io/badge/support-unity2018.3++-green.svg"
+        <img src="https://img.shields.io/badge/support-unity2018.3++-red.svg"
              alt="POD">
     </a>
     <a href="https://opensource.org/licenses/MIT">
