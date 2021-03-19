@@ -3,7 +3,9 @@
  # UnityGoogleSheet 
 
 UGS is GameData Management Tools!  
-It's *easily, flexible, fast,* and **free**! Optionally, If you want to sponsor a developer, please buy me cheese! [here](http://paypal.me/shlifedev)  
+It's *easily, flexible, fast,* and **free**! 
+
+If you want to sponsor a developer, please buy me cheese! [here](http://paypal.me/shlifedev)  
 
 **Setup Guide Here** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/) 
  
