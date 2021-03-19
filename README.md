@@ -7,10 +7,14 @@
         <img src="https://img.shields.io/badge/release-v.0.1.0-green.svg"
              alt="POD">
     </a>
+    <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
+        <img src="https://img.shields.io/badge/support-unity2018.3++-green.svg"
+             alt="POD">
+    </a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/license-MIT-orange.svg"
              alt="license">
-    </a>
+    </a> 
 </p>
 
 Management your unity game-data with google sheet very easily!   
