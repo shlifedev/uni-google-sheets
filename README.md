@@ -4,7 +4,7 @@
 
 <p align="left">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
-        <img src="https://img.shields.io/badge/release-v.1.0.2-orange.svg"
+        <img src="https://img.shields.io/badge/release-v.0.1.0-green.svg"
              alt="POD">
     </a>
     <a href="https://opensource.org/licenses/MIT">
