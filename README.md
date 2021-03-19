@@ -2,13 +2,23 @@
  
  # UnityGoogleSheet 
 
-UGS is GameData Management Tools!  
-It's *easily, flexible, fast,* and **free**! 
+<p align="left">
+    <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
+        <img src="https://img.shields.io/badge/release-v.1.0.2-orange.svg"
+             alt="POD">
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/license-MIT-orange.svg"
+             alt="license">
+    </a>
+</p>
 
+Management your unity game-data with google sheet very easily!   
 If you want to sponsor a developer, please buy me cheese! [here](http://paypal.me/shlifedev)  
 
-**Setup Guide Here** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/) 
- 
+
+**Setup Guide Here[English]** : soon!
+**Setup Guide Here[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/) 
 **For Korean Guide Here** : [Tistory](https://shlifedev.tistory.com/33)
 
 
