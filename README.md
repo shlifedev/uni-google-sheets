@@ -4,7 +4,7 @@ qqq
 
 <p align="left">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
-        <img src="https://img.shields.io/badge/release-v.0.1.0-green.svg"
+        <img src="https://img.shields.io/badge/release-v.0.1.1-green.svg"
              alt="POD">
     </a>
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
