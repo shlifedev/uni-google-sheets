@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ZG.Core.Type
 { 
-    public class UGSEnum : Attribute
+    public class UGSAttribute : Attribute
     {
         public System.Type type;
         public string[] sepractor;
 
-        public UGSEnum(System.Type type, params string[] sepractor)
+        public UGSAttribute(System.Type type, params string[] sepractor)
         {
             this.type = type;
             this.sepractor = sepractor;

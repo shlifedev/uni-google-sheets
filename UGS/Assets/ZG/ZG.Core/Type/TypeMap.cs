@@ -7,23 +7,7 @@ using ZG.Core.Type;
 
 namespace Hamster.ZG.Type
 {
-    public class EnumType
-    {
-        public System.Type Type { get;set;}
-        public Assembly Assembly { get; set; }
-        public string NameSpace { get; set; }
-        public string EnumName { get; set; }
-
-        public object Read(string value)
-        {
-            return System.Enum.Parse(Type, value);
-        }
-        public string Write(object value)
-        {
-            return value.ToString();
-        }
-
-    }
+    
     public static class TypeMap
     {
         public static bool init = false;
@@ -52,7 +36,7 @@ namespace Hamster.ZG.Type
                 sw.Start();
                 foreach (var value in subClassesEnum)
                 {
-                    var att = value.GetCustomAttribute(typeof(UGSEnum));
+                    var att = value.GetCustomAttribute(typeof(UGSAttribute));
                     if (att != null)
                     {
                         enumMap.Add(value.Name , new EnumType() { 
