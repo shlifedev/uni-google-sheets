@@ -29,11 +29,11 @@ Management your unity game data with google sheet very easily! If use UGS, There
  - `Google Drive Explorer` GUI   
 
  ## Documentation
-**Setup Guide Here[English]** : soon!   
+**Docs[English]** : soon!   
 
-**Setup Guide Here[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)    
+**Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)    
 
-**For Korean Guide Here** : [Tistory](https://shlifedev.tistory.com/33)  
+**한국인인 경우 해당 가이드를 추천합니다.** : [Tistory](https://shlifedev.tistory.com/33)  
 
 
 
