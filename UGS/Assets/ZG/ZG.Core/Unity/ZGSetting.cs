@@ -4,9 +4,7 @@ using UnityEngine;
 namespace Hamster.ZG
 {
     public static class ZGSetting
-    {
-
-        
+    { 
         public static string GoogleFolderID
         {
             get

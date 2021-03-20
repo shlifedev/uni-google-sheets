@@ -7,11 +7,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="ZGSettingObject", menuName ="HamsterLib/ZG/SettingObject", order = 0)]
 public class ZGSettingObject : ScriptableObject
 {
+    // Target Script URL
     public string ScriptURL;
-    public string ScriptPassword = "default";
-
-    public string GoogleFolderID;
-
+    // Script Password
+    public string ScriptPassword = "default"; 
+    // Google Folder ID
+    public string GoogleFolderID; 
+    
+    [System.Obsolete]
     public bool SavePathSyncToggle;
 
 

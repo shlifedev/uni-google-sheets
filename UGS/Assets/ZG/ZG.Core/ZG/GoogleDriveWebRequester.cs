@@ -21,6 +21,8 @@ public class GoogleDriveWebRequester : IZGRequester
     static GoogleDriveWebRequester instance;
     public string baseURL = "";
     public string password = "";
+
+    /* --------------------- Web Requester -------------------- */
     public void SearchGoogleDriveDirectory(string folderID, Action<GetFolderInfo> callback)
     {
         Instance.Get($"{baseURL}?password={password}&instruction=getFolderInfo&folderID={folderID}", (x) =>
@@ -44,7 +46,6 @@ public class GoogleDriveWebRequester : IZGRequester
             }
         });
     }
-
     public void ReadGoogleSpreadSheet(string sheetID, Action<GetTableResult, string> callback)
     {
         Instance.Get($"{baseURL}?password={password}&instruction=getTable&sheetID={sheetID}", (x) =>
@@ -67,7 +68,6 @@ public class GoogleDriveWebRequester : IZGRequester
             }
         });
     }
-
     public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, Action onWrited = null)
     {
         var data = new WriteDataSender(password, spreadSheetID, sheetID, key, value);
@@ -78,7 +78,6 @@ public class GoogleDriveWebRequester : IZGRequester
             onWrited?.Invoke();
         });
     }
-
     public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
     {
         var data = new CreateDefaultTableSender(password, folderID, fileName);
@@ -89,7 +88,6 @@ public class GoogleDriveWebRequester : IZGRequester
             callback?.Invoke(x);
         });
     }
-
     public void CopyExamples(string folderID, Action<string> callback)
     {
         Instance.Get($"{baseURL}?password={password}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
@@ -98,6 +96,7 @@ public class GoogleDriveWebRequester : IZGRequester
             callback?.Invoke(result.createdFolderId);
         });
     }
+
 
 
     private void Get(string url, Action<string> callback)
