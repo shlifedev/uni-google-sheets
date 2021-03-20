@@ -1,4 +1,4 @@
- 
+qqq 
  
  # UnityGoogleSheet 
 
@@ -23,9 +23,9 @@ Management your unity game data with google sheet very easily! If use UGS, There
  - Support `Load GameData From GoogleSheet` for DevMode
  - Support `Write GameData To GoogleSheet` for DevMode
  - Support `Local Data Cache` for Release
- - Support `Code Generator `
- - Support  All `Enum` Types with `Enum Reader Generator`
+ - Support `Code Generator ` 
  - Support  All Serializeable `CustomTypes` with `Type Reflection`
+ - Support  All Enums (with Enum Generator)
  - `Google Drive Explorer` GUI   
 
  ## Documentation
