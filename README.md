@@ -4,7 +4,7 @@ qqq
 
 <p align="left">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
-        <img src="https://img.shields.io/badge/release-v.0.1.1-green.svg"
+        <img src="https://img.shields.io/badge/release-v.0.1.2-green.svg"
              alt="POD">
     </a>
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
@@ -25,7 +25,7 @@ Management your unity game data with google sheet very easily! If use UGS, There
  - Support `Local Data Cache` for Release
  - Support `Code Generator ` 
  - Support  All Serializeable `CustomTypes` with `Type Reflection`
- - Support  All Enums (with Enum Generator)
+ - Support  All EnumType Support
  - `Google Drive Explorer` GUI   
 
  ## Documentation
