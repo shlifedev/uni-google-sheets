@@ -56,3 +56,4 @@ Management your unity game data with google sheet very easily! If use UGS, There
 - [x] support generate data from googlesheet
 - [ ] complete gitbook document - en
 - [x] complete gitbook document - kr
+- [ ] optimize enum loading time
