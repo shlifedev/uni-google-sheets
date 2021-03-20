@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ZG.Core.Type
-{ 
+{  
     public class UGSAttribute : Attribute
     {
         public System.Type type;
