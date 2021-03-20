@@ -134,12 +134,7 @@ public class EnumGeneratorGUI : EditorWindow
 
         }
 
-
-        if (GUILayout.Button("Namespace Test"))
-        {
-            Debug.Log(GetNameSpace());
-            Debug.Log(typeof(A.B.C.Test).Namespace);
-        }
+         
         EditorGUILayout.Space(5);
         EditorGUILayout.LabelField("---- Validator Options ----");
         EditorGUILayout.LabelField("it is type exist validation. if you use assembly defenition, disable this checkbox!");
