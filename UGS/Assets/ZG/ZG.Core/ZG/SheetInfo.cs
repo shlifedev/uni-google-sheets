@@ -8,6 +8,7 @@
         public string sheetName;
         public string[] sheetTypes;
         public string[] sheetVariableNames;
+        public bool[] isEnumChecks;
         public int SheetTableType;
     }
 } 

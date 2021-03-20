@@ -3,20 +3,21 @@
 /* author : shlifedev@gmail.com */
 
 using System;
+using Hamster.ZG.Type;
 //
-using A.B.C;
-namespace Hamster.ZG.Type
-{
-    [Type(type: typeof(Test), speractors: new string[] { "Test" })]
-    public class TestType : IType
-    {
+ using A.B.C;
 
+namespace A.B.C
+{
+[Type(type : typeof(Test), speractors : new string[] { "Test" })]
+ public class TestEnumType : IType{
+ 
         public object DefaultValue => default;
 
 
         public object Read(string value)
         {
-            return (Test)Enum.Parse(typeof(Test), value);
+            return (Test)Enum.Parse(typeof(Test), value); 
         }
 
 

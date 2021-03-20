@@ -235,7 +235,7 @@ public class GDExplorer : EditorWindow
                 {
                     if (Application.isPlaying == false)
                     {
-                        Debug.Log(GDExplorer.Instance.loadedFileData.Count +"," + file.id); 
+//                        Debug.Log(GDExplorer.Instance.loadedFileData.Count +"," + file.id); 
                         UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
                         {
                             ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());

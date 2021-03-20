@@ -13,8 +13,7 @@ public class ZGSettingObject : ScriptableObject
     public string ScriptPassword = "default"; 
     // Google Folder ID
     public string GoogleFolderID;  
-
-    [System.Obsolete]
+     
     public bool SavePathSyncToggle;
 
 

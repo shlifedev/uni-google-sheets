@@ -25,16 +25,17 @@ public class EnumGeneratorGUI : EditorWindow
 
     bool useValidation = true;
     public string enumNameField { get; private set; }
-    public string enumNameFieldData => (GetNameSpace() == null) ? GetName() : enumNameField;
-    public EnumGenerator generator;
+    public string enumNameFieldData => (GetNameSpace() == null) ? GetName() : enumNameField; 
     static EnumGeneratorGUI instance;
-    [MenuItem("HamsterLib/UGS/Utils/EnumReaderGenerator", priority = -99)]
+   // [MenuItem("HamsterLib/UGS/Utils/EnumReaderGenerator", priority = -99)]
     static void Init()
     {
         // Get existing open window or if none, make a new one:
         Instance = (EnumGeneratorGUI)EditorWindow.GetWindow(typeof(EnumGeneratorGUI));
         Instance.Show();
+#pragma warning disable CS0618 // 형식 또는 멤버는 사용되지 않습니다.
         Instance.title = "EnumReader Generator";
+#pragma warning restore CS0618 // 형식 또는 멤버는 사용되지 않습니다.
         Instance.minSize = new Vector2(455, 150);
         Instance.maxSize = new Vector2(455, 150);
 
@@ -49,8 +50,14 @@ public class EnumGeneratorGUI : EditorWindow
     public string GetName()
     {
         string[] split =enumNameField.Split('.');
-        if (split.Length == 0) return enumNameField;
-        else return split[split.Length - 1];
+        if (split.Length == 0)
+        { 
+            return enumNameField;
+        }
+        else
+        { 
+            return split[split.Length - 1];
+        }
     }
     public string GetNameSpace()
     {
@@ -88,8 +95,7 @@ public class EnumGeneratorGUI : EditorWindow
         foreach (var value in GetAssemblyByName("Assembly-CSharp").GetTypes())
         {
             if (value.Name == GetName())
-            {
-
+            { 
                 Debug.Log(GetNameSpace() + "," + value.Namespace);
             }
             if (GetNameSpace() == value.Namespace)
@@ -108,19 +114,18 @@ public class EnumGeneratorGUI : EditorWindow
         EditorGUILayout.LabelField("---- Generator ----");
         enumNameField = EditorGUILayout.TextField("EnumName", enumNameField);
 
-        if (generator == null) generator = new EnumGenerator(GetNameSpace(), GetName(), (gen) =>
+        var generator = new EnumGenerator(GetNameSpace(), GetName(), (gen) =>
         {
-            var path =UnityEditor.EditorUtility.SaveFilePanel("save a your own enum converter", EditorPrefs.GetString("UGS_ENUM_GEN_SAVE", Application.dataPath), enumNameField+"Type" , ".cs");
+            var path =UnityEditor.EditorUtility.SaveFilePanel("save a your own enum converter", Application.dataPath, enumNameField+"Type" , "cs");
             var dir = System.IO.Path.GetDirectoryName(path);
             System.IO.File.WriteAllText(path, gen);
-            EditorPrefs.SetString("UGS_ENUM_GEN_SAVE", dir);
         });
+
 
         if (GUILayout.Button("Generate Enum Parser"))
         {
             if (Validation() && useValidation)
             {
-
                 generator.Generate();
             }
             else if (!useValidation)
@@ -131,13 +136,13 @@ public class EnumGeneratorGUI : EditorWindow
             {
                 EditorUtility.DisplayDialog("Generate Failed by Validation Error", enumNameField + " Type is not exist in Assembly.Chsarp!", "OK");
             }
-
         }
-
          
+
+
         EditorGUILayout.Space(5);
         EditorGUILayout.LabelField("---- Validator Options ----");
-        EditorGUILayout.LabelField("it is type exist validation. if you use assembly defenition, disable this checkbox!");
+        EditorGUILayout.LabelField("If you use assembly defenition, disable this checkbox.");
         useValidation = EditorGUILayout.Toggle("use validation", useValidation);
     }
 

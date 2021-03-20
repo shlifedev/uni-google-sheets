@@ -24,11 +24,13 @@ namespace Hamster.ZG
             {
                 string[] sheetInfoTypes = null;
                 string[] sheetInfoNames = null; 
+                bool[] isEnum = null;
                 ///generate json data 
                 if (generateCs)
                 {
                     sheetInfoTypes = new string[sheet.Value.Count()];
                     sheetInfoNames = new string[sheet.Value.Count()];
+                    isEnum = new bool[sheet.Value.Count()];
                     int i = 0;
                     foreach (var type in sheet.Value)
                     {
@@ -36,6 +38,14 @@ namespace Hamster.ZG
                         var split = id.Replace(" ", null).Split(':');
                         sheetInfoTypes[i] = split[1];
                         sheetInfoNames[i] = split[0];
+                        if (split[1].Contains("Enum<"))
+                        {
+                            isEnum[i] = true;
+                        }
+                        else
+                        {
+                            isEnum[i] = false;
+                        }
                         i++;
                     }
                     SheetInfo info = new SheetInfo();
@@ -44,6 +54,7 @@ namespace Hamster.ZG
                     info.sheetFileName = getTableResult.spreadSheetName;
                     info.sheetName = sheet.Key;
                     info.sheetTypes = sheetInfoTypes;
+                    info.isEnumChecks = isEnum;
                     info.sheetVariableNames = sheetInfoNames; 
                     var result = GenerateCS(info);
                     writer?.WriteCS(info.sheetFileName + "." + info.sheetName, result);

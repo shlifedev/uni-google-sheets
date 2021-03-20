@@ -9,6 +9,7 @@ using Hamster.ZG.Type;
 using System.Reflection;
 using UnityEngine;
 
+
 namespace Example3.CustomType
 {
     [Hamster.ZG.Attribute.TableStruct]
@@ -46,7 +47,15 @@ namespace Example3.CustomType
             for (int i = 0; i < fields.Length; i++)
             {
                 var type = fields[i].FieldType;
-                var writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
+                string writeRule = null;
+                if(type.IsEnum)
+                {
+                    writeRule = TypeMap.EnumMap[type.Name].Write(fields[i].GetValue(data));
+                }
+                else
+                {
+                    writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
+                } 
                 datas[i] = writeRule; 
             }  
            
@@ -115,9 +124,21 @@ else
                                     Example3.CustomType.Data instance = new Example3.CustomType.Data();
                                     for (int j = 0; j < typeInfos.Count; j++)
                                     {
-                                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
-                                        var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
-                                        fields[j].SetValue(instance, readedValue);
+                                       try
+                                       {
+                                            var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                                            var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
+                                             fields[j].SetValue(instance, readedValue);
+                                       }
+                                       catch
+                                       {
+                                        var type = typeInfos[j].type;
+                                            type = type.Replace("Enum<", null);
+                                            type = type.Replace(">", null);
+
+                                             var readedValue = TypeMap.EnumMap[type].Read(typeValuesCList[j][i]);
+                                             fields[j].SetValue(instance, readedValue); 
+                                      }
                                     }
                                     //Add Data to Container
                                     callbackParamList.Add(instance);
@@ -171,25 +192,40 @@ else
                         var typeValues = sheet[pNameAndTypeName];
                         typeValuesCList.Add(typeValues);
                     } 
-                if (typeValuesCList.Count != 0)
-                {
-                    int rows = typeValuesCList[0].Count;
-                    for (int i = 0; i < rows; i++)
+                    if (typeValuesCList.Count != 0)
                     {
-                        Example3.CustomType.Data instance = new Example3.CustomType.Data();
-                        for (int j = 0; j < typeInfos.Count; j++)
-                        {
-                            var typeInfo = TypeMap.StrMap[typeInfos[j].type];
-                            var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
-                            fields[j].SetValue(instance, readedValue);
-                        }
-                        //Add Data to Container
+                            int rows = typeValuesCList[0].Count;
+                            for (int i = 0; i < rows; i++)
+                            {
+                                Example3.CustomType.Data instance = new Example3.CustomType.Data();
+                                for (int j = 0; j < typeInfos.Count; j++)
+                                {
+                                    try{
+                                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                                        var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
+                                        fields[j].SetValue(instance, readedValue);
+                                       }
+                                      catch{
+                                        var type = typeInfos[j].type;
+                                            type = type.Replace("Enum<", null);
+                                            type = type.Replace(">", null);
+
+                                             var readedValue = TypeMap.EnumMap[type].Read(typeValuesCList[j][i]);
+                                             fields[j].SetValue(instance, readedValue);
+            
+                                          }
+                              }
+
+                         //Add Data to Container
                         DataList.Add(instance);
                         DataMap.Add(instance.index, instance);
-                    } 
+                  
+                       
+                         } 
                 }
+       isLoaded = true;
             }
-            isLoaded = true;
+      
         }
  
 

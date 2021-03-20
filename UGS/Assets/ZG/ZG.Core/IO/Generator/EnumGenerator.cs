@@ -18,8 +18,9 @@ namespace ZG.Core.IO.Generator
 /* author : shlifedev@gmail.com */
 
 using System;
+using Hamster.ZG.Type;
 //@namespace
-namespace Hamster.ZG.Type
+namespace @header_namespace
 {
 [Type(type : typeof(@enumName), speractors : new string[] { ""@enumName"" })]
  public class @enumNameEnumType : IType{
@@ -48,11 +49,21 @@ namespace Hamster.ZG.Type
         }
         public string Generate()
         { 
-            var result = Def.Replace("@namespace", "\n using " + this.@namespace +";");
-                result = result.Replace("@enumName", enumName);
+
+            var result = Def;
+            if (!string.IsNullOrWhiteSpace(@namespace))
+            {
+                result = result.Replace("@header_namespace", @namespace);
+                result = result.Replace("@namespace", "\n using " + this.@namespace + ";\n");
+            }
+            else
+            {
+                result = result.Replace("@header_namespace", "Hamster.ZG.Type");
+            }
+            result = result.Replace("@enumName", enumName);
             onGenerateCallback?.Invoke(result); 
-            return result;
-            
+             
+            return result; 
         }
     }
 }

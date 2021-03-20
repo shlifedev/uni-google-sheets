@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Hamster.ZG.IO
 {
@@ -12,7 +13,7 @@ namespace Hamster.ZG.IO
     public class CodeGeneratorUnityEngine : ICodeGenerator
     {
         private SheetInfo sheetInfo;
-        private string readBasePath = "";
+ 
         private string generateForm = @"
 /*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorUnityEngine.cs'  */
@@ -69,15 +70,28 @@ namespace @namespace
             this.sheetInfo = info;
         }
 
-        private void WriteTypes(string[] types, string[] names)
+        private void WriteTypes(string[] types, string[] fieldNames, bool[] isEnum)
         {
             if (types != null)
             {
+              //  Debug.Log(isEnum.Length);
                 StringBuilder builder = new StringBuilder();
                 builder.AppendLine();
                 for (int i = 0; i < types.Length; i++)
                 {
-                    builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {names[i]};");
+                    if (isEnum[i] == false)
+                    {
+                        builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {fieldNames[i]};");
+                    }
+                    else
+                    { 
+                        var str = types[i];
+                        str = str.Replace("<", null);
+                        str = str.Replace(">", null);
+                        str = str.Replace(" ", null);
+                        str = str.Remove(0,4); 
+                        builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.EnumMap[str].Type, true)} {fieldNames[i]};"); 
+                    }
                 }
                 generateForm = generateForm.Replace("@types", builder.ToString());
                 generateForm = generateForm.Replace("@keyType", types[0]);
@@ -139,7 +153,15 @@ namespace @namespace
             for (int i = 0; i < fields.Length; i++)
             {{
                 var type = fields[i].FieldType;
-                var writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
+                string writeRule = null;
+                if(type.IsEnum)
+                {{
+                    writeRule = TypeMap.EnumMap[type.Name].Write(fields[i].GetValue(data));
+                }}
+                else
+                {{
+                    writeRule = TypeMap.Map[type].Write(fields[i].GetValue(data));
+                }} 
                 datas[i] = writeRule; 
             }}  
            
@@ -158,7 +180,7 @@ else
 
             generateForm = generateForm.Replace("@writeFunction", writeFunction);
         }
-        private void WriteNamespace(string @namespace)
+        private void WriteNamespace(string @namespace, bool[] sheetInfoIsEnum, string[] sheetInfoTypeName)
         {
             generateForm = generateForm.Replace("@namespace", @namespace);
         }
@@ -178,17 +200,42 @@ else
             generateForm = generateForm.Replace("@sheetID", sheetID);
         }
 
-        private void WriteAssembly(string[] assemblys)
+        private void WriteAssembly(string[] assemblys, string[] types = null, bool[] isEnum = null)
         {
             if (assemblys != null)
             {
                 StringBuilder builder = new StringBuilder();
                 foreach (var data in assemblys)
                     builder.AppendLine($"using {data};");
+                builder.AppendLine("@assemblys");
+                generateForm = generateForm.Replace("@assemblys", builder.ToString()); 
+         
+            }
+
+            if(types != null && isEnum != null)
+            {
+                StringBuilder builder = new StringBuilder();
+                for(int i =0 ; i< types.Length; i++)
+                {
+                    var type = types[i];
+                    var _isEnum = isEnum[i];
+                    type = type.Replace(" ", null);
+                    type = type.Replace("Enum<", null);
+                    type = type.Replace(">", null); 
+                    if (_isEnum && !string.IsNullOrEmpty(TypeMap.EnumMap[type].NameSpace))
+                    { 
+                        builder.AppendLine($"using {TypeMap.EnumMap[type].NameSpace};"); 
+                    } 
+                }
                 generateForm = generateForm.Replace("@assemblys", builder.ToString());
+
+            }
+            else
+            {
+                generateForm = generateForm.Replace("@assemblys", null);
             }
         }
-
+     
  
 
         private void WriteLoadFromGoogleFunction()
@@ -247,9 +294,21 @@ else
                                     @namespace.@class instance = new @namespace.@class();
                                     for (int j = 0; j < typeInfos.Count; j++)
                                     {{
-                                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
-                                        var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
-                                        fields[j].SetValue(instance, readedValue);
+                                       try
+                                       {{
+                                            var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                                            var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
+                                             fields[j].SetValue(instance, readedValue);
+                                       }}
+                                       catch
+                                       {{
+                                        var type = typeInfos[j].type;
+                                            type = type.Replace(""Enum<"", null);
+                                            type = type.Replace("">"", null);
+
+                                             var readedValue = TypeMap.EnumMap[type].Read(typeValuesCList[j][i]);
+                                             fields[j].SetValue(instance, readedValue); 
+                                      }}
                                     }}
                                     //Add Data to Container
                                     callbackParamList.Add(instance);
@@ -307,25 +366,40 @@ else
                         var typeValues = sheet[pNameAndTypeName];
                         typeValuesCList.Add(typeValues);
                     }} 
-                if (typeValuesCList.Count != 0)
-                {{
-                    int rows = typeValuesCList[0].Count;
-                    for (int i = 0; i < rows; i++)
+                    if (typeValuesCList.Count != 0)
                     {{
-                        @namespace.@class instance = new @namespace.@class();
-                        for (int j = 0; j < typeInfos.Count; j++)
-                        {{
-                            var typeInfo = TypeMap.StrMap[typeInfos[j].type];
-                            var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
-                            fields[j].SetValue(instance, readedValue);
-                        }}
-                        //Add Data to Container
+                            int rows = typeValuesCList[0].Count;
+                            for (int i = 0; i < rows; i++)
+                            {{
+                                @namespace.@class instance = new @namespace.@class();
+                                for (int j = 0; j < typeInfos.Count; j++)
+                                {{
+                                    try{{
+                                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                                        var readedValue = TypeMap.Map[typeInfo].Read(typeValuesCList[j][i]); 
+                                        fields[j].SetValue(instance, readedValue);
+                                       }}
+                                      catch{{
+                                        var type = typeInfos[j].type;
+                                            type = type.Replace(""Enum<"", null);
+                                            type = type.Replace("">"", null);
+
+                                             var readedValue = TypeMap.EnumMap[type].Read(typeValuesCList[j][i]);
+                                             fields[j].SetValue(instance, readedValue);
+            
+                                          }}
+                              }}
+
+                         //Add Data to Container
                         @classList.Add(instance);
                         @classMap.Add(instance.{sheetInfo.sheetVariableNames[0]}, instance);
-                    }} 
+                  
+                       
+                         }} 
                 }}
+       isLoaded = true;
             }}
-            isLoaded = true;
+      
         }}
 ");
             generateForm = generateForm.Replace("@loadFunction", builder.ToString());
@@ -340,11 +414,11 @@ else
             WriteLoadFunction();
             WriteLoadFromGoogleFunction();
 
-            WriteAssembly(new string[] { "Hamster.ZG", "System", "System.Collections.Generic", "System.IO", "Hamster.ZG.Type", "System.Reflection", "UnityEngine" });
-            WriteNamespace(_namespace);
+            WriteAssembly(new string[] { "Hamster.ZG", "System", "System.Collections.Generic", "System.IO", "Hamster.ZG.Type", "System.Reflection", "UnityEngine"}, sheetInfo.sheetTypes, sheetInfo.isEnumChecks);
+            WriteNamespace(_namespace, sheetInfo.isEnumChecks, sheetInfo.sheetTypes);
             WriteClassReplace(_className);
             WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetID);
-            WriteTypes(sheetInfo.sheetTypes, sheetInfo.sheetVariableNames);
+            WriteTypes(sheetInfo.sheetTypes, sheetInfo.sheetVariableNames, sheetInfo.isEnumChecks);
             WriteWriteFunction(_className);
             return GenerateForm;
         }

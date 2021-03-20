@@ -4,4 +4,8 @@ namespace A.B.C
     {
         a, b, c
     }
+} 
+public enum Test2
+{
+    a, b, c
 }
