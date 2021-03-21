@@ -1,5 +1,4 @@
-qqq 
- 
+
  # UnityGoogleSheet 
 
 <p align="left">
@@ -29,11 +28,11 @@ Management your unity game data with google sheet very easily! If use UGS, There
  - `Google Drive Explorer` GUI   
 
  ## Documentation
-**Docs[English]** : soon!   
+**Docs[English]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/v/english/) `Translated 80%`
 
 **Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)    
 
-**한국인인 경우 해당 가이드를 추천합니다.** : [Tistory](https://shlifedev.tistory.com/33)  
+**Blog Posting[Korean]** : [Tistory](https://shlifedev.tistory.com/33)  
 
 
 
