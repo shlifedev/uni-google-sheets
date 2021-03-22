@@ -1,5 +1,4 @@
-qqq 
- 
+
  # UnityGoogleSheet 
 
 <p align="left">
@@ -17,7 +16,9 @@ qqq
     </a> 
 </p>
 
-Management your unity game data with google sheet very easily! If use UGS, There is no need to rebuild for patch the game data!
+`UGS` is a Game Data Management Tool that allows easily manage game data with Google SpreadSheet! You can read and write data in runtime mode and Not only Primitive C# Type, but also Custom Type  supported, and all Enum types are supported. 
+
+
  
  # Features
  - Support `Load GameData From GoogleSheet` for DevMode
@@ -28,15 +29,17 @@ Management your unity game data with google sheet very easily! If use UGS, There
  - Support  All EnumType Support
  - `Google Drive Explorer` GUI   
 
+
+
  ## Documentation
-**Docs[English]** : soon!   
+**Docs[English]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/v/english/) `Translated 80%`
 
 **Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)    
 
-**한국인인 경우 해당 가이드를 추천합니다.** : [Tistory](https://shlifedev.tistory.com/33)  
+**Blog Posting[Korean]** : [Tistory](https://shlifedev.tistory.com/33)  
 
 
-
+ 
 ## Require
   - Unity 2018.3 ++
   - Newtonsoft.Json   
