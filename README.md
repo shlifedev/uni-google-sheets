@@ -1,6 +1,6 @@
 
  # UnityGoogleSheet 
-
+ 
 <p align="left">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
         <img src="https://img.shields.io/badge/release-v.0.1.2-green.svg"
@@ -59,4 +59,4 @@
 - [x] support generate data from googlesheet
 - [ ] complete gitbook document - en
 - [x] complete gitbook document - kr
-- [ ] optimize enum loading time
+- [/] optimize enum loading time
