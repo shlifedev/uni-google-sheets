@@ -34,7 +34,10 @@
   - Newtonsoft.Json   
   
 # How to Setup
- Setup Document : [How-to-setup](http://shlifedev.gitbook.io/) 
+ Setup Document : [How-to-setup](http://shlifedev.gitbook.io/)  
+ 
 **Docs[English]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/v/english/) `Translated 80%`
-**Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)
+
+**Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)  
+
 **Blog Posting[Korean]** : [Tistory](https://shlifedev.tistory.com/33)    
