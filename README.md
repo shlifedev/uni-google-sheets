@@ -1,7 +1,8 @@
 
- # UnityGoogleSheet 
  
-<p align="left">
+# UnityGoogleSheet 
+ 
+<p align="center">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
         <img src="https://img.shields.io/badge/release-v.0.1.2-green.svg"
              alt="POD">
@@ -16,7 +17,7 @@
     </a> 
 </p>
 
-<p align="center"> <img src="https://i.imgur.com/PBgclRh.png" width=420px> </p>
+  <p align="center"> <img src="https://i.imgur.com/PBgclRh.png" width=420px> </p>
 
 `UGS` is a Game Data Management Tool that allows easily manage game data with Google SpreadSheet! You can read and write data in runtime mode and Not only Primitive C# Type, but also Custom Type  supported, and all Enum types are supported. 
 
