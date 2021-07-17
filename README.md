@@ -48,3 +48,7 @@
 **Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)  
 
 **Blog Posting[Korean]** : [Tistory](https://shlifedev.tistory.com/33)    
+
+ 
+해당 리포지토리에 공개되었던 버전까지의 버전은 모두 무료입니다.
+ 
