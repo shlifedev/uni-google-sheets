@@ -69,7 +69,7 @@ namespace @namespace
     public static void OnError(System.Exception e){
          UnityGoogleSheet.OnTableError(e);
     }
-
+ 
     }
 }
         ";
@@ -96,11 +96,11 @@ namespace @namespace
                         TypeMap.StrMap.TryGetValue(targetType, out System.Type outType);  
                         if(outType == null)
                         { 
-                            Debug.Log("-------UGS IMPORTANT ERROR DEBUG---------"); 
+                            Debug.Log("<color=#00ff00><b>-------UGS IMPORTANT ERROR DEBUG---------</b></color>"); 
                             string debugTypes = string.Join("  ", sheetInfo.sheetTypes);
                             Debug.LogError($"<color=white><b>Error Sheet Name => </b></color>{sheetInfo.sheetFileName}.{sheetInfo.sheetName}");
-                            Debug.LogError($"<color=white><b>Your use types</b></color> => {debugTypes}");
-                            Debug.LogError($"<color=#00ff00><b>error field :</b></color> {targetField} : {sheetInfo.sheetTypes[i]}"); 
+                            Debug.LogError($"<color=white><b>Your type list => </b></color> => {debugTypes}");
+                            Debug.LogError($"<color=#00ff00><b>error field =>:</b></color> {targetField} : {sheetInfo.sheetTypes[i]}"); 
                             throw new Hamster.ZG.Exception.TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
                         } 
                         builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {fieldNames[i]};"); 
@@ -429,8 +429,7 @@ else
 
 
         public string Generate()
-        {
-            Debug.Log("Start Code Generate..");
+        { 
             string _namespace = sheetInfo.sheetFileName;
             string _className = sheetInfo.sheetName;
 

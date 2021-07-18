@@ -87,7 +87,7 @@ namespace Hamster.ZG
                     }
                     catch
                     {
-                        callback?.Invoke(null, x);
+                      //  callback?.Invoke(null, x);
                     }
                 }
             });
