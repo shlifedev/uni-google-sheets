@@ -42,12 +42,10 @@
 # How to Setup
  Setup Document : [How-to-setup](http://shlifedev.gitbook.io/)  
  
-**Docs[English]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/v/english/) `Translated 80%`
-
-**Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)  
-
-**Blog Posting[Korean]** : [Tistory](https://shlifedev.tistory.com/33)    
+[GitBook-English](https://shlifedev.gitbook.io/unitygooglesheet/v/english/)  
+[GitBook-Korean](https://shlifedev.gitbook.io/unitygooglesheet/)  
+[Tistory Posting](https://shlifedev.tistory.com/33)    
 
  
 
-해당 리포지토리에 공개되었던 버전까지의 버전은 모두 무료입니다. :) 
+해당 리포지토리에 공개되었던 소스코드 사용은 모두 무료입니다. :) 
