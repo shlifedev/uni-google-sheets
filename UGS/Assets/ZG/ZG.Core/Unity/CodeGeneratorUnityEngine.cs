@@ -108,7 +108,7 @@ namespace @namespace
                     else
                     { 
                         var str = types[i];
-                        str = str.Replace("<", null);
+                        str = str.Replace("<", null); 
                         str = str.Replace(">", null);
                         str = str.Replace(" ", null);
                         str = str.Remove(0,4); 
