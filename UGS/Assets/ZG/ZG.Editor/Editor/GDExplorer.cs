@@ -64,7 +64,12 @@ public class UGSSetting : EditorWindow
         GoogleScriptURL = EditorGUILayout.TextField("GoogleScriptURL", GoogleScriptURL);
         Password = EditorGUILayout.TextField("Script Password", Password);
         GoogleFolderId = EditorGUILayout.TextField("Google Folder Id", GoogleFolderId);
-        if(GUILayout.Button("Save"))
+
+        GUILayout.Label("-Security Warning : Live Load/Write(Save) feature never use release build, \nif you release delete ZGSettingObject.asset \nor make your build pipiline exclude ZGSettingObject.");
+       
+
+         
+        if (GUILayout.Button("Save"))
         {
             ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
             ZGSetting.ScriptURL = GoogleScriptURL;
@@ -73,7 +78,7 @@ public class UGSSetting : EditorWindow
             EditorUtility.SetDirty(setting);
             AssetDatabase.SaveAssets();
         }
-
+        
     }
 }
  

@@ -35,11 +35,11 @@ public static class UGSBackupManager
             var extention = System.IO.Path.GetExtension(path); 
             var backupPlan = new BackupPlan(System.DateTime.Now, path, content, extention.Contains("json"));
             BackupList.Add(backupPlan);
-            Debug.Log($"Backup UGS Data => {path}, it is {extention} file.");
+            Debug.Log($"UGS Backup Data => {path}, it is {extention} file.");
         }
         else
         {
-            Debug.LogError("Can't add backup plan, path not found =>" + path);
+            Debug.LogError("UGS Can't add backup plan, path not found =>" + path);
         } 
     } 
 }

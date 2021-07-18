@@ -16,14 +16,14 @@ public class ZGSettingObject : ScriptableObject
      
     public bool SavePathSyncToggle;
 
-
+    
 
     [HideInInspector]
     public string CSPath = "Assets/ZGS/Scripts/ZGS.Struct";
     [HideInInspector]
     public string DataPath = "Assets/ZGS/Resources/ZGS.Data";
     [HideInInspector]
-    public string RuntimeDataPath = "ZGS/ZGS.Data/";
- 
+    public string RuntimeDataPath = "ZGS/ZGS.Data/"; 
+
 }
 #endif
