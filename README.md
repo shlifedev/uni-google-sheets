@@ -27,21 +27,22 @@
 
  
  
- # Features
+## Features
  - You can read(load)/write GameData from GoogleSpreadSheet Realtime `(require internet connection)`
  - You can Cacheing GameData and Load from Cached json  `(no require internet connection)`  
  - Support `Code Generator` 
  - Support `All Primitive` Type and Serializeable `All Custom Class/Struct`
  - Support All `Enum`
  - Very useful Google Drive Explorer GUI!
-
+ - There are no Dependencies other than `Newtonsoft.json.dll`
+## Warnings
+ - Apps Scripts 
 ## Require
   - Unity 2018.3 ++
   - Newtonsoft.Json   
   
-# How to Setup
- Setup Document : [How-to-setup](http://shlifedev.gitbook.io/)  
- 
+# How to Use/Setup
+[Apps Script](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit?usp=drive_web)
 [GitBook-English](https://shlifedev.gitbook.io/unitygooglesheet/v/english/)  
 [GitBook-Korean](https://shlifedev.gitbook.io/unitygooglesheet/)  
 [Tistory Posting](https://shlifedev.tistory.com/33)    
