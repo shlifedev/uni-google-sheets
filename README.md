@@ -37,7 +37,7 @@
  - There are no Dependencies other than `Newtonsoft.json.dll`
 
 ## How to Use/Setup
-[Apps Script](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit?usp=drive_web)
+[Apps Script](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit?usp=drive_web)  
 [GitBook-English](https://shlifedev.gitbook.io/unitygooglesheet/v/english/)  
 [GitBook-Korean](https://shlifedev.gitbook.io/unitygooglesheet/)  
 [Tistory Posting](https://shlifedev.tistory.com/33) 
