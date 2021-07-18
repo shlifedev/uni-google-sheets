@@ -36,6 +36,12 @@
  - Very useful Google Drive Explorer GUI!
  - There are no Dependencies other than `Newtonsoft.json.dll`
 
+## How to Use/Setup
+[Apps Script](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit?usp=drive_web)
+[GitBook-English](https://shlifedev.gitbook.io/unitygooglesheet/v/english/)  
+[GitBook-Korean](https://shlifedev.gitbook.io/unitygooglesheet/)  
+[Tistory Posting](https://shlifedev.tistory.com/33) 
+
 ## Warnings 
  - Do not use Runtime Load/Write feature on user release! because, google apps script has api-call limit, so just use only game design time!
 
@@ -43,12 +49,7 @@
   - Unity 2018.3 ++
   - Newtonsoft.Json   
   
-# How to Use/Setup
-[Apps Script](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit?usp=drive_web)
-[GitBook-English](https://shlifedev.gitbook.io/unitygooglesheet/v/english/)  
-[GitBook-Korean](https://shlifedev.gitbook.io/unitygooglesheet/)  
-[Tistory Posting](https://shlifedev.tistory.com/33)    
-
+ 
  
 
 해당 리포지토리에 공개되었던 소스코드 사용은 모두 무료입니다. :) 
