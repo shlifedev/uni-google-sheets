@@ -59,6 +59,10 @@ namespace @namespace
     {
         Write(this);
     }
+
+    public void OnError(System.Exception e){
+         UnityGoogleSheet.OnTableError(e);
+    }
 #endif
 #endregion
     }
@@ -69,6 +73,7 @@ namespace @namespace
         {
             this.sheetInfo = info;
         }
+
 
         private void WriteTypes(string[] types, string[] fieldNames, bool[] isEnum)
         {
@@ -81,7 +86,16 @@ namespace @namespace
                 {
                     if (isEnum[i] == false)
                     {
+                        var targetType = types[i];
+                        var targetField = fieldNames[i];
+                        TypeMap.StrMap.TryGetValue(targetType, out System.Type outType); 
+                        if(outType == null)
+                        {
+                            throw new Hamster.ZG.Exception.TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
+                        }
+
                         builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {fieldNames[i]};");
+                   
                     }
                     else
                     { 
@@ -168,11 +182,11 @@ namespace @namespace
 #if UNITY_EDITOR
 if(Application.isPlaying == false)
 {{
-            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
+            UnityEditorWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, OnError, onWriteCallback);
 }}
 else
 {{
-            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, onWriteCallback);
+            UnityPlayerWebRequest.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, OnError, onWriteCallback);
 }}
 #endif
         }} 
@@ -268,7 +282,7 @@ else
             }}
             List<@class> callbackParamList = new List<@class>();
             Dictionary<@keyType,@class> callbackParamMap = new Dictionary<@keyType, @class>();
-            webInstance.ReadGoogleSpreadSheet(spreadSheetID, (data, json) => {{
+            webInstance.ReadGoogleSpreadSheet(spreadSheetID, OnError, (data, json) => {{
             FieldInfo[] fields = typeof(@namespace.@class).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 

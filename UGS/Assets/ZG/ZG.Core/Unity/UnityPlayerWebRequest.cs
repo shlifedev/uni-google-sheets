@@ -108,9 +108,21 @@ namespace Hamster.ZG
         { 
             StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", OnError, (x) =>
             {
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x);
-                Debug.Log(result.result);
-                callback?.Invoke(result.createdFolderId);
+                try
+                { 
+                    var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x); 
+                    Debug.Log(result.result);
+                    callback?.Invoke(result.createdFolderId);
+                }
+                catch(System.Exception e)
+                {
+                    Debug.LogError(e);
+#if UNITY_EDITOR
+                    UnityEditor.EditorUtility.DisplayDialog("ugs exception", e.Message, "OK");
+#endif
+                    OnError?.Invoke(e);
+                }
+  
             }));
         }
 

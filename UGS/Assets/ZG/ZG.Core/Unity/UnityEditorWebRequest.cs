@@ -159,19 +159,42 @@ namespace Hamster.ZG
                     var we = e as WebException;
                     Debug.Log(we.Status);
                     callback?.Invoke(null);
+                    errCallback?.Invoke(e);
                 }
                 else if (e is System.Net.Http.HttpRequestException)
                 {
-                    Debug.LogError(e.Message);
-                    EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
+                    Debug.LogError(e);
+                    EditorUtility.DisplayDialog("Http Request Failed", "Goold Script Request Failed, Please Check Setting!", "OK");
+                    callback?.Invoke(null);
+                    errCallback?.Invoke(e);
+                }
+                else if (e is System.UriFormatException)
+                {
+                    Debug.LogError(e);
+
+                    EditorUtility.DisplayDialog("Invalid URI", "Please Check Uri Format in HamsterLib->ZGS->Setting", "OK");
+                    callback?.Invoke(null);
+                    errCallback?.Invoke(e);
+                }
+                else if (e is System.Collections.Generic.KeyNotFoundException)
+                {
+                    Debug.LogError(e);
+                    EditorUtility.DisplayDialog("UGS Error", "Maybe, Google Spread Sheet Rules is Invalid or You not make Typedata or other error.." , "Hmm.. Ok");
+                    callback?.Invoke(null);
+                }
+                else if (e is Hamster.ZG.Exception.TypeParserNotFoundException)
+                {
+                    Debug.LogError(e);
+                    EditorUtility.DisplayDialog("UGS Error", e.Message, "Hmm.. Ok");
                     callback?.Invoke(null);
                 }
                 else
                 {
-                    Debug.LogError(e.Message + "\n---\n---\n" + e.StackTrace); 
+                    Debug.LogError(e);
+                    
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);
-                      errCallback?.Invoke(e);
+                    errCallback?.Invoke(e);
                 }
 
 
@@ -230,21 +253,23 @@ namespace Hamster.ZG
                 {
                     var we = e as WebException;
                     Debug.Log(we.Status);
-                    callback?.Invoke(null); 
+                    callback?.Invoke(null);
+                    errCallback?.Invoke(e);
                 }
                 else if (e is System.Net.Http.HttpRequestException)
                 {
                     Debug.LogError(e.Message);
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
-                    callback?.Invoke(null); 
+                    callback?.Invoke(null);
+                    errCallback?.Invoke(e);
                 }
                 else
                 {
                     Debug.LogError(e.Message);
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);
-                }
-                errCallback?.Invoke(e);
+                    errCallback?.Invoke(e);
+                } 
             }
         }
 

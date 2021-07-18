@@ -53,6 +53,7 @@ namespace Hamster.ZG
         {
             get
             {
+
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
                 if (setting == null)
                 {

@@ -152,7 +152,10 @@ public class UnityGoogleSheet
             loadFunction.Invoke(null, new System.Object[] { callback, updateData }); 
   
     }
-
+    public static void OnTableError(System.Exception e)
+    {
+        Debug.LogError(e);
+    }
 
     /// <summary>
     /// Load All Your Generated Table.

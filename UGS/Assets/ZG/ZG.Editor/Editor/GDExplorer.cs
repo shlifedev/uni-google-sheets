@@ -193,30 +193,40 @@ public class GDExplorer : EditorWindow
     public Vector2 data;
 
     public bool createWait = false;
-
+    static bool __errorWIndow = false;
  
     public static void OnEditorError(System.Exception e)
     {
+       
         bool p = (UnityEditor.EditorUtility.DisplayDialog("UGS Exception", "Error! \n\n " + e.Message, "Open Setting..", "dev:debug gui"));
         if(p)
-        {
-            try
-            {
-                var gdWindow = GDExplorer.GetWindow<GDExplorer>();
+        { 
+            var gdWindow = GDExplorer.GetWindow<GDExplorer>();
+            if(gdWindow && gdWindow.docked)
                 gdWindow.Close();
-            }
-            catch { }
+        
             try
             {
+                var instanced = UGSSetting.GetWindow<UGSSetting>();
+                if(instanced != null)
+                {
+                    if (instance.docked)
+                    {
+                        instance.Close();
+                    }
+                }
                 var window = UGSSetting.CreateWindow<UGSSetting>();
-                window.Show();
-                float width = window.position.width;
-                float height = window.position.height;
-                float x = (Screen.currentResolution.width - width) / 2;
-                float y = (Screen.currentResolution.height - height) / 2;
-                window.position = new Rect(x, y, width, height);
-                window.Focus();
-            }
+                if (window.docked == false)
+                {
+                    window.Show();
+                    float width = window.position.width;
+                    float height = window.position.height;
+                    float x = (Screen.currentResolution.width - width) / 2;
+                    float y = (Screen.currentResolution.height - height) / 2;
+                    window.position = new Rect(x, y, width, height);
+                    window.Focus();
+                }
+                }
             catch { }
 
         
@@ -234,8 +244,7 @@ public class GDExplorer : EditorWindow
         {
             if (id != ZGSetting.GoogleFolderID)
             {
-                loadedFileData.Add(new FileData(FileType.ParentFolder, ZGSetting.GoogleFolderID, ZGSetting.GoogleFolderID, "../"));
-
+                loadedFileData.Add(new FileData(FileType.ParentFolder, ZGSetting.GoogleFolderID, ZGSetting.GoogleFolderID, "../")); 
             }
             else
             {
