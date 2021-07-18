@@ -9,16 +9,22 @@ using System.Threading.Tasks;
 
 namespace Hamster.ZG
 {
+    /*
+        백업 플
+     */
     public class UnityGSParser : IParser
     {
         public void ParseSheet(string sheetJsonData, bool generateCs, bool generateJson, IFIleWriter writer)
         {
+            
             GetTableResult getTableResult = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(sheetJsonData);
             if (generateJson)
-            {
+            { 
                 var result = GenerateData(getTableResult);
                 writer?.WriteData(getTableResult.spreadSheetName, result);
             }
+
+
             int count = 0;
             foreach (var sheet in getTableResult.tableResult)
             {

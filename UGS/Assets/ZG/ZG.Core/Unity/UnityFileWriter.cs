@@ -15,7 +15,15 @@ namespace Hamster.ZG
             ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
 #if UNITY_EDITOR
             System.IO.Directory.CreateDirectory(setting.CSPath); 
-            System.IO.File.WriteAllText(setting.CSPath + "/" + writePath + ".cs", content);
+            string targetPath = setting.CSPath + "/" + writePath + ".cs";
+
+            if (System.IO.File.Exists(targetPath))
+            {
+                UGSBackupManager.AddBackupPlan(targetPath);
+                Debug.Log("백업 " + targetPath);
+            }
+
+            System.IO.File.WriteAllText(targetPath, content);
             AssetDatabase.Refresh();
 #else
         Debug.Log("C# code auto-generate editor only support!");
@@ -37,7 +45,12 @@ namespace Hamster.ZG
             ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
 #if UNITY_EDITOR
             System.IO.Directory.CreateDirectory(setting.DataPath);
-            System.IO.File.WriteAllText(setting.DataPath + "/" + writePath + ".json", content);
+            string targetPath = setting.DataPath + "/" + writePath + ".json";
+            if (System.IO.File.Exists(targetPath))
+            {
+                UGSBackupManager.AddBackupPlan(targetPath); 
+            }
+            System.IO.File.WriteAllText(targetPath, content);
             AssetDatabase.Refresh();
 #endif 
             //#else

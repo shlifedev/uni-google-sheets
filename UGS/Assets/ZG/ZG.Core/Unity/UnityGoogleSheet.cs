@@ -8,9 +8,45 @@ using JetBrains.Annotations;
 #if UNITY_2017_1_OR_NEWER
 using UnityEngine;
 #endif
+
+public static class UGSBackupManager
+{
+    public struct BackupPlan
+    {
+        public System.DateTime BackupDateTime;
+        public string OriginFilePath;
+        public string OriginFileContent;
+        public bool   IsTable; // true is csharp file.
+
+        public BackupPlan(DateTime backupDateTime, string originFilePath, string originFileContent, bool isTable)
+        {
+            BackupDateTime = backupDateTime;
+            OriginFilePath = originFilePath;
+            OriginFileContent = originFileContent;
+            IsTable = isTable;
+        }
+    }
+    static List<BackupPlan> BackupList = new List<BackupPlan>();
+    public static void AddBackupPlan(string path)
+    {
+        if (System.IO.File.Exists(path))
+        {
+            var content = System.IO.File.ReadAllText(path);
+            var extention = System.IO.Path.GetExtension(path); 
+            var backupPlan = new BackupPlan(System.DateTime.Now, path, content, extention.Contains("json"));
+            BackupList.Add(backupPlan);
+            Debug.Log($"Backup UGS Data => {path}, it is {extention} file.");
+        }
+        else
+        {
+            Debug.LogError("Can't add backup plan, path not found =>" + path);
+        } 
+    } 
+}
 public class UnityGoogleSheet
 {
-#if UNITY_EDITOR 
+
+#if UNITY_EDITOR
     public static void TestFunction()
     {
         UnityGoogleSheet.LoadAllData();

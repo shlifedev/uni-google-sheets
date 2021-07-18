@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ZG.Examples/2. ItemShop/2.Example ItemShop 1.unity
     guid: ba13f2bd0b9bc2b45a1f659ee8a9e72b
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZG.Examples/1. Localization/1.Example Localizaiton.unity
     guid: fd6ce9b4db939cc42b78373ecefde348
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZG.Examples/4. GameBalanceEditor/4.GameEditor.unity
     guid: 138cbdd1ba4596043adc3ecb8ef916a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZG.Examples/3. Custom Class/3. Custom Class&Type.unity
     guid: bba9da7e0eacd4a45b93653da1a576f4
   m_configObjects: {}
