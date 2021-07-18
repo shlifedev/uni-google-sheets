@@ -28,15 +28,17 @@
  
  
 ## Features
- - You can read(load)/write GameData from GoogleSpreadSheet Realtime `(require internet connection)`
+ - You can read(load)/write GameData from GoogleSpreadSheet `(require internet connection)`
  - You can Cacheing GameData and Load from Cached json  `(no require internet connection)`  
  - Support `Code Generator` 
  - Support `All Primitive` Type and Serializeable `All Custom Class/Struct`
  - Support All `Enum`
  - Very useful Google Drive Explorer GUI!
  - There are no Dependencies other than `Newtonsoft.json.dll`
-## Warnings
- - Apps Scripts 
+
+## Warnings 
+ - Do not use Runtime Load/Write feature on user release! because, google apps script has api-call limit, so just use only game design time!
+
 ## Require
   - Unity 2018.3 ++
   - Newtonsoft.Json   
