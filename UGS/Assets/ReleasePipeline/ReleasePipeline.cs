@@ -15,7 +15,7 @@ public class ReleasePipeline
         var surl = settingObj.ScriptURL;
         settingObj.ScriptPassword = null;
         settingObj.GoogleFolderID = null;
-        settingObj.ScriptURL = null;
+        settingObj.ScriptURL = null; 
         var exportedPackageAssetList = new List<string>();
         var assets = AssetDatabase.FindAssets(null, new[] { "Assets/ZG" });
         foreach (var asset in assets)
@@ -25,13 +25,7 @@ public class ReleasePipeline
         }
          
         AssetDatabase.ExportPackage(exportedPackageAssetList.ToArray(), "ugs.unitypackage",
-           ExportPackageOptions.Recurse);
-
-
-        settingObj.ScriptPassword = gfid;
-        settingObj.GoogleFolderID = sp;
-        settingObj.ScriptURL = surl;
-
+           ExportPackageOptions.Recurse); 
     }
 
     [MenuItem("HamsterLib/Expoter/ExportUGSExample")]
