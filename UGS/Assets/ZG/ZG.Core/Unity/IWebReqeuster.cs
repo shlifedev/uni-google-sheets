@@ -3,15 +3,15 @@ using System;
 
 public interface IZGRequester
 { 
-    void SearchGoogleDriveDirectory(string folderID, System.Action<GetFolderInfo> callback);
+    void SearchGoogleDriveDirectory(string folderID, System.Action<System.Exception> errCallback, System.Action<GetFolderInfo> callback);
     
-    void ReadGoogleSpreadSheet(string sheetID, System.Action<GetTableResult, string> callback);
+    void ReadGoogleSpreadSheet(string sheetID, System.Action<System.Exception> errCallback, System.Action<GetTableResult, string> callback);
     
-    void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action onWrited = null);
+    void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action<System.Exception> errCallback,  System.Action onWrited = null);
 
-    void CreateDefaultTable(string folderID, string fileName, Action<string> callback);
+    void CreateDefaultTable(string folderID, string fileName, System.Action<System.Exception> errCallback, Action<string> callback);
 
-    void CopyExamples(string folderID, Action<string> callback); 
+    void CopyExamples(string folderID, System.Action<System.Exception> errCallback, Action<string> callback); 
 }
 
 public class WriteDataSender

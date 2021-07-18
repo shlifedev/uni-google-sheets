@@ -193,13 +193,44 @@ public class GDExplorer : EditorWindow
     public Vector2 data;
 
     public bool createWait = false;
+
+ 
+    public static void OnEditorError(System.Exception e)
+    {
+        bool p = (UnityEditor.EditorUtility.DisplayDialog("UGS Exception", "Error! \n\n " + e.Message, "Open Setting..", "dev:debug gui"));
+        if(p)
+        {
+            try
+            {
+                var gdWindow = GDExplorer.GetWindow<GDExplorer>();
+                gdWindow.Close();
+            }
+            catch { }
+            try
+            {
+                var window = UGSSetting.CreateWindow<UGSSetting>();
+                window.Show();
+                float width = window.position.width;
+                float height = window.position.height;
+                float x = (Screen.currentResolution.width - width) / 2;
+                float y = (Screen.currentResolution.height - height) / 2;
+                window.position = new Rect(x, y, width, height);
+                window.Focus();
+            }
+            catch { }
+
+        
+        }
+        
+ 
+    }
     public void CreateFileDatas(string id)
     {
         loadedFileData.Clear();
 
         if (createWait) return;
         createWait = true;
-        UnityEditorWebRequest.Instance.SearchGoogleDriveDirectory(id, x =>
+        UnityEditorWebRequest.Instance.SearchGoogleDriveDirectory(id, OnEditorError, x =>
         {
             if (id != ZGSetting.GoogleFolderID)
             {
@@ -236,14 +267,14 @@ public class GDExplorer : EditorWindow
                     if (Application.isPlaying == false)
                     {
 //                        Debug.Log(GDExplorer.Instance.loadedFileData.Count +"," + file.id); 
-                        UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
+                        UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(file.id, OnEditorError, (x1, x2) =>
                         {
                             ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
                         });
                     } 
                     else //Currently Not Support With PlayMode
                     {
-                        UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(file.id, (x1, x2) =>
+                        UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(file.id, OnEditorError, (x1, x2) =>
                         {
                             ZeroGoogleSheet.DataParser.ParseSheet(x2, true, true, new UnityFileWriter());
                         });
@@ -351,7 +382,7 @@ public class GDExplorer : EditorWindow
         {
             if (Application.isPlaying == false)
             {
-                UnityEditorWebRequest.Instance.CreateDefaultTable(currentViewFolderId, defaultFileName, json =>
+                UnityEditorWebRequest.Instance.CreateDefaultTable(currentViewFolderId, defaultFileName, OnEditorError, json =>
                 {
                     if (json == "failed")
                     {
@@ -372,7 +403,7 @@ public class GDExplorer : EditorWindow
             }
             else
             {
-                UnityPlayerWebRequest.Instance.CreateDefaultTable(currentViewFolderId, defaultFileName, json =>
+                UnityPlayerWebRequest.Instance.CreateDefaultTable(currentViewFolderId, defaultFileName, OnEditorError, json =>
                 {
                     if (json == "failed")
                     {

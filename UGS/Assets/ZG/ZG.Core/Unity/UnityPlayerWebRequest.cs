@@ -45,7 +45,7 @@ namespace Hamster.ZG
             }
         }
          
-        public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
+        public void CreateDefaultTable(string folderID, string fileName, Action<System.Exception> OnError, Action<string> callback)
         {
             if (reqProcessing)
             {
@@ -59,13 +59,13 @@ namespace Hamster.ZG
             var data = new CreateDefaultTableSender(folderID, fileName);
             var json = JsonConvert.SerializeObject(data);
 
-            StartCoroutine(Post(json, (x) =>
+            StartCoroutine(Post(json, OnError, (x) =>
             {
                 Debug.Log(x);
             }));
         } 
 
-        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action onWrited = null)
+        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, Action<System.Exception> OnError, System.Action onWrited = null)
         {
             if (reqProcessing)
             {
@@ -79,7 +79,7 @@ namespace Hamster.ZG
             var data = new WriteDataSender(spreadSheetID, sheetID, key, value);
             var json = JsonConvert.SerializeObject(data);
 
-            StartCoroutine(Post(json, (x) =>
+            StartCoroutine(Post(json, OnError, (x) =>
             {
                 try
                 {
@@ -104,9 +104,9 @@ namespace Hamster.ZG
         }
          
  
-        public void CopyExamples(string folderID, Action<string> callback)
+        public void CopyExamples(string folderID, Action<System.Exception> OnError, Action<string> callback)
         { 
-            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
+            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", OnError, (x) =>
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x);
                 Debug.Log(result.result);
@@ -114,7 +114,7 @@ namespace Hamster.ZG
             }));
         }
 
-        public void SearchGoogleDriveDirectory(string folderID, Action<GetFolderInfo> callback)
+        public void SearchGoogleDriveDirectory(string folderID, Action<System.Exception> OnError, Action<GetFolderInfo> callback)
         {
             if (reqProcessing)
             {
@@ -125,7 +125,7 @@ namespace Hamster.ZG
             {
                 reqProcessing = true;
             }
-            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", x=> {
+            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", OnError, x => {
                 if (x == null)
                 { 
                     callback?.Invoke(null);
@@ -147,7 +147,7 @@ namespace Hamster.ZG
 
         }
 
-        public void ReadGoogleSpreadSheet(string sheetID, Action<GetTableResult, string> callback)
+        public void ReadGoogleSpreadSheet(string sheetID, Action<System.Exception> OnError, Action<GetTableResult, string> callback)
         {
             if (reqProcessing)
             {
@@ -158,7 +158,7 @@ namespace Hamster.ZG
             {
                 reqProcessing = true;
             }
-            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", (x) =>
+            StartCoroutine(Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", OnError,(x) =>
             {
                 if (x == null)
                 { 
@@ -178,47 +178,49 @@ namespace Hamster.ZG
                 }
             }));
         }
-        IEnumerator Get(string uri, Action<string> callback)
+        IEnumerator Get(string uri, Action<System.Exception> OnError, Action<string> callback)
         {
             using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-            {
-                webRequest.timeout = 60;
-                // Request and wait for the desired page.
-                yield return webRequest.SendWebRequest(); 
-                if(webRequest.error == null)
+            { 
+
+                    webRequest.timeout = 60;
+                    // Request and wait for the desired page.
+                    yield return webRequest.SendWebRequest();
+                    if (webRequest.error == null)
+                    {
+                        reqProcessing = false;
+                        callback?.Invoke(webRequest.downloadHandler.text);
+
+                    }
+                    else
+                    {
+                        reqProcessing = false;
+                        Debug.LogError(webRequest.error);
+                    }
+                 
+            }
+        }
+        IEnumerator Post(string json, Action<System.Exception> OnError, Action<string> callback)
+        {
+       
+                var request = new UnityWebRequest(baseURL, "POST");
+                byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+                request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+                request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.timeout = 60;
+                yield return request.SendWebRequest();
+                if (request.error == null)
                 {
                     reqProcessing = false;
-                    callback?.Invoke(webRequest.downloadHandler.text);
-               
+                    callback?.Invoke(request.downloadHandler.text); 
                 }
                 else
                 {
                     reqProcessing = false;
-                    Debug.LogError(webRequest.error); 
+                    Debug.LogError(request.error);
                 }
-            }
-        }
-        IEnumerator Post(string json, Action<string> callback)
-        { 
-            var request = new UnityWebRequest (baseURL, "POST");
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
-            request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.timeout = 60;
-            yield return request.SendWebRequest(); 
-            if (request.error == null)
-            { 
-                reqProcessing = false;
-                callback?.Invoke(request.downloadHandler.text);
-        
-            }
-            else
-            {
-                reqProcessing = false;
-                Debug.LogError(request.error); 
-            }
+            } 
         }
     }
-}
 #endif

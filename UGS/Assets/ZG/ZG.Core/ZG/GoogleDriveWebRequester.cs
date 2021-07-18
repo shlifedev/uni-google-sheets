@@ -23,9 +23,9 @@ public class GoogleDriveWebRequester : IZGRequester
     public string password = "";
 
     /* --------------------- Web Requester -------------------- */
-    public void SearchGoogleDriveDirectory(string folderID, Action<GetFolderInfo> callback)
+    public void SearchGoogleDriveDirectory(string folderID, System.Action<System.Exception> errCallback,  Action<GetFolderInfo> callback)
     {
-        Instance.Get($"{baseURL}?password={password}&instruction=getFolderInfo&folderID={folderID}", (x) =>
+        Instance.Get($"{baseURL}?password={password}&instruction=getFolderInfo&folderID={folderID}", errCallback, (x) =>
         {
             if (x == null)
             {
@@ -46,9 +46,9 @@ public class GoogleDriveWebRequester : IZGRequester
             }
         });
     }
-    public void ReadGoogleSpreadSheet(string sheetID, Action<GetTableResult, string> callback)
+    public void ReadGoogleSpreadSheet(string sheetID, System.Action<System.Exception> errCallback = null, Action<GetTableResult, string> callback = null)
     {
-        Instance.Get($"{baseURL}?password={password}&instruction=getTable&sheetID={sheetID}", (x) =>
+        Instance.Get($"{baseURL}?password={password}&instruction=getTable&sheetID={sheetID}", errCallback, (x) =>
         {
             if (x == null)
             {
@@ -68,29 +68,29 @@ public class GoogleDriveWebRequester : IZGRequester
             }
         });
     }
-    public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, Action onWrited = null)
+    public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action<System.Exception> errCallback = null, Action onWrited = null)
     {
         var data = new WriteDataSender(password, spreadSheetID, sheetID, key, value);
         var json = JsonConvert.SerializeObject(data);
 
-        Instance.Post(json, (x) =>
+        Instance.Post(json, errCallback,(x) =>
         {
             onWrited?.Invoke();
         });
     }
-    public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
+    public void CreateDefaultTable(string folderID, string fileName, System.Action<System.Exception> errCallback = null, Action<string> callback = null)
     {
         var data = new CreateDefaultTableSender(password, folderID, fileName);
         var json = JsonConvert.SerializeObject(data);
 
-        Instance.Post(json, (x) =>
+        Instance.Post(json, errCallback, (x) =>
         {
             callback?.Invoke(x);
         });
     }
-    public void CopyExamples(string folderID, Action<string> callback)
+    public void CopyExamples(string folderID, System.Action<System.Exception> errCallback, Action<string> callback)
     {
-        Instance.Get($"{baseURL}?password={password}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
+        Instance.Get($"{baseURL}?password={password}&instruction=copyExampleSheets&folderID={folderID}", errCallback, (x) =>
         {
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x); 
             callback?.Invoke(result.createdFolderId);
@@ -99,7 +99,7 @@ public class GoogleDriveWebRequester : IZGRequester
 
 
 
-    private void Get(string url, Action<string> callback)
+    private void Get(string url, System.Action<System.Exception> errCallback, Action<string> callback)
     {
         try
         {
@@ -133,11 +133,12 @@ public class GoogleDriveWebRequester : IZGRequester
         }
         catch (System.Exception e)
         {
-            Console.WriteLine(e.Message + "\n" + e.StackTrace);
+            Console.WriteLine(e.Message + "\n" + e.StackTrace); 
+            errCallback?.Invoke(e);
         }
     }
 
-    private void Post(string json, Action<string> callback)
+    private void Post(string json, System.Action<System.Exception> errCallback, Action<string> callback)
     {
         try
         {
@@ -184,6 +185,7 @@ public class GoogleDriveWebRequester : IZGRequester
         catch (System.Exception e)
         {
             Console.WriteLine(e.Message + "\n" + e.StackTrace);
+            errCallback?.Invoke(e);
         }
     }
 }

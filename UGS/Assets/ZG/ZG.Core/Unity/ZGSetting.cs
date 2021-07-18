@@ -9,12 +9,21 @@ namespace Hamster.ZG
         {
             get
             { 
+                
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
+                if(setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 return setting.GoogleFolderID; 
             }
             set
             {
-                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject"); 
+                ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                if (setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 setting.GoogleFolderID = value;
             }
         }
@@ -23,11 +32,19 @@ namespace Hamster.ZG
             get
             {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                if (setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 return setting.ScriptURL;
             }
             set
             {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                if (setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 setting.ScriptURL = value;
             }
         }
@@ -37,11 +54,19 @@ namespace Hamster.ZG
             get
             {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                if (setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 return setting.ScriptPassword;
             }
             set
             {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                if (setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 setting.ScriptPassword = value;
             }
         }
@@ -53,11 +78,19 @@ namespace Hamster.ZG
             get
             {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                if (setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 return setting.SavePathSyncToggle;
             }
             set
             {
                 ZGSettingObject setting = Resources.Load<ZGSettingObject>("ZGSettingObject");
+                if (setting == null)
+                {
+                    throw new System.Exception("Cannot Find ZG/Resources/ZGSettingObject.asset file, Setting Object is null!, please check or complate <color=#00ff00><b>HamsterLib -> UGS -> ZGSetting</b></color>");
+                }
                 setting.SavePathSyncToggle = value;
             }
         }

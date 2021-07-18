@@ -35,9 +35,9 @@ namespace Hamster.ZG
             }
         }
 
-        public void CopyExamples(string folderID, Action<string> callback)
+        public void CopyExamples(string folderID, System.Action<System.Exception> errCallback, Action<string> callback)
         {
-            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", (x) =>
+            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=copyExampleSheets&folderID={folderID}", errCallback,(x) =>
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CopyExampleResult>(x);
                 Debug.Log(result.result);
@@ -45,13 +45,15 @@ namespace Hamster.ZG
             });
         }
 
-        public void SearchGoogleDriveDirectory(string folderID, System.Action<GetFolderInfo> callback)
+        public void SearchGoogleDriveDirectory(string folderID, System.Action<System.Exception> errCallback,  System.Action<GetFolderInfo> callback)
         {
-            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", (x) =>
+            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getFolderInfo&folderID={folderID}", errCallback, (x) =>
             {
                 if (x == null)
-                { 
-                    Debug.LogError("Cannot Receive GoogleDrive Directory Data! Please Check Your Setting. (HamsterLib->ZGS->Setting)" + x); 
+                {
+                    string err = "Cannot Receive GoogleDrive Directory Data! Please Check Your Setting. (HamsterLib->ZGS->Setting)" + x;
+                    Debug.LogError(err);
+                    errCallback?.Invoke(new System.Exception(err));
                 }
                 else
                 {
@@ -68,9 +70,9 @@ namespace Hamster.ZG
                 }
             });
         } 
-        public void ReadGoogleSpreadSheet(string sheetID, Action<GetTableResult, string> callback)
+        public void ReadGoogleSpreadSheet(string sheetID, System.Action<System.Exception> errCallback, Action<GetTableResult, string> callback)
         {
-            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", (x) =>
+            Instance.Get($"{baseURL}?password={ZGSetting.ScriptPassword}&instruction=getTable&sheetID={sheetID}", errCallback, (x) =>
             {
                 if (x == null)
                 {
@@ -94,27 +96,27 @@ namespace Hamster.ZG
    
 
       
-        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action onWrited = null)
+        public void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action<System.Exception> errCallback = null, System.Action onWrited = null)
         {
             var data = new WriteDataSender(spreadSheetID, sheetID, key, value);
             var json = JsonConvert.SerializeObject(data);
 
-            Instance.Post(json, (x) =>
+            Instance.Post(json, errCallback, (x) =>
             { 
                 onWrited?.Invoke();
             });
         }
-        public void CreateDefaultTable(string folderID, string fileName, Action<string> callback)
+        public void CreateDefaultTable(string folderID, string fileName, System.Action<System.Exception> errCallback, Action<string> callback)
         {
             var data = new CreateDefaultTableSender(folderID, fileName);
             var json = JsonConvert.SerializeObject(data);
 
-            Instance.Post(json, (x) =>
+            Instance.Post(json, errCallback, (x) =>
             {
                 callback?.Invoke(x);
             });
         }
-        private void Get(string url, Action<string> callback)
+        private void Get(string url, System.Action<System.Exception> errCallback, Action<string> callback)
         {
 
             try
@@ -151,6 +153,7 @@ namespace Hamster.ZG
             }
             catch (System.Exception e)
             {
+                EditorUtility.ClearProgressBar();
                 if (e is WebException)
                 {
                     var we = e as WebException;
@@ -168,11 +171,14 @@ namespace Hamster.ZG
                     Debug.LogError(e.Message + "\n---\n---\n" + e.StackTrace); 
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);
+                      errCallback?.Invoke(e);
                 }
+
+
             }
         }
 
-        private void Post(string json, Action<string> callback)
+        private void Post(string json, System.Action<System.Exception> errCallback, Action<string> callback)
         {
 
             try
@@ -219,27 +225,26 @@ namespace Hamster.ZG
             }
             catch (System.Exception e)
             {
+                EditorUtility.ClearProgressBar();
                 if (e is WebException)
                 {
                     var we = e as WebException;
                     Debug.Log(we.Status);
-                    callback?.Invoke(null);
-                    EditorUtility.ClearProgressBar();
+                    callback?.Invoke(null); 
                 }
                 else if (e is System.Net.Http.HttpRequestException)
                 {
                     Debug.LogError(e.Message);
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
-                    callback?.Invoke(null);
-                    EditorUtility.ClearProgressBar();
+                    callback?.Invoke(null); 
                 }
                 else
                 {
                     Debug.LogError(e.Message);
                     EditorUtility.DisplayDialog("Please Check Setting!", e.Message, "OK");
                     callback?.Invoke(null);
-                    EditorUtility.ClearProgressBar();
                 }
+                errCallback?.Invoke(e);
             }
         }
 

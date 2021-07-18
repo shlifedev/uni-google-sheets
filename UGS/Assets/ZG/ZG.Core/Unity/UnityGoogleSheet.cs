@@ -96,6 +96,12 @@ public class UnityGoogleSheet
 
     }
 #endif
+
+    public static void OnReadError(System.Exception e)
+    {
+        Debug.LogError("UGS Data Generate :: Google Networking Error \n\n " + e);
+         
+    }
     /// <su
     public static void Generate(string spreadSheetId, bool csharpGenerate, bool jsonGenerate)
     {
@@ -103,27 +109,27 @@ public class UnityGoogleSheet
 #if UNITY_EDITOR
         if (Application.isPlaying)
         {
-            UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, (x, json) => {
+            UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, OnReadError,(x, json) => {
                 ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter());
             });
         }
         else
         {
-            UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, (x, json) => {
+            UnityEditorWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, OnReadError, (x, json) => {
                 ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new UnityFileWriter());
             });
         }
 #elif UNITY_2017_1_OR_NEWER
-        UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, (x, json) => {
+        UnityPlayerWebRequest.Instance.ReadGoogleSpreadSheet(spreadSheetId, OnReadError, (x, json) => {
                     ZeroGoogleSheet.DataParser.ParseSheet(json, false, jsonGenerate, new UnityFileWriter());
                 }); 
 #else
         //C# 코드작성
-        GoogleDriveWebRequester.Instance.ReadGoogleSpreadSheet(spreadSheetId, (x, json) => { 
+        GoogleDriveWebRequester.Instance.ReadGoogleSpreadSheet(spreadSheetId, OnReadError, (x, json) => { 
             ZeroGoogleSheet.DataParser.ParseSheet(json, csharpGenerate, jsonGenerate, new FileWriter()); 
         });
 #endif
-    } 
+    }
     /// <summary>
     /// Load Data From GoogleSheet  
     /// </summary>
