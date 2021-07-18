@@ -5,8 +5,9 @@
  
 # UnityGoogleSheet 
 
-`UGS` is a Game Data Management Tool that allows easily manage game data with Google SpreadSheet! You can read and write data in runtime mode and Not only Primitive C# Type, but also Custom Type  supported, and all Enum types are supported. 
+`UGS` is a `Google Spread Sheet` based GameData Table Management Tool, allows easily manage game data with Google SpreadSheet and you can read and write data in runtime mode and Not only Primitive C# Type, but also Custom Type  supported, and all Enum types are supported. 
 
+`use example` => very useful for managing game data, balance, or management translate string!
 <p align="center">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
         <img src="https://img.shields.io/badge/release-v.0.1.2-green.svg"
@@ -25,16 +26,14 @@
 <p align="center"> <img src="https://i.imgur.com/PBgclRh.png" width=420px> </p>
 
  
-
  
  # Features
- - Support `Load GameData From GoogleSheet` for DevMode
- - Support `Write GameData To GoogleSheet` for DevMode
- - Support `Local Data Cache` for Release
- - Support `Code Generator ` 
- - Support  All Serializeable `CustomTypes` with `Type Reflection`
- - Support  All EnumType Support
- - `Google Drive Explorer` GUI   
+ - You can read(load)/write GameData from GoogleSpreadSheet Realtime `(require internet connection)`
+ - You can Cacheing GameData and Load from Cached json  `(no require internet connection)`  
+ - Support `Code Generator` 
+ - Support `All Primitive` Type and Serializeable `All Custom Class/Struct`
+ - Support All `Enum`
+ - Very useful Google Drive Explorer GUI!
 
 ## Require
   - Unity 2018.3 ++
@@ -50,5 +49,5 @@
 **Blog Posting[Korean]** : [Tistory](https://shlifedev.tistory.com/33)    
 
  
-해당 리포지토리에 공개되었던 버전까지의 버전은 모두 무료입니다.
- 
+
+해당 리포지토리에 공개되었던 버전까지의 버전은 모두 무료입니다. :) 
