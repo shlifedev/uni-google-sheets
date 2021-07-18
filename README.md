@@ -44,7 +44,7 @@
 
 ## Warnings 
  - Do not use Runtime Load/Write feature on user release! because, google apps script has api-call limit, so just use only game design time!
- - Maybe Example Scene not work less than unity 2019.3 
+ - Example Scene working only unity 2019.3 ++
 ## Require
   - Unity 2018.3 ++
   - Newtonsoft.Json   
