@@ -87,15 +87,21 @@ namespace @namespace
                     if (isEnum[i] == false)
                     {
                         var targetType = types[i];
-                        var targetField = fieldNames[i];
-                        TypeMap.StrMap.TryGetValue(targetType, out System.Type outType); 
+                        var targetField = fieldNames[i]; 
+                        TypeMap.StrMap.TryGetValue(targetType, out System.Type outType);  
                         if(outType == null)
-                        {
-                            throw new Hamster.ZG.Exception.TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
-                        }
+                        { 
+                            Debug.Log("-------UGS IMPORTANT ERROR DEBUG---------");
+                            string log = null;
+                            string debugTypes = string.Join("  ", sheetInfo.sheetTypes);
 
-                        builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {fieldNames[i]};");
-                   
+                            log += $" <color=white>Error Sheet Name => {sheetInfo.sheetFileName}.{sheetInfo.sheetName}";
+                            log += $" <color=white>Your use types</color> => {debugTypes}";
+                            log += $"\bn <color=#00ff00>error field :</color> {targetField} : {sheetInfo.sheetTypes[i]}"; 
+                            Debug.LogError(log);
+                            throw new Hamster.ZG.Exception.TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
+                        } 
+                        builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {fieldNames[i]};"); 
                     }
                     else
                     { 
