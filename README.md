@@ -1,8 +1,19 @@
- # HamsterGoogleSpreadSheet
 
-<p align="left">
+ 
+ 
+ 
+ 
+# HamsterGoogleSpreadSheet
+ 
+ 
+
+`HamsterGoogleSpreadSheet` is a `Google Spread Sheet` based Data Management Tool, allows easily manage game data with Google SpreadSheet and you can read and write data in runtime mode and Not only Primitive C# Type, but also Custom Type  supported, and all Enum types are supported. 
+
+Use example - very useful for managing game data, game balance, or management translate string!
+
+<p align="center">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
-        <img src="https://img.shields.io/badge/release-v.0.1.1-green.svg"
+        <img src="https://img.shields.io/badge/release-v.0.1.3-green.svg"
              alt="POD">
     </a>
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
@@ -15,22 +26,25 @@
     </a> 
 </p>
 
-Management your data with google sheet very easily! If use this, There is no need to rebuild for patch the game data!
- 
- # Features
- - Support `Load GameData From GoogleSheet` 
- - Support `Write GameData To GoogleSheet` 
- - Support `Local Data Cache` for Release
- - Support `Code Generator ` 
- - Support  All Serializeable `CustomTypes` with `Type Reflection`
- - Support  All Enums (with Enum Generator)
- - `UGS` Unity Plugin
+<p align="center"> <img src="https://i.imgur.com/PBgclRh.png" width=420px> </p>
 
- ## Documentation
-**Docs[English]** : soon!    
-**Docs[Korean]** : [SetupGuide Gitbook](https://shlifedev.gitbook.io/unitygooglesheet/)     
-**한국인인 경우 해당 가이드를 추천합니다.** : [Tistory](https://shlifedev.tistory.com/33)  
+ 
+ 
+## Features
+ - You can read(load)/write GameData from GoogleSpreadSheet `(require internet connection)`
+ - You can Cacheing GameData and Load from Cached json  `(no require internet connection)`  
+ - Support `Code Generator` 
+ - Support `All Primitive` Type and Serializeable `All Custom Class/Struct`
+ - Support All `Enum`
+ - Very useful Google Drive Explorer GUI!
+ - There are no Dependencies other than `Newtonsoft.json.dll`
+
+## How to Use/Setup (if you have UGS)
+[Apps Script](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit?usp=drive_web)  
+[GitBook-English](https://shlifedev.gitbook.io/unitygooglesheet/v/english/)  
+[GitBook-Korean](https://shlifedev.gitbook.io/unitygooglesheet/)  
+[Tistory Posting](https://shlifedev.tistory.com/33) 
+
  
 ## Require
   - Newtonsoft.Json   
-  
