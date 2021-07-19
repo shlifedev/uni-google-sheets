@@ -68,11 +68,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\ConsoleApp1.csproj",
-      "projectName": "ConsoleApp1",
-      "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\App\\App.csproj",
+      "projectName": "App",
+      "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\App\\App.csproj",
       "packagesPath": "C:\\Users\\shlif\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\obj\\",
+      "outputPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shlif\\AppData\\Roaming\\NuGet\\NuGet.Config",
