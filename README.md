@@ -1,9 +1,3 @@
-# HamsterGoogleSpreadSheet
-powerful, easy, flexible! all type support! unity game data manager.
-
-
-qqq 
- 
  # HamsterGoogleSpreadSheet
 
 <p align="left">
