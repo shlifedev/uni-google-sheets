@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03FAE533-B981-4B8C-91E5-460C684A3570}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HamsterGoogleSpreadSheet</RootNamespace>
+    <AssemblyName>HamsterGoogleSpreadSheet</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNITY_BUILD</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZG\ZG.Core\Attribute\TableStructAttribute.cs" />
+    <Compile Include="ZG\ZG.Core\Exception\RequireTypeAttributeException.cs" />
+    <Compile Include="ZG\ZG.Core\Exception\TypeParserNotFoundException.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\CopyExampleResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\CreateDeaultTableResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\EReceivedResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\EWriteResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\GetFolderInfo.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\GetTableResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\ReceiveDatas.cs" />
+    <Compile Include="ZG\ZG.Core\Http\Protocol\WriteObjectResult.cs" />
+    <Compile Include="ZG\ZG.Core\IO\FileReader\FileReader.cs" />
+    <Compile Include="ZG\ZG.Core\IO\FileReader\IFileReader.cs" />
+    <Compile Include="ZG\ZG.Core\IO\FileWriter\FileWriter.cs" />
+    <Compile Include="ZG\ZG.Core\IO\FileWriter\IFIleWriter.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Generator\CodeGenerator.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Generator\DataGenerator.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Generator\EnumGenerator.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Generator\GenerateSetting.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Generator\ICodeGenerator.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Parser\ExcelReader.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Parser\GSParser.cs" />
+    <Compile Include="ZG\ZG.Core\IO\Parser\IParser.cs" />
+    <Compile Include="ZG\ZG.Core\IWebReqeuster.cs" />
+    <Compile Include="ZG\ZG.Core\Reflection\Utility.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Attribute\TypeAttribute.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Attribute\UGSAttribute.cs" />
+    <Compile Include="ZG\ZG.Core\Type\EnumType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\ByteArrayType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\ByteType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\CharListType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\CharType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\DecimalType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\DoubleListType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\DoubleType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\Example\MyCustomStruct.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\Example\MyCustomStructType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\FloatListType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\FloatType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\IntListType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\IntTupleX2.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\IntType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\LongListType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\LongType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\ShortType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\StringListType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\StringType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\UIntType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\ULongType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\Impl\UShortType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\ITable.cs" />
+    <Compile Include="ZG\ZG.Core\Type\IType.cs" />
+    <Compile Include="ZG\ZG.Core\Type\ReadUtil.cs" />
+    <Compile Include="ZG\ZG.Core\Type\TypeMap.cs" />
+    <Compile Include="ZG\ZG.Core\Type\WriteUtil.cs" />
+    <Compile Include="ZG\ZG.Core\ZG\GoogleDriveWebRequester.cs" />
+    <Compile Include="ZG\ZG.Core\ZG\SheetInfo.cs" />
+    <Compile Include="ZG\ZG.Core\ZG\HamsterGoogleSheet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="ZG\JsonDotNet\Assemblies.meta" />
+    <None Include="ZG\JsonDotNet\Assemblies\AOT.meta" />
+    <None Include="ZG\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.dll.meta" />
+    <None Include="ZG\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.XML.meta" />
+    <None Include="ZG\JsonDotNet\Documentation.meta" />
+    <None Include="ZG\JsonDotNet\Documentation\Json Net for Unity 2.0.1.pdf" />
+    <None Include="ZG\JsonDotNet\Documentation\Json Net for Unity 2.0.1.pdf.meta" />
+    <None Include="ZG\JsonDotNet\JsonDotNet201Source.zip" />
+    <None Include="ZG\JsonDotNet\JsonDotNet201Source.zip.meta" />
+    <None Include="ZG\JsonDotNet\link.xml.meta" />
+    <None Include="ZG\Resources\ZGSettingObject.asset" />
+    <None Include="ZG\Resources\ZGSettingObject.asset.meta" />
+    <None Include="ZG\ZG.Core\Attribute\TableStructAttribute.cs.meta" />
+    <None Include="ZG\ZG.Core\Exception\RequireTypeAttributeException.cs.meta" />
+    <None Include="ZG\ZG.Core\Exception\TypeParserNotFoundException.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\CopyExampleResult.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\CreateDeaultTableResult.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\EReceivedResult.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\EWriteResult.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\GetFolderInfo.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\GetTableResult.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\ReceiveDatas.cs.meta" />
+    <None Include="ZG\ZG.Core\Http\Protocol\WriteObjectResult.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\FileReader.meta" />
+    <None Include="ZG\ZG.Core\IO\FileReader\FileReader.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\FileReader\IFileReader.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\FileWriter.meta" />
+    <None Include="ZG\ZG.Core\IO\FileWriter\FileWriter.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\FileWriter\IFIleWriter.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Generator.meta" />
+    <None Include="ZG\ZG.Core\IO\Generator\CodeGenerator.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Generator\DataGenerator.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Generator\EnumGenerator.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Generator\GenerateSetting.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Generator\ICodeGenerator.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Parser.meta" />
+    <None Include="ZG\ZG.Core\IO\Parser\ExcelReader.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Parser\GSParser.cs.meta" />
+    <None Include="ZG\ZG.Core\IO\Parser\IParser.cs.meta" />
+    <None Include="ZG\ZG.Core\Reflection\Utility.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Attribute.meta" />
+    <None Include="ZG\ZG.Core\Type\Attribute\TypeAttribute.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Attribute\UGSAttribute.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\EnumType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\ByteArrayType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\ByteType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\CharListType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\CharType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\DecimalType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\DoubleListType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\DoubleType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\Example.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\Example\MyCustomStruct.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\Example\MyCustomStructType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\FloatListType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\FloatType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\IntListType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\IntTupleX2.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\IntType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\LongListType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\LongType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\ShortType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\StringListType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\StringType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\UIntType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\ULongType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\Impl\UShortType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\ITable.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\IType.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\ReadUtil.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\TypeMap.cs.meta" />
+    <None Include="ZG\ZG.Core\Type\WriteUtil.cs.meta" />
+    <None Include="ZG\ZG.Core\ZG\GoogleDriveWebRequester.cs.meta" />
+    <None Include="ZG\ZG.Core\ZG\SheetInfo.cs.meta" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ZG\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.dll" />
+    <Content Include="ZG\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.XML" />
+    <Content Include="ZG\JsonDotNet\link.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ZG\ZG.Core\Console\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>y</PostBuildEvent>
+  </PropertyGroup>
+</Project>

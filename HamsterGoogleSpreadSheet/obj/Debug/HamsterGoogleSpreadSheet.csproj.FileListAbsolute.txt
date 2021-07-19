@@ -1,0 +1,10 @@
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\obj\Debug\HamsterGoogleSpreadSheet.csproj.AssemblyReference.cache
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\obj\Debug\HamsterGoogleSpreadSheet.csproj.CoreCompileInputs.cache
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\bin\Debug\HamsterGoogleSpreadSheet.pdb
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\bin\Debug\Newtonsoft.Json.dll
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\bin\Debug\Newtonsoft.Json.xml
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\obj\Debug\HamsterGoogleSpreadSheet.csproj.CopyComplete
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\obj\Debug\HamsterGoogleSpreadSheet.pdb
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\bin\Debug\HamsterGoogleSpreadSheet.dll.config
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\bin\Debug\HamsterGoogleSpreadSheet.dll
+C:\Users\shlif\OneDrive\Documents\GitHubKraken\UnityGoogleSheet\Console\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet\obj\Debug\HamsterGoogleSpreadSheet.dll
