@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\shlif\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\ConsoleApp1\\obj\\",
+        "outputPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shlif\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj": {
-                "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj"
+              "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj": {
+                "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj"
               }
             }
           }
@@ -68,11 +68,11 @@
         }
       }
     },
-    "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj": {
+    "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj",
+        "projectUniqueName": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj",
         "projectName": "HamsterGoogleSpreadSheet",
-        "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHubKraken\\UnityGoogleSheet\\Console\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj"
+        "projectPath": "C:\\Users\\shlif\\OneDrive\\Documents\\GitHub\\HamsterGoogleSpreadSheetv2\\HamsterGoogleSpreadSheet\\HamsterGoogleSpreadSheet.csproj"
       },
       "frameworks": {
         "net472": {}
