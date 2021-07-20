@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,6 +17,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TableScript\" />
   </ItemGroup>
 
 </Project>

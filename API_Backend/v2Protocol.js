@@ -21,7 +21,7 @@ class GetDriveFolderResult {
     this.fileName = [];
     this.fileType = [];
     this.url = [];
-    instruction = instructions.search_google_drive;
+    this.instruction = instructions.search_google_drive;
   }
   addFile(id, name, type, url) {
     this.fileId.push(id);
@@ -50,8 +50,7 @@ class CreateExampleResult {
 //파일 ID, 이름, 타입, URL
 class WriteObjectResult {
   constructor(message, updated) {
-    this.instruction = instructions.write_object;
-    this.message = message;
+    this.instruction = instructions.write_object; 
     this.isUpdate = updated;
   }
 }

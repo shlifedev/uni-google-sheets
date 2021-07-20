@@ -1,5 +1,6 @@
 ﻿using Hamster.ZG.IO;
 using Hamster.ZG.IO.Generator;
+using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,17 @@ namespace Hamster.ZG
      */
     public class GSParser : IParser
     {
-        public virtual void ParseSheet(string sheetJsonData, bool generateCs, bool generateJson, IFIleWriter writer)
-        { 
-            GetTableResult getTableResult = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(sheetJsonData);
+        public virtual void ParseSheet(ReadSpreadSheetResult sheetJsonData, bool generateCs, bool generateJson, IFIleWriter writer)
+        {
+
+            ReadSpreadSheetResult getTableResult = sheetJsonData;
             if (generateJson)
             { 
                 var result = GenerateData(getTableResult);
                 writer?.WriteData(getTableResult.spreadSheetName, result);
             } 
             int count = 0;
-            foreach (var sheet in getTableResult.tableResult)
+            foreach (var sheet in getTableResult.jsonObject)
             {
                 string[] sheetInfoTypes = null;
                 string[] sheetInfoNames = null;
@@ -67,7 +69,8 @@ namespace Hamster.ZG
                 count++;
             }
         }
-        private string GenerateData(GetTableResult tableResult)
+
+        private string GenerateData(ReadSpreadSheetResult tableResult)
         {
             DataGenerator dataGen = new DataGenerator(tableResult);
             var result = dataGen.Generate();  

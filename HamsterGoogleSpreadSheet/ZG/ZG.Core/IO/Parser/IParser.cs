@@ -1,4 +1,5 @@
 ﻿using Hamster.ZG.IO;
+using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Hamster.ZG
 {
     public interface IParser
     {
-        void ParseSheet(string sheetJsonData, bool generateCs, bool generateJson, IFIleWriter writer);
+        void ParseSheet(ReadSpreadSheetResult sheetJsonData, bool generateCs, bool generateJson, IFIleWriter writer);
     }
 }

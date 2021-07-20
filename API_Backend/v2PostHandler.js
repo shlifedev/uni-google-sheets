@@ -4,7 +4,7 @@ _callbacks[instructions.write_object] = doWriteObject;
 /* UGS Currently no use post method */
 function post(e) {  
   const data = JSON.parse(e.postData.contents); 
-  const callback = _callbacks[data.instruction];
+  const callback = _callbacks[data.instruction]; 
   if (callback === undefined || callback === null)
     return json({ message: "hamster google spread sheet api internal error" });
   return callback(e);

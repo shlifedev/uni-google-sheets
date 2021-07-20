@@ -1,19 +1,18 @@
 ﻿using Hamster.ZG;
+using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Req;
+using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
 using System;
 
-public interface IZGRequester
-{ 
-    void SearchGoogleDriveDirectory(string folderID, System.Action<System.Exception> errCallback, System.Action<GetFolderInfo> callback);
-    
-    void ReadGoogleSpreadSheet(string sheetID, System.Action<System.Exception> errCallback, System.Action<GetTableResult, string> callback);
-    
-    void WriteObject(string spreadSheetID, string sheetID, string key, string[] value, System.Action<System.Exception> errCallback,  System.Action onWrited = null);
 
-    void CreateDefaultTable(string folderID, string fileName, System.Action<System.Exception> errCallback, Action<string> callback);
-
-    void CopyExamples(string folderID, System.Action<System.Exception> errCallback, Action<string> callback); 
+public interface IHttpProtcol
+{
+    void GetDriveDirectory(GetDriveDirectoryReqModel mdl, System.Action<System.Exception> errResponse, System.Action<GetDriveFolderResult> callback);
+    void ReadSpreadSheet(ReadSpreadSheetReqModel mdl, System.Action<System.Exception> errResponse, System.Action<ReadSpreadSheetResult> callback);
+    void WriteObject(WriteObjectReqModel mdl, System.Action<System.Exception> errResponse, System.Action<HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res.WriteObjectResult> callback);
+    void CreateDefaultSheet(CreateDefaultReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateDefaultSheetResult> callback);
+    void CopyExample(CopyExampleReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateExampleResult> callback); 
+     
 }
-
 public class WriteDataSender
 {
     public string password;

@@ -5,16 +5,41 @@ var module = module || { exports: exports };
  e = parameters
  type = http method (GET.. POST..) 
 */
+
+function getInstruction(e, type){ 
+   if(type == "POST") 
+   {
+     
+     
+     const data= JSON.parse(e.postData.contents); 
+     return data.instruction;
+   }
+   if(type == "GET") 
+     return e.parameter.instruction;
+  
+   return null;
+}
+
+
+
+
 function doProcessing(e, type) {
-  try {
+  try 
+  {
     return _____doProcessing(e, type);
-  } catch (err) {
-    return json({
+  }
+  catch (err) {
+    const instruction = getInstruction(e,type);
+    const errorRes = {
+      instruction,
+      error : {
       message: err.message,
       eReq: e,
       eType: type,
-      eStackTrace: err.stack,
-    });
+      eStackTrace: err.stack, 
+      }
+    } 
+    return json(errorRes);
   }
 }
 

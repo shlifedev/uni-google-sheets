@@ -1,4 +1,5 @@
-﻿ 
+﻿
+using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace Hamster.ZG.IO.Generator
 {
     public class DataGenerator : ICodeGenerator
     {
-        GetTableResult info ;
-        public DataGenerator(GetTableResult info)
+        ReadSpreadSheetResult info ;
+        public DataGenerator(ReadSpreadSheetResult info)
         {
              this.info = info;
         }

@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,14 +54,24 @@
     <Compile Include="ZG\ZG.Core\Attribute\TableStructAttribute.cs" />
     <Compile Include="ZG\ZG.Core\Exception\RequireTypeAttributeException.cs" />
     <Compile Include="ZG\ZG.Core\Exception\TypeParserNotFoundException.cs" />
-    <Compile Include="ZG\ZG.Core\Http\Protocol\CopyExampleResult.cs" />
-    <Compile Include="ZG\ZG.Core\Http\Protocol\CreateDeaultTableResult.cs" />
-    <Compile Include="ZG\ZG.Core\Http\Protocol\EReceivedResult.cs" />
-    <Compile Include="ZG\ZG.Core\Http\Protocol\EWriteResult.cs" />
-    <Compile Include="ZG\ZG.Core\Http\Protocol\GetFolderInfo.cs" />
+    <Compile Include="ZG\ZG.Core\Exception\UGSWebError.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\DataContractAttribute.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\EFileType.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\EInstruction.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Model\CreateDefaultReqModel.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Model\CopyExampleReqModel.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Model\WriteObjectReqModel.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Model\ReadSpreadSheetReqModel.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Model\Model.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Model\GetDriveDirectory.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Res\CreateDefaultSheetResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Res\CreateExampleResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Res\WriteObjectResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Res\GetDriveFolderResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Res\ReadSpreadSheetResult.cs" />
+    <Compile Include="ZG\ZG.Core\Http\ProtocolV2\Res\Response.cs" />
     <Compile Include="ZG\ZG.Core\Http\Protocol\GetTableResult.cs" />
     <Compile Include="ZG\ZG.Core\Http\Protocol\ReceiveDatas.cs" />
-    <Compile Include="ZG\ZG.Core\Http\Protocol\WriteObjectResult.cs" />
     <Compile Include="ZG\ZG.Core\IO\FileReader\FileReader.cs" />
     <Compile Include="ZG\ZG.Core\IO\FileReader\IFileReader.cs" />
     <Compile Include="ZG\ZG.Core\IO\FileWriter\FileWriter.cs" />
@@ -105,7 +116,7 @@
     <Compile Include="ZG\ZG.Core\Type\ReadUtil.cs" />
     <Compile Include="ZG\ZG.Core\Type\TypeMap.cs" />
     <Compile Include="ZG\ZG.Core\Type\WriteUtil.cs" />
-    <Compile Include="ZG\ZG.Core\ZG\GoogleDriveWebRequester.cs" />
+    <Compile Include="ZG\ZG.Core\ZG\GoogleDriveWebRequesterV2.cs" />
     <Compile Include="ZG\ZG.Core\ZG\SheetInfo.cs" />
     <Compile Include="ZG\ZG.Core\ZG\HamsterGoogleSheet.cs" />
   </ItemGroup>
@@ -128,14 +139,6 @@
     <None Include="ZG\ZG.Core\Exception\RequireTypeAttributeException.cs.meta" />
     <None Include="ZG\ZG.Core\Exception\TypeParserNotFoundException.cs.meta" />
     <None Include="ZG\ZG.Core\Http\Protocol.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\CopyExampleResult.cs.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\CreateDeaultTableResult.cs.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\EReceivedResult.cs.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\EWriteResult.cs.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\GetFolderInfo.cs.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\GetTableResult.cs.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\ReceiveDatas.cs.meta" />
-    <None Include="ZG\ZG.Core\Http\Protocol\WriteObjectResult.cs.meta" />
     <None Include="ZG\ZG.Core\IO\FileReader.meta" />
     <None Include="ZG\ZG.Core\IO\FileReader\FileReader.cs.meta" />
     <None Include="ZG\ZG.Core\IO\FileReader\IFileReader.cs.meta" />

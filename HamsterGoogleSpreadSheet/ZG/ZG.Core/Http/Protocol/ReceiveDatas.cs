@@ -6,9 +6,7 @@ using System.Threading.Tasks;
  
  
 public class ReceivedData
-{
-    public string instruction;
-    public ReceivedResult result;
+{ 
 }
    
 

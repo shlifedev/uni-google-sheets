@@ -2,7 +2,7 @@
 
 function v2GetDriveFolder(folderId) {
   result = new GetDriveFolderResult();
-  var rootFolder = DriveApp.getFolderById(folderID);
+  var rootFolder = DriveApp.getFolderById(folderId);
   var folderFiles = rootFolder.getFiles();
   var folderDirectories = rootFolder.getFolders();
 
@@ -176,9 +176,8 @@ function v2CreateDefault(folderID, fileName) {
 
   while (folderFiles.hasNext()) {
     var folderFile = folderFiles.next();
-    if (folderFile.getName() == fileName) {
-      Logger.log("failed!");
-      return "failed";
+    if (folderFile.getName() == fileName) { 
+       throw Error("failed, already exist same file!")
     }
   }
 
