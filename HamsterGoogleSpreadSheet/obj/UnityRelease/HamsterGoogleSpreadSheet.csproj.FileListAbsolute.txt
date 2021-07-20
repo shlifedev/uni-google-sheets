@@ -1,8 +1,0 @@
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\bin\UnityRelease\HamsterGoogleSpreadSheet.dll.config
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\bin\UnityRelease\HamsterGoogleSpreadSheet.dll
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\bin\UnityRelease\Newtonsoft.Json.dll
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\bin\UnityRelease\Newtonsoft.Json.xml
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\obj\UnityRelease\HamsterGoogleSpreadSheet.csproj.AssemblyReference.cache
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\obj\UnityRelease\HamsterGoogleSpreadSheet.csproj.CoreCompileInputs.cache
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\obj\UnityRelease\HamsterGoogleSpreadSheet.csproj.CopyComplete
-C:\Users\shlif\OneDrive\Documents\GitHub\HamsterGoogleSpreadSheetv2\HamsterGoogleSpreadSheet\obj\UnityRelease\HamsterGoogleSpreadSheet.dll
