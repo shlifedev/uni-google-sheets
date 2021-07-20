@@ -29,12 +29,12 @@ function doGetGoogleDrive(e) {
   return "zz";
   const { folderId } = e.parameter;
   const driveDirectoryInfo = v2GetDriveFolder(folderId);
-  return json(driveDirectoryInfo);
+  return driveDirectoryInfo;
 }
 
 /* 스프레드시트 가져오기 */
 function doGetSpreadSheet(e) {
   const { fileId } = e.parameter;
   const readedSpreadSheetData = v2ReadSheet(fileId);
-  return json(readedSpreadSheetData);
+  return readedSpreadSheetData;
 }

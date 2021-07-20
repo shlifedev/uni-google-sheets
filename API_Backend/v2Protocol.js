@@ -6,7 +6,7 @@ class ReadSpreadSheetResult {
     sheetIDList,
     tableTypes
   ) {
-    this.instruction = instruction.read_spreadsheet;
+    this.instruction = instructions.read_spreadsheet;
     this.jsonObject = jsonObject;
     this.spreadSheetName = spreadSheetName;
     this.spreadSheetID = spreadSheetID;

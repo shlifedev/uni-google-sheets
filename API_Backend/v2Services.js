@@ -1,6 +1,6 @@
 /* drive folder , sheet read, sheet write, create example, create default table */
 
-function v2GetDriveFolder(folderId) { 
+function v2GetDriveFolder(folderId) {
   result = new GetDriveFolderResult();
   var rootFolder = DriveApp.getFolderById(folderID);
   var folderFiles = rootFolder.getFiles();
@@ -30,7 +30,7 @@ function v2GetDriveFolder(folderId) {
   return JSON.stringify(result);
 }
 
-function v2ReadSheet(sheetId) {
+function v2ReadSheet(fileID) {
   var spreadSheet = SpreadsheetApp.openById(fileID);
   var sheetIDList = [];
   var sheetTableTypes = [];
