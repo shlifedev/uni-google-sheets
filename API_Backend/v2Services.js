@@ -164,6 +164,8 @@ function v2CreateExample() {
 }
 
 function v2CreateDefault(folderID, fileName) {
+  if (folderID == undefined || folderID == null)
+    throw new Error("Folder ID is null!");
   if (fileName == null) fileName = "DefaultTable";
   var sheet = SpreadsheetApp.create(fileName);
   var sheetFileId = sheet.getId();

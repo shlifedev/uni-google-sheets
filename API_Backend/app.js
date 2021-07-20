@@ -13,6 +13,7 @@ function doProcessing(e, type) {
       message: err.message,
       eReq: e,
       eType: type,
+      eStackTrace: err.stack,
     });
   }
 }

@@ -33,7 +33,7 @@ class GetDriveFolderResult {
 
 class CreateDefaultSheetResult {
   constructor(fileID, fileName, fileType, url) {
-    this.instruction = instruction.create_default_table;
+    this.instruction = instructions.create_default_table;
     this.fileID = fileID;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -42,7 +42,7 @@ class CreateDefaultSheetResult {
 }
 class CreateExampleResult {
   constructor(createdFolderId) {
-    this.instruction = instrtions.copy_example;
+    this.instruction = instructions.copy_example;
     this.createdFolderId = createdFolderId;
   }
 }

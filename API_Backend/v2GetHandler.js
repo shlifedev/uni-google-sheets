@@ -26,7 +26,6 @@ function doCreateDefault(e) {
 
 /* 구글 드라이브 폴더 데이터를 가져옵니다. */
 function doGetGoogleDrive(e) {
-  return "zz";
   const { folderId } = e.parameter;
   const driveDirectoryInfo = v2GetDriveFolder(folderId);
   return driveDirectoryInfo;
