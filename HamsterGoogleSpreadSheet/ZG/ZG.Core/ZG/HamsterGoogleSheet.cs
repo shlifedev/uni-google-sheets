@@ -2,8 +2,8 @@
 using Hamster.ZG.IO;
 using Hamster.ZG.IO.FileReader;
 using Hamster.ZG.Type;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Req;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
+using UGS.Protocol.v2.Req;
+using UGS.Protocol.v2.Res;
 using System; 
 namespace Hamster.ZG
 {

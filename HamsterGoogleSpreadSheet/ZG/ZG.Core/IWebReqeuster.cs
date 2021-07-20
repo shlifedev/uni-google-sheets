@@ -1,6 +1,6 @@
 ﻿using Hamster.ZG;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Req;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
+using UGS.Protocol.v2.Req;
+using UGS.Protocol.v2.Res;
 using System;
 
 
@@ -8,7 +8,7 @@ public interface IHttpProtcol
 {
     void GetDriveDirectory(GetDriveDirectoryReqModel mdl, System.Action<System.Exception> errResponse, System.Action<GetDriveFolderResult> callback);
     void ReadSpreadSheet(ReadSpreadSheetReqModel mdl, System.Action<System.Exception> errResponse, System.Action<ReadSpreadSheetResult> callback);
-    void WriteObject(WriteObjectReqModel mdl, System.Action<System.Exception> errResponse, System.Action<HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res.WriteObjectResult> callback);
+    void WriteObject(WriteObjectReqModel mdl, System.Action<System.Exception> errResponse, System.Action<UGS.Protocol.v2.Res.WriteObjectResult> callback);
     void CreateDefaultSheet(CreateDefaultReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateDefaultSheetResult> callback);
     void CopyExample(CopyExampleReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateExampleResult> callback); 
      

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2
+namespace UGS.Protocol.v2
 {
     internal class DataContractAttribute : Attribute
     {

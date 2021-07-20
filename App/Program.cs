@@ -1,7 +1,7 @@
 ﻿using Hamster.ZG;
 using Hamster.ZG.IO.FileReader;
 using Hamster.ZG.IO.FileWriter;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Req;
+using UGS.Protocol.v2.Req;
 using System;
 
 namespace ConsoleApp1

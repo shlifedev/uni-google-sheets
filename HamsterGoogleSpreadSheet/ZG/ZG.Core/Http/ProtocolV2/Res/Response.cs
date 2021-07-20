@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res
+namespace UGS.Protocol.v2.Res
 {
     public class Response
     {

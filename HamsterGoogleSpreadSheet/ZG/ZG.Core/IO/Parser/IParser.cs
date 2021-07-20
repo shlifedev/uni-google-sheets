@@ -1,5 +1,5 @@
 ﻿using Hamster.ZG.IO;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
+using UGS.Protocol.v2.Res;
 using System;
 using System.Collections.Generic;
 using System.Linq;

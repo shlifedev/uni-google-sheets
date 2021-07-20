@@ -5,8 +5,8 @@ using System.Text;
 using Hamster.ZG;
 using Hamster.ZG.IO.FileReader;
 using Hamster.ZG.IO.FileWriter;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Req;
-using HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res;
+using UGS.Protocol.v2.Req;
+using UGS.Protocol.v2.Res;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Web;
@@ -199,10 +199,10 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
         });
     }
 
-    public void WriteObject(WriteObjectReqModel mdl, Action<Exception> errResponse, Action<HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res.WriteObjectResult> callback)
+    public void WriteObject(WriteObjectReqModel mdl, Action<Exception> errResponse, Action<UGS.Protocol.v2.Res.WriteObjectResult> callback)
     { 
         var req = Newtonsoft.Json.JsonConvert.SerializeObject(mdl); 
-        Post<HamsterGoogleSpreadSheet.ZG.ZG.Core.Http.ProtocolV2.Res.WriteObjectResult>(req, errResponse, (result) => {
+        Post<UGS.Protocol.v2.Res.WriteObjectResult>(req, errResponse, (result) => {
             if (result != null) callback?.Invoke(result);
         });
     }
