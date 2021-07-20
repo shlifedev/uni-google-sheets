@@ -1,1 +1,0 @@
-{"TableTypes":[0],"tableResult":{"Balance":{"id : int":["0","1","2","3","5"],"name : string":["Player","Slime","Goblin","Golem","Player"],"speed : float":["8","4","3","2","202020"],"jump : float":["70","60","50","40","2020202"]}},"sheetIDList":["0"],"spreadSheetID":"1BXya0YQq980kbNBN_-hQAvmBrNkHFIoqXJkQTXIsXHQ","spreadSheetName":"UnitData","instruction":"getTable","result":0}

@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\shlif\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\shlif\\.nuget\\packages"
-    ]
-  }
-}
