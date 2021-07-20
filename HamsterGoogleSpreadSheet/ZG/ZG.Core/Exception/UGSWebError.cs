@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 public class UGSWebError : System.Exception
 {
-    public object errObj;
-    public UGSWebError(object errObject)
+    public UGSWebError(string message) : base(message)
     {
-        errObj = errObject; 
     }
 }

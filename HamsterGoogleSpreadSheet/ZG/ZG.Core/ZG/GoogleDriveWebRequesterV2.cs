@@ -101,7 +101,7 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
                     else
                     {
                         if (resObject == null) throw new Exception("Response data is null");
-                        if (resObject.hasError()) throw new UGSWebError(resObject.error);
+                        if (resObject.hasError()) throw new UGSWebError(resObject.error.message);
                     }
                 }
             }
@@ -147,7 +147,7 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
                     else
                     {
                         if (data == null) throw new Exception("Response data is null");
-                        if (data.hasError()) throw new UGSWebError(data.error); 
+                        if (data.hasError()) throw new UGSWebError(data.error.message); 
                     }
                 }
             }
