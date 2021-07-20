@@ -6,7 +6,15 @@ var module = module || { exports: exports };
  type = http method (GET.. POST..) 
 */
 function doProcessing(e, type) {
-  return _____doProcessing(e, type);
+  try {
+    return _____doProcessing(e, type);
+  } catch (err) {
+    return json({
+      message: err.message,
+      eReq: e,
+      eType: type,
+    });
+  }
 }
 
 function doGet(e) {
