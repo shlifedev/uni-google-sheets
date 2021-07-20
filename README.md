@@ -13,7 +13,7 @@ Use example - very useful for managing game data, game balance, or management tr
 
 <p align="center">
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
-        <img src="https://img.shields.io/badge/release-v.0.1.3-green.svg"
+        <img src="https://img.shields.io/badge/release-v.1.0.0-green.svg"
              alt="POD">
     </a>
     <a href="https://github.com/shlifedev/UnityGoogleSheet/release">
@@ -40,7 +40,7 @@ Use example - very useful for managing game data, game balance, or management tr
  - There are no Dependencies other than `Newtonsoft.json.dll`
 
 ## How to Use/Setup (if you have UGS)
-[Apps Script](https://script.google.com/d/1XukliHOlfrmX26xvYEA3r2ZBaRoRh7baWLvDv56e9Ix3eIBBF1VDyq2W/edit?usp=drive_web)  
+[Apps Script](https://script.google.com/d/1Hn0u-_Wg9mEADDcmFpvMfMn-wLyOqlx_3b5wHBbJpBkyEH89hI32shfr/edit?usp=sharing)  
 [GitBook-English](https://shlifedev.gitbook.io/unitygooglesheet/v/english/)  
 [GitBook-Korean](https://shlifedev.gitbook.io/unitygooglesheet/)  
 [Tistory Posting](https://shlifedev.tistory.com/33) 
