@@ -12,15 +12,14 @@ namespace ConsoleApp1
  
         static void Main(string[] args)
         {
-            GoogleDriveWebRequesterV2.Instance.Credential(
-                "https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHzgiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec",
-                "123123"); 
-
+            GoogleSheet.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHzgiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "123123");
+            GoogleSheet.Generate("1BXya0YQq980kbNBN_-hQAvmBrNkHFIoqXJkQTXIsXHQ");
         }
 
         static void CodeGen(string sheetID)
-        { 
-            
+        {
+       
+
             var request = new ReadSpreadSheetReqModel(sheetID);
             GoogleDriveWebRequesterV2.Instance.ReadSpreadSheet(request, err => { }, result => {
                 HamsterGoogleSheet.DataParser.ParseSheet(result, true, true, new FileWriter());

@@ -58,7 +58,7 @@ namespace @namespace
  
  
     public static void OnError(System.Exception e){
-         thrhow e;
+         throw e;
     }
  
     }
@@ -158,7 +158,7 @@ namespace @namespace
         private void WriteWriteFunction(string @class)
         {
             string writeFunction =$@"
-        public static void Write({@class} data, System.Action onWriteCallback = null)
+        public static void Write(Balance data, System.Action<WriteObjectResult> onWriteCallback = null)
         {{ 
             TypeMap.Init();
             FieldInfo[] fields = typeof({@class}).GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -177,7 +177,7 @@ namespace @namespace
                 }} 
                 datas[i] = writeRule; 
             }}  
-            GoogleDriveWebRequester.Instance.WriteObject(spreadSheetID, sheetID, datas[0], datas, OnError, onWriteCallback);
+             GoogleDriveWebRequesterV2.Instance.WriteObject(new UGS.Protocol.v2.Req.WriteObjectReqModel(spreadSheetID, sheetID, datas[0], datas), OnError, onWriteCallback);
         }} 
         ";
 
@@ -250,20 +250,8 @@ namespace @namespace
         public static void LoadFromGoogle(System.Action<List<@class>, Dictionary<@keyType, @class>> onLoaded, bool updateCurrentData = false)
         {{      
             TypeMap.Init();
-            IZGRequester webInstance = null;
-#if UNITY_EDITOR
-            if (Application.isPlaying == false)
-            {{
-                webInstance = UnityEditorWebRequest.Instance as IZGRequester;
-            }}
-            else
-            {{
-                webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
-            }}
-#endif
-#if !UNITY_EDITOR
-                 webInstance = UnityPlayerWebRequest.Instance as IZGRequester;
-#endif
+            IHttpProtcol webInstance = GoogleDriveWebRequesterV2.Instance as IHttpProtcol;
+ 
             if(updateCurrentData)
             {{
                 @classMap?.Clear();
@@ -271,14 +259,14 @@ namespace @namespace
             }}
             List<@class> callbackParamList = new List<@class>();
             Dictionary<@keyType,@class> callbackParamMap = new Dictionary<@keyType, @class>();
-            webInstance.ReadGoogleSpreadSheet(spreadSheetID, OnError, (data, json) => {{
+            webInstance.ReadSpreadSheet(new UGS.Protocol.v2.Req.ReadSpreadSheetReqModel(spreadSheetID), OnError, (data) => {{
             FieldInfo[] fields = typeof(@namespace.@class).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
-              if (json != null)
+              if (data != null)
                         {{
-                            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(json);
-                            var table= result.tableResult; 
+                            var result = data;
+                            var table= result.jsonObject; 
                             var sheet = table[""@class""];
                                 foreach (var pNameAndTypeName in sheet.Keys)
                                 {{
@@ -417,7 +405,14 @@ namespace @namespace
             WriteLoadFunction();
             WriteLoadFromGoogleFunction();
 
-            WriteAssembly(new string[] { "Hamster.ZG", "System", "System.Collections.Generic", "System.IO", "Hamster.ZG.Type", "System.Reflection","Hamster.ZG.IO.FileReader"}, sheetInfo.sheetTypes, sheetInfo.isEnumChecks);
+            WriteAssembly(new string[] { "Hamster.ZG", 
+                "System",
+                "System.Collections.Generic", 
+                "System.IO",
+                "Hamster.ZG.Type", 
+                "System.Reflection",
+                "Hamster.ZG.IO.FileReader",
+                "UGS.Protocol.v2.Res"}, sheetInfo.sheetTypes, sheetInfo.isEnumChecks);
             WriteNamespace(_namespace, sheetInfo.isEnumChecks, sheetInfo.sheetTypes);
             WriteClassReplace(_className);
             WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetID);

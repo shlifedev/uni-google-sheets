@@ -4,7 +4,9 @@ using Hamster.ZG.IO.FileReader;
 using Hamster.ZG.Type;
 using UGS.Protocol.v2.Req;
 using UGS.Protocol.v2.Res;
-using System; 
+using System;
+using Hamster.ZG.IO.FileWriter;
+
 namespace Hamster.ZG
 {
     public static class GoogleSheet
@@ -26,7 +28,12 @@ namespace Hamster.ZG
             GoogleDriveWebRequesterV2.Instance.ReadSpreadSheet(new ReadSpreadSheetReqModel(fileID), OnError, callback);
         }
  
-
+        public static void Generate(string fileID)
+        {
+            ReadSpreadSheet(fileID, x => {
+                HamsterGoogleSheet.DataParser.ParseSheet(x, true, true, new FileWriter());
+            });
+        }
         public static void OnError(System.Exception e)
         {
 
