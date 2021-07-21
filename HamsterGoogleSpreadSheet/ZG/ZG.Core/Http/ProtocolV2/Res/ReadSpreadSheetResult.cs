@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UGS.Protocol.v2.Res
 {
-    public class ReadSpreadSheetResult : Response
+    public partial class ReadSpreadSheetResult : Response 
     {
         public Dictionary<string, Dictionary<string, List<string>>> jsonObject;
         public string spreadSheetName;

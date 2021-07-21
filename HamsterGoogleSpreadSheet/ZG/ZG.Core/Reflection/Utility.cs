@@ -11,7 +11,7 @@ namespace Hamster.ZG.Reflection
         /// <summary>
         /// Get all Subclass Of ~~
         /// </summary>
-        /// <param name="parent"></param>
+        /// <param name="parent"></param> 
         /// <returns></returns>
         public static IEnumerable<System.Type> GetAllSubclassOf(System.Type parent)
         {
