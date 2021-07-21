@@ -16,14 +16,6 @@ namespace ConsoleApp1
             GoogleSheet.Generate("1BXya0YQq980kbNBN_-hQAvmBrNkHFIoqXJkQTXIsXHQ");
         }
 
-        static void CodeGen(string sheetID)
-        {
-       
-
-            var request = new ReadSpreadSheetReqModel(sheetID);
-            GoogleDriveWebRequesterV2.Instance.ReadSpreadSheet(request, err => { }, result => {
-                HamsterGoogleSheet.DataParser.ParseSheet(result, true, true, new FileWriter());
-            });
-        }
+ 
     }
 }
