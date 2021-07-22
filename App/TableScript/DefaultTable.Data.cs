@@ -11,39 +11,38 @@ using Hamster.UG.IO.FileReader;
 using UGS.Protocol.v2.Res;
 
 
-namespace UnitData
+namespace DefaultTable
 {
     [Hamster.UG.Attribute.TableStruct]
-    public partial class Balance : ITable
+    public partial class Data : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<Balance> loadedList, Dictionary<int, Balance> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1BXya0YQq980kbNBN_-hQAvmBrNkHFIoqXJkQTXIsXHQ"; // it is file id
+        static string spreadSheetID = "1SgkBh-HngzRYL3Vl9PrxbMQ_vY89f0hx_BGpgXP4Ffc"; // it is file id
         static string sheetID = "0"; // it is sheet id
         static FileReader reader = new FileReader();
 
 /* Your Loaded Data Storage. */
-        public static Dictionary<int, Balance> BalanceMap = new Dictionary<int, Balance>(); 
-        public static List<Balance> BalanceList = new List<Balance>();   
+        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>(); 
+        public static List<Data> DataList = new List<Data>();   
 
 /* Fields. */
 
-		public Int32 id;
-		public String name;
-		public Single speed;
-		public Single jump;
+		public Int32 index;
+		public Int32 intValue;
+		public String strValue;
   
 
 #region fuctions
 
 /*Write To GoogleSheet!*/
 
-        public static void Write(Balance data, System.Action<WriteObjectResult> onWriteCallback = null)
+        public static void Write(Data data, System.Action<WriteObjectResult> onWriteCallback = null)
         { 
             TypeMap.Init();
-            FieldInfo[] fields = typeof(Balance).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             var datas = new string[fields.Length];
             for (int i = 0; i < fields.Length; i++)
             {
@@ -65,27 +64,27 @@ namespace UnitData
 
 /*Load Data From Google Sheet! Working fine with runtime&editor*/
 
-        public static void LoadFromGoogle(System.Action<List<Balance>, Dictionary<int, Balance>> onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<Data>, Dictionary<int, Data>> onLoaded, bool updateCurrentData = false)
         {      
             TypeMap.Init();
             IHttpProtcol webInstance = GoogleDriveWebRequesterV2.Instance as IHttpProtcol;
  
             if(updateCurrentData)
             {
-                BalanceMap?.Clear();
-                BalanceList?.Clear(); 
+                DataMap?.Clear();
+                DataList?.Clear(); 
             }
-            List<Balance> callbackParamList = new List<Balance>();
-            Dictionary<int,Balance> callbackParamMap = new Dictionary<int, Balance>();
+            List<Data> callbackParamList = new List<Data>();
+            Dictionary<int,Data> callbackParamMap = new Dictionary<int, Data>();
             webInstance.ReadSpreadSheet(new UGS.Protocol.v2.Req.ReadSpreadSheetReqModel(spreadSheetID), OnError, (data) => {
-            FieldInfo[] fields = typeof(UnitData.Balance).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(DefaultTable.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
               if (data != null)
                         {
                             var result = data;
                             var table= result.jsonObject; 
-                            var sheet = table["Balance"];
+                            var sheet = table["Data"];
                                 foreach (var pNameAndTypeName in sheet.Keys)
                                 {
                                     var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -100,7 +99,7 @@ namespace UnitData
                                 int rows = typeValuesCList[0].Count;
                                 for (int i = 0; i < rows; i++)
                                 {
-                                    UnitData.Balance instance = new UnitData.Balance();
+                                    DefaultTable.Data instance = new DefaultTable.Data();
                                     for (int j = 0; j < typeInfos.Count; j++)
                                     {
                                        try
@@ -121,11 +120,11 @@ namespace UnitData
                                     }
                                     //Add Data to Container
                                     callbackParamList.Add(instance);
-                                    callbackParamMap .Add(instance.id, instance);
+                                    callbackParamMap .Add(instance.index, instance);
                                     if(updateCurrentData)
                                     {
-                                       BalanceList.Add(instance);
-                                       BalanceMap.Add(instance.id, instance);
+                                       DataList.Add(instance);
+                                       DataMap.Add(instance.index, instance);
                                     }
                                 } 
                             }
@@ -143,25 +142,25 @@ namespace UnitData
         {
             if(isLoaded && forceReload == false)
             {
-                 Console.WriteLine("Balance is already loaded! if you want reload then, forceReload parameter set true");
+                 Console.WriteLine("Data is already loaded! if you want reload then, forceReload parameter set true");
                  return;
             }
             /* Clear When Try Load */
-            BalanceMap?.Clear();
-            BalanceList?.Clear(); 
+            DataMap?.Clear();
+            DataList?.Clear(); 
             //Type Map Init
             TypeMap.Init();
             //Reflection Field Datas.
-            FieldInfo[] fields = typeof(UnitData.Balance).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(DefaultTable.Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 
             //Load GameData.
-            string text = reader.ReadData("UnitData");
+            string text = reader.ReadData("DefaultTable");
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReadSpreadSheetResult>(text);
                 var table= result.jsonObject; 
-                var sheet = table["Balance"];
+                var sheet = table["Data"];
                     foreach (var pNameAndTypeName in sheet.Keys)
                     {
                         var split = pNameAndTypeName.Replace(" ", null).Split(':');
@@ -176,7 +175,7 @@ namespace UnitData
                             int rows = typeValuesCList[0].Count;
                             for (int i = 0; i < rows; i++)
                             {
-                                UnitData.Balance instance = new UnitData.Balance();
+                                DefaultTable.Data instance = new DefaultTable.Data();
                                 for (int j = 0; j < typeInfos.Count; j++)
                                 {
                                     try{
@@ -196,8 +195,8 @@ namespace UnitData
                               }
 
                          //Add Data to Container
-                        BalanceList.Add(instance);
-                        BalanceMap.Add(instance.id, instance);
+                        DataList.Add(instance);
+                        DataMap.Add(instance.index, instance);
                   
                        
                          } 

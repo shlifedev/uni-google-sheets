@@ -13,14 +13,14 @@ namespace ConsoleApp1
     { 
         static void Main(string[] args)
         {
-            Console.Write(TableUtils.GetSpreadSheetID<UnitData.Balance>());
-
-            // Login
+       
+            // Your Script Link
             GoogleSheet.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHzgiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "123123");
 
-        
-            // Code Generate And Copy To Folder 
-            GoogleSheet.Generate("1BXya0YQq980kbNBN_-hQAvmBrNkHFIoqXJkQTXIsXHQ",
+
+            string id = "1SgkBh-HngzRYL3Vl9PrxbMQ_vY89f0hx_BGpgXP4Ffc";
+            // Your Google Folder ID
+            GoogleSheet.Generate(id,
             () => {
                 System.IO.DirectoryInfo di1 = new System.IO.DirectoryInfo("TableScript");
                 System.IO.DirectoryInfo di2 = new System.IO.DirectoryInfo("CachedJson");
@@ -29,12 +29,17 @@ namespace ConsoleApp1
                 DirectoryCopy(di2.FullName, "../../../CachedJson", true);
             });
 
+            //Hamster.UGS.Validator.UGSValidator.InitializeValidatorRequester(new GoogleDriveWebRequesterV2());
+            //CompareSheetId validator = new CompareSheetId();
+            //validator.isValid(x => {
+            //    Console.WriteLine(x);
+            //}, "1YDztWDjHvyvgyM9tVLlJIxk16gDjLZLm");
 
- 
             GoogleSheet.LoadAllData();
-            foreach (var value in UnitData.Balance.BalanceList) 
-                Console.WriteLine($"{value.id} {value.jump} {value.name} {value.speed}"); 
-            
+            foreach (var value in DefaultTable.Data.DataList)
+                Console.WriteLine($"{value}");
+
+
         }
 
 

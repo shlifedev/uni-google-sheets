@@ -158,7 +158,7 @@ namespace @namespace
         private void WriteWriteFunction(string @class)
         {
             string writeFunction =$@"
-        public static void Write(Balance data, System.Action<WriteObjectResult> onWriteCallback = null)
+        public static void Write(@class data, System.Action<WriteObjectResult> onWriteCallback = null)
         {{ 
             TypeMap.Init();
             FieldInfo[] fields = typeof({@class}).GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -413,11 +413,11 @@ namespace @namespace
                 "System.Reflection",
                 "Hamster.UG.IO.FileReader",
                 "UGS.Protocol.v2.Res"}, sheetInfo.sheetTypes, sheetInfo.isEnumChecks);
-            WriteNamespace(_namespace, sheetInfo.isEnumChecks, sheetInfo.sheetTypes);
-            WriteClassReplace(_className);
+            WriteNamespace(_namespace, sheetInfo.isEnumChecks, sheetInfo.sheetTypes); 
             WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetID);
             WriteTypes(sheetInfo.sheetTypes, sheetInfo.sheetVariableNames, sheetInfo.isEnumChecks);
             WriteWriteFunction(_className);
+            WriteClassReplace(_className);
             return GenerateForm;
         }
 
