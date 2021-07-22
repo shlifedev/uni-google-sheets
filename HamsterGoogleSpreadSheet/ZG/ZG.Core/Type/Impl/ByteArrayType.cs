@@ -13,6 +13,8 @@ namespace Hamster.UG.Type
                 return DefaultValue;
             byte[] bytes = Encoding.Default.GetBytes(value);
             return bytes;
+
+            
         }
 
         public string Write(object value)

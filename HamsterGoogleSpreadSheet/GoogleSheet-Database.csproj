@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{03FAE533-B981-4B8C-91E5-460C684A3570}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>HamsterGoogleSpreadSheet</RootNamespace>
-    <AssemblyName>HamsterGoogleSpreadSheet</AssemblyName>
+    <RootNamespace>GoogleSheet.Database</RootNamespace>
+    <AssemblyName>GoogleSheet-Database</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -205,7 +205,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "HamsterGoogleSpreadSheet.dll" "..\..\..\..\UnityGoogleSheet\Assets\ZG\HamsterGoogleSpreadSheet.dll" /y</PostBuildEvent>
+    <PostBuildEvent>copy "GoogleSheet-Database.dll" "..\..\..\..\UnityGoogleSheet\Assets\ZG\GoogleSheet-Database.dll" /y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

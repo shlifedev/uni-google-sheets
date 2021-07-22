@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamsterGoogleSpreadSheet", "HamsterGoogleSpreadSheet\HamsterGoogleSpreadSheet.csproj", "{03FAE533-B981-4B8C-91E5-460C684A3570}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleSheet-Database", "HamsterGoogleSpreadSheet\GoogleSheet-Database.csproj", "{03FAE533-B981-4B8C-91E5-460C684A3570}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "..\UnityGoogleSheet\Assembly-CSharp.csproj", "{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}"
 EndProject
