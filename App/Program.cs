@@ -4,18 +4,21 @@ using Hamster.UG.IO.FileWriter;
 using UGS.Protocol.v2.Req;
 using System;
 using System.IO;
+using Hamster.UG.Reflection;
+using Hamster.UGS.Validator;
 
 namespace ConsoleApp1
 {
     class Program
     { 
         static void Main(string[] args)
-        { 
+        {
+            Console.Write(TableUtils.GetSpreadSheetID<UnitData.Balance>());
+
             // Login
-            GoogleSheet.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHUGiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "123123");
+            GoogleSheet.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHzgiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "123123");
 
-
-
+        
             // Code Generate And Copy To Folder 
             GoogleSheet.Generate("1BXya0YQq980kbNBN_-hQAvmBrNkHFIoqXJkQTXIsXHQ",
             () => {
@@ -27,6 +30,7 @@ namespace ConsoleApp1
             });
 
 
+ 
             GoogleSheet.LoadAllData();
             foreach (var value in UnitData.Balance.BalanceList) 
                 Console.WriteLine($"{value.id} {value.jump} {value.name} {value.speed}"); 
