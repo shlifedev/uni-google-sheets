@@ -345,8 +345,8 @@ namespace @namespace
             string text = reader.ReadData(""@namespace"");
             if (text != null)
             {{
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<GetTableResult>(text);
-                var table= result.tableResult; 
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReadSpreadSheetResult>(text);
+                var table= result.jsonObject; 
                 var sheet = table[""@class""];
                     foreach (var pNameAndTypeName in sheet.Keys)
                     {{

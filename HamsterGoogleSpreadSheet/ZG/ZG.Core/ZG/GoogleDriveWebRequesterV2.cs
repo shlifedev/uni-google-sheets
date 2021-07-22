@@ -45,25 +45,27 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
 
     public void Credential(string appsScriptUrl, string password)
     {
-        this.baseURL = appsScriptUrl;
-        this.password = password;
+        _baseURL = appsScriptUrl;
+        _password = password;
     }
-    private string baseURL = "";
-    private string password = "";
+    private static string _baseURL = "";
+    private static string _password = "";
 
+
+    public static bool IsCredential() { return _baseURL != null; }
     private void Post<T>(string json, Action<Exception> errCallback, Action<T> callback) where T : Response{
         try
         {
 
             //credential
             JObject jo = JObject.Parse(json);
-            jo.Add("password", password); 
+            jo.Add("password", _password); 
             json = jo.ToString(); 
             var reqJson = jo.ToString();
 
             Console.WriteLine(reqJson);
 
-            WebRequest request = WebRequest.Create(baseURL);
+            WebRequest request = WebRequest.Create(_baseURL);
             request.Method = "POST";
             request.Timeout = 15000;
             byte[] data = Encoding.UTF8.GetBytes(reqJson);
@@ -168,7 +170,7 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
 
     public void GetDriveDirectory(GetDriveDirectoryReqModel mdl, Action<Exception> errCallback, Action<GetDriveFolderResult> callback)
     {
-        string url = $"{baseURL}{HttpUtils.ToQueryString(mdl, password)}";
+        string url = $"{_baseURL}{HttpUtils.ToQueryString(mdl, _password)}";
         Get<GetDriveFolderResult>(url, errCallback, (result) => { 
             if (result != null) callback?.Invoke(result);
         });
@@ -176,7 +178,7 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
 
     public void ReadSpreadSheet(ReadSpreadSheetReqModel mdl, Action<Exception> errCallback, Action<ReadSpreadSheetResult> callback)
     {
-        string url = $"{baseURL}{HttpUtils.ToQueryString(mdl, password)}"; 
+        string url = $"{_baseURL}{HttpUtils.ToQueryString(mdl, _password)}"; 
         Get<ReadSpreadSheetResult>(url, errCallback, (result) => {
             if (result != null) callback?.Invoke(result);
         });
@@ -184,7 +186,7 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
  
     public void CreateDefaultSheet(CreateDefaultReqModel mdl, Action<Exception> errCallback, Action<CreateDefaultSheetResult> callback)
     {
-        string url = $"{baseURL}{HttpUtils.ToQueryString(mdl,password)}";
+        string url = $"{_baseURL}{HttpUtils.ToQueryString(mdl,_password)}";
         Get<CreateDefaultSheetResult>(url, errCallback, (result) => {
             if (result != null) callback?.Invoke(result);
         });
@@ -192,7 +194,7 @@ public class GoogleDriveWebRequesterV2 : IHttpProtcol
 
     public void CopyExample(CopyExampleReqModel mdl, Action<Exception> errCallback, Action<CreateExampleResult> callback)
     {
-        string url = $"{baseURL}{HttpUtils.ToQueryString(mdl,password)}";
+        string url = $"{_baseURL}{HttpUtils.ToQueryString(mdl,_password)}";
         Console.WriteLine(url);
         Get<CreateExampleResult>(url, errCallback, (result) => {
             if (result != null) callback?.Invoke(result);

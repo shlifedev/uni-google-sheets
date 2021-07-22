@@ -131,6 +131,18 @@ namespace Hamster.ZG
         }
 
         /// <summary>
+        /// Generate .cs .json 
+        /// </summary>
+        /// <param name="fileID"></param>
+        public static void Generate(string fileID, System.Action callback)
+        {
+            ReadSpreadSheet(fileID, x => {
+                HamsterGoogleSheet.DataParser.ParseSheet(x, true, true, new FileWriter());
+                callback?.Invoke();
+            });
+        }
+
+        /// <summary>
         /// Load All Your Generated Table.
         /// </summary>
         public static void LoadAllData()

@@ -13,7 +13,7 @@ namespace Hamster.ZG.IO.FileReader
         { 
             Directory.CreateDirectory("CachedJson/");
             Directory.CreateDirectory("TableScripts/");
-
+   
             return System.IO.File.ReadAllText("CachedJson/" + fileName+".json");
         } 
     }
