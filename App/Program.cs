@@ -46,14 +46,13 @@ namespace ConsoleApp1
 
                 DirectoryCopy(di1.FullName, "../../../TableScript", true);
                 DirectoryCopy(di2.FullName, "../../../CachedJson", true);
-            }); 
+            });
 
 
-            GoogleSheet.Load<UnitData.Balance>();
-            foreach (var value in UnitData.Balance.BalanceList)
-            {
-                Console.WriteLine(value);
-            }
+            GoogleSheet.LoadAllData();
+            foreach (var value in UnitData.Balance.BalanceList) 
+                Console.WriteLine($"{value.id} {value.jump} {value.name} {value.speed}"); 
+            
         }
 
 
