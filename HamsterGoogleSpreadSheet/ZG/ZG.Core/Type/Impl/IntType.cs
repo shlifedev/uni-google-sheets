@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(type: typeof(int), speractors: new string[] { "int", "Int", "Int32" })]
     public class IntType : IType

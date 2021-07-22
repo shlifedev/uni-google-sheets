@@ -1,6 +1,6 @@
-﻿using Hamster.ZG;
-using Hamster.ZG.IO.FileReader;
-using Hamster.ZG.IO.FileWriter;
+﻿using Hamster.UG;
+using Hamster.UG.IO.FileReader;
+using Hamster.UG.IO.FileWriter;
 using UGS.Protocol.v2.Req;
 using System;
 using System.IO;
@@ -12,7 +12,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         { 
             // Login
-            GoogleSheet.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHzgiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "123123");
+            GoogleSheet.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHUGiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "123123");
 
 
 

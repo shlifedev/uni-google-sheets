@@ -1,8 +1,7 @@
  
 ///Auth
 function isPassValid(password)
-{
-  
+{ 
   var appPass = PropertiesService.getScriptProperties().getProperty("password");
   if (password != null && password == appPass)
       return true;

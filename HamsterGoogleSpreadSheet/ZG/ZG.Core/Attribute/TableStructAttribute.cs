@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.Attribute
+namespace Hamster.UG.Attribute
 {
     public class TableStructAttribute : System.Attribute
     { 

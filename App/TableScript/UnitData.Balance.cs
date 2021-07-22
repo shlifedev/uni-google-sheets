@@ -1,19 +1,19 @@
 
 /*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorUnityEngine.cs'  */
-using Hamster.ZG;
+using Hamster.UG;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Hamster.ZG.Type;
+using Hamster.UG.Type;
 using System.Reflection;
-using Hamster.ZG.IO.FileReader;
+using Hamster.UG.IO.FileReader;
 using UGS.Protocol.v2.Res;
 
 
 namespace UnitData
 {
-    [Hamster.ZG.Attribute.TableStruct]
+    [Hamster.UG.Attribute.TableStruct]
     public partial class Balance : ITable
     { 
 

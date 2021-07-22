@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.IO.FileReader
+namespace Hamster.UG.IO.FileReader
 {
     public class FileReader : IFileReader
     {

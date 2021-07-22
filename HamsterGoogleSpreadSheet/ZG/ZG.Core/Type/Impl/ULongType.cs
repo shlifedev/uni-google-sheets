@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     [Type(type : typeof(ulong), speractors : new string[] {"ulong","ULong"})]
     public class ULongType : IType

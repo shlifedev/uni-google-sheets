@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     [Type(type: typeof(double), speractors: new string[] { "double", "Double" })]
     public class DoubleType : IType

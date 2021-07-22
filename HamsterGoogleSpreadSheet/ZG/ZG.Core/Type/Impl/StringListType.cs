@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(typeof(System.Collections.Generic.List<string>), new string[] { "list<string>", "List<string>" })]
     public class StringListType : IType

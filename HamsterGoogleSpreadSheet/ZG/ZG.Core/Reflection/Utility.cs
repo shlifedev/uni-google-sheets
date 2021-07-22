@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.Reflection
+namespace Hamster.UG.Reflection
 {
     public class Utility
     {

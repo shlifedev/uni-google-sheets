@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     public class TypeAttribute : System.Attribute
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(type: typeof(List<char>), speractors: new string[] { "list<char>", "List<Char>" })]
     public class CharListType : IType

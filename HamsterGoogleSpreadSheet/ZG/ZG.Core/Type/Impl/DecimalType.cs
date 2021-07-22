@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
      
     [Type(type : typeof(decimal), speractors : new string[] { "decimal", "Decimal"})]

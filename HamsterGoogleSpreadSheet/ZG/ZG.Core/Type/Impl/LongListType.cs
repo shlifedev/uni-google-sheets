@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(type: typeof(List<long>), speractors: new string[] { "list<long>", "List<Long>" })]
     public class LongListType : IType

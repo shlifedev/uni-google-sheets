@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.IO.FileWriter
+namespace Hamster.UG.IO.FileWriter
 {    
     public class FileWriter : IFIleWriter
     {

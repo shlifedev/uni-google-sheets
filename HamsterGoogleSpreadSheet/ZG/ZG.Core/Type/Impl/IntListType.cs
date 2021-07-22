@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(type: typeof(List<int>), speractors: new string[] { "list<int>", "List<int>" })]
     public class IntListType : IType

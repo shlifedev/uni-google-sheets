@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     public static class WriteUtil
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using ZG.Core.Type;
+using UG.Core.Type;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     
     public static class TypeMap
@@ -31,7 +31,7 @@ namespace Hamster.ZG.Type
  
             if (init == false)
             { 
-                var subClassesEnum = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(System.Enum));
+                var subClassesEnum = Hamster.UG.Reflection.Utility.GetAllSubclassOf(typeof(System.Enum));
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
                 foreach (var value in subClassesEnum)
@@ -53,7 +53,7 @@ namespace Hamster.ZG.Type
  
 
                 sw.Start();
-                var subClasses = Hamster.ZG.Reflection.Utility.GetAllSubclassOf(typeof(IType));
+                var subClasses = Hamster.UG.Reflection.Utility.GetAllSubclassOf(typeof(IType));
                 foreach (var data in subClasses)
                 {
                     if (data.IsInterface)
@@ -86,7 +86,7 @@ namespace Hamster.ZG.Type
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("[TypeMap] Require Set Type Attribute => " + instance.ToString());
 #endif
-                        throw new Hamster.ZG.Exception.RequireTypeAttributeException();
+                        throw new Hamster.UG.Exception.RequireTypeAttributeException();
                     }
                  
                  

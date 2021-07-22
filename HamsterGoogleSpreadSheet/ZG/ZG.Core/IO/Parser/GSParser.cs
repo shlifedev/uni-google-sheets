@@ -1,5 +1,5 @@
-﻿using Hamster.ZG.IO;
-using Hamster.ZG.IO.Generator;
+﻿using Hamster.UG.IO;
+using Hamster.UG.IO.Generator;
 using UGS.Protocol.v2.Res;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG
+namespace Hamster.UG
 {
     /*
         백업 플

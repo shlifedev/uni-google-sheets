@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     public class EnumType
     {

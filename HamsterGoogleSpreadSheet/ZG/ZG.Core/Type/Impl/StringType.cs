@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(typeof(string), new string[] { "string", "String" })]
     public class StringType : IType

@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     [Type(type : typeof(uint), speractors : new[] { "uint", "UInt"})]
     public class UIntType : IType

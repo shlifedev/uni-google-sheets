@@ -1,12 +1,12 @@
-﻿using Hamster.ZG;
-using Hamster.ZG.IO;
+﻿using Hamster.UG;
+using Hamster.UG.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZG.Core.IO.Generator
+namespace UG.Core.IO.Generator
 {
     public class EnumGenerator : ICodeGenerator
     {
@@ -18,7 +18,7 @@ namespace ZG.Core.IO.Generator
 /* author : shlifedev@gmail.com */
 
 using System;
-using Hamster.ZG.Type;
+using Hamster.UG.Type;
 //@namespace
 namespace @header_namespace
 {
@@ -58,7 +58,7 @@ namespace @header_namespace
             }
             else
             {
-                result = result.Replace("@header_namespace", "Hamster.ZG.Type");
+                result = result.Replace("@header_namespace", "Hamster.UG.Type");
             }
             result = result.Replace("@enumName", enumName);
             onGenerateCallback?.Invoke(result); 

@@ -1,6 +1,6 @@
 ﻿
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 { 
     [Type(type : typeof(MyCustomStruct), speractors : new string[] { "custom", "Custom" })]
     public class MyCustomStructType : IType

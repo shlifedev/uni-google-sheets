@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(type: typeof(List<double>), speractors: new string[] { "list<double>", "List<Double>" })]
     public class DoubleListType : IType

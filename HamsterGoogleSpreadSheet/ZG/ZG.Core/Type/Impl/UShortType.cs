@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     [Type(type : typeof(ushort), speractors : new string[] {"ushort"})]
     public class UShortType : IType

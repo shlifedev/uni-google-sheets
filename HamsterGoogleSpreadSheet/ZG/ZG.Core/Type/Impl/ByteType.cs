@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     [Type(type : typeof(byte), speractors : new string[] { "byte", "Byte"})]
     public class ByteType : IType

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Hamster.ZG.Type
+namespace Hamster.UG.Type
 {
     [Type(type: typeof(List<float>), speractors: new string[] { "list<float>", "List<Float>" })]
     public class FloatListType : IType

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.IO.Generator
+namespace Hamster.UG.IO.Generator
 {
     public class DataGenerator : ICodeGenerator
     {

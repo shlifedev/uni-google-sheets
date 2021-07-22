@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG
+﻿namespace Hamster.UG
 {
     public class SheetInfo
     {

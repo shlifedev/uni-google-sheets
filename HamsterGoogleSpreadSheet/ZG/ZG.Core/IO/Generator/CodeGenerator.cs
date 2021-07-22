@@ -1,11 +1,11 @@
-﻿using Hamster.ZG.Type;
+﻿using Hamster.UG.Type;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks; 
 
-namespace Hamster.ZG.IO
+namespace Hamster.UG.IO
 {
 
     public class CodeGenerator : ICodeGenerator
@@ -18,7 +18,7 @@ namespace Hamster.ZG.IO
 @assemblys
 namespace @namespace
 {
-    [Hamster.ZG.Attribute.TableStruct]
+    [Hamster.UG.Attribute.TableStruct]
     public partial class @class : ITable
     { 
 
@@ -92,7 +92,7 @@ namespace @namespace
                             Console.WriteLine($"Error Sheet Name => {sheetInfo.sheetFileName}.{sheetInfo.sheetName}");
                             Console.WriteLine($"Your type list=> {debugTypes}");
                             Console.WriteLine($"error field => {targetField} : {sheetInfo.sheetTypes[i]}"); 
-                            throw new Hamster.ZG.Exception.TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
+                            throw new Hamster.UG.Exception.TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
                         } 
                         builder.AppendLine($"\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {fieldNames[i]};"); 
                     }
@@ -405,13 +405,13 @@ namespace @namespace
             WriteLoadFunction();
             WriteLoadFromGoogleFunction();
 
-            WriteAssembly(new string[] { "Hamster.ZG", 
+            WriteAssembly(new string[] { "Hamster.UG", 
                 "System",
                 "System.Collections.Generic", 
                 "System.IO",
-                "Hamster.ZG.Type", 
+                "Hamster.UG.Type", 
                 "System.Reflection",
-                "Hamster.ZG.IO.FileReader",
+                "Hamster.UG.IO.FileReader",
                 "UGS.Protocol.v2.Res"}, sheetInfo.sheetTypes, sheetInfo.isEnumChecks);
             WriteNamespace(_namespace, sheetInfo.isEnumChecks, sheetInfo.sheetTypes);
             WriteClassReplace(_className);

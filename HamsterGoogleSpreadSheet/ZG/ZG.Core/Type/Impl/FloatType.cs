@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     [Type(typeof(float), new string[] { "float", "Float" })]
     public class FloatType : IType

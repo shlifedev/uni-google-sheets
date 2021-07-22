@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.IO
+namespace Hamster.UG.IO
 { 
     public class ExcelParser : IParser
     {

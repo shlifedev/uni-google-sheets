@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.ZG.IO
+namespace Hamster.UG.IO
 {
     public interface IFIleWriter
     {

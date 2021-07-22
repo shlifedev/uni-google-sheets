@@ -8,9 +8,7 @@ var module = module || { exports: exports };
 
 function getInstruction(e, type){ 
    if(type == "POST") 
-   {
-     
-     
+   { 
      const data= JSON.parse(e.postData.contents); 
      return data.instruction;
    }

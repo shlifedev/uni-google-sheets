@@ -1,4 +1,4 @@
-﻿namespace Hamster.ZG.Type
+﻿namespace Hamster.UG.Type
 {
     [Type(typeof((int, int)), new string[] { "(int,int)", "(Int32,Int32)" })]
     public class IntTupleX2Type : IType

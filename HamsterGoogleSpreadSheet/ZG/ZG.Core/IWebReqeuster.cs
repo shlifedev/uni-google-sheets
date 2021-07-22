@@ -1,4 +1,4 @@
-﻿using Hamster.ZG;
+﻿using Hamster.UG;
 using UGS.Protocol.v2.Req;
 using UGS.Protocol.v2.Res;
 using System;
