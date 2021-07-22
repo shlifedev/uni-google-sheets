@@ -8,29 +8,7 @@ using System.IO;
 namespace ConsoleApp1
 {
     class Program
-    {
-
-
-        static void Generate()
-        {
-         
-        }
-
-        static void Sample()
-        {
-            while (true)
-            {
-
-                if (GoogleDriveWebRequesterV2.IsCredential() == false)
-                {
-                    Console.WriteLine("First, Login Please.");
-                    Console.WriteLine("call GoogleDriveWebRequesterV2.Instance.Credential(url ,password)");
-                    return;
-                }
-
-            }
-        }
-
+    { 
         static void Main(string[] args)
         { 
             // Login
