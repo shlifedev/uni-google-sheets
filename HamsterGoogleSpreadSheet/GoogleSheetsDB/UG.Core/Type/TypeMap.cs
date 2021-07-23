@@ -6,8 +6,7 @@ using System.Reflection;
 using UG.Core.Type;
 
 namespace Hamster.UG.Type
-{
-    
+{ 
     public static class TypeMap
     {
         public static bool init = false;
@@ -22,13 +21,21 @@ namespace Hamster.UG.Type
         {
             get => strTypeMap;
         }
+ 
         public static Dictionary<string, EnumType> EnumMap
         {
             get => enumMap;
+             
+        }
+
+        public static void EnumDependencyInject<T>() where T : Enum
+        {
+            var x = T.GetType();
+
         }
         public static void Init()
         {
- 
+            
             if (init == false)
             { 
                 var subClassesEnum = Hamster.UG.Reflection.Utility.GetAllSubclassOf(typeof(System.Enum));
@@ -42,9 +49,9 @@ namespace Hamster.UG.Type
                         enumMap.Add(value.Name , new EnumType() { 
                             Assembly = value.Assembly,
                             EnumName = value.Name,
-                            NameSpace = value.Namespace ,
+                            NameSpace = (string.IsNullOrEmpty(value.Namespace)) ? null : value.Namespace,
                             Type = value
-                        });  
+                        }); 
                     }
                 }
                 sw.Stop();
@@ -66,6 +73,8 @@ namespace Hamster.UG.Type
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("[TypeMap] Added " + att.type.ToString() + "  " + instance.ToString());
 #endif
+
+ 
                         if (!Map.ContainsKey(att.type))
                         {
                             Map.Add(att.type, (IType)instance);

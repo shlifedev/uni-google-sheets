@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GoogleSheetsDB\UG.Core\Validator\ComareSheetId.cs" />
+    <Compile Include="GoogleSheetsDB\UG.Core\Validator\ITypeValidator.cs" />
     <Compile Include="GoogleSheetsDB\UG.Core\Validator\IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GoogleSheetsDB\UG.Core\Attribute\TableStructAttribute.cs" />
@@ -208,7 +209,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(ProjectDir)\GoogleSheetsDB\*.* "..\..\..\..\UnityGoogleSheet\Assets\UG\NoUnityDependency\" /e /h /k /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)\GoogleSheetsDB\*.*" "$(SolutionDir)..\UnityGoogleSheet\UGS_Project\Assets\UGS\Runtime\GoogleSheet-Database" /e /h /k /y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

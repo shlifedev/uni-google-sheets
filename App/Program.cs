@@ -5,7 +5,7 @@ using UGS.Protocol.v2.Req;
 using System;
 using System.IO;
 using Hamster.UG.Reflection;
-using Hamster.UGS.Validator;
+using UGS.Validator;
 
 namespace ConsoleApp1
 {

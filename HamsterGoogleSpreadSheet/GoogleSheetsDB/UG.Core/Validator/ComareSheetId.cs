@@ -8,7 +8,7 @@ using System.Linq;
 using Hamster.UG.Reflection;
 using UGS.Protocol.v2.Req;
 
-namespace Hamster.UGS.Validator
+namespace UGS.Validator
 {
     public class CompareSheetId : UGSValidator
     {

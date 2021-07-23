@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hamster.UGS.Validator
+namespace UGS.Validator
 {
     public class UGSValidateException : System.Exception
     {
