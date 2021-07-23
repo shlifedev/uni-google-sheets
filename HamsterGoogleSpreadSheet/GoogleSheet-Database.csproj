@@ -208,7 +208,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "GoogleSheet-Database.dll" "..\..\..\..\UnityGoogleSheet\Assets\UG\GoogleSheet-Database.dll" /y</PostBuildEvent>
+    <PostBuildEvent>xcopy $(ProjectDir)\GoogleSheetsDB\*.* "..\..\..\..\UnityGoogleSheet\Assets\UG\NoUnityDependency\" /e /h /k /y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
