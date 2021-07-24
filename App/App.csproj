@@ -19,8 +19,4 @@
     <ProjectReference Include="..\HamsterGoogleSpreadSheet\GoogleSheet-Database.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TableScript\" />
-  </ItemGroup>
-
 </Project>

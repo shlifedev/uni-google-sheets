@@ -5,11 +5,9 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleSheet-Database", "HamsterGoogleSpreadSheet\GoogleSheet-Database.csproj", "{03FAE533-B981-4B8C-91E5-460C684A3570}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "..\UnityGoogleSheet\Assembly-CSharp.csproj", "{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "..\UnityGoogleSheet\Assembly-CSharp-Editor.csproj", "{20AB26F9-60DE-A8CA-B767-CB24DFF144BC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "App\App.csproj", "{CD40C47A-9242-476A-8D1C-693110779644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersionMaker", "VersionMaker\VersionMaker.csproj", "{437C2DF7-4BBA-4D8C-BBFD-D9648CD4FD61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,24 +22,18 @@ Global
 		{03FAE533-B981-4B8C-91E5-460C684A3570}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03FAE533-B981-4B8C-91E5-460C684A3570}.UnityRelease|Any CPU.ActiveCfg = UnityRelease|Any CPU
 		{03FAE533-B981-4B8C-91E5-460C684A3570}.UnityRelease|Any CPU.Build.0 = UnityRelease|Any CPU
-		{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}.UnityRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{16FCA3AD-B62B-A384-9D8C-82FD2D911FAC}.UnityRelease|Any CPU.Build.0 = Release|Any CPU
-		{20AB26F9-60DE-A8CA-B767-CB24DFF144BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20AB26F9-60DE-A8CA-B767-CB24DFF144BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20AB26F9-60DE-A8CA-B767-CB24DFF144BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20AB26F9-60DE-A8CA-B767-CB24DFF144BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20AB26F9-60DE-A8CA-B767-CB24DFF144BC}.UnityRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{20AB26F9-60DE-A8CA-B767-CB24DFF144BC}.UnityRelease|Any CPU.Build.0 = Release|Any CPU
 		{CD40C47A-9242-476A-8D1C-693110779644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD40C47A-9242-476A-8D1C-693110779644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD40C47A-9242-476A-8D1C-693110779644}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD40C47A-9242-476A-8D1C-693110779644}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD40C47A-9242-476A-8D1C-693110779644}.UnityRelease|Any CPU.ActiveCfg = Release|Any CPU
 		{CD40C47A-9242-476A-8D1C-693110779644}.UnityRelease|Any CPU.Build.0 = Release|Any CPU
+		{437C2DF7-4BBA-4D8C-BBFD-D9648CD4FD61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{437C2DF7-4BBA-4D8C-BBFD-D9648CD4FD61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{437C2DF7-4BBA-4D8C-BBFD-D9648CD4FD61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{437C2DF7-4BBA-4D8C-BBFD-D9648CD4FD61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{437C2DF7-4BBA-4D8C-BBFD-D9648CD4FD61}.UnityRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{437C2DF7-4BBA-4D8C-BBFD-D9648CD4FD61}.UnityRelease|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

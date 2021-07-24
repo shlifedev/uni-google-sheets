@@ -1,4 +1,4 @@
-﻿using GoogleSheet.;
+﻿ 
 using GoogleSheet.IO.FileReader;
 using GoogleSheet.IO.FileWriter;
 using GoogleSheet.Protocol.v2.Req;
@@ -6,40 +6,15 @@ using System;
 using System.IO;
 using GoogleSheet.Reflection;
 using GoogleSheet.Validator;
+using GoogleSheet;
 
 namespace ConsoleApp1
 {
     class Program
     { 
         static void Main(string[] args)
-        {
-       
-            // Your Script Link
-            GoogleSheet.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHzgiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "123123");
-
-
-            string id = "1SgkBh-HngzRYL3Vl9PrxbMQ_vY89f0hx_BGpgXP4Ffc";
-            // Your Google Folder ID
-            GoogleSheet.Generate(id,
-            () => {
-                System.IO.DirectoryInfo di1 = new System.IO.DirectoryInfo("TableScript");
-                System.IO.DirectoryInfo di2 = new System.IO.DirectoryInfo("CachedJson");
-
-                DirectoryCopy(di1.FullName, "../../../TableScript", true);
-                DirectoryCopy(di2.FullName, "../../../CachedJson", true);
-            });
-
-            //GoogleSheet.S.Validator.UGSValidator.InitializeValidatorRequester(new GoogleDriveWebRequesterV2());
-            //CompareSheetId validator = new CompareSheetId();
-            //validator.isValid(x => {
-            //    Console.WriteLine(x);
-            //}, "1YDztWDjHvyvgyM9tVLlJIxk16gDjLZLm");
-
-            GoogleSheet.LoadAllData();
-            foreach (var value in DefaultTable.Data.DataList)
-                Console.WriteLine($"{value}");
-
-
+        { 
+            GoogleSheetV2.Initialize("https://script.google.com/macros/s/AKfycbxpqlYM5SfX0pL2RHzgiT_cFykKFLkcr_PgzU1KKnVx2Aa6YNN3/exec", "password");  
         }
 
 
