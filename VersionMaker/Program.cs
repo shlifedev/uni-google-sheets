@@ -3,6 +3,24 @@ using System.Collections.Generic;
 
 namespace VersionMaker
 {
+    public class Author
+    {
+        public string name;
+        public string email;
+        public string url;
+    }  
+    public class PackagesVersion
+    {
+        public string name;
+        public string version;
+        public string displayName;
+        public string description;
+        public string unity;
+        public string unityRelease;
+        public List<string> dependencies;
+        public List<string> keywords;
+        public Author author; 
+    }
     public class UGSVersion
     {
  
