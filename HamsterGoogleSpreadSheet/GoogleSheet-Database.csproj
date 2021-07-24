@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoogleSheetsDB\UG.Core\Http\ProtocolV2\Model\CopyFolderReqModel.cs" />
     <Compile Include="GoogleSheetsDB\UG.Core\Validator\ComareSheetId.cs" />
     <Compile Include="GoogleSheetsDB\UG.Core\Validator\ITypeValidator.cs" />
     <Compile Include="GoogleSheetsDB\UG.Core\Validator\IValidator.cs" />

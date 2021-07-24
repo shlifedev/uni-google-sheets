@@ -163,6 +163,28 @@ function v2CreateExample() {
   return JSON.stringify(data);
 }
 
+function v2CopyFolder(folderId) {
+  const exampleFolder = DriveApp.getFolderById(folderId);
+  const originName = exampleFolder.getName();
+  const createName = originName + "(Example)";
+  const targetFolder = DriveApp.createFolder(createName);
+
+  targetFolder.setName(
+    targetFolder.getName() + "(" + targetFolder.getId() + ")"
+  );
+
+  const exampleFiles = exampleFolder.getFiles();
+
+  while (exampleFiles.hasNext()) {
+    const exampleFile = exampleFiles.next();
+    const copied = exampleFile.makeCopy(targetFolder);
+    copied.setName(exampleFile.getName());
+  }
+
+  const data = new CreateExampleResult(targetFolder.getId());
+  return JSON.stringify(data);
+}
+
 function v2CreateDefault(folderID, fileName) {
   if (folderID == undefined || folderID == null)
     throw new Error("Folder ID is null!");
@@ -176,8 +198,8 @@ function v2CreateDefault(folderID, fileName) {
 
   while (folderFiles.hasNext()) {
     var folderFile = folderFiles.next();
-    if (folderFile.getName() == fileName) { 
-       throw Error("failed, already exist same file!")
+    if (folderFile.getName() == fileName) {
+      throw Error("failed, already exist same file!");
     }
   }
 

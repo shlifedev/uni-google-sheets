@@ -10,8 +10,8 @@ public interface IHttpProtcol
     void ReadSpreadSheet(ReadSpreadSheetReqModel mdl, System.Action<System.Exception> errResponse, System.Action<ReadSpreadSheetResult> callback);
     void WriteObject(WriteObjectReqModel mdl, System.Action<System.Exception> errResponse, System.Action<UGS.Protocol.v2.Res.WriteObjectResult> callback);
     void CreateDefaultSheet(CreateDefaultReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateDefaultSheetResult> callback);
-    void CopyExample(CopyExampleReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateExampleResult> callback); 
-     
+    void CopyExample(CopyExampleReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateExampleResult> callback);
+    void CopyFolder(CopyFolderReqModel mdl, System.Action<System.Exception> errResponse, System.Action<CreateExampleResult> callback);
 }
 public class WriteDataSender
 {

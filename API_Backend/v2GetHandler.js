@@ -5,6 +5,7 @@ callbacks[instructions.search_google_drive] = doGetGoogleDrive;
 callbacks[instructions.read_spreadsheet] = doGetSpreadSheet;
 callbacks[instructions.create_default_table] = doCreateDefault;
 callbacks[instructions.copy_example] = doCreateExample;
+callbacks[instructions.copy_folder] = doCopyFolder;
 
 function get(e) {
   const callback = callbacks[e.parameter.instruction];
@@ -12,7 +13,10 @@ function get(e) {
     return json({ message: "hamster google spread sheet api internal error" });
   return callback(e);
 }
-
+function doCopyFolder(e) {
+  const { folderId } = e.parameter;
+  return v2CopyFolder(folderId);
+}
 /* 예제1~4번 테이블 생성 */
 function doCreateExample(e) {
   return v2CreateExample();

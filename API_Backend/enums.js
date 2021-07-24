@@ -8,4 +8,5 @@ const instructions = {
   write_object: 2,
   create_default_table: 101,
   copy_example: 102,
+  copy_folder: 103,
 };
