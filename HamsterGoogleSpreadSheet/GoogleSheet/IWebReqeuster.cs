@@ -24,7 +24,7 @@ public class WriteDataSender
 
  
     public WriteDataSender(string password, string spreadSheetID, string sheetID, string key, string[] value)
-    {
+    { 
         this.password = password;
         this.spreadSheetID = spreadSheetID;
         this.sheetID = sheetID;
