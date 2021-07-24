@@ -1,19 +1,19 @@
 
 /*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorUnityEngine.cs'  */
-using Hamster.UG;
+using GoogleSheet.;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Hamster.UG.Type;
+using GoogleSheet.Type;
 using System.Reflection;
-using Hamster.UG.IO.FileReader;
-using UGS.Protocol.v2.Res;
+using GoogleSheet.IO.FileReader;
+using GoogleSheet.Protocol.v2.Res;
 
 
 namespace Example2.Item
 {
-    [Hamster.UG.Attribute.TableStruct]
+    [GoogleSheet.Attribute.TableStruct]
     public partial class Weapons : ITable
     { 
 
@@ -65,7 +65,7 @@ namespace Example2.Item
                 } 
                 datas[i] = writeRule; 
             }  
-             GoogleDriveWebRequesterV2.Instance.WriteObject(new UGS.Protocol.v2.Req.WriteObjectReqModel(spreadSheetID, sheetID, datas[0], datas), OnError, onWriteCallback);
+             GoogleDriveWebRequesterV2.Instance.WriteObject(new GoogleSheet.Protocol.v2.Req.WriteObjectReqModel(spreadSheetID, sheetID, datas[0], datas), OnError, onWriteCallback);
         } 
          
 
@@ -83,7 +83,7 @@ namespace Example2.Item
             }
             List<Weapons> callbackParamList = new List<Weapons>();
             Dictionary<int,Weapons> callbackParamMap = new Dictionary<int, Weapons>();
-            webInstance.ReadSpreadSheet(new UGS.Protocol.v2.Req.ReadSpreadSheetReqModel(spreadSheetID), OnError, (data) => {
+            webInstance.ReadSpreadSheet(new GoogleSheet.Protocol.v2.Req.ReadSpreadSheetReqModel(spreadSheetID), OnError, (data) => {
             FieldInfo[] fields = typeof(Example2.Item.Weapons).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string,string,string)>();
             List<List<string>> typeValuesCList = new List<List<string>>(); 

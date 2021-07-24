@@ -1,11 +1,11 @@
-﻿using Hamster.UG;
-using Hamster.UG.IO.FileReader;
-using Hamster.UG.IO.FileWriter;
-using UGS.Protocol.v2.Req;
+﻿using GoogleSheet.;
+using GoogleSheet.IO.FileReader;
+using GoogleSheet.IO.FileWriter;
+using GoogleSheet.Protocol.v2.Req;
 using System;
 using System.IO;
-using Hamster.UG.Reflection;
-using UGS.Validator;
+using GoogleSheet.Reflection;
+using GoogleSheet.Validator;
 
 namespace ConsoleApp1
 {
@@ -29,7 +29,7 @@ namespace ConsoleApp1
                 DirectoryCopy(di2.FullName, "../../../CachedJson", true);
             });
 
-            //Hamster.UGS.Validator.UGSValidator.InitializeValidatorRequester(new GoogleDriveWebRequesterV2());
+            //GoogleSheet.S.Validator.UGSValidator.InitializeValidatorRequester(new GoogleDriveWebRequesterV2());
             //CompareSheetId validator = new CompareSheetId();
             //validator.isValid(x => {
             //    Console.WriteLine(x);
