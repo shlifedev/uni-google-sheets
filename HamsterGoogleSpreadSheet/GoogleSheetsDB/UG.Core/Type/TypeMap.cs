@@ -27,12 +27,7 @@ namespace Hamster.UG.Type
             get => enumMap;
              
         }
-
-        public static void EnumDependencyInject<T>() where T : Enum
-        {
-            var x = T.GetType();
-
-        }
+         
         public static void Init()
         {
             
@@ -74,7 +69,9 @@ namespace Hamster.UG.Type
                         Console.WriteLine("[TypeMap] Added " + att.type.ToString() + "  " + instance.ToString());
 #endif
 
- 
+#if UNITY_EDITOR
+                        UnityEngine.Debug.Log("[TypeMap] Added " + att.type.ToString() + "  " + instance.ToString());
+#endif
                         if (!Map.ContainsKey(att.type))
                         {
                             Map.Add(att.type, (IType)instance);
