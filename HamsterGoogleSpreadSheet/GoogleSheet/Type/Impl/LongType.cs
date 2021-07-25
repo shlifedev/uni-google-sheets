@@ -1,6 +1,6 @@
 ﻿namespace GoogleSheet.Type
 {
-    [Type(type : typeof(long), speractors : new string[] {"long","Long"})]
+    [Type(Type : typeof(long), TypeName : new string[] {"long","Long"})]
     public class LongType : IType
     {
         public object DefaultValue => 0;

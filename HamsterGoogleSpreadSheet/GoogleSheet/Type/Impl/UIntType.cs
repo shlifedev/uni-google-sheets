@@ -1,6 +1,6 @@
 ﻿namespace GoogleSheet.Type
 {
-    [Type(type : typeof(uint), speractors : new[] { "uint", "UInt"})]
+    [Type(Type : typeof(uint), TypeName : new[] { "uint", "UInt"})]
     public class UIntType : IType
     {
         public object DefaultValue => 0;
@@ -15,7 +15,7 @@
             { 
                     throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
 
-                return DefaultValue;
+                //return DefaultValue;
             }
             return @int;
         }

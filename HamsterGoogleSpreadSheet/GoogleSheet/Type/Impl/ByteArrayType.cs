@@ -3,7 +3,7 @@ using System.Text;
 
 namespace GoogleSheet.Type
 {
-    [Type(type : typeof(byte[]), speractors : new string[] { "byte[]", "Byte[]"})]
+    [Type(Type : typeof(byte[]), TypeName : new string[] { "byte[]", "Byte[]"})]
     public class ByteArrayType : IType
     {
         public object DefaultValue => null;
@@ -13,9 +13,7 @@ namespace GoogleSheet.Type
                 throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
 
             byte[] bytes = Encoding.Default.GetBytes(value);
-            return bytes;
-
-            
+            return bytes; 
         }
 
         public string Write(object value)

@@ -15,7 +15,7 @@ namespace GoogleSheet.Type
             if (b == false)
             { 
                     throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name); 
-                return DefaultValue;
+          
             }
             return @char;
         }

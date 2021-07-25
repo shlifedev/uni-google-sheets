@@ -2,7 +2,7 @@
 
 namespace GoogleSheet.Type
 { 
-    [Type(type : typeof(MyCustomStruct), speractors : new string[] { "custom", "Custom" })]
+    [Type(Type : typeof(MyCustomStruct), TypeName : new string[] { "custom", "Custom" })]
     public class MyCustomStructType : IType
     {
         public object DefaultValue => 0;

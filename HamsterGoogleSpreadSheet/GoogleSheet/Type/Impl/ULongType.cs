@@ -1,6 +1,6 @@
 ﻿namespace GoogleSheet.Type
 {
-    [Type(type : typeof(ulong), speractors : new string[] {"ulong","ULong"})]
+    [Type(Type : typeof(ulong), TypeName : new string[] {"ulong","ULong"})]
     public class ULongType : IType
     {
         public object DefaultValue => 0;
@@ -15,7 +15,7 @@
             { 
                     throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
 
-                return DefaultValue;
+                //return DefaultValue;
             }
             return @long;
         }

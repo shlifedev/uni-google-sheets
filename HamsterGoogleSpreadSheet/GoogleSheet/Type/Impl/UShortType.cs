@@ -1,6 +1,6 @@
 ﻿namespace GoogleSheet.Type
 {
-    [Type(type: typeof(ushort), speractors: new string[] { "ushort" })]
+    [Type(Type: typeof(ushort), TypeName: new string[] { "ushort" })]
     public class UShortType : IType
     {
         public object DefaultValue => 0;

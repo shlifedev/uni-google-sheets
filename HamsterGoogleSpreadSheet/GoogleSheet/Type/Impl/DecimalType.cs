@@ -1,7 +1,7 @@
 ﻿namespace GoogleSheet.Type
 {
 
-    [Type(type: typeof(decimal), speractors: new string[] { "decimal", "Decimal" })]
+    [Type(Type: typeof(decimal), TypeName: new string[] { "decimal", "Decimal" })]
     public class DecimalType : IType
     {
         public object DefaultValue => 0;
@@ -15,7 +15,7 @@
             if (b == false)
             {
                 throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
-                return DefaultValue;
+           
             }
             return @decimal;
         }

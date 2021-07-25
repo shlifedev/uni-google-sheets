@@ -15,7 +15,7 @@
             {
                 throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
 
-                return DefaultValue;
+                //return DefaultValue;
             }
             return f;
         }

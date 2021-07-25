@@ -1,6 +1,6 @@
 ﻿namespace GoogleSheet.Type
 {
-    [Type(type : typeof(short), speractors : new string[] { "short", "Short"})]
+    [Type(Type : typeof(short), TypeName : new string[] { "short", "Short"})]
     public class ShortType : IType
     {
         public object DefaultValue => 0;
@@ -15,7 +15,7 @@
             { 
                     throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
 
-                return DefaultValue;
+                //return DefaultValue;
             }
             return @short;
         }

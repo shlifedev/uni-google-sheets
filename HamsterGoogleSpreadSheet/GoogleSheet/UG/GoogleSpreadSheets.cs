@@ -12,8 +12,7 @@ namespace GoogleSheet
 { 
     public static class GoogleSheetV2
     {
-        
-        private static bool _credentialCalled = false;
+         
         public static void Initialize(string scriptURL, string password)
         {
             GoogleDriveWebRequesterV2.Instance.Credential(scriptURL, password);

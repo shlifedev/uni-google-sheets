@@ -2,7 +2,7 @@
 
 namespace GoogleSheet.Type
 {
-    [Type(type: typeof(int), speractors: new string[] { "int", "Int", "Int32" })]
+    [Type(Type: typeof(int), TypeName: new string[] { "int", "Int", "Int32" })]
     public class IntType : IType
     {
         public object DefaultValue => 0;
@@ -16,7 +16,7 @@ namespace GoogleSheet.Type
             if (b == false)
             { 
                 throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name); 
-                return DefaultValue;
+                //return DefaultValue;
             }
             return @int;
         }

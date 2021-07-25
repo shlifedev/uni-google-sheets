@@ -1,6 +1,6 @@
 ﻿namespace GoogleSheet.Type
 {
-    [Type(type: typeof(double), speractors: new string[] { "double", "Double" })]
+    [Type(Type: typeof(double), TypeName: new string[] { "double", "Double" })]
     public class DoubleType : IType
     {
         public object DefaultValue => 0.0d;

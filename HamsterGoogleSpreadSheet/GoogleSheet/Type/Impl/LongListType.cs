@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace GoogleSheet.Type
 {
-    [Type(type: typeof(List<long>), speractors: new string[] { "list<long>", "List<Long>" })]
+    [Type(Type: typeof(List<long>), TypeName: new string[] { "list<long>", "List<Long>" })]
     public class LongListType : IType
     {
         public object DefaultValue => null;
