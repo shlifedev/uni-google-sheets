@@ -7,7 +7,10 @@
         public object Read(string value)
         {
             var datas = ReadUtil.GetBracketValueToArray(value);
-            if(datas.Length == 0 || datas.Length == 1 || datas.Length > 2) return DefaultValue;
+            if(datas.Length == 0 || datas.Length == 1 || datas.Length > 2)
+            { 
+                    throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name); 
+            }
             else
             { 
                 return (datas[0], datas[1]);

@@ -11,3 +11,11 @@ public class UGSWebError : System.Exception
     {
     }
 }
+
+
+public class UGSValueParseException : System.Exception
+{
+    public UGSValueParseException(string message) : base(message)
+    {
+    }
+}

@@ -8,10 +8,14 @@ namespace GoogleSheet.Type
         public object DefaultValue => 0;
         public object Read(string value)
         {
+            if (string.IsNullOrEmpty(value))
+                throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
+
             int @int = 0;
             var b = int.TryParse(value, out @int);
             if (b == false)
-            {
+            { 
+                throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name); 
                 return DefaultValue;
             }
             return @int;

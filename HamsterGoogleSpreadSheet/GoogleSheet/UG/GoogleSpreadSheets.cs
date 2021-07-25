@@ -17,11 +17,11 @@ namespace GoogleSheet
         public static void Initialize(string scriptURL, string password)
         {
             GoogleDriveWebRequesterV2.Instance.Credential(scriptURL, password);
-            HamsterGoogleSheet.Init(new GSParser(), new FileReader()); 
+            GoogleSpreadSheets.Init(new GSParser(), new FileReader()); 
         }
         
         /// <summary>
-        /// Get Drive Directory Infos
+        /// Get Drive Directory Infos 
         /// </summary>
         /// <param name="folderID"></param>
         /// <param name="callback"></param>
@@ -126,7 +126,7 @@ namespace GoogleSheet
         public static void Generate(string fileID)
         {
             ReadSpreadSheet(fileID, x => {
-                HamsterGoogleSheet.DataParser.ParseSheet(x, true, true, new FileWriter());
+                GoogleSpreadSheets.DataParser.ParseSheet(x, true, true, new FileWriter());
             });
         }
 
@@ -137,7 +137,7 @@ namespace GoogleSheet
         public static void Generate(string fileID, System.Action callback)
         {
             ReadSpreadSheet(fileID, x => {
-                HamsterGoogleSheet.DataParser.ParseSheet(x, true, true, new FileWriter());
+                GoogleSpreadSheets.DataParser.ParseSheet(x, true, true, new FileWriter());
                 callback?.Invoke();
             });
         }
@@ -188,7 +188,7 @@ namespace GoogleSheet
         } 
     }
 
-    public static class HamsterGoogleSheet
+    public static class GoogleSpreadSheets
     {
     
         private static IParser _dataParser;

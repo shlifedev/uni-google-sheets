@@ -53,7 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoogleSheet\Attribute\DataAttribute.cs" />
     <Compile Include="GoogleSheet\Http\ProtocolV2\Model\CopyFolderReqModel.cs" />
+    <Compile Include="GoogleSheet\IssueCollector.cs" />
     <Compile Include="GoogleSheet\Validator\ComareSheetId.cs" />
     <Compile Include="GoogleSheet\Validator\ITypeValidator.cs" />
     <Compile Include="GoogleSheet\Validator\IValidator.cs" />
@@ -126,7 +128,7 @@
     <Compile Include="GoogleSheet\Type\WriteUtil.cs" />
     <Compile Include="GoogleSheet\UG\GoogleDriveWebRequesterV2.cs" />
     <Compile Include="GoogleSheet\UG\SheetInfo.cs" />
-    <Compile Include="GoogleSheet\UG\HamsterGoogleSheet.cs" />
+    <Compile Include="GoogleSheet\UG\GoogleSpreadSheets.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

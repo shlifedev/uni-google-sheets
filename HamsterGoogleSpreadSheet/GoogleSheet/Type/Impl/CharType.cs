@@ -7,10 +7,14 @@ namespace GoogleSheet.Type
         public object DefaultValue => Char.MinValue;
         public object Read(string value)
         {
+            if (string.IsNullOrEmpty(value))
+                throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
+
             char @char = Char.MinValue;
             var b = Char.TryParse(value, out @char);
             if (b == false)
-            {
+            { 
+                    throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name); 
                 return DefaultValue;
             }
             return @char;

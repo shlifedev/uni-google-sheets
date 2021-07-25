@@ -9,8 +9,9 @@ namespace GoogleSheet.Type
         public object DefaultValue => null;
         public object Read(string value)
         {
-            if(string.IsNullOrEmpty(value))
-                return DefaultValue;
+            if (string.IsNullOrEmpty(value))
+                throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
+
             byte[] bytes = Encoding.Default.GetBytes(value);
             return bytes;
 

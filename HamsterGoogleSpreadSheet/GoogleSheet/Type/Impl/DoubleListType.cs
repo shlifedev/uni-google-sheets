@@ -8,7 +8,11 @@ namespace GoogleSheet.Type
     {
         public object DefaultValue => null;
         public object Read(string value)
-        { 
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name);
+
+
             var list = new System.Collections.Generic.List<double>();
             if (value == "[]") return list;
 
@@ -17,6 +21,10 @@ namespace GoogleSheet.Type
             {
                 foreach (var data in datas)
                     list.Add(double.Parse(data));
+            }
+            else
+            { 
+                    throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name); 
             }
             return list;
         }

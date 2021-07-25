@@ -8,9 +8,11 @@
         {
             byte @byte = 0;
             var b = byte.TryParse(value, out @byte);
+
+     
             if (b == false)
-            {
-                return DefaultValue;
+            { 
+                    throw new UGSValueParseException("Parse Faield => " + value + " To " + this.GetType().Name); 
             }
             return @byte;
         }

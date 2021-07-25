@@ -69,7 +69,7 @@ namespace GoogleSheet.Type
                         Console.WriteLine("[TypeMap] Added " + att.type.ToString() + "  " + instance.ToString());
 #endif
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR && UGS_DEBUG
                         UnityEngine.Debug.Log("[TypeMap] Added " + att.type.ToString() + "  " + instance.ToString());
 #endif
                         if (!Map.ContainsKey(att.type))
