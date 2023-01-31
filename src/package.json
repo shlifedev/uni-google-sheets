@@ -1,6 +1,6 @@
 {
   "name": "com.cheeseallergyhamster.ugs",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "displayName": "Uni Google Sheets",
   "description": "Google Sheet Intergration for Unity",
   "dependencies": { 
