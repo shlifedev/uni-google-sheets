@@ -1,4 +1,4 @@
-Easily Intergrate Google Sheets Into Unity.
+Intergrate Google Sheets Your Unity Project.
 
 [Reference Document](https://ugs.shlife.dev)
 
