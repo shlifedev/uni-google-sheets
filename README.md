@@ -4,5 +4,5 @@ Google Sheet Intergration for Unity
  `https://github.com/shlifedev/uni-google-sheets?path=src/` 
 
 ## Example
- `./src/~examples`
+ `./src/~examples/awesome_sunny.unitypackage`
  
