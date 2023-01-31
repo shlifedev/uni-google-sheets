@@ -1,10 +1,8 @@
 {
   "name": "com.cheeseallergyhamster.ugs",
-  "version": "1.0.7",
+  "version": "1.0.0",
   "displayName": "Uni Google Sheets",
   "description": "Google Sheet Intergration for Unity",
-  "unity": "2023.1.0",
-  "unityRelease": "0b5",
   "dependencies": { 
     "com.unity.nuget.newtonsoft-json": "2.0.0"
  },
