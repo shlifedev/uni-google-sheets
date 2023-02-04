@@ -1,6 +1,6 @@
 {
   "name": "com.shlifedev.ugs",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "displayName": "Uni Google Sheets",
   "description": "Google Sheet Intergration for Unity",
   "dependencies": { 
