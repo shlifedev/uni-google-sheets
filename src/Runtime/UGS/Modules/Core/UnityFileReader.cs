@@ -29,8 +29,7 @@ namespace UGS.IO
                     content = RuntimeAssetLoad(fileName);
                 }
             }
-
-            Debug.Log(content);
+ 
             if (setting.base64)
                 content = UGS.Unused.Base64Utils.Decode(content);
             return content;
