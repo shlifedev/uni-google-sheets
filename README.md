@@ -1,6 +1,5 @@
 Intergrate Google Sheets Your Unity Project.  
-[Reference Document](https://ugs.shlife.dev)  
-[Velog 포스팅](https://velog.io/@shlifedev/%EC%9C%A0%EB%8B%88%ED%8B%B0-%EA%B5%AC%EA%B8%80%EC%8A%A4%ED%94%84%EB%A0%88%EB%93%9C%EC%8B%9C%ED%8A%B8-%EC%89%BD%EA%B2%8C-%ED%86%B5%ED%95%A9%ED%95%98%EA%B8%B0-UniGS)
+[Reference Document](https://ugs.shlife.dev)   
 
 <p align="center">  
  <img src="https://img.shields.io/badge/Unity-2018.3%2B-green"/>
