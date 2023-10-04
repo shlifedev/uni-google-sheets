@@ -12,6 +12,7 @@ namespace UGS.Editor
 
         }
 
+
         public void OnPreprocessBuild(BuildReport report)
         {
             var confirm = UnityEditor.EditorPrefs.GetBool("UGS.BuildMsg", false);
