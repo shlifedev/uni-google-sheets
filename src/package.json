@@ -1,0 +1,19 @@
+{
+  "name": "com.shlifedev.ugs",
+  "version": "1.1.0",
+  "displayName": "Uni Google Sheets",
+  "description": "Google Sheet Intergration for Unity",
+  "dependencies": { 
+    "com.unity.nuget.newtonsoft-json": "2.0.0"
+ },
+ "keywords": [
+    "UGS",
+    "Unity Google Sheets",
+    "Google Sheet"
+  ],
+  "author": {
+    "name": "shlifedev",
+    "email": "shlifedev@gmail.com",
+    "url": "https://www.unity3d.com"
+  }
+}
